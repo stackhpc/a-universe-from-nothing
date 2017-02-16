@@ -1,0 +1,38 @@
+---
+# Kayobe NTP configuration.
+
+###############################################################################
+# Timezone.
+
+# Name of the local timezone.
+#timezone:
+
+###############################################################################
+# Network Time Protocol (NTP).
+
+# List of names of NTP servers.
+#ntp_config_server:
+
+# List of NTP restrictions to add to ntp.conf.
+#ntp_config_restrict:
+
+# List of addresses for NTP daemon to listen on.
+#ntp_config_listen:
+
+# Other NTP configuration options.
+#ntp_config_filegen:
+#ntp_config_statistics:
+#ntp_config_crypto:
+#ntp_config_includefile:
+#ntp_config_keys:
+#ntp_config_trustedkey:
+#ntp_config_requestkey:
+#ntp_config_controlkey:
+#ntp_config_broadcast:
+#ntp_config_broadcastclient:
+#ntp_config_multicastclient:
+#ntp_config_tinker_panic_enabled:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

@@ -1,0 +1,16 @@
+---
+###############################################################################
+# SSH configuration.
+
+# Name of SSH key.
+#ssh_key_name:
+
+# Path to SSH private key on the control host.
+#ssh_private_key_path:
+
+# Path to SSH public key on the control host.
+#ssh_public_key_path:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

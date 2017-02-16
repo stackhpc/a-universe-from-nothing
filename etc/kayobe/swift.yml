@@ -1,0 +1,20 @@
+---
+###############################################################################
+# OpenStack Swift configuration.
+
+# Base-2 logarithm of the number of partitions.
+# i.e. num_partitions=2^<swift_part_power>.
+#swift_part_power:
+
+# Object replication count.
+#swift_replication_count:
+
+# Minimum time in hours between moving a given partition.
+#swift_min_part_hours:
+
+# Number of Swift Zones.
+#swift_num_zones:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

@@ -1,0 +1,11 @@
+---
+###############################################################################
+# Controller node configuration.
+
+# User with which to access the controllers via SSH during bootstrap, in order
+# to setup the Kayobe user account.
+#controller_bootstrap_user:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

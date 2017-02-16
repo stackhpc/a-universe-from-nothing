@@ -1,0 +1,13 @@
+# Kayobe groups inventory file. This file should generally not be modified.
+# If declares the top-level groups and sub-groups.
+
+[seed]
+# Empty group to provide declaration of seed group.
+
+[controllers]
+# Empty group to provide declaration of controllers group.
+
+[docker:children]
+# Hosts in this group will have Docker installed.
+seed
+controllers

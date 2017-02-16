@@ -1,0 +1,36 @@
+---
+# Kayobe configuration for Bifrost.
+
+###############################################################################
+# Diskimage-builder configuration.
+
+# DIB base OS element.
+#kolla_bifrost_dib_os_element:
+
+# List of DIB elements.
+#kolla_bifrost_dib_elements:
+
+# DIB init element.
+#kolla_bifrost_dib_init_element:
+
+# DIB environment variables.
+#kolla_bifrost_dib_env_vars:
+
+# List of DIB packages to install.
+#kolla_bifrost_dib_packages:
+
+###############################################################################
+# Ironic configuration.
+
+# Whether to enable ipmitool-based drivers.
+#kolla_bifrost_enable_ipmitool_drivers:
+
+###############################################################################
+# Inventory configuration.
+
+# Server inventory for Bifrost.
+#kolla_bifrost_servers:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

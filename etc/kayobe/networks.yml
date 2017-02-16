@@ -1,0 +1,66 @@
+---
+# Kayobe network configuration.
+
+###############################################################################
+# Network roles.
+
+# Network role to network mappings.
+#provision_oc_net_name: 'provision_oc_net'
+#provision_wl_net_name: 'provision_wl_net'
+#internal_net_name: 'internal_net'
+#external_net_name: 'external_net'
+#storage_net_name: 'storage_net'
+#storage_mgmt_net_name: 'storage_mgmt_net'
+
+###############################################################################
+# Network definitions.
+
+# Overcloud provisioning network IP information.
+# provision_oc_net_cidr:
+# provision_oc_net_allocation_pool_start:
+# provision_oc_net_allocation_pool_end:
+# provision_oc_net_gateway:
+# provision_oc_net_vlan:
+
+# Workload provisioning network IP information.
+# provision_wl_net_cidr:
+# provision_wl_net_allocation_pool_start:
+# provision_wl_net_allocation_pool_end:
+# provision_wl_net_gateway:
+# provision_wl_net_vlan:
+
+# Internal network IP information.
+# internal_net_vip_address:
+# internal_net_fqdn:
+# internal_net_cidr:
+# internal_net_allocation_pool_start:
+# internal_net_allocation_pool_end:
+# internal_net_gateway:
+# internal_net_vlan:
+
+# External network IP information.
+# external_net_vip_address:
+# external_net_fqdn:
+# external_net_cidr:
+# external_net_allocation_pool_start:
+# external_net_allocation_pool_end:
+# external_net_gateway:
+# external_net_vlan:
+
+# Storage network IP information.
+# storage_net_cidr:
+# storage_net_allocation_pool_start:
+# storage_net_allocation_pool_end:
+# storage_net_gateway:
+# storage_net_vlan:
+
+# Storage management network IP information.
+# storage_mgmt_net_cidr:
+# storage_mgmt_net_allocation_pool_start:
+# storage_mgmt_net_allocation_pool_end:
+# storage_mgmt_net_gateway:
+# storage_mgmt_net_vlan:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
