@@ -14,6 +14,13 @@
 # 'source'.
 #kolla_source_version:
 
+# URL of Kolla Ansible source code repository if type is 'source'.
+#kolla_ansible_source_url:
+
+# Version (branch, tag, etc.) of Kolla Ansible source code repository if type
+# is 'source'.
+#kolla_ansible_source_version:
+
 ###############################################################################
 # Kolla configuration.
 
@@ -82,6 +89,17 @@
 #kolla_enable_tempest:
 #kolla_enable_vmtp:
 #kolla_enable_watcher:
+
+###############################################################################
+# Passwords and credentials.
+
+# Dictionary containing default custom passwords to add or override in the
+# Kolla passwords file.
+#kolla_ansible_default_custom_passwords:
+
+# Dictionary containing custom passwords to add or override in the Kolla
+# passwords file.
+#kolla_ansible_custom_passwords:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

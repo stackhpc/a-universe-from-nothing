@@ -7,6 +7,9 @@
 # DIB base OS element.
 #kolla_bifrost_dib_os_element:
 
+# DIB image OS release.
+#kolla_bifrost_dib_os_release:
+
 # List of DIB elements.
 #kolla_bifrost_dib_elements:
 
