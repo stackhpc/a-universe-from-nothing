@@ -33,8 +33,24 @@
 # Kolla installation type: binary or source.
 #kolla_install_type:
 
+# Docker namespace to use for Kolla images.
+#kolla_docker_namespace:
+
 # Kolla OpenStack release version. This should be a Docker image tag.
 #kolla_openstack_release:
+
+# Dict mapping names of sources to their definitions for
+# kolla_install_type=source. See kolla.common.config for details.
+# Example:
+# kolla_sources:
+#   ironic_base:
+#     type: git
+#     location: https://github.com/openstack/ironic
+#     reference: master
+#kolla_sources:
+
+###############################################################################
+# Kolla-ansible configuration.
 
 # Whether TLS is enabled for the external API endpoints.
 #kolla_enable_tls_external:
