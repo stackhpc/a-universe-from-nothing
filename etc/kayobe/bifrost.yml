@@ -29,6 +29,22 @@
 #kolla_bifrost_enable_ipmitool_drivers:
 
 ###############################################################################
+# Ironic Inspector configuration.
+
+# List of of inspector processing plugins.
+#kolla_bifrost_inspector_processing_hooks:
+
+# Which MAC addresses to add as ports during introspection. One of 'all',
+# 'active' or 'pxe'.
+#kolla_bifrost_inspector_port_addition:
+
+# List of extra kernel parameters for the inspector default PXE configuration.
+#kolla_bifrost_inspector_extra_kernel_options:
+
+# List of introspection rules for Bifrost's Ironic Inspector service.
+#kolla_bifrost_inspector_rules:
+
+###############################################################################
 # Inventory configuration.
 
 # Server inventory for Bifrost.
