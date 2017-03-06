@@ -44,6 +44,18 @@
 # List of introspection rules for Bifrost's Ironic Inspector service.
 #kolla_bifrost_inspector_rules:
 
+# Ironic inspector IPMI username to set.
+#kolla_bifrost_inspector_ipmi_username:
+
+# Ironic inspector IPMI password to set.
+#kolla_bifrost_inspector_ipmi_password:
+
+# Ironic inspector deployment kernel location.
+#kolla_bifrost_inspector_deploy_kernel:
+
+# Ironic inspector deployment ramdisk location.
+#kolla_bifrost_inspector_deploy_ramdisk:
+
 ###############################################################################
 # Inventory configuration.
 
