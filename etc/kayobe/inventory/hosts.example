@@ -17,3 +17,12 @@ localhost ansible_connection=local
 [controllers]
 # Add controller nodes here if required. These hosts will provide the
 # OpenStack overcloud.
+
+[mgmt-switches]
+# Add management network switches here if required.
+
+[ctl-switches]
+# Add control and provisioning switches here if required.
+
+[hs-switches]
+# Add high speed switches here if required.

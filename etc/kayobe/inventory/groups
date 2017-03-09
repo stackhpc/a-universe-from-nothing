@@ -11,3 +11,20 @@
 # Hosts in this group will have Docker installed.
 seed
 controllers
+
+###############################################################################
+# Networking groups.
+
+[mgmt-switches]
+# Empty group to provide declaration of mgmt-switches group.
+
+[ctl-switches]
+# Empty group to provide declaration of ctl-switches group.
+
+[hs-switches]
+# Empty group to provide declaration of hs-switches group.
+
+[switches:children]
+mgmt-switches
+ctl-switches
+hs-switches

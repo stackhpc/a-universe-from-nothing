@@ -1,0 +1,20 @@
+---
+# Switch configuration.
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration. Dict mapping switch interface names to configuration
+# dicts. Each dict contains a description item and the name of a network which
+# is used to lookup a variable containing interface config for ports on that
+# network (switch_interface_config_<network>). Each dict can also have a 
+# 'config' item which should contain a list of additional per-interface
+# configuration.
+# Generally this should be configured on a per-switch basis via a host_vars
+# file.
+switch_interface_config: {}
+
+# Example of an interface configuration variable for a network, referenced by
+# the 'network' item of an interface in 'switch_interface_config'.
+#switch_interface_config_example_net:
+#  - switchport access vlan 42
