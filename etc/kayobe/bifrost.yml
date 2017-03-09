@@ -2,6 +2,15 @@
 # Kayobe configuration for Bifrost.
 
 ###############################################################################
+# Bifrost installation.
+
+# URL of Bifrost source code repository.
+#kolla_bifrost_source_url:
+
+# Version (branch, tag, etc.) of Bifrost source code repository.
+#kolla_bifrost_source_version:
+
+###############################################################################
 # Diskimage-builder configuration.
 
 # DIB base OS element.
