@@ -2,6 +2,15 @@
 # Seed node configuration.
 
 ###############################################################################
+# Network interface attachments.
+
+# List of default networks to which seed nodes are attached.
+#seed_default_network_interfaces:
+
+# List of extra networks to which seed nodes are attached.
+#seed_extra_network_interfaces:
+
+###############################################################################
 # LVM configuration.
 
 # List of seed VM LVM volume groups. See mrlesmithjr.manage-lvm role for

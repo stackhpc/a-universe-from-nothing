@@ -7,5 +7,14 @@
 #controller_bootstrap_user:
 
 ###############################################################################
+# Network interface attachments.
+
+# List of default networks to which controller nodes are attached.
+#controller_default_network_interfaces:
+
+# List of extra networks to which controller nodes are attached.
+#controller_extra_network_interfaces:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
