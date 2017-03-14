@@ -13,9 +13,17 @@
 ###############################################################################
 # LVM configuration.
 
-# List of seed VM LVM volume groups. See mrlesmithjr.manage-lvm role for
+# List of seed volume groups. See mrlesmithjr.manage-lvm role for
 # format.
 #seed_lvm_groups:
+
+# Default list of seed volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+#seed_lvm_groups_default:
+
+# Additional list of seed volume groups. See mrlesmithjr.manage-lvm role
+# for format.
+#seed_lvm_groups_extra:
 
 # Seed LVM volume group for data. See mrlesmithjr.manage-lvm role for format.
 #seed_lvm_group_data:

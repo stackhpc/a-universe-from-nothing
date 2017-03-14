@@ -16,5 +16,40 @@
 #controller_extra_network_interfaces:
 
 ###############################################################################
+# Controller node LVM configuration.
+
+# List of controller volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+#controller_lvm_groups:
+
+# Default list of controller volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+#controller_lvm_groups_default:
+
+# Additional list of controller volume groups. See mrlesmithjr.manage-lvm role
+# for format.
+#controller_lvm_groups_extra:
+
+# Controller LVM volume group for data. See mrlesmithjr.manage-lvm role for
+# format.
+#controller_lvm_group_data:
+
+# List of disks for use by controller LVM data volume group. Default to an
+# invalid value to require configuration.
+#controller_lvm_group_data_disks:
+
+# List of LVM logical volumes for the data volume group.
+#controller_lvm_group_data_lvs:
+
+# Docker volumes LVM backing volume.
+#controller_lvm_group_data_lv_docker_volumes:
+
+# Size of docker volumes LVM backing volume.
+#controller_lvm_group_data_lv_docker_volumes_size:
+
+# Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
+#controller_lvm_group_data_lv_docker_volumes_fs:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
