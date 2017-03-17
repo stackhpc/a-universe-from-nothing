@@ -1,0 +1,85 @@
+---
+###############################################################################
+# Ironic inspector PXE configuration.
+
+# List of extra kernel parameters for the inspector default PXE configuration.
+#inspector_extra_kernel_options:
+
+# URL of Ironic Python Agent (IPA) kernel image.
+#inspector_ipa_kernel_upstream_url:
+
+# URL of Ironic Python Agent (IPA) ramdisk image.
+#inspector_ipa_ramdisk_upstream_url:
+
+###############################################################################
+# Ironic inspector processing configuration.
+
+# Whether inspector should manage the firewall.
+#inspector_manage_firewall:
+
+# List of of inspector processing plugins.
+#inspector_processing_hooks:
+
+# Which MAC addresses to add as ports during introspection. One of 'all',
+# 'active' or 'pxe'.
+#inspector_port_addition:
+
+# Whether to enable discovery of nodes not managed by Ironic.
+#inspector_enable_discovery:
+
+# The Ironic driver with which to register newly discovered nodes.
+#inspector_discovery_enroll_node_driver:
+
+###############################################################################
+# Ironic inspector configuration.
+
+# Ironic inspector IPMI username to set.
+#inspector_ipmi_username:
+
+# Ironic inspector IPMI password to set.
+#inspector_ipmi_password:
+
+# Ironic inspector network interface name on which to check for an LLDP switch
+# port description to use as the node's name.
+#inspector_lldp_switch_port_interface:
+
+###############################################################################
+# Ironic inspector introspection rules configuration.
+
+# Ironic inspector rule to set IPMI credentials.
+#inspector_rule_ipmi_credentials:
+
+# Ironic inspector rule to set deployment kernel.
+#inspector_rule_deploy_kernel:
+
+# Ironic inspector rule to set deployment ramdisk.
+#inspector_rule_deploy_ramdisk:
+
+# Ironic inspector rule to set local boot capability
+#inspector_rule_local_boot:
+
+# Ironic inspector rule to initialise root device hints.
+#inspector_rule_root_hint_init:
+
+# Ironic inspector rule to set serial root device hint.
+#inspector_rule_root_hint_serial:
+
+# Ironic inspector rule to set the interface on which the node PXE booted.
+#inspector_rule_set_pxe_interface_mac:
+
+# Ironic inspector rule to set the node's name from eno3's LLDP switch port
+# description.
+#inspector_rule_eno3_lldp_switch_port_desc_to_name:
+
+# Ironic inspector rule to save introspection data to the node.
+#inspector_rule_save_data:
+
+# List of additional ironic inspector rules.
+#inspector_rules_extra:
+
+# List of all ironic inspector rules.
+#inspector_rules:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
