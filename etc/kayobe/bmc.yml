@@ -1,0 +1,19 @@
+---
+###############################################################################
+# Configuration of Baseboard Management Controllers (BMCs).
+
+# Type of host's BMC. Currently only idrac is supported.
+#bmc_type:
+
+# Address to use to access a host's BMC via IPMI.
+#ipmi_address:
+
+# Username to use to access a host's BMC via IPMI.
+#ipmi_username:
+
+# Password to use to access a host's BMC via IPMI.
+#ipmi_password:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

@@ -50,6 +50,12 @@
 #kolla_sources:
 
 ###############################################################################
+# Kolla image build configuration.
+
+# Dict mapping Jinja2 block names in kolla's Docker images to their contents.
+#kolla_build_blocks:
+
+###############################################################################
 # Kolla-ansible configuration.
 
 # Whether TLS is enabled for the external API endpoints.

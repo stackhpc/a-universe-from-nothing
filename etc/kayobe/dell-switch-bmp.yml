@@ -1,0 +1,16 @@
+---
+# Dell Switch Bare Metal Provisioning (BMP) configuration.
+
+# List of images to provide a BMP configuration for.
+# Each item should be a dict with the following keys:
+# url: URL of the image to download.
+# dest: Name of the file to download the image to.
+# match: dnsmasq match rule to match hosts against.
+# tag: dnsmasq tag to apply to matching hosts.
+# checksum: optional checksum of image, in format required for Ansible's
+#           get_url module.
+#dell_switch_bmp_images:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

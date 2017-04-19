@@ -1,0 +1,45 @@
+---
+###############################################################################
+# Neutron configuration.
+
+# List of Neutron ML2 mechanism drivers to use.
+#kolla_neutron_ml2_mechanism_drivers:
+
+# List of Neutron ML2 type drivers to use.
+#kolla_neutron_ml2_type_drivers:
+
+# List of Neutron ML2 tenant network types to use.
+#kolla_neutron_ml2_tenant_network_types:
+
+# List of Neutron ML2 network VLAN ranges to use. Each item should be a dict
+# containing the following items:
+# physical_network: The physical network
+# min: Minimum of allowed VLAN range (optional)
+# max: Maximum of allowed VLAN range (optional)
+#kolla_neutron_ml2_network_vlan_ranges:
+
+# List of switches to configure for use by genericswitch ML2 mechanism driver.
+# Each item should be a dict containing the following items:
+# name: Hostname of the switch
+# ip: IP address on which to reach the switch
+# username: SSH username
+# password: SSH password (optional)
+# key_file: SSH key file (optional)
+# secret: SSH secret (optional)
+#kolla_neutron_ml2_generic_switches:
+
+# List of Ansible hosts representing switches to configure for use by
+# genericswitch ML2 mechanism driver. These switches will be appended to
+# kolla_neutron_ml2_generic_switches and their configuration will be determined
+# by the following host variables:
+# name: inventory_hostname
+# ip: ansible_host
+# username: ansible_user
+# password: ansible_ssh_pass
+# key_file: not currently supported
+# secret: not currently supported
+#kolla_neutron_ml2_generic_switch_hosts:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

@@ -17,7 +17,13 @@
 # Whether inspector should manage the firewall.
 #inspector_manage_firewall:
 
-# List of of inspector processing plugins.
+# List of of default inspector processing plugins.
+#inspector_processing_hooks_default:
+
+# List of of additional inspector processing plugins.
+#inspector_processing_hooks_extra:
+
+# List of of additional inspector processing plugins.
 #inspector_processing_hooks:
 
 # Which MAC addresses to add as ports during introspection. One of 'all',
@@ -67,18 +73,37 @@
 # Ironic inspector rule to set the interface on which the node PXE booted.
 #inspector_rule_set_pxe_interface_mac:
 
-# Ironic inspector rule to set the node's name from eno3's LLDP switch port
-# description.
-#inspector_rule_eno3_lldp_switch_port_desc_to_name:
+# Ironic inspector rule to set the node's name from an interface's LLDP switch
+# port description.
+#inspector_rule_lldp_switch_port_desc_to_name:
 
 # Ironic inspector rule to save introspection data to the node.
 #inspector_rule_save_data:
+
+# List of default ironic insepctor rules.
+#inspector_rules_default:
 
 # List of additional ironic inspector rules.
 #inspector_rules_extra:
 
 # List of all ironic inspector rules.
 #inspector_rules:
+
+###############################################################################
+# Dell switch LLDP workaround configuration.
+
+# Some Dell switch OSs (including Dell Network OS 9.10(0.1)) do not support
+# sending interface port description TLVs correctly. Instead of sending the
+# interface description, they send the interface name (e.g. TenGigabitEthernet
+# 1/1/1). This breaks the discovery process which relies on Ironic node
+# introspection data containing the node's name in the interface port
+# description. We work around this here by creating an introspection rule for
+# each ironic node that matches against the switch system and the relevant
+# interface name, then sets the node's name appropriately.
+
+# Ansible group containing switch hosts to which the workaround should be
+# applied.
+#inspector_dell_switch_lldp_workaround_group:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

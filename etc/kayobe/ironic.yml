@@ -1,0 +1,104 @@
+---
+###############################################################################
+# Ironic configuration.
+
+# List of enabled Ironic drivers.
+#kolla_ironic_drivers:
+
+# Specify the list of hardware types to load during service initialization.
+#kolla_ironic_enabled_hardware_types:
+
+# Specify the list of boot interfaces to load during service initialization.
+#kolla_ironic_enabled_boot_interfaces:
+
+# Default boot interface to be used for nodes that do not have boot_interface
+# field set.
+#kolla_ironic_default_boot_interface:
+
+# Specify the list of console interfaces to load during service initialization.
+#kolla_ironic_enabled_console_interfaces:
+
+# Default console interface to be used for nodes that do not have
+# console_interface field set.
+#kolla_ironic_default_console_interface:
+
+# Specify the list of deploy interfaces to load during service initialization.
+#kolla_ironic_enabled_deploy_interfaces:
+
+# Default deploy interface to be used for nodes that do not have
+# deploy_interface field set.
+#kolla_ironic_default_deploy_interface:
+
+# Specify the list of inspect interfaces to load during service initialization.
+#kolla_ironic_enabled_inspect_interfaces:
+
+# Default inspect interface to be used for nodes that do not have
+# inspect_interface field set.
+#kolla_ironic_default_inspect_interface:
+
+# Specify the list of management interfaces to load during service
+# initialization.
+#kolla_ironic_enabled_management_interfaces:
+
+# Default management interface to be used for nodes that do not have
+# management_interface field set.
+#kolla_ironic_default_management_interface:
+
+# Specify the list of network interfaces to load during service initialization.
+#kolla_ironic_enabled_network_interfaces:
+
+# Default network interface to be used for nodes that do not have
+# network_interface field set.
+#kolla_ironic_default_network_interface:
+
+# Specify the list of power interfaces to load during service initialization.
+#kolla_ironic_enabled_power_interfaces:
+
+# Default power interface to be used for nodes that do not have power_interface
+# field set.
+#kolla_ironic_default_power_interface:
+
+# Specify the list of raid interfaces to load during service initialization.
+#kolla_ironic_enabled_raid_interfaces:
+
+# Default raid interface to be used for nodes that do not have
+# raid_interface field set.
+#kolla_ironic_default_raid_interface:
+
+# Specify the list of storage interfaces to load during
+# service initialization.
+#kolla_ironic_enabled_storage_interfaces:
+
+# Default storage interface to be used for nodes that do not
+# have storage_interface field set.
+#kolla_ironic_default_storage_interface:
+
+# Specify the list of vendor interfaces to load during service initialization.
+#kolla_ironic_enabled_vendor_interfaces:
+
+# Default vendor interface to be used for nodes that do not have
+# vendor_interface field set.
+#kolla_ironic_default_vendor_interface:
+
+# Default boot option to use when no boot option is requested in node's
+# driver_info.
+#kolla_ironic_default_boot_option:
+
+# Name of the Neutron network to use for cleaning.
+#kolla_ironic_cleaning_network:
+
+# Name of the Neutron network to use for provisioning.
+#kolla_ironic_provisioning_network:
+
+# List of default kernel parameters to append for baremetal PXE boot.
+#kolla_ironic_pxe_append_params_default:
+
+# List of additional kernel parameters to append for baremetal PXE boot.
+#kolla_ironic_pxe_append_params_extra:
+
+# List of kernel parameters to append for baremetal PXE boot.
+#kolla_ironic_pxe_append_params:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

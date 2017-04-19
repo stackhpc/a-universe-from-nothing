@@ -36,15 +36,23 @@
 # provision_oc_net_cidr:
 # provision_oc_net_allocation_pool_start:
 # provision_oc_net_allocation_pool_end:
+# provision_oc_net_inspection_allocation_pool_start:
+# provision_oc_net_inspection_allocation_pool_end:
 # provision_oc_net_gateway:
 # provision_oc_net_vlan:
+# provision_oc_net_mtu:
 
 # Workload provisioning network IP information.
 # provision_wl_net_cidr:
 # provision_wl_net_allocation_pool_start:
 # provision_wl_net_allocation_pool_end:
+# provision_wl_net_inspection_allocation_pool_start:
+# provision_wl_net_inspection_allocation_pool_end:
+# provision_wl_net_neutron_allocation_pool_start:
+# provision_wl_net_neutron_allocation_pool_end:
 # provision_wl_net_gateway:
 # provision_wl_net_vlan:
+# provision_wl_net_mtu:
 
 # Internal network IP information.
 # internal_net_vip_address:
@@ -54,6 +62,7 @@
 # internal_net_allocation_pool_end:
 # internal_net_gateway:
 # internal_net_vlan:
+# internal_net_mtu:
 
 # External network IP information.
 # external_net_vip_address:
@@ -61,8 +70,11 @@
 # external_net_cidr:
 # external_net_allocation_pool_start:
 # external_net_allocation_pool_end:
+# external_net_neutron_allocation_pool_start:
+# external_net_neutron_allocation_pool_end:
 # external_net_gateway:
 # external_net_vlan:
+# external_net_mtu:
 
 # Storage network IP information.
 # storage_net_cidr:
@@ -70,6 +82,7 @@
 # storage_net_allocation_pool_end:
 # storage_net_gateway:
 # storage_net_vlan:
+# storage_net_mtu:
 
 # Storage management network IP information.
 # storage_mgmt_net_cidr:
@@ -77,6 +90,7 @@
 # storage_mgmt_net_allocation_pool_end:
 # storage_mgmt_net_gateway:
 # storage_mgmt_net_vlan:
+# storage_mgmt_net_mtu:
 
 ###############################################################################
 # Network virtual patch link configuration.

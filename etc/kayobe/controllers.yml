@@ -16,6 +16,36 @@
 #controller_extra_network_interfaces:
 
 ###############################################################################
+# Controller node BIOS configuration.
+
+# Dict of controller BIOS options. Format is same as that used by stackhpc.drac
+# role.
+#controller_bios_config:
+
+# Dict of default controller BIOS options. Format is same as that used by
+# stackhpc.drac role.
+#controller_bios_config_default:
+
+# Dict of additional controller BIOS options. Format is same as that used by
+# stackhpc.drac role.
+#controller_bios_config_extra:
+
+###############################################################################
+# Controller node RAID configuration.
+
+# List of controller RAID volumes. Format is same as that used by stackhpc.drac
+# role.
+#controller_raid_config:
+
+# List of default controller RAID volumes. Format is same as that used by
+# stackhpc.drac role.
+#controller_raid_config_default:
+
+# List of additional controller RAID volumes. Format is same as that used by
+# stackhpc.drac role.
+#controller_raid_config_extra:
+
+###############################################################################
 # Controller node LVM configuration.
 
 # List of controller volume groups. See mrlesmithjr.manage-lvm role for

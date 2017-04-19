@@ -1,0 +1,33 @@
+---
+# Ironic Python Agent (IPA) configuration.
+
+###############################################################################
+# Ironic Python Agent (IPA) images configuration.
+
+# Name of Ironic deployment kernel image to register in Glance.
+#ipa_images_kernel_name:
+
+# URL of Ironic deployment kernel image to download.
+#ipa_images_kernel_url:
+
+# Name of Ironic deployment ramdisk image to register in Glance.
+#ipa_images_ramdisk_name:
+
+# URL of Ironic deployment ramdisk image to download.
+#ipa_images_ramdisk_url:
+
+###############################################################################
+# Ironic Python Agent (IPA) deployment configuration.
+
+# List of extra kernel parameters to enable LLDP collection.
+#ipa_kernel_options_collect_lldp:
+
+# List of extra kernel parameters to enable all inspector collectors.
+#ipa_kernel_options_inspection_collectors_all:
+
+# List of extra kernel parameters to enable all inspector benchmarks.
+#ipa_kernel_options_inspection_benchmarks_all:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

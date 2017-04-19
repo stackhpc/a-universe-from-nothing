@@ -1,0 +1,46 @@
+---
+###############################################################################
+# iDRAC configuration.
+
+# Default username for iDRACs.
+#idrac_default_username:
+
+# Default password for iDRACs.
+#idrac_default_password:
+
+# Default IP address for iDRACs.
+#idrac_default_ip:
+
+# Dict mapping host description (as found in switch interface configuration) to
+# IP address of the iDRAC for that host.
+#idrac_network_ips:
+
+# Gateway IP address for iDRAC network.
+#idrac_network_gateway:
+
+# IP netmask for iDRAC network.
+#idrac_network_netmask:
+
+# VLAN for iDRAC network.
+#idrac_network_vlan:
+
+# ID of VLAN to use for bootstrapping iDRACs.
+#idrac_bootstrap_vlan:
+
+# Name of network namespace on controller to use for bootstrapping iDRACs.
+#idrac_bootstrap_net_namespace:
+
+# Controller group to use for bootstrapping iDRACs.
+#idrac_bootstrap_controller_group:
+
+# Base network interface on controller to use for bootstrapping iDRACs.
+#idrac_bootstrap_controller_interface:
+
+# VLAN network interface on controller to create for bootstrapping iDRACs.
+#idrac_bootstrap_controller_vlan_interface:
+
+# IP address of controller to use for bootstrapping iDRACs.
+#idrac_bootstrap_controller_ip:
+
+# Name of an Ansible group containing switches forming the iDRAC network.
+#idrac_bootstrap_switch_group:
