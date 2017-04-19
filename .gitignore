@@ -16,3 +16,6 @@ ansible/*.retry
 
 # Ignore auto-generated group variables file.
 etc/kayobe/inventory/group_vars/seed/ansible-host
+
+# Ignore kolla configuration.
+etc/kolla
