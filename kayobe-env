@@ -1,0 +1,5 @@
+KAYOBE_CONFIG_ROOT=$(dirname $(realpath ${BASH_SOURCE[0]}))
+echo "Using Kayobe config from $KAYOBE_CONFIG_ROOT"
+
+export KAYOBE_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kayobe
+export KOLLA_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kolla
