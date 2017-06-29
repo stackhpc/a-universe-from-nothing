@@ -55,6 +55,14 @@
 # Dict mapping Jinja2 block names in kolla's Docker images to their contents.
 #kolla_build_blocks:
 
+# Dict mapping image customization variable names to their values.
+# Each variable takes the form:
+# <image name>_<customization>_<operation>
+# Hyphens in the image name are replaced with underscores. The customization is
+# most commonly packages. The operation should be one of override, append or
+# remove. The value should be a list.
+#kolla_build_customizations:
+
 ###############################################################################
 # Kolla-ansible configuration.
 

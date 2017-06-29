@@ -1,0 +1,13 @@
+---
+###############################################################################
+# Docker registry configuration.
+
+# Whether a docker registry is enabled.
+#docker_registry_enabled:
+
+# The port on which the docker registry server should listen.
+#docker_registry_port:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

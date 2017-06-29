@@ -14,9 +14,12 @@
 # List of Neutron ML2 network VLAN ranges to use. Each item should be a dict
 # containing the following items:
 # physical_network: The physical network
-# min: Minimum of allowed VLAN range (optional)
-# max: Maximum of allowed VLAN range (optional)
+# range: Range of allowed VLANs on this physical network (format <min>:<max>,
+# optional)
 #kolla_neutron_ml2_network_vlan_ranges:
+
+# List of Neutron ML2 extention drivers to use.
+#kolla_neutron_ml2_extension_drivers:
 
 # List of switches to configure for use by genericswitch ML2 mechanism driver.
 # Each item should be a dict containing the following items:

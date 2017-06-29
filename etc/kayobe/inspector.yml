@@ -45,9 +45,13 @@
 # Ironic inspector IPMI password to set.
 #inspector_ipmi_password:
 
-# Ironic inspector network interface name on which to check for an LLDP switch
-# port description to use as the node's name.
-#inspector_lldp_switch_port_interface:
+# Ironic inspector default network interface name on which to check for an LLDP
+# switch port description to use as the node's name.
+#inspector_lldp_switch_port_interface_default:
+
+# Ironic inspector map from hostname to network interface name on which to
+# check for an LLDP switch port description to use as the node's name.
+#inspector_lldp_switch_port_interface_map:
 
 ###############################################################################
 # Ironic inspector introspection rules configuration.

@@ -2,19 +2,38 @@
 # Ironic Python Agent (IPA) configuration.
 
 ###############################################################################
+# Ironic Python Agent (IPA) image build configuration.
+
+# Whether to build IPA images from source.
+#ipa_build_images:
+
+# URL of IPA source repository.
+#ipa_build_source_url:
+
+# Version of IPA source repository.
+#ipa_build_source_version:
+
+# URL of IPA upper constraints file.
+#ipa_build_upper_constraints_file_url:
+
+# Custom python package version constraints for IPA. Dict mapping package name
+# to upper version constraint.
+#ipa_build_custom_upper_constraints:
+
+###############################################################################
 # Ironic Python Agent (IPA) images configuration.
 
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:
 
 # URL of Ironic deployment kernel image to download.
-#ipa_images_kernel_url:
+#ipa_kernel_upstream_url:
 
 # Name of Ironic deployment ramdisk image to register in Glance.
 #ipa_images_ramdisk_name:
 
 # URL of Ironic deployment ramdisk image to download.
-#ipa_images_ramdisk_url:
+#ipa_ramdisk_upstream_url:
 
 ###############################################################################
 # Ironic Python Agent (IPA) deployment configuration.

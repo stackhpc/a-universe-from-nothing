@@ -1,0 +1,65 @@
+---
+###############################################################################
+# Monitoring node configuration.
+
+# User with which to access the monitoring nodes via SSH during bootstrap, in
+# order to setup the Kayobe user account.
+#monitoring_bootstrap_user:
+
+###############################################################################
+# Monitoring node network interface configuration.
+
+# List of default networks to which monitoring nodes are attached.
+#monitoring_default_network_interfaces:
+
+# List of extra networks to which monitoring nodes are attached.
+#monitoring_extra_network_interfaces:
+
+###############################################################################
+# Monitoring node BIOS configuration.
+
+# Dict of monitoring node BIOS options. Format is same as that used by
+# stackhpc.drac role.
+#monitoring_bios_config: 
+
+# Dict of default monitoring node BIOS options. Format is same as that used by
+# stackhpc.drac role.
+#monitoring_bios_config_default:
+
+# Dict of additional monitoring node BIOS options. Format is same as that used
+# by stackhpc.drac role.
+#monitoring_bios_config_extra:
+
+###############################################################################
+# Monitoring node RAID configuration.
+
+# List of monitoring node RAID volumes. Format is same as that used by
+# stackhpc.drac role.
+#monitoring_raid_config:
+
+# List of default monitoring node RAID volumes. Format is same as that used by
+# stackhpc.drac role.
+#monitoring_raid_config_default:
+
+# List of additional monitoring node RAID volumes. Format is same as that used
+# by stackhpc.drac role.
+#monitoring_raid_config_extra:
+
+###############################################################################
+# Monitoring node LVM configuration.
+
+# List of monitoring node volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+#monitoring_lvm_groups:
+
+# Default list of monitoring node volume groups. See mrlesmithjr.manage-lvm
+# role for format.
+#monitoring_lvm_groups_default:
+
+# Additional list of monitoring node volume groups. See mrlesmithjr.manage-lvm
+# role for format.
+#monitoring_lvm_groups_extra:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
