@@ -14,9 +14,6 @@
 # List of volumes.
 #seed_vm_volumes:
 
-# List of network interfaces.
-#seed_vm_interfaces:
-
 # Name of the storage pool for the seed VM volumes.
 #seed_vm_pool:
 

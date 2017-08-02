@@ -1,0 +1,46 @@
+---
+###############################################################################
+# Seed hypervisor network interface configuration.
+
+# List of default networks to which seed hypervisor nodes are attached.
+#seed_hypervisor_default_network_interfaces:
+
+# List of extra networks to which seed hypervisor nodes are attached.
+#seed_hypervisor_extra_network_interfaces:
+
+###############################################################################
+# Seed hypervisor libvirt storage pool configuration.
+
+# List of libvirt storage pools for the seed hypervisor.
+#seed_hypervisor_libvirt_pools:
+
+# Libvirt storage pool for the seed VM.
+#seed_hypervisor_libvirt_pool:
+
+# Name of the libvirt storage pool for the seed VM.
+#seed_hypervisor_libvirt_pool_name:
+
+# Capacity of the libvirt storage pool for the seed VM.
+#seed_hypervisor_libvirt_pool_capacity:
+
+# Directory path of the libvirt storage pool for the seed VM.
+#seed_hypervisor_libvirt_pool_path:
+
+# Directory mode of the libvirt storage pool for the seed VM.
+#seed_hypervisor_libvirt_pool_mode:
+
+# Directory owner of the libvirt storage pool for the seed VM.
+#seed_hypervisor_libvirt_pool_owner:
+
+# Directory group of the libvirt storage pool for the seed VM.
+#seed_hypervisor_libvirt_pool_group:
+
+###############################################################################
+# Seed hypervisor libvirt network configuration.
+
+# List of libvirt networks for the seed hypervisor.
+#seed_hypervisor_libvirt_networks:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

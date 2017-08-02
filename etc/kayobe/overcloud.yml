@@ -12,3 +12,7 @@
 # As a special case, the group 'ignore' can be used to specify hosts that
 # should not be added to the inventory.
 #overcloud_group_hosts_map:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
