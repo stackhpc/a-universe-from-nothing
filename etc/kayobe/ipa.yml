@@ -20,6 +20,33 @@
 # to upper version constraint.
 #ipa_build_custom_upper_constraints:
 
+# List of default Diskimage Builder (DIB) elements to use when building IPA
+# images.
+#ipa_build_dib_elements_default:
+
+# List of additional Diskimage Builder (DIB) elements to use when building IPA
+# images.
+#ipa_build_dib_elements_extra:
+
+# List of Diskimage Builder (DIB) elements to use when building IPA images.
+#ipa_build_dib_elements:
+
+# Dictionary of default environment variables to provide to Diskimage Builder
+# (DIB) during IPA image build.
+#ipa_build_dib_env_default:
+
+# Dictionary of additional environment variables to provide to Diskimage
+# Builder (DIB) during IPA image build.
+#ipa_build_dib_env_extra:
+
+# Dictionary of environment variables to provide to Diskimage Builder (DIB)
+# during IPA image build.
+#ipa_build_dib_env:
+
+# List of git repositories containing Diskimage Builder (DIB) elements. See
+# stackhpc.os-images role for usage.
+#ipa_build_dib_git_elements:
+
 ###############################################################################
 # Ironic Python Agent (IPA) images configuration.
 
@@ -38,14 +65,37 @@
 ###############################################################################
 # Ironic Python Agent (IPA) deployment configuration.
 
-# List of extra kernel parameters to enable LLDP collection.
-#ipa_kernel_options_collect_lldp:
+# Whether to enable collection of LLDP TLVs.
+#ipa_collect_lldp:
 
-# List of extra kernel parameters to enable all inspector collectors.
-#ipa_kernel_options_inspection_collectors_all:
+# List of default inspection collectors to run.
+# NOTE: extra-hardware is not currently included as it requires a ramdisk
+#       with the hardware python module installed.
+#ipa_collectors_default:
 
-# List of extra kernel parameters to enable all inspector benchmarks.
-#ipa_kernel_options_inspection_benchmarks_all:
+# List of additional inspection collectors to run.
+#ipa_collectors_extra:
+
+# List of inspection collectors to run.
+#ipa_collectors:
+
+# List of default inspection benchmarks to run.
+#ipa_benchmarks_default:
+
+# List of extra inspection benchmarks to run.
+#ipa_benchmarks_extra:
+
+# List of inspection benchmarks to run.
+#ipa_benchmarks:
+
+# List of default kernel parameters for Ironic python agent.
+#ipa_kernel_options_default:
+
+# List of additional kernel parameters for Ironic python agent.
+#ipa_kernel_options_extra:
+
+# List of kernel parameters for Ironic python agent.
+#ipa_kernel_options:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

@@ -110,5 +110,16 @@
 #inspector_dell_switch_lldp_workaround_group:
 
 ###############################################################################
+# Inspection store configuration.
+# The inspection store provides a Swift-like service for storing inspection
+# data which may be useful in environments without Swift.
+
+# Whether the inspection data store is enabled.
+#inspector_store_enabled:
+
+# Port on which the inspection data store should listen.
+#inspector_store_port:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

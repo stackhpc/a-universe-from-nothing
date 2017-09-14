@@ -2,6 +2,10 @@
 ###############################################################################
 # Docker configuration.
 
+# Name of the docker storage driver. Supported values include 'devicemapper'
+# and 'overlay'.
+#docker_storage_driver:
+
 # Name of the docker storage LVM volume group.
 #docker_storage_volume_group:
 

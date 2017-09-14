@@ -2,6 +2,9 @@
 ###############################################################################
 # Seed hypervisor network interface configuration.
 
+# List of networks to which seed hypervisor nodes are attached.
+#seed_hypervisor_network_interfaces:
+
 # List of default networks to which seed hypervisor nodes are attached.
 #seed_hypervisor_default_network_interfaces:
 
@@ -40,6 +43,19 @@
 
 # List of libvirt networks for the seed hypervisor.
 #seed_hypervisor_libvirt_networks:
+
+###############################################################################
+# Seed hypervisor sysctl configuration.
+
+# Dict of sysctl parameters to set.
+#seed_hypervisor_sysctl_parameters:
+
+###############################################################################
+# Seed hypervisor user configuration.
+
+# List of users to create. This should be in a format accepted by the
+# singleplatform-eng.users role.
+#seed_hypervisor_users:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

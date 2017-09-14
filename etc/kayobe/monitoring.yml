@@ -9,6 +9,9 @@
 ###############################################################################
 # Monitoring node network interface configuration.
 
+# List of networks to which monitoring nodes are attached.
+#monitoring_network_interfaces:
+
 # List of default networks to which monitoring nodes are attached.
 #monitoring_default_network_interfaces:
 
@@ -59,6 +62,19 @@
 # Additional list of monitoring node volume groups. See mrlesmithjr.manage-lvm
 # role for format.
 #monitoring_lvm_groups_extra:
+
+###############################################################################
+# Monitoring node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+#monitoring_sysctl_parameters:
+
+###############################################################################
+# Monitoring node user configuration.
+
+# List of users to create. This should be in a format accepted by the
+# singleplatform-eng.users role.
+#monitoring_users:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

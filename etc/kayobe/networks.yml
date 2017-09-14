@@ -27,6 +27,9 @@
 # to provide external network access via Neutron.
 #external_net_name:
 
+# Name of the network used to expose the public OpenStack API endpoints.
+#public_net_name:
+
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
 

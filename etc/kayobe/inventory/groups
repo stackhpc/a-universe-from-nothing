@@ -7,17 +7,24 @@
 [controllers]
 # Empty group to provide declaration of controllers group.
 
+[network:children]
+# Add controllers to network group by default for backwards compatibility,
+# although they could be separate hosts.
+controllers
+
 [monitoring]
 # Empty group to provide declaration of monitoring group.
 
 [overcloud:children]
 controllers
+network
 monitoring
 
 [docker:children]
 # Hosts in this group will have Docker installed.
 seed
 controllers
+network
 monitoring
 
 ###############################################################################

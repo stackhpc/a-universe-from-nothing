@@ -9,6 +9,9 @@
 ###############################################################################
 # Network interface attachments.
 
+# List of networks to which seed nodes are attached.
+#seed_network_interfaces:
+
 # List of default networks to which seed nodes are attached.
 #seed_default_network_interfaces:
 
@@ -47,6 +50,19 @@
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #seed_lvm_group_data_lv_docker_volumes_fs:
+
+###############################################################################
+# Seed node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+#seed_sysctl_parameters:
+
+###############################################################################
+# Seed node user configuration.
+
+# List of users to create. This should be in a format accepted by the
+# singleplatform-eng.users role.
+#seed_users:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

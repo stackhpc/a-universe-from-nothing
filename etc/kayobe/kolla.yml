@@ -64,6 +64,38 @@
 #kolla_build_customizations:
 
 ###############################################################################
+# Kolla-ansible inventory configuration.
+
+# Full custom seed inventory contents.
+#kolla_seed_inventory_custom:
+
+# Custom overcloud inventory containing a mapping from top level groups to
+# hosts.
+#kolla_overcloud_inventory_custom_top_level:
+
+# Custom overcloud inventory containing a mapping from components to top level
+# groups.
+#kolla_overcloud_inventory_custom_components:
+
+# Custom overcloud inventory containing a mapping from services to components.
+#kolla_overcloud_inventory_custom_services:
+
+# Full custom overcloud inventory contents. By default this will be the
+# concatenation of the top level, component, and service inventories.
+#kolla_overcloud_inventory_custom:
+
+# Dict mapping from kolla-ansible groups to kayobe groups and variables. Each
+# item is a dict with the following items:
+# * groups: A list of kayobe ansible groups to map to this kolla-ansible group.
+# * vars: A dict mapping variable names to values for hosts in this
+#         kolla-ansible group.
+#kolla_overcloud_inventory_top_level_group_map:
+
+# List of names of top level kolla-ansible groups. Any of these groups which
+# have no hosts mapped to them will be provided with an empty group definition.
+#kolla_overcloud_inventory_kolla_top_level_groups:
+
+###############################################################################
 # Kolla-ansible configuration.
 
 # Whether TLS is enabled for the external API endpoints.
