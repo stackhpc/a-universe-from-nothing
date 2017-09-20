@@ -2,21 +2,24 @@
 # Kayobe global configuration.
 
 ###############################################################################
-# Path configuration.
+# Local path configuration (ansible control host).
 
-# Path to Kayobe configuration.
+# Path to Kayobe configuration directory on ansible control host.
 #kayobe_config_path:
 
-# Path in which to store data locally.
+###############################################################################
+# Remote path configuration (seed, seed-hypervisor and overcloud hosts).
+
+# Base path for kayobe state on remote hosts.
 #base_path:
 
-# Path in which to cache downloaded images.
+# Path in which to cache downloaded images on remote hosts.
 #image_cache_path:
 
-# Path on which to checkout source code repositories.
+# Path on which to checkout source code repositories on remote hosts.
 #source_checkout_path:
 
-# Path on which to create python virtualenvs.
+# Path on which to create python virtualenvs on remote hosts.
 #virtualenv_path:
 
 ###############################################################################
