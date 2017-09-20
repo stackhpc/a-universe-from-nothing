@@ -17,3 +17,18 @@ echo "Using Kayobe config from $KAYOBE_CONFIG_ROOT"
 
 export KAYOBE_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kayobe
 export KOLLA_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kolla
+
+# NOTE: These paths can be modified depending on the local environment.
+# These defaults are set based on the following directory structure:
+#
+# ${base_path}/
+#   src/
+#     kayobe/
+#     kayobe-config/
+#     kolla-ansible/
+#   venvs/
+#     kayobe/
+#     kolla-ansible/
+base_path=$(realpath $KAYOBE_CONFIG_ROOT/../../)
+export KOLLA_SOURCE_PATH=${KOLLA_SOURCE_PATH:-${base_path}/src/kolla-ansible}
+export KOLLA_VENV_PATH=${KOLLA_VENV_PATH:-${base_path}/venvs/kolla-ansible}
