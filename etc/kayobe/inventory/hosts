@@ -1,0 +1,5 @@
+[config-mgmt]
+localhost ansible_connection=local
+
+[controllers]
+controller0

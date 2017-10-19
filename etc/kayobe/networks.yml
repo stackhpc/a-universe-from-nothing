@@ -4,134 +4,64 @@
 ###############################################################################
 # Network role to network mappings.
 
+# Map all networks to the all-in-one network.
+
 # Name of the network used by the seed to manage the bare metal overcloud
 # hosts via their out-of-band management controllers.
 #oob_oc_net_name:
+oob_oc_net_name: aio
 
 # Name of the network used by the seed to provision the bare metal overcloud
 # hosts.
 #provision_oc_net_name:
+provision_oc_net_name: aio
 
 # Name of the network used by the overcloud hosts to manage the bare metal
 # compute hosts via their out-of-band management controllers.
 #oob_wl_net_name:
+oob_wl_net_name: aio
 
 # Name of the network used by the overcloud hosts to provision the bare metal
 # workload hosts.
 #provision_wl_net_name:
+provision_wl_net_name: aio
 
 # Name of the network used to expose the internal OpenStack API endpoints.
 #internal_net_name:
+internal_net_name: aio
 
 # Name of the network used to expose the external OpenStack API endpoints and
 # to provide external network access via Neutron.
 #external_net_name:
+external_net_name: aio
 
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
+public_net_name: aio
 
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
+storage_net_name: aio
 
 # Name of the network used to carry storage management traffic.
 #storage_mgmt_net_name:
+storage_mgmt_net_name: aio
 
 # Name of the network used to perform hardware introspection on the bare metal
 # workload hosts.
 #inspection_net_name:
+inspection_net_name: aio
 
 ###############################################################################
 # Network definitions.
 
-# Overcloud out-of-band management network IP information.
-# oob_oc_net_cidr:
-# oob_oc_net_allocation_pool_start:
-# oob_oc_net_allocation_pool_end:
-# oob_oc_net_inspection_allocation_pool_start:
-# oob_oc_net_inspection_allocation_pool_end:
-# oob_oc_net_gateway:
-# oob_oc_net_vlan:
-# oob_oc_net_mtu:
-# oob_oc_net_routes:
-
-# Overcloud provisioning network IP information.
-# provision_oc_net_cidr:
-# provision_oc_net_allocation_pool_start:
-# provision_oc_net_allocation_pool_end:
-# provision_oc_net_inspection_allocation_pool_start:
-# provision_oc_net_inspection_allocation_pool_end:
-# provision_oc_net_gateway:
-# provision_oc_net_vlan:
-# provision_oc_net_mtu:
-# provision_oc_net_routes:
-
-# Workload out-of-band management network IP information.
-# oob_wl_net_cidr:
-# oob_wl_net_allocation_pool_start:
-# oob_wl_net_allocation_pool_end:
-# oob_wl_net_inspection_allocation_pool_start:
-# oob_wl_net_inspection_allocation_pool_end:
-# oob_wl_net_neutron_allocation_pool_start:
-# oob_wl_net_neutron_allocation_pool_end:
-# oob_wl_net_gateway:
-# oob_wl_net_vlan:
-# oob_wl_net_mtu:
-# oob_wl_net_routes:
-
-# Workload provisioning network IP information.
-# provision_wl_net_cidr:
-# provision_wl_net_allocation_pool_start:
-# provision_wl_net_allocation_pool_end:
-# provision_wl_net_inspection_allocation_pool_start:
-# provision_wl_net_inspection_allocation_pool_end:
-# provision_wl_net_neutron_allocation_pool_start:
-# provision_wl_net_neutron_allocation_pool_end:
-# provision_wl_net_gateway:
-# provision_wl_net_vlan:
-# provision_wl_net_mtu:
-# provision_wl_net_routes:
-
-# Internal network IP information.
-# internal_net_vip_address:
-# internal_net_fqdn:
-# internal_net_cidr:
-# internal_net_allocation_pool_start:
-# internal_net_allocation_pool_end:
-# internal_net_gateway:
-# internal_net_vlan:
-# internal_net_mtu:
-# internal_net_routes:
-
-# External network IP information.
-# external_net_vip_address:
-# external_net_fqdn:
-# external_net_cidr:
-# external_net_allocation_pool_start:
-# external_net_allocation_pool_end:
-# external_net_neutron_allocation_pool_start:
-# external_net_neutron_allocation_pool_end:
-# external_net_gateway:
-# external_net_vlan:
-# external_net_mtu:
-# external_net_routes:
-
-# Storage network IP information.
-# storage_net_cidr:
-# storage_net_allocation_pool_start:
-# storage_net_allocation_pool_end:
-# storage_net_gateway:
-# storage_net_vlan:
-# storage_net_mtu:
-# storage_net_routes:
-
-# Storage management network IP information.
-# storage_mgmt_net_cidr:
-# storage_mgmt_net_allocation_pool_start:
-# storage_mgmt_net_allocation_pool_end:
-# storage_mgmt_net_gateway:
-# storage_mgmt_net_vlan:
-# storage_mgmt_net_mtu:
-# storage_mgmt_net_routes:
+# All-in-one network.
+aio_cidr: 192.168.33.0/24
+aio_allocation_pool_start: 192.168.33.3
+aio_allocation_pool_end: 192.168.33.127
+aio_inspection_allocation_pool_start: 192.168.33.128
+aio_inspection_allocation_pool_end: 192.168.33.254
+aio_vip_address: 192.168.33.2
 
 ###############################################################################
 # Network virtual patch link configuration.
