@@ -20,6 +20,9 @@
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
 
+# Path in which to generate kolla configuration.
+#kolla_build_config_path:
+
 ###############################################################################
 # Kolla-ansible installation.
 
@@ -39,14 +42,14 @@
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
 
-###############################################################################
-# Kolla & kolla-ansible configuration.
-
-# Path to Kolla configuration directory.
+# Path to Kolla-ansible configuration directory.
 #kolla_config_path:
 
-# Path to Kolla node custom configuration directory.
+# Path to Kolla-ansible node custom configuration directory.
 #kolla_node_custom_config_path:
+
+###############################################################################
+# Kolla configuration.
 
 # Kolla base container image distribution.
 #kolla_base_distro:
@@ -54,8 +57,17 @@
 # Kolla installation type: binary or source.
 #kolla_install_type:
 
+# URL of docker registry to use for Kolla images.
+#kolla_docker_registry:
+
 # Docker namespace to use for Kolla images.
 #kolla_docker_namespace:
+
+# Username to use to access a docker registry.
+#kolla_docker_registry_username:
+
+# Password to use to access a docker registry.
+#kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 #kolla_openstack_release:

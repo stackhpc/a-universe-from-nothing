@@ -18,6 +18,9 @@ localhost ansible_connection=local
 # Add controller nodes here if required. These hosts will provide the
 # OpenStack overcloud.
 
+[baremetal-compute]
+# Add baremetal compute nodes here if required.
+
 [mgmt-switches]
 # Add management network switches here if required.
 

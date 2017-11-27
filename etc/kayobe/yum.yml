@@ -1,0 +1,16 @@
+---
+
+# Whether or not to use a local Yum mirror.
+#yum_use_local_mirror: false
+# Mirror FQDN for Yum repos.
+#yum_centos_mirror_host: 'mirror.centos.org'
+# Mirror directory for Yum CentOS repos.
+#yum_centos_mirror_directory: 'centos'
+# Mirror FQDN for Yum EPEL repos.
+#yum_epel_mirror_host: 'download.fedoraproject.org'
+# Mirror directory for Yum EPEL repos.
+#yum_epel_mirror_directory: 'pub/epel'
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

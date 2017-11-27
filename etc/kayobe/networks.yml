@@ -151,5 +151,12 @@
 #network_patch_suffix_ovs:
 
 ###############################################################################
+# Network routing table configuration.
+
+# List of IP routing tables. Each item should be a dict containing 'id' and
+# 'name' items. These tables will be added to /etc/iproute2/rt_tables.
+#network_route_tables:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
