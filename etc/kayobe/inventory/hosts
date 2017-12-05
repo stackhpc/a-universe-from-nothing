@@ -3,8 +3,7 @@
 localhost ansible_connection=local
 
 [seed-hypervisor]
-# Add a seed hypervisor node here if required. This host will run a seed node
-# Virtual Machine.
+seed-hypervisor
 
 [seed]
 seed
