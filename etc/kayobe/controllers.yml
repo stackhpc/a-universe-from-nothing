@@ -5,6 +5,8 @@
 # User with which to access the controllers via SSH during bootstrap, in order
 # to setup the Kayobe user account.
 #controller_bootstrap_user:
+# No need to provide a different user for bootstrapping.
+controller_bootstrap_user: vagrant
 
 ###############################################################################
 # Network interface attachments.
@@ -57,6 +59,8 @@
 # List of controller volume groups. See mrlesmithjr.manage-lvm role for
 # format.
 #controller_lvm_groups:
+# Don't create any LVM groups - use overlay docker storage driver.
+controller_lvm_groups: []
 
 # Default list of controller volume groups. See mrlesmithjr.manage-lvm role for
 # format.

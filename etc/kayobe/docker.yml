@@ -5,6 +5,8 @@
 # Name of the docker storage driver. Supported values include 'devicemapper'
 # and 'overlay'.
 #docker_storage_driver:
+# Use the overlay docker storage driver as it doesn't require LVM.
+docker_storage_driver: overlay
 
 # Name of the docker storage LVM volume group.
 #docker_storage_volume_group:

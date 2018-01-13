@@ -31,4 +31,7 @@ export KOLLA_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kolla
 #     kolla-ansible/
 base_path=$(realpath $KAYOBE_CONFIG_ROOT/../../)
 export KOLLA_SOURCE_PATH=${KOLLA_SOURCE_PATH:-${base_path}/src/kolla-ansible}
-export KOLLA_VENV_PATH=${KOLLA_VENV_PATH:-${base_path}/venvs/kolla-ansible}
+# Path to the kolla virtual environment.
+# NOTE: This should not be in the Vagrant shared directory, as there are
+# issues with symlinks on Windows hosts.
+export KOLLA_VENV_PATH=~/kolla-venv
