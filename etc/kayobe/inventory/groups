@@ -1,8 +1,21 @@
 # Kayobe groups inventory file. This file should generally not be modified.
 # If declares the top-level groups and sub-groups.
 
+###############################################################################
+# Seed groups.
+
 [seed]
 # Empty group to provide declaration of seed group.
+
+[seed-hypervisor]
+# Empty group to provide declaration of seed-hypervisor group.
+
+[container-image-builders:children]
+# Build container images on the seed by default.
+seed
+
+###############################################################################
+# Overcloud groups.
 
 [controllers]
 # Empty group to provide declaration of controllers group.
@@ -15,10 +28,17 @@ controllers
 [monitoring]
 # Empty group to provide declaration of monitoring group.
 
+[compute]
+# Empty group to provide declaration of compute group.
+
 [overcloud:children]
 controllers
 network
 monitoring
+compute
+
+###############################################################################
+# Docker groups.
 
 [docker:children]
 # Hosts in this group will have Docker installed.
@@ -26,6 +46,13 @@ seed
 controllers
 network
 monitoring
+compute
+
+###############################################################################
+# Baremetal compute node groups.
+
+[baremetal-compute]
+# Empty group to provide declaration of baremetal-compute group.
 
 ###############################################################################
 # Networking groups.
