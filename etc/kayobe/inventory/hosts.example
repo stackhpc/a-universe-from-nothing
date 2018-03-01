@@ -1,7 +1,6 @@
 # Kayobe hosts inventory file. This file should be modified to define the hosts
 # and their top-level group membership.
 
-[config-mgmt]
 # This host acts as the configuration management control host. This must be
 # localhost.
 localhost ansible_connection=local

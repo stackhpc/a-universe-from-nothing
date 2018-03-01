@@ -131,6 +131,10 @@
 ###############################################################################
 # Kolla-ansible configuration.
 
+# Virtualenv directory where Kolla-ansible's ansible modules will execute
+# remotely on the target nodes. If None, no virtualenv will be used.
+#kolla_ansible_target_venv:
+
 # Whether TLS is enabled for the external API endpoints.
 #kolla_enable_tls_external:
 
@@ -176,6 +180,7 @@
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_mistral:
+#kolla_enable_monasca:
 #kolla_enable_mongodb:
 #kolla_enable_multipathd:
 #kolla_enable_murano:

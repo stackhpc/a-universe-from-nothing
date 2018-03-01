@@ -87,6 +87,16 @@
 #controller_lvm_group_data_lv_docker_volumes_fs:
 
 ###############################################################################
+# Controller node Ceph configuration.
+
+# List of Ceph disks.
+# The format is a list of dict like :
+# - { osd: "/dev/sdb", journal: "/dev/sdc" }
+# - { osd: "/dev/sdd" }
+# Journal variable is not mandatory.
+#controller_ceph_disks:
+
+###############################################################################
 # Controller node sysctl configuration.
 
 # Dict of sysctl parameters to set.

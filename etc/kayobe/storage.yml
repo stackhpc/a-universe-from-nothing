@@ -1,0 +1,111 @@
+---
+###############################################################################
+# Storage node configuration.
+
+# User with which to access the storages via SSH during bootstrap, in order
+# to setup the Kayobe user account.
+#storage_bootstrap_user:
+
+###############################################################################
+# Network interface attachments.
+
+# List of networks to which storage nodes are attached.
+#storage_network_interfaces:
+
+# List of default networks to which storage nodes are attached.
+#storage_default_network_interfaces:
+
+# List of extra networks to which storage nodes are attached.
+#storage_extra_network_interfaces:
+
+###############################################################################
+# Storage node BIOS configuration.
+
+# Dict of storage BIOS options. Format is same as that used by stackhpc.drac
+# role.
+#storage_bios_config:
+
+# Dict of default storage BIOS options. Format is same as that used by
+# stackhpc.drac role.
+#storage_bios_config_default:
+
+# Dict of additional storage BIOS options. Format is same as that used by
+# stackhpc.drac role.
+#storage_bios_config_extra:
+
+###############################################################################
+# Storage node RAID configuration.
+
+# List of storage RAID volumes. Format is same as that used by stackhpc.drac
+# role.
+#storage_raid_config:
+
+# List of default storage RAID volumes. Format is same as that used by
+# stackhpc.drac role.
+#storage_raid_config_default:
+
+# List of additional storage RAID volumes. Format is same as that used by
+# stackhpc.drac role.
+#storage_raid_config_extra:
+
+###############################################################################
+# Storage node LVM configuration.
+
+# List of storage volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+#storage_lvm_groups:
+
+# Default list of storage volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+#storage_lvm_groups_default:
+
+# Additional list of storage volume groups. See mrlesmithjr.manage-lvm role
+# for format.
+#storage_lvm_groups_extra:
+
+# Storage LVM volume group for data. See mrlesmithjr.manage-lvm role for
+# format.
+#storage_lvm_group_data:
+
+# List of disks for use by storage LVM data volume group. Default to an
+# invalid value to require configuration.
+#storage_lvm_group_data_disks:
+
+# List of LVM logical volumes for the data volume group.
+#storage_lvm_group_data_lvs:
+
+# Docker volumes LVM backing volume.
+#storage_lvm_group_data_lv_docker_volumes:
+
+# Size of docker volumes LVM backing volume.
+#storage_lvm_group_data_lv_docker_volumes_size:
+
+# Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
+#storage_lvm_group_data_lv_docker_volumes_fs:
+
+###############################################################################
+# Storage node Ceph configuration.
+
+# List of Ceph disks.
+# The format is a list of dict like :
+# - { osd: "/dev/sdb", journal: "/dev/sdc" }
+# - { osd: "/dev/sdd" }
+# Journal variable is not mandatory.
+#storage_ceph_disks:
+
+###############################################################################
+# Storage node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+#storage_sysctl_parameters:
+
+###############################################################################
+# Storage node user configuration.
+
+# List of users to create. This should be in a format accepted by the
+# singleplatform-eng.users role.
+#storage_users:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
