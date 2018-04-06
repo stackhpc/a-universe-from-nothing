@@ -1,5 +1,8 @@
 [config-mgmt]
 localhost ansible_connection=local
 
+[seed]
+seed
+
 [controllers]
 controller0

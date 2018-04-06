@@ -1,2 +1,3 @@
 aio_ips:
   controller0: 192.168.33.3
+  seed: 192.168.33.5
