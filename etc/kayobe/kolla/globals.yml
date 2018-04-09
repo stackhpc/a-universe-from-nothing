@@ -1,2 +1,8 @@
 ---
 # Add extra Kolla global configuration here.
+
+# Although Kolla-Ansible provides full support for Fernet tokens, it still
+# defaults to UUID.  This setting overrides K-A and brings it in-line with
+# Keystone's default.
+#
+keystone_token_provider: 'fernet'
