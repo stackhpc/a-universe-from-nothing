@@ -6,3 +6,6 @@ seed
 
 [controllers]
 controller0
+
+[compute]
+controller0
