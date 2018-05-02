@@ -10,6 +10,17 @@
 #yum_epel_mirror_host: 'download.fedoraproject.org'
 # Mirror directory for Yum EPEL repos.
 #yum_epel_mirror_directory: 'pub/epel'
+# A dict of custom repositories.
+# You can see params on
+# http://docs.ansible.com/ansible/latest/modules/yum_repository_module.html.
+# For example:
+# yum_custom_repos:
+#   reponame:
+#     baseurl: http://repo
+#     file: myrepo
+#     gpgkey: http://gpgkey
+#     gpgcheck: yes
+#yum_custom_repos:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

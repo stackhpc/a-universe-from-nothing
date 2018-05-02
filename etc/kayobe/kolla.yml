@@ -138,9 +138,6 @@
 # Whether TLS is enabled for the external API endpoints.
 #kolla_enable_tls_external:
 
-# Path to external API certificate.
-#kolla_external_fqdn_cert:
-
 # Whether debug logging is enabled.
 #kolla_openstack_logging_debug:
 
@@ -221,6 +218,17 @@
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
 #kolla_ansible_custom_passwords:
+
+###############################################################################
+# TLS certificate bundle management
+
+# Optionally copy a TLS certificate bundle into place.
+#
+# When enabled, this will copy the contents of kolla_tls_cert into place for
+# use by HAproxy.
+#
+# Note that this should be formatted as a literal style block scalar.
+#kolla_tls_cert:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
