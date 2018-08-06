@@ -1,7 +1,0 @@
----
-# Don't use the overlay driver as it doesn't work with the ansible template
-# module until ansible 2.4.0.
-docker_storage_driver: devicemapper
-
-# Size of the docker storage data LVM volume (see lvol module size argument).
-docker_storage_volume_thinpool_size: 45%VG
