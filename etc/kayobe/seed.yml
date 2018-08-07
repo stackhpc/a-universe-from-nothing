@@ -23,7 +23,9 @@
 
 # List of seed volume groups. See mrlesmithjr.manage-lvm role for
 # format.
-#seed_lvm_groups:
+# NOTE: We set this to an empty list here because the default Docker storage
+# driver (overlay) does not require any LVM groups.
+seed_lvm_groups: []
 
 # Default list of seed volume groups. See mrlesmithjr.manage-lvm role for
 # format.

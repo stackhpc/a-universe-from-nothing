@@ -1,3 +1,0 @@
----
-# Use the overlay docker storage driver as it doesn't require LVM.
-docker_storage_driver: overlay
