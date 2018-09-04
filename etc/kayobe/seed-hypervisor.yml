@@ -1,5 +1,12 @@
 ---
 ###############################################################################
+# Seed hypervisor node configuration.
+
+# User with which to access the seed hypervisor via SSH during bootstrap, in
+# order to setup the Kayobe user account.
+#seed_hypervisor_bootstrap_user:
+
+###############################################################################
 # Seed hypervisor network interface configuration.
 
 # List of networks to which seed hypervisor nodes are attached.

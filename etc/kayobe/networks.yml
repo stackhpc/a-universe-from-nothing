@@ -30,10 +30,14 @@ provision_wl_net_name: aio
 #internal_net_name:
 internal_net_name: aio
 
-# Name of the network used to expose the external OpenStack API endpoints and
-# to provide external network access via Neutron.
-#external_net_name:
-external_net_name: aio
+# List of names of networks used to provide external network access via
+# Neutron.
+# Deprecated name: external_net_name
+# If external_net_name is defined, external_net_names will default to a list
+# containing one item, external_net_name.
+#external_net_names:
+external_net_names:
+  - aio
 
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
@@ -79,6 +83,13 @@ aio_vip_address: 192.168.33.2
 # Suffix for virtual patch link interface names when connected towards the
 # OVS bridge.
 #network_patch_suffix_ovs:
+
+###############################################################################
+# Network routing table configuration.
+
+# List of IP routing tables. Each item should be a dict containing 'id' and
+# 'name' items. These tables will be added to /etc/iproute2/rt_tables.
+#network_route_tables:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

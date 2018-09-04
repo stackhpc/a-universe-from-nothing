@@ -20,6 +20,9 @@
 # Path to virtualenv in which to install kolla.
 #kolla_venv:
 
+# Path in which to generate kolla configuration.
+#kolla_build_config_path:
+
 ###############################################################################
 # Kolla-ansible installation.
 
@@ -39,14 +42,14 @@
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:
 
-###############################################################################
-# Kolla & kolla-ansible configuration.
-
-# Path to Kolla configuration directory.
+# Path to Kolla-ansible configuration directory.
 #kolla_config_path:
 
-# Path to Kolla node custom configuration directory.
+# Path to Kolla-ansible node custom configuration directory.
 #kolla_node_custom_config_path:
+
+###############################################################################
+# Kolla configuration.
 
 # Kolla base container image distribution.
 #kolla_base_distro:
@@ -54,8 +57,17 @@
 # Kolla installation type: binary or source.
 #kolla_install_type:
 
+# URL of docker registry to use for Kolla images.
+#kolla_docker_registry:
+
 # Docker namespace to use for Kolla images.
 #kolla_docker_namespace:
+
+# Username to use to access a docker registry.
+#kolla_docker_registry_username:
+
+# Password to use to access a docker registry.
+#kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
 #kolla_openstack_release:
@@ -119,11 +131,12 @@
 ###############################################################################
 # Kolla-ansible configuration.
 
+# Virtualenv directory where Kolla-ansible's ansible modules will execute
+# remotely on the target nodes. If None, no virtualenv will be used.
+#kolla_ansible_target_venv:
+
 # Whether TLS is enabled for the external API endpoints.
 #kolla_enable_tls_external:
-
-# Path to external API certificate.
-#kolla_external_fqdn_cert:
 
 # Whether debug logging is enabled.
 #kolla_openstack_logging_debug:
@@ -164,6 +177,7 @@
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_mistral:
+#kolla_enable_monasca:
 #kolla_enable_mongodb:
 #kolla_enable_multipathd:
 #kolla_enable_murano:
@@ -204,6 +218,17 @@
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
 #kolla_ansible_custom_passwords:
+
+###############################################################################
+# TLS certificate bundle management
+
+# Optionally copy a TLS certificate bundle into place.
+#
+# When enabled, this will copy the contents of kolla_tls_cert into place for
+# use by HAproxy.
+#
+# Note that this should be formatted as a literal style block scalar.
+#kolla_tls_cert:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

@@ -65,6 +65,13 @@
 # raid_interface field set.
 #kolla_ironic_default_raid_interface:
 
+# Specify the list of rescue interfaces to load during service initialization.
+#kolla_ironic_enabled_rescue_interfaces:
+
+# Default rescue interface to be used for nodes that do not have
+# rescue_interface field set.
+#kolla_ironic_default_rescue_interface:
+
 # Specify the list of storage interfaces to load during
 # service initialization.
 #kolla_ironic_enabled_storage_interfaces:

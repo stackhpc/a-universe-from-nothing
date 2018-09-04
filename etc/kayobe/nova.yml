@@ -1,0 +1,12 @@
+---
+###############################################################################
+# Nova configuration.
+
+# Which host to use to deploy the nova-compute services for ironic. By default
+# this is none and all hosts in the nova group are used instead - typically the
+# controllers.
+#kolla_nova_compute_ironic_host:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

@@ -22,6 +22,15 @@ docker_storage_driver: overlay
 # argument).
 #docker_storage_volume_thinpool_meta_size:
 
+# URL of docker registry
+#docker_registry:
+
+# CA of docker registry
+#docker_registry_ca:
+
+# Enable live-restore on docker daemon
+#docker_daemon_live_restore:
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

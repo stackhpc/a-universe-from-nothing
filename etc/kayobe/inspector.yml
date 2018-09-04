@@ -28,7 +28,10 @@
 
 # Which MAC addresses to add as ports during introspection. One of 'all',
 # 'active' or 'pxe'.
-#inspector_port_addition:
+#inspector_add_ports:
+
+# Which ports to keep after introspection. One of 'all', 'present', or 'added'.
+#inspector_keep_ports:
 
 # Whether to enable discovery of nodes not managed by Ironic.
 #inspector_enable_discovery:

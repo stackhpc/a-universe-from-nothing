@@ -2,7 +2,8 @@
 ###############################################################################
 # Neutron configuration.
 
-# List of Neutron ML2 mechanism drivers to use.
+# List of Neutron ML2 mechanism drivers to use. If unset the kolla-ansible
+# defaults will be used.
 #kolla_neutron_ml2_mechanism_drivers:
 
 # List of Neutron ML2 type drivers to use.
@@ -20,6 +21,9 @@
 
 # List of Neutron ML2 extention drivers to use.
 #kolla_neutron_ml2_extension_drivers:
+
+###############################################################################
+# Neutron ML2 generic switch driver configuration.
 
 # List of switches to configure for use by genericswitch ML2 mechanism driver.
 # Each item should be a dict containing the following items:
@@ -42,6 +46,12 @@
 # key_file: not currently supported
 # secret: not currently supported
 #kolla_neutron_ml2_generic_switch_hosts:
+
+# Dict containing additional configuration for switches managed by the
+# genericswitch ML2 mechanism driver. For per-switch configuration of switches
+# in kolla_neutron_ml2_generic_switch_hosts, this may be set as a group or
+# host variable for the switch host.
+#kolla_neutron_ml2_generic_switch_extra:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

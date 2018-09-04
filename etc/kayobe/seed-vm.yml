@@ -26,6 +26,12 @@
 # Base image for the seed VM root volume.
 #seed_vm_root_image:
 
+# Capacity of the seed VM data volume.
+#seed_vm_data_capacity:
+
+# Format of the seed VM data volume.
+#seed_vm_data_format:
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
