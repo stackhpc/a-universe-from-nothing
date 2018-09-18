@@ -1,0 +1,14 @@
+---
+- project:
+    check:
+      jobs:
+        - openstack-tox-pep8
+        - kayobe-overcloud-centos
+        - kayobe-seed-centos
+
+    gate:
+      queue: kayobe
+      jobs:
+        - openstack-tox-pep8
+        - kayobe-overcloud-centos
+        - kayobe-seed-centos
