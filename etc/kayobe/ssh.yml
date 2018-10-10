@@ -5,10 +5,10 @@
 # Name of SSH key.
 #ssh_key_name:
 
-# Path to SSH private key on the control host.
+# Path to SSH private key on the Ansible control host.
 #ssh_private_key_path:
 
-# Path to SSH public key on the control host.
+# Path to SSH public key on the Ansible control host.
 #ssh_public_key_path:
 
 ###############################################################################

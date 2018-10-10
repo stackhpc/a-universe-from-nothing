@@ -2,9 +2,9 @@
 # Kayobe global configuration.
 
 ###############################################################################
-# Local path configuration (ansible control host).
+# Local path configuration (Ansible control host).
 
-# Path to Kayobe configuration directory on ansible control host.
+# Path to Kayobe configuration directory on Ansible control host.
 #kayobe_config_path:
 
 ###############################################################################

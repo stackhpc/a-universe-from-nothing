@@ -1,4 +1,10 @@
+# This host acts as the configuration management Ansible control host. This must be
+# localhost.
 localhost ansible_connection=local
+
+[seed-hypervisor]
+# Add a seed hypervisor node here if required. This host will run a seed node
+# Virtual Machine.
 
 [seed]
 seed
@@ -8,3 +14,15 @@ controller0
 
 [compute:children]
 controllers
+
+[baremetal-compute]
+# Add baremetal compute nodes here if required.
+
+[mgmt-switches]
+# Add management network switches here if required.
+
+[ctl-switches]
+# Add control and provisioning switches here if required.
+
+[hs-switches]
+# Add high speed switches here if required.

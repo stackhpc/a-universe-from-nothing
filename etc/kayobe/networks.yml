@@ -6,6 +6,10 @@
 
 # Map all networks to the all-in-one network.
 
+# Name of the network used for admin access to the overcloud
+#admin_oc_net_name:
+admin_oc_net_name: aio
+
 # Name of the network used by the seed to manage the bare metal overcloud
 # hosts via their out-of-band management controllers.
 #oob_oc_net_name:
@@ -43,6 +47,10 @@ external_net_names:
 #public_net_name:
 public_net_name: aio
 
+# Name of the network used by Neutron to carry tenant overlay network traffic.
+#tunnel_net_name:
+tunnel_net_name: aio
+
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
 storage_net_name: aio
@@ -55,6 +63,11 @@ storage_mgmt_net_name: aio
 # workload hosts.
 #inspection_net_name:
 inspection_net_name: aio
+
+# Name of the network used to perform cleaning on the bare metal workload
+# hosts
+#cleaning_net_name:
+cleaning_net_name: aio
 
 ###############################################################################
 # Network definitions.

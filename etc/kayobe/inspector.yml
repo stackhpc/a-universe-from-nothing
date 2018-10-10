@@ -8,8 +8,20 @@
 # URL of Ironic Python Agent (IPA) kernel image.
 #inspector_ipa_kernel_upstream_url:
 
+# URL of checksum of Ironic Python Agent (IPA) kernel image.
+#inspector_ipa_kernel_checksum_url:
+
+# Algorithm of checksum of Ironic Python Agent (IPA) kernel image.
+#inspector_ipa_kernel_checksum_algorithm:
+
 # URL of Ironic Python Agent (IPA) ramdisk image.
 #inspector_ipa_ramdisk_upstream_url:
+
+# URL of checksum of Ironic Python Agent (IPA) ramdisk image.
+#inspector_ipa_ramdisk_checksum_url:
+
+# Algorithm of checksum of Ironic Python Agent (IPA) ramdisk image.
+#inspector_ipa_ramdisk_checksum_algorithm:
 
 ###############################################################################
 # Ironic inspector processing configuration.

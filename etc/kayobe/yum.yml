@@ -2,8 +2,10 @@
 
 # Whether or not to use a local Yum mirror.
 #yum_use_local_mirror: false
+
 # Mirror FQDN for Yum repos.
 #yum_centos_mirror_host: 'mirror.centos.org'
+
 # Mirror directory for Yum CentOS repos.
 #yum_centos_mirror_directory: 'centos'
 # Mirror FQDN for Yum EPEL repos.
@@ -21,6 +23,10 @@
 #     gpgkey: http://gpgkey
 #     gpgcheck: yes
 #yum_custom_repos:
+
+# Whether to install the epel-release package. This affects RedHat-based
+# systems only.
+#yum_install_epel:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

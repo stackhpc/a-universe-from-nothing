@@ -56,11 +56,23 @@
 # URL of Ironic deployment kernel image to download.
 #ipa_kernel_upstream_url:
 
+# URL of checksum of Ironic deployment kernel image.
+#ipa_kernel_checksum_url:
+
+# Algorithm of checksum of Ironic deployment kernel image.
+#ipa_kernel_checksum_algorithm:
+
 # Name of Ironic deployment ramdisk image to register in Glance.
 #ipa_images_ramdisk_name:
 
 # URL of Ironic deployment ramdisk image to download.
 #ipa_ramdisk_upstream_url:
+
+# URL of checksum of Ironic deployment ramdisk image.
+#ipa_ramdisk_checksum_url:
+
+# Algorithm of checksum of Ironic deployment ramdisk image.
+#ipa_ramdisk_checksum_algorithm:
 
 ###############################################################################
 # Ironic Python Agent (IPA) deployment configuration.
