@@ -4,6 +4,9 @@
 ###############################################################################
 # Network role to network mappings.
 
+# Name of the network used for admin access to the overcloud
+#admin_oc_net_name:
+
 # Name of the network used by the seed to manage the bare metal overcloud
 # hosts via their out-of-band management controllers.
 #oob_oc_net_name:
@@ -33,6 +36,9 @@
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
 
+# Name of the network used by Neutron to carry tenant overlay network traffic.
+#tunnel_net_name:
+
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
 
@@ -43,8 +49,21 @@
 # workload hosts.
 #inspection_net_name:
 
+# Name of the network used to perform cleaning on the bare metal workload
+# hosts
+#cleaning_net_name:
+
 ###############################################################################
 # Network definitions.
+
+# Admin network IP information.
+# admin_oc_net_cidr:
+# admin_oc_net_allocation_pool_start:
+# admin_oc_net_allocation_pool_end:
+# admin_oc_net_gateway:
+# admin_oc_net_vlan:
+# admin_oc_net_mtu:
+# admin_oc_net_routes:
 
 # Overcloud out-of-band management network IP information.
 # oob_oc_net_cidr:
@@ -135,6 +154,17 @@
 # storage_mgmt_net_vlan:
 # storage_mgmt_net_mtu:
 # storage_mgmt_net_routes:
+
+# Cleaning network IP information.
+# cleaning_net_cidr:
+# cleaning_net_allocation_pool_start:
+# cleaning_net_allocation_pool_end:
+# cleaning_net_neutron_allocation_pool_start:
+# cleaning_net_neutron_allocation_pool_end:
+# cleaning_net_gateway:
+# cleaning_net_vlan:
+# cleaning_net_mtu:
+# cleaning_net_routes:
 
 ###############################################################################
 # Network virtual patch link configuration.

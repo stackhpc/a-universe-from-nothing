@@ -70,6 +70,27 @@
 #kolla_bifrost_inspector_deploy_ramdisk:
 
 ###############################################################################
+# Ironic Python Agent (IPA) configuration.
+
+# URL of Ironic Python Agent (IPA) kernel image.
+#kolla_bifrost_ipa_kernel_upstream_url:
+
+# URL of checksum of Ironic Python Agent (IPA) kernel image.
+#kolla_bifrost_ipa_kernel_checksum_url:
+
+# Algorithm of checksum of Ironic Python Agent (IPA) kernel image.
+#kolla_bifrost_ipa_kernel_checksum_algorithm:
+
+# URL of Ironic Python Agent (IPA) ramdisk image.
+#kolla_bifrost_ipa_ramdisk_upstream_url:
+
+# URL of checksum of Ironic Python Agent (IPA) ramdisk image.
+#kolla_bifrost_ipa_ramdisk_checksum_url:
+
+# Algorithm of checksum of Ironic Python Agent (IPA) ramdisk image.
+#kolla_bifrost_ipa_ramdisk_checksum_algorithm:
+
+###############################################################################
 # Inventory configuration.
 
 # Server inventory for Bifrost.

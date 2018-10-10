@@ -2,6 +2,9 @@
 ###############################################################################
 # DNS.
 
+# Whether kayobe should configure resolv.conf.
+#resolv_is_managed:
+
 # List of DNS nameservers.
 #resolv_nameservers:
 

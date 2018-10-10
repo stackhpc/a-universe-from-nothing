@@ -1,0 +1,23 @@
+---
+
+# Use a local PyPi mirror for installing Pip packages
+#pip_local_mirror: false
+
+# Users for which the necessary configuration will be put in place in order to
+# install PyPI packages from a mirror
+# NB: The Kolla user will be automatically added to this list if the above is
+# set to true
+#pip_applicable_users:
+#  - "{{ kayobe_ansible_user }}"
+#  - root
+
+# PyPI local package mirror URL
+#pip_index_url: ""
+
+# Optional: a list of 'trusted' hosts for which SSL verification will be
+# disabled
+#pip_trusted_hosts: []
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

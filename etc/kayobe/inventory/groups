@@ -28,6 +28,9 @@ controllers
 [monitoring]
 # Empty group to provide declaration of monitoring group.
 
+[storage]
+# Empty group to provide declaration of storage group.
+
 [compute]
 # Empty group to provide declaration of compute group.
 
@@ -35,6 +38,7 @@ controllers
 controllers
 network
 monitoring
+storage
 compute
 
 ###############################################################################
@@ -46,6 +50,7 @@ seed
 controllers
 network
 monitoring
+storage
 compute
 
 ###############################################################################
