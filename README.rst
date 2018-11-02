@@ -1,36 +1,17 @@
-====================
-Kayobe Configuration
-====================
+================================
+Development Kayobe Configuration
+================================
 
-This repository provides configuration for the `kayobe
-<https://github.com/openstack/kayobe>`_ project. It is intended to encourage
-version control of site configuration.
+This repository provides development configuration for the `Kayobe
+<https://kayobe.readthedocs.io/en/latest>`__ project. It is based on the
+configuration provided by the `kayobe-config
+<https://git.openstack.org/cgit/openstack/kayobe-config>`__ repository, and
+provides a set of configuration suitable for a development or test environment.
+It is used by default in the `Kayobe development environment
+<https://kayobe.readthedocs.io/en/latest/development/index.html>`__, and also
+in the Kayobe Continuous Integration (CI) deployment jobs.
 
-Kayobe enables deployment of containerised OpenStack to bare metal.
-
-Containers offer a compelling solution for isolating OpenStack services, but
-running the control plane on an orchestrator such as Kubernetes or Docker
-Swarm adds significant complexity and operational overheads.
-
-The hosts in an OpenStack control plane must somehow be provisioned, but
-deploying a secondary OpenStack cloud to do this seems like overkill.
-
-Kayobe stands on the shoulders of giants:
-
-* OpenStack bifrost discovers and provisions the cloud
-* OpenStack kolla builds container images for OpenStack services
-* OpenStack kolla-ansible delivers painless deployment and upgrade of
-  containerised OpenStack services
-
-To this solid base, kayobe adds:
-
-* Configuration of cloud host OS & flexible networking
-* Management of physical network devices
-* A friendly openstack-like CLI
-
-All this and more, automated from top to bottom using Ansible.
-
-* Documentation: https://kayobe.readthedocs.io/en/latest/
-* Source: https://git.openstack.org/cgit/openstack/kayobe
-* Bugs: https://storyboard.openstack.org/#!/project/openstack/kayobe
+* Kayobe documentation: https://kayobe.readthedocs.io/en/latest/
+* Source: https://git.openstack.org/cgit/openstack/kayobe-config-dev
+* Bugs: https://storyboard.openstack.org/#!/project/openstack/kayobe-config-dev
 * IRC: #openstack-kayobe
