@@ -75,7 +75,9 @@ cleaning_net_name: aio
 # All-in-one network.
 aio_cidr: 192.168.33.0/24
 aio_allocation_pool_start: 192.168.33.3
-aio_allocation_pool_end: 192.168.33.127
+aio_allocation_pool_end: 192.168.33.30
+aio_neutron_allocation_pool_start: 192.168.33.31
+aio_neutron_allocation_pool_end: 192.168.33.127
 aio_inspection_allocation_pool_start: 192.168.33.128
 aio_inspection_allocation_pool_end: 192.168.33.254
 aio_vip_address: 192.168.33.2
