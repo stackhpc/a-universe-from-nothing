@@ -3,3 +3,7 @@
 # guarantee that nested KVM support is available. Use QEMU as a lowest common
 # denominator.
 nova_compute_virt_type: qemu
+
+# Reduce the control plane's memory footprint by limiting the number of worker
+# processes to one per-service.
+openstack_service_workers: "1"
