@@ -5,6 +5,15 @@
 # Whether a docker registry is enabled.
 #docker_registry_enabled:
 
+# Dict of environment variables to provide to the docker registry container.
+# This allows to configure the registry by overriding specific configuration
+# options, as described at https://docs.docker.com/registry/configuration/
+# For example, the registry can be configured as a pull through cache to Docker
+# Hub by setting REGISTRY_PROXY_REMOTEURL to "https://registry-1.docker.io".
+# Note that it is not possible to push to a registry configured as a
+# pull through cache.
+#docker_registry_env:
+
 # The port on which the docker registry server should listen.
 #docker_registry_port:
 

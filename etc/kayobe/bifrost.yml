@@ -34,8 +34,8 @@
 ###############################################################################
 # Ironic configuration.
 
-# Whether to enable ipmitool-based drivers.
-#kolla_bifrost_enable_ipmitool_drivers:
+# List of hardware types to enable for Bifrost's Ironic.
+#kolla_bifrost_enabled_hardware_types:
 
 ###############################################################################
 # Ironic Inspector configuration.
