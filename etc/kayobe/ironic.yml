@@ -2,9 +2,6 @@
 ###############################################################################
 # Ironic configuration.
 
-# List of enabled Ironic drivers.
-#kolla_ironic_drivers:
-
 # Specify the list of hardware types to load during service initialization.
 #kolla_ironic_enabled_hardware_types:
 
@@ -105,6 +102,20 @@
 
 # List of kernel parameters to append for baremetal PXE boot.
 #kolla_ironic_pxe_append_params:
+
+###############################################################################
+# Ironic Node Configuration
+
+# Whether or not to enable the serial consoles on post configure
+#ironic_serial_console_autoenable:
+
+# This defines the start of the range of TCP ports to used for the IPMI socat
+# serial consoles
+#ironic_serial_console_tcp_pool_start:
+
+# This defines the end of the range of TCP ports to used for the IPMI socat
+# serial consoles
+#ironic_serial_console_tcp_pool_end:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

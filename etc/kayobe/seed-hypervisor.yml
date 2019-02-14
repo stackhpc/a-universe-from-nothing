@@ -19,6 +19,37 @@
 #seed_hypervisor_extra_network_interfaces:
 
 ###############################################################################
+# Seed hypervisor node LVM configuration.
+
+# List of seed hypervisor volume groups. See mrlesmithjr.manage-lvm role for
+# format. Set to "{{ seed_hypervisor_lvm_groups_with_data }}" to create a
+# volume group for libvirt storage.
+#seed_hypervisor_lvm_groups:
+
+# Suggested list of seed hypervisor volume groups for libvirt. Not used by
+# default.
+#seed_hypervisor_lvm_groups_with_data:
+
+# Seed LVM volume group for data. See mrlesmithjr.manage-lvm role for format.
+#seed_hypervisor_lvm_group_data:
+
+# List of disks for use by seed hypervisor LVM data volume group. Default to an
+# invalid value to require configuration.
+#seed_hypervisor_lvm_group_data_disks:
+
+# List of LVM logical volumes for the data volume group.
+#seed_hypervisor_lvm_group_data_lvs:
+
+# Libvirt storage LVM backing volume.
+#seed_hypervisor_lvm_group_data_lv_libvirt_storage:
+
+# Size of libvirt storage LVM backing volume.
+#seed_hypervisor_lvm_group_data_lv_libvirt_storage_size:
+
+# Filesystem for libvirt storage LVM backing volume. ext4 allows for shrinking.
+#seed_hypervisor_lvm_group_data_lv_libvirt_storage_fs:
+
+###############################################################################
 # Seed hypervisor libvirt storage pool configuration.
 
 # List of libvirt storage pools for the seed hypervisor.

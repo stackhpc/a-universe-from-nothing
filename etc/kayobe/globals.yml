@@ -13,6 +13,9 @@
 # Base path for kayobe state on remote hosts.
 #base_path:
 
+# Path in which to store configuration on remote hosts.
+#config_path:
+
 # Path in which to cache downloaded images on remote hosts.
 #image_cache_path:
 
@@ -25,8 +28,8 @@
 ###############################################################################
 # User configuration.
 
-# User with which to access seed and controller nodes. This user will be
-# created if it does not exist.
+# User with which to access remote hosts. This user will be created if it does
+# not exist.
 #kayobe_ansible_user:
 
 ###############################################################################

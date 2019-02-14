@@ -1,4 +1,8 @@
 ---
+# Yum configuration. Dict mapping Yum config option names to their values.
+# yum_config:
+#   proxy: http://proxy.example.com
+#yum_config:
 
 # Whether or not to use a local Yum mirror.
 #yum_use_local_mirror: false
