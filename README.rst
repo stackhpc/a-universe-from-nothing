@@ -31,6 +31,12 @@ Usage
 
 .. code-block:: console
 
+   # Install git and screen.
+   sudo yum -y install git screen
+
+   # Optional: start a new screen session in case we lose our connection.
+   screen -drR
+
    # Clone Kayobe.
    git clone https://git.openstack.org/openstack/kayobe.git
    cd kayobe
