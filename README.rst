@@ -38,7 +38,7 @@ Usage
    screen -drR
 
    # Clone Kayobe.
-   git clone https://git.openstack.org/openstack/kayobe.git
+   git clone https://git.openstack.org/openstack/kayobe.git -b stable/rocky
    cd kayobe
 
    # Clone this Kayobe configuration.
