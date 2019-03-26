@@ -2,10 +2,12 @@
 ###############################################################################
 # Network interface definitions for the seed group.
 
-# Seed interface on all-in-one network.
-aio_interface: breth1
-# Use eth1 if it exists, otherwise the bridge will have no ports.
-aio_bridge_ports: "{{ ['eth1'] if 'ansible_eth1' in hostvars[inventory_hostname] else [] }}"
+aio_interface: eth0
+
+# Route via the seed-hypervisor to the outside world.
+# FIXME: Circular reference between seed & seed-hypervisor?
+#aio_gateway: "{{ 'aio' | net_ip('localhost') }}"
+aio_gateway: 192.168.33.4
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

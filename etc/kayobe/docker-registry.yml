@@ -13,6 +13,9 @@
 # Note that it is not possible to push to a registry configured as a
 # pull through cache.
 #docker_registry_env:
+docker_registry_env:
+  # Use the local registry as a pull-through cache.
+  REGISTRY_PROXY_REMOTEURL: https://registry-1.docker.io
 
 # The port on which the docker registry server should listen.
 #docker_registry_port:

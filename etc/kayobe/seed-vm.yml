@@ -7,9 +7,11 @@
 
 # Memory in MB.
 #seed_vm_memory_mb:
+seed_vm_memory_mb: "{{ 4 * 1024 }}"
 
 # Number of vCPUs.
 #seed_vm_vcpus:
+seed_vm_vcpus: 1
 
 # List of volumes.
 #seed_vm_volumes:
@@ -25,6 +27,7 @@
 
 # Base image for the seed VM root volume.
 #seed_vm_root_image:
+seed_vm_root_image: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
 
 # Capacity of the seed VM data volume.
 #seed_vm_data_capacity:

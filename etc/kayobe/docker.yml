@@ -25,6 +25,10 @@ docker_storage_driver: overlay
 # URL of docker registry
 #docker_registry:
 
+# Use a local registry mirror.
+docker_registry_mirrors:
+  - "http://{{ 'aio' | net_ip('seed-hypervisor') }}:5000"
+
 # CA of docker registry
 #docker_registry_ca:
 

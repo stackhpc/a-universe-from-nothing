@@ -1,0 +1,8 @@
+---
+# Don't build an IPA deployment image, instead download upstream images.
+create_ipa_image: false
+download_ipa: true
+
+# Use a locally hosted CentOS7 cloud image.
+use_cirros: true
+cirros_deploy_image_upstream_url: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
