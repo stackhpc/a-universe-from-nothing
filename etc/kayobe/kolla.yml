@@ -190,6 +190,7 @@
 #kolla_enable_horizon:
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
+kolla_enable_ironic: false
 #kolla_enable_ironic_ipxe:
 #kolla_enable_ironic_pxe_uefi:
 #kolla_enable_iscsid:
