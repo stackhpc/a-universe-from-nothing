@@ -33,6 +33,7 @@ kolla/centos-binary-memcached
 kolla/centos-binary-rabbitmq
 kolla/centos-binary-chrony
 kolla/centos-binary-heat-api
+kolla/centos-binary-heat-api-cfn
 kolla/centos-binary-heat-engine
 kolla/centos-binary-horizon
 kolla/centos-source-bifrost-deploy"
