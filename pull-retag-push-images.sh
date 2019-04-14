@@ -40,7 +40,7 @@ kolla/centos-source-bifrost-deploy"
 registry=192.168.33.5:4000
 
 for image in $images; do
-    ssh 192.168.33.5 sudo docker pull $image:$tag
-    ssh 192.168.33.5 sudo docker tag $image:$tag $registry/$image:$tag
-    ssh 192.168.33.5 sudo docker push $registry/$image:$tag
+    ssh stack@192.168.33.5 sudo docker pull $image:$tag
+    ssh stack@192.168.33.5 sudo docker tag $image:$tag $registry/$image:$tag
+    ssh stack@192.168.33.5 sudo docker push $registry/$image:$tag
 done
