@@ -137,8 +137,8 @@ This shows how to create an image suitable for the above exercise.
 
    # FIXME: There is an issue with Bifrost which does not restrict the version
    # of proliantutils it installs.
-   ssh 192.168.33.5 sudo docker exec bifrost_deploy pip install proliantutils==2.7.0
-   ssh 192.168.33.5 sudo docker exec bifrost_deploy systemctl restart ironic-conductor
+   ssh stack@192.168.33.5 sudo docker exec bifrost_deploy pip install proliantutils==2.7.0
+   ssh stack@192.168.33.5 sudo docker exec bifrost_deploy systemctl restart ironic-conductor
 
    # Clone the Tenks repository.
    git clone https://git.openstack.org/openstack/tenks.git
@@ -191,8 +191,8 @@ This shows how to deploy a universe from scratch using a plain CentOS 7 image.
 
    # FIXME: There is an issue with Bifrost which does not restrict the version
    # of proliantutils it installs.
-   ssh 192.168.33.5 sudo docker exec bifrost_deploy pip install proliantutils==2.7.0
-   ssh 192.168.33.5 sudo docker exec bifrost_deploy systemctl restart ironic-conductor
+   ssh stack@192.168.33.5 sudo docker exec bifrost_deploy pip install proliantutils==2.7.0
+   ssh stack@192.168.33.5 sudo docker exec bifrost_deploy systemctl restart ironic-conductor
 
    # Clone the Tenks repository, deploy some VMs for the controller and compute node.
    git clone https://git.openstack.org/openstack/tenks.git
