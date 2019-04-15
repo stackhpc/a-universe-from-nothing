@@ -37,10 +37,13 @@ kolla/centos-binary-heat-api-cfn
 kolla/centos-binary-heat-engine
 kolla/centos-binary-horizon
 kolla/centos-source-bifrost-deploy"
-registry=192.168.33.5:4000
+
+docker_registry=147.75.198.243:4000
+# registry=192.168.33.5:4000
 
 for image in $images; do
-    ssh stack@192.168.33.5 sudo docker pull $image:$tag
-    ssh stack@192.168.33.5 sudo docker tag $image:$tag $registry/$image:$tag
-    ssh stack@192.168.33.5 sudo docker push $registry/$image:$tag
+    ssh stack@192.168.33.5 sudo docker pull $docker_registry/$image:$tag
+    # No need to retag and push images as Kayobe is already configured to use this docker_registry
+    # ssh stack@192.168.33.5 sudo docker tag $docker_registry/$image:$tag $registry/$image:$tag
+    # ssh stack@192.168.33.5 sudo docker push $registry/$image:$tag
 done

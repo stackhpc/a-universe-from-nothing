@@ -114,7 +114,7 @@ This shows how to create an image suitable for the above exercise.
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git -b packet kayobe-config
 
    ./kayobe-config/configure-local-networking.sh
 
