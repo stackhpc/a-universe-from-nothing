@@ -24,7 +24,7 @@ docker_storage_driver: overlay
 
 # URL of docker registry
 # Use a docker registry on the seed.
-docker_registry: 192.168.33.5:4000
+docker_registry: 147.75.198.243:4000
 
 # Use a local registry mirror.
 #docker_registry_mirrors:
