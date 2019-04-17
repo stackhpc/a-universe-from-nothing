@@ -11,9 +11,11 @@ controller_vip=192.168.33.2
 seed_hv_ip=192.168.33.4
 seed_vm_ip=192.168.33.5
 
+iface=$(route | grep '^default' | grep -o '[^ ]*$')
+
 # Private IP address by which the seed hypervisor is accessible in the cloud
 # hosting the VM.
-seed_hv_private_ip=$(ip a show dev eth0 | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g' | head -n1)
+seed_hv_private_ip=$(ip a show dev $iface | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g' | head -n1)
 
 # Forward the following ports to the controller.
 # 80: Horizon
@@ -33,18 +35,18 @@ fi
 
 # Configure IP routing and NAT to allow the seed VM and overcloud hosts to
 # route via this route to the outside world.
-sudo iptables -A POSTROUTING -t nat -o eth0 -j MASQUERADE
+sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE
 sudo sysctl -w net.ipv4.conf.all.forwarding=1
 
 # Configure port forwarding from the hypervisor to the Horizon GUI on the
 # controller.
-sudo iptables -A FORWARD -i eth0 -o braio -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A FORWARD -i braio -o eth0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -i $iface -o braio -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -i braio -o $iface -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 for port in $forwarded_ports; do
   # Allow new connections.
-  sudo iptables -A FORWARD -i eth0 -o braio -p tcp --syn --dport $port -m conntrack --ctstate NEW -j ACCEPT
+  sudo iptables -A FORWARD -i $iface -o braio -p tcp --syn --dport $port -m conntrack --ctstate NEW -j ACCEPT
   # Destination NAT.
-  sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $port -j DNAT --to-destination $controller_vip
+  sudo iptables -t nat -A PREROUTING -i $iface -p tcp --dport $port -j DNAT --to-destination $controller_vip
   # Source NAT.
   sudo iptables -t nat -A POSTROUTING -o braio -p tcp --dport $port -d $controller_vip -j SNAT --to-source $seed_hv_private_ip
 done
