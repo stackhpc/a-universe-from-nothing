@@ -13,7 +13,7 @@ seed_vm_ip=192.168.33.5
 
 # Private IP address by which the seed hypervisor is accessible in the cloud
 # hosting the VM.
-seed_hv_private_ip=$(ip a show dev eth0 | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g')
+seed_hv_private_ip=$(ip a show dev eth0 | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g' | head -n1)
 
 # Forward the following ports to the controller.
 # 80: Horizon
