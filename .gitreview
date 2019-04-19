@@ -1,5 +1,5 @@
 [gerrit]
-host=review.openstack.org
+host=review.opendev.org
 port=29418
-project=openstack/kayobe-config-dev.git
+project=x/kayobe-config-dev.git
 defaultbranch=stable/rocky
