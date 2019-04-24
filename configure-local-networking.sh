@@ -25,7 +25,7 @@ public_ip="10.0.2.1"
 
 # Configure local networking.
 # Add a bridge 'braio' for the Kayobe all-in-one cloud network.
-if ! sudo ip l show braio 2>&1 >/dev/null; then
+if ! sudo ip l show braio >/dev/null 2>&1; then
   sudo ip l add braio type bridge
   sudo ip l set braio up
   sudo ip a add $seed_hv_ip/24 dev braio
