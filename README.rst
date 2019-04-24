@@ -3,7 +3,7 @@ Kayobe Configuration
 ====================
 
 This repository provides configuration for the `kayobe
-<https://github.com/openstack/kayobe>`_ project. It is intended to encourage
+<https://opendev.org/x/kayobe>`_ project. It is intended to encourage
 version control of site configuration.
 
 Kayobe enables deployment of containerised OpenStack to bare metal.
@@ -31,6 +31,6 @@ To this solid base, kayobe adds:
 All this and more, automated from top to bottom using Ansible.
 
 * Documentation: https://kayobe.readthedocs.io/en/latest/
-* Source: https://git.openstack.org/cgit/openstack/kayobe
+* Source: https://opendev.org/x/kayobe
 * Bugs: https://storyboard.openstack.org/#!/project/openstack/kayobe-config
 * IRC: #openstack-kayobe
