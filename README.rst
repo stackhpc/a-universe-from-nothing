@@ -29,7 +29,7 @@ requirements:
 Usage
 =====
 
-There two three ways that this workshop can be used.
+There two ways that this workshop can be used.
 
 * `Full deploy <full-deploy>`_
 * `A Universe from a Seed <a-universe-from-a-seed>`_
