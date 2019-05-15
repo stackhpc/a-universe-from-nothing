@@ -2,14 +2,15 @@
 Kayobe Configuration for "A Universe from Nothing: Containerised OpenStack deployment using Kolla, Ansible and Kayobe"
 ======================================================================================================================
 
-Originally created for the Denver 2019 Openstack Infrastructure Summit as a
-workshop.
-This repository provides a configuration and guide for the `Kayobe
+This repository was originally created as a workshop to configure, deploy and
+get hands-on with Kayobe.
+
+It provides a configuration and walkthrough for the `Kayobe
 <https://kayobe.readthedocs.io/en/latest>`__ project based on the
 configuration provided by the `kayobe-config
 <https://git.openstack.org/cgit/openstack/kayobe-config>`__ repository.
-It provides a configuration suitable for deploying containerised
-OpenStack using Kolla, Ansible and Kayobe.
+It deploys a containerised OpenStack environment using Kolla, Ansible and
+Kayobe.
 
 
 Requirements
@@ -118,8 +119,9 @@ A Universe from a Seed
 -----------------------------
 
 This shows how to deploy a control plane from a VM image that contains a
-pre-deployed seed VM. Having a snapshot image saves us some time.
+pre-deployed seed VM.
 
+Having a snapshot image saves us some time if we need to repeat the deployment.
 If working from a snapshot, create a new instance with the same dimensions as
 the Seed image and log in to it.
 If not, continue working with the instance from `Creating a Seed Image`_.
