@@ -34,9 +34,9 @@ Usage
 
 There are three parts to this guide:
 
-* `Creating a Seed Image <creating-a-seed-image>`_
-* `A Universe from a Seed <a-universe-from-a-seed>`_
-* `Next Steps <next-steps>`_
+* `Creating a Seed Image`_
+* `A Universe from a Seed`_
+* `Next Steps`_
 
 *Creating a Seed Image* includes all instructions necessary to download and
 install the Kayobe prerequisites on a plain CentOS 7 cloud image.
@@ -44,12 +44,10 @@ If possible, snapshot the instance after this step to reduce setup time in futur
 
 *A Universe from a Seed* contains all instructions necessary to deploy from
 a prepared image containing a seed VM. An image suitable for this can be created
-via `Creating a Seed Image <creating-a-seed-image>`_.
+via `Creating a Seed Image`_.
 
-Once the control plane has been deployed see `Next Steps <next-steps>`_ for
+Once the control plane has been deployed see `Next Steps`_ for
 some ideas for what to try next.
-
-.. _creating-a-seed-image:
 
 Creating a Seed Image
 -----------------------------
@@ -115,8 +113,6 @@ If required, add any additional SSH public keys to /home/centos/.ssh/authorized_
 If possible, take a snapshot of the hypervisor instance to speed up this
 process in future.
 You are now ready to deploy from this seed image.
-
-.. _a-universe-from-a-seed:
 
 A Universe from a Seed
 -----------------------------
@@ -223,8 +219,6 @@ replace this IP with the public IP of the hypervisor host.
 
 That's it, you're done!
 
-.. _next-steps:
-
 Next Steps
 -----------------------------
 
@@ -234,10 +228,6 @@ Here's some ideas for things to explore with the deployment:
   by `Exploring the Deployment`_.
 * **Deploy ElasticSearch and Kibana**: see `Enabling Centralised Logging`_
   to get logs aggregated from across our OpenStack control plane.
-
-.. * **Add another OpenStack service to the configuration**: see
-..   `Adding the Barbican service`_ for a worked example of how to deploy
-..   a new service.
 
 Exploring the Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
