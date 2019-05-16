@@ -55,7 +55,7 @@ Creating a Seed Image
 
 This shows how to create an image suitable for deploying Kayobe.
 It assumes you have created a seed hypervisor instance fitting the requirements
-and already have already logged in (eg. ``ssh centos@<ip>``).
+above and have already logged in (eg. ``ssh centos@<ip>``).
 
 .. code-block:: console
 
