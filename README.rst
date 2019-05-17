@@ -16,46 +16,60 @@ Kayobe.
 Requirements
 ============
 
-The configuration includes:
+For this workshop we require the use of a single server, configured as a
+*seed hypervisor*. This server should be a bare metal node or VM running
+CentOS 7, with the following minimum requirements:
 
-* 1 seed hypervisor (localhost)
+* 32GB RAM
+* 40GB disk
+
+We will also need SSH access to the seed hypervisor, and passwordless sudo
+configured for the login user.
+
+Exercise
+========
+
+On the seed hypervisor we will deploy three VMs:
+
 * 1 seed
 * 1 controller
 * 1 compute node
 
-The latter three hosts are run as VMs on the seed hypervisor.  This should be
-a bare metal node or VM running CentOS 7, with the following minimum
-requirements:
+The seed runs a standalone Ironic service. The controller and compute node
+are 'virtual bare metal' hosts, and we will use the seed to provision them
+with an OS. Next we'll deploy OpenStack services on the controller and
+compute node.
 
-* 32GB RAM
-* 40GB disk
+At the end you'll have a miniature OpenStack cluster that you can use to test
+out booting an instance using Nova, access the Horizon dashboard, etc.
 
 Usage
 =====
 
 There are three parts to this guide:
 
-* `Creating a Seed Image`_
+* `Deploying a Seed`_
 * `A Universe from a Seed`_
 * `Next Steps`_
 
-*Creating a Seed Image* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain CentOS 7 cloud image.
-If possible, snapshot the instance after this step to reduce setup time in future.
+*Deploying a Seed* includes all instructions necessary to download and
+install the Kayobe prerequisites on a plain CentOS 7 cloud image, including
+provisioning and configuration of a seed VM. Optionally, snapshot the
+instance after this step to reduce setup time in future.
 
 *A Universe from a Seed* contains all instructions necessary to deploy from
-a prepared image containing a seed VM. An image suitable for this can be created
-via `Creating a Seed Image`_.
+a host running a seed VM. An image suitable for this can be created
+via `Optional: Creating a Seed Snapshot`_.
 
 Once the control plane has been deployed see `Next Steps`_ for
 some ideas for what to try next.
 
-Creating a Seed Image
------------------------------
+Deploying a Seed
+----------------
 
 This shows how to create an image suitable for deploying Kayobe.
 It assumes you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (eg. ``ssh centos@<ip>``).
+above and have already logged in (e.g. ``ssh centos@<ip>``).
 
 .. code-block:: console
 
@@ -111,20 +125,25 @@ above and have already logged in (eg. ``ssh centos@<ip>``).
 
 If required, add any additional SSH public keys to /home/centos/.ssh/authorized_keys
 
-If possible, take a snapshot of the hypervisor instance to speed up this
+Optional: Creating a Seed Snapshot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If necessary, take a snapshot of the hypervisor instance at this point to speed up this
 process in future.
-You are now ready to deploy from this seed image.
+
+You are now ready to deploy a control plane using this host or snapshot.
 
 A Universe from a Seed
 -----------------------------
 
 This shows how to deploy a control plane from a VM image that contains a
-pre-deployed seed VM.
+pre-deployed seed VM, or a host that has run through the steps in
+`Deploying a Seed`.
 
 Having a snapshot image saves us some time if we need to repeat the deployment.
 If working from a snapshot, create a new instance with the same dimensions as
 the Seed image and log in to it.
-If not, continue working with the instance from `Creating a Seed Image`_.
+Otherwise, continue working with the instance from `Deploying a Seed`_.
 
 .. code-block:: console
 
