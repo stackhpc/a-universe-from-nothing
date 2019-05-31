@@ -361,13 +361,14 @@ the seed VM, as follows:
     sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:rocky
 
     sudo docker pull kolla/centos-binary-kibana:rocky
-    sudo docker tag kolla/centos-binary-kibana:rocky 192.168.33.5:4000/kolla/centos-binary-elasticsearch:rocky
+    sudo docker tag kolla/centos-binary-kibana:rocky 192.168.33.5:4000/kolla/centos-binary-kibana:rocky
     sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:rocky
 
 
 Alternatively, add `kolla/centos-binary-elasticsearch` and
 `kolla/centos-binary-kibana` to the list of containers in
-~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh and rerun the script.
+``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and rerun
+the script.
 
 To deploy the logging stack:
 
@@ -429,6 +430,92 @@ but they are not here).
 
 Once you're in, Kibana needs some further setup which is not automated.
 Set the log index to ``flog-*`` and you should be ready to go.
+
+Adding the Barbican service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`Barbican <https://docs.openstack.org/barbican/latest/>`_ is the OpenStack
+secret management service. It is an example of a simple service we
+can use to illustrate the process of adding new services to our deployment.
+
+As with the Logging service above, enable Barbican by modifying the flag in
+``~/kayobe/config/src/kayobe-config/etc/kayobe/kolla.yml`` as follows:
+
+.. code-block:: diff
+
+    -#kolla_enable_barbican:
+    +kolla_enable_barbican: yes
+
+This instructs Kolla to install the barbican api, worker & keystone-listener
+containers. Provide these to the docker registry either manually:
+
+.. code-block:: console
+
+    ssh stack@192.168.33.5
+    sudo docker pull kolla/centos-binary-barbican-api:rocky
+    sudo docker tag kolla/centos-binary-barbican-api:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-api:rocky
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:rocky
+
+    sudo docker pull kolla/centos-binary-barbican-worker:rocky
+    sudo docker tag kolla/centos-binary-barbican-worker:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-worker:rocky
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:rocky
+
+    sudo docker pull kolla/centos-binary-barbican-keystone-listener:rocky
+    sudo docker tag kolla/centos-binary-barbican-keystone-listener:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:rocky
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:rocky
+
+Or add the following to the convenience script at
+``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and re-run it:
+
+.. code-block::
+
+    kolla/centos-binary-barbican-api
+    kolla/centos-binary-barbican-worker
+    kolla/centos-binary-barbican-keystone-listener
+
+To deploy the Barbican service:
+
+.. code-block:: console
+
+    # Activate the venv if not already active
+    cd ~/kayobe
+    source dev/environment-setup.sh
+
+    kayobe overcloud container image pull
+    kayobe overcloud service deploy
+
+Once Barbican has been deployed it can be tested using the barbicanclient
+plugin to the OpenStack CLI. This should be installed and tested in the
+OpenStack venv:
+
+.. code-block:: console
+
+    # Deactivate existing venv context if necessary
+    deactivate
+
+    # Activate the OpenStack venv
+    . ~/os-venv/bin/activate
+
+    # Install barbicanclient
+    pip install python-barbicanclient
+
+    # Source the OpenStack environment variables
+    source ~/kayobe/config/src/kayobe-config/etc/kolla/public-openrc.sh
+
+    # Store a test secret
+    openstack secret store --name mysecret --payload foo=bar
+
+    # Copy the 'Secret href' URI for later use
+    SECRET_URL=$(openstack secret list --name mysecret -f value --column 'Secret href')
+
+    # Get secret metadata
+    openstack secret get ${SECRET_URL}
+
+    # Get secret payload
+    openstack secret get ${SECRET_URL} --payload
+
+Congratulations, you have successfully installed Barbican on Kayobe.
+
 
 References
 ==========
