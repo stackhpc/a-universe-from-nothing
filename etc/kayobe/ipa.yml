@@ -10,7 +10,7 @@
 # URL of IPA source repository.
 #ipa_build_source_url:
 
-# Version of IPA source repository.
+# Version of IPA source repository. Default is {{ openstack_branch }}.
 #ipa_build_source_version:
 
 # URL of IPA upper constraints file.
@@ -50,12 +50,16 @@
 ###############################################################################
 # Ironic Python Agent (IPA) images configuration.
 
+# Suffix of upstream Ironic deployment image files. Default is based on
+# {{ openstack_branch }}.
+#ipa_images_upstream_url_suffix:
+
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:
 
 # URL of Ironic deployment kernel image to download.
 # yamllint disable-line rule:line-length
-ipa_kernel_upstream_url: https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa-stable-rocky.vmlinuz
+ipa_kernel_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa{{ ipa_images_upstream_url_suffix }}.vmlinuz"
 
 # URL of checksum of Ironic deployment kernel image.
 #ipa_kernel_checksum_url:
@@ -68,7 +72,7 @@ ipa_kernel_upstream_url: https://tarballs.openstack.org/ironic-python-agent/tiny
 
 # URL of Ironic deployment ramdisk image to download.
 # yamllint disable-line rule:line-length
-ipa_ramdisk_upstream_url: https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa-stable-rocky.gz
+ipa_ramdisk_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa{{ ipa_images_upstream_url_suffix }}.gz"
 
 # URL of checksum of Ironic deployment ramdisk image.
 #ipa_ramdisk_checksum_url:

@@ -19,6 +19,12 @@
 #seed_extra_network_interfaces:
 
 ###############################################################################
+# Seed node software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#seed_mdadm_arrays:
+
+###############################################################################
 # LVM configuration.
 
 # List of seed volume groups. See mrlesmithjr.manage-lvm role for
