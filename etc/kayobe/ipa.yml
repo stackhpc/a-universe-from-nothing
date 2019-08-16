@@ -10,7 +10,7 @@
 # URL of IPA source repository.
 #ipa_build_source_url:
 
-# Version of IPA source repository.
+# Version of IPA source repository. Default is {{ openstack_branch }}.
 #ipa_build_source_version:
 
 # URL of IPA upper constraints file.
@@ -49,6 +49,10 @@
 
 ###############################################################################
 # Ironic Python Agent (IPA) images configuration.
+
+# Suffix of upstream Ironic deployment image files. Default is based on
+# {{ openstack_branch }}.
+#ipa_images_upstream_url_suffix:
 
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:

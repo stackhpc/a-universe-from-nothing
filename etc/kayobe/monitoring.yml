@@ -49,6 +49,12 @@
 #monitoring_raid_config_extra:
 
 ###############################################################################
+# Monitoring node software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#monitoring_mdadm_arrays:
+
+###############################################################################
 # Monitoring node LVM configuration.
 
 # List of monitoring node volume groups. See mrlesmithjr.manage-lvm role for

@@ -2,18 +2,63 @@
 ###############################################################################
 # OpenStack Swift configuration.
 
+# Short name of the kolla container image used to build rings. Default is the
+# swift=object image.
+#swift_ring_build_image_name:
+
+# Full name of the kolla container image used to build rings.
+#swift_ring_build_image:
+
+# Ansible host pattern matching hosts on which Swift object storage services
+# are deployed. The default is to use hosts in the 'storage' group.
+#swift_hosts:
+
+# Name of the host used to build Swift rings. Default is the first host of
+# 'swift_hosts'.
+#swift_ring_build_host:
+
+# ID of the Swift region for this host. Default is 1.
+#swift_region:
+
+# ID of the Swift zone. This can be set to different values for different hosts
+# to place them in different zones. Default is 0.
+#swift_zone:
+
 # Base-2 logarithm of the number of partitions.
-# i.e. num_partitions=2^<swift_part_power>.
+# i.e. num_partitions=2^<swift_part_power>. Default is 10.
 #swift_part_power:
 
-# Object replication count.
+# Object replication count. Default is the smaller of the number of Swift
+# hosts, or 3.
 #swift_replication_count:
 
-# Minimum time in hours between moving a given partition.
+# Minimum time in hours between moving a given partition. Default is 1.
 #swift_min_part_hours:
 
-# Number of Swift Zones.
-#swift_num_zones:
+# Ports on which Swift services listen. Default is:
+#  object: 6000
+#  account: 6001
+#  container: 6002
+#swift_service_ports:
+
+# List of block devices to use for Swift. Each item is a dict with the
+# following items:
+# - 'device': Block device path. Required.
+# - 'fs_label': Name of the label used to create the file system on the device.
+#   Optional. Default is to use the basename of the device.
+# - 'services': List of services that will use this block device.  Optional.
+#   Default is 'swift_block_device_default_services'. Allowed items are
+#   'account', 'container', and 'object'.
+# - 'weight': Weight of the block device. Optional. Default is
+#   'swift_block_device_default_weight'.
+#swift_block_devices:
+
+# Default weight to assign to block devices in the ring. Default is 100.
+#swift_block_device_default_weight:
+
+# Default list of services to assign block devices to. Allowed items are
+# 'account', 'container', and 'object'. Default value is all of these.
+#swift_block_device_default_services:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

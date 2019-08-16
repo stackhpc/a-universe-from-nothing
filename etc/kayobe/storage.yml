@@ -18,6 +18,16 @@
 # List of extra networks to which storage nodes are attached.
 #storage_extra_network_interfaces:
 
+# Whether this host requires access to Ceph networks.
+#storage_needs_ceph_network:
+
+#storage_needs_ceph_mgmt_network:
+
+# Whether this host requires access to Swift networks.
+#storage_needs_swift_network:
+
+#storage_needs_swift_replication_network:
+
 ###############################################################################
 # Storage node BIOS configuration.
 
@@ -47,6 +57,12 @@
 # List of additional storage RAID volumes. Format is same as that used by
 # stackhpc.drac role.
 #storage_raid_config_extra:
+
+###############################################################################
+# Storage node software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#storage_mdadm_arrays:
 
 ###############################################################################
 # Storage node LVM configuration.

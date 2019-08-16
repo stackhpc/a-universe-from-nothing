@@ -1,16 +1,11 @@
 ---
 ###############################################################################
-# Network interface definitions for the compute group.
+# Network interface definitions for the storage group.
 
 # Overcloud provisioning network IP information.
 # provision_oc_net_interface:
 # provision_oc_net_bridge_ports:
 # provision_oc_net_bond_slaves:
-
-# Internal network IP information.
-# internal_net_interface:
-# internal_net_bridge_ports:
-# internal_net_bond_slaves:
 
 # External network IP information.
 # external_net_interface:
@@ -22,10 +17,30 @@
 # storage_net_bridge_ports:
 # storage_net_bond_slaves:
 
+# Storage management network IP information.
+# storage_mgmt_net_interface:
+# storage_mgmt_net_bridge_ports:
+# storage_mgmt_net_bond_slaves:
+
 # Ceph storage network IP information.
 # ceph_storage_net_interface:
 # ceph_storage_net_bridge_ports:
 # ceph_storage_net_bond_slaves:
+
+# Ceph storage management network IP information.
+# ceph_storage_mgmt_net_interface:
+# ceph_storage_mgmt_net_bridge_ports:
+# ceph_storage_mgmt_net_bond_slaves:
+
+# Swift storage network IP information.
+# swift_storage_net_interface:
+# swift_storage_net_bridge_ports:
+# swift_storage_net_bond_slaves:
+
+# Swift storage management network IP information.
+# swift_storage_replication_net_interface:
+# swift_storage_replication_net_bridge_ports:
+# swift_storage_replication_net_bond_slaves:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

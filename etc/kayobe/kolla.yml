@@ -14,7 +14,7 @@
 #kolla_source_url:
 
 # Version (branch, tag, etc.) of Kolla source code repository if type is
-# 'source'.
+# 'source'. Default is {{ openstack_branch }}.
 #kolla_source_version:
 
 # Path to virtualenv in which to install kolla.
@@ -36,7 +36,7 @@
 #kolla_ansible_source_url:
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
-# is 'source'.
+# is 'source'. Default is {{ openstack_branch }}.
 #kolla_ansible_source_version:
 
 # Path to virtualenv in which to install kolla-ansible.
@@ -73,6 +73,7 @@
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
+# Default is {{ openstack_release }}.
 #kolla_openstack_release:
 
 # Dict mapping names of sources to their definitions for
@@ -170,6 +171,9 @@
 #kolla_enable_ceph_mds:
 #kolla_enable_ceph_nfs:
 #kolla_enable_ceph_rgw:
+# The chrony container is disabled by default because we enable an NTP daemon
+# on the host. Setting this to true will disable NTP on the host.
+#kolla_enable_chrony:
 #kolla_enable_cinder:
 #kolla_enable_cinder_backend_hnas_iscsi:
 #kolla_enable_cinder_backend_hnas_nfs:
@@ -194,6 +198,7 @@
 #kolla_enable_ironic_pxe_uefi:
 #kolla_enable_iscsid:
 #kolla_enable_karbor:
+#kolla_enable_keystone:
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 #kolla_enable_manila:
@@ -220,6 +225,7 @@
 #kolla_enable_octavia:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:
+#kolla_enable_prometheus:
 #kolla_enable_qdrouterd:
 #kolla_enable_rally:
 #kolla_enable_sahara:
