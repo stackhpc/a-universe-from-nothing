@@ -1,4 +1,4 @@
 [gerrit]
 host=review.opendev.org
 port=29418
-project=x/kayobe-config-dev.git
+project=openstack/kayobe-config-dev.git
