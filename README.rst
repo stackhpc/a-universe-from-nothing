@@ -174,10 +174,10 @@ repo for Rocky is a good option:
 
 .. code-block:: console
 
-   yum install centos-release-openstack-rocky
-   yum install -y openvswitch
-   systemctl enable openvswitch
-   systemctl start openvswitch
+   sudo yum install centos-release-openstack-rocky
+   sudo yum install -y openvswitch
+   sudo systemctl enable openvswitch
+   sudo systemctl start openvswitch
 
 *NOTE*: Before deploying TENKS, ensure that the ``admin-openrc.sh`` file of
 OpenStack credentials is removed:
