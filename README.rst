@@ -167,6 +167,23 @@ is present and running.
    # Start up the seed VM if it is shut off.
    sudo virsh start seed
 
+*NOTE*: before starting the deploy of TENKS, make sure that an ``openvswitch``
+RPM is available for download.  If you're basing on CentOS 7.7, an additional
+repo is required for installation and setup of ``openvswitch``, and the RDO
+repo for Rocky is a good option:
+
+.. code-block:: console
+   yum install centos-release-openstack-rocky
+   yum install -y openvswitch
+   systemctl enable openvswitch
+   systemctl start openvswitch
+
+*NOTE*: Before deploying TENKS, ensure that the ``admin-openrc.sh`` file of
+OpenStack credentials is removed:
+
+.. code-block:: console
+   rm ./config/src/kayobe-config/etc/kolla/admin-openrc.sh
+
 We use the `TENKS project <https://www.stackhpc.com/tenks.html>`_ to model
 some 'bare metal' VMs for the controller and compute node.  Here we set up
 our model development environment, alongside the seed VM.
