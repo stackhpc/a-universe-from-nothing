@@ -173,6 +173,7 @@ repo is required for installation and setup of ``openvswitch``, and the RDO
 repo for Rocky is a good option:
 
 .. code-block:: console
+
    yum install centos-release-openstack-rocky
    yum install -y openvswitch
    systemctl enable openvswitch
@@ -182,6 +183,7 @@ repo for Rocky is a good option:
 OpenStack credentials is removed:
 
 .. code-block:: console
+
    rm ./config/src/kayobe-config/etc/kolla/admin-openrc.sh
 
 We use the `TENKS project <https://www.stackhpc.com/tenks.html>`_ to model
