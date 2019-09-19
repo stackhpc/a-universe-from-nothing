@@ -174,7 +174,7 @@ repo for Rocky is a good option:
 
 .. code-block:: console
 
-   sudo yum install centos-release-openstack-rocky
+   sudo yum install -y centos-release-openstack-rocky
    sudo yum install -y openvswitch
    sudo systemctl enable openvswitch
    sudo systemctl start openvswitch
