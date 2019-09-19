@@ -80,7 +80,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    screen -drR
 
    # Clone Kayobe.
-   git clone https://git.openstack.org/openstack/kayobe.git -b stable/rocky
+   git clone https://git.openstack.org/openstack/kayobe.git -b stable/stein
    cd kayobe
 
    # Clone this Kayobe configuration.
@@ -111,11 +111,6 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Deploying the seed restarts networking interface,
    # run configure-local-networking.sh again to re-add routes.
    ./config/src/kayobe-config/configure-local-networking.sh
-
-   # FIXME: There is an issue with Bifrost which does not restrict the version
-   # of proliantutils it installs.
-   ssh centos@192.168.33.5 sudo docker exec bifrost_deploy pip install proliantutils==2.7.0
-   ssh centos@192.168.33.5 sudo docker exec bifrost_deploy systemctl restart ironic-conductor
 
    # Clone the Tenks repository.
    git clone https://git.openstack.org/openstack/tenks.git
@@ -170,11 +165,11 @@ is present and running.
 *NOTE*: before starting the deploy of TENKS, make sure that an ``openvswitch``
 RPM is available for download.  If you're basing on CentOS 7.7, an additional
 repo is required for installation and setup of ``openvswitch``, and the RDO
-repo for Rocky is a good option:
+repo for Stein is a good option:
 
 .. code-block:: console
 
-   sudo yum install -y centos-release-openstack-rocky
+   sudo yum install -y centos-release-openstack-stein
    sudo yum install -y openvswitch
    sudo systemctl enable openvswitch
    sudo systemctl start openvswitch
@@ -194,7 +189,7 @@ our model development environment, alongside the seed VM.
 
    # NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
    export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
-   ./dev/tenks-deploy.sh ./tenks
+   ./dev/tenks-deploy-overcloud.sh ./tenks
 
    # Activate the Kayobe environment, to allow running commands directly.
    source dev/environment-setup.sh
