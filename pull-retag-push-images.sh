@@ -2,7 +2,7 @@
 
 set -e
 
-tag=rocky
+tag=stein
 images="kolla/centos-binary-kolla-toolbox
 kolla/centos-binary-haproxy
 kolla/centos-binary-mariadb
