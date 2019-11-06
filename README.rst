@@ -103,7 +103,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh
+   ./config/src/kayobe-config/pull-retag-push-images.sh stein
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
