@@ -80,7 +80,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    screen -drR
 
    # Clone Kayobe.
-   git clone https://git.openstack.org/openstack/kayobe.git -b stable/rocky
+   git clone https://git.openstack.org/openstack/kayobe.git -b stable/stein
    cd kayobe
 
    # Clone this Kayobe configuration.
@@ -103,7 +103,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh
+   ./config/src/kayobe-config/pull-retag-push-images.sh stein
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
@@ -111,11 +111,6 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Deploying the seed restarts networking interface,
    # run configure-local-networking.sh again to re-add routes.
    ./config/src/kayobe-config/configure-local-networking.sh
-
-   # FIXME: There is an issue with Bifrost which does not restrict the version
-   # of proliantutils it installs.
-   ssh centos@192.168.33.5 sudo docker exec bifrost_deploy pip install proliantutils==2.7.0
-   ssh centos@192.168.33.5 sudo docker exec bifrost_deploy systemctl restart ironic-conductor
 
    # Clone the Tenks repository.
    git clone https://git.openstack.org/openstack/tenks.git
@@ -170,21 +165,14 @@ is present and running.
 *NOTE*: before starting the deploy of TENKS, make sure that an ``openvswitch``
 RPM is available for download.  If you're basing on CentOS 7.7, an additional
 repo is required for installation and setup of ``openvswitch``, and the RDO
-repo for Rocky is a good option:
+repo for Stein is a good option:
 
 .. code-block:: console
 
-   sudo yum install -y centos-release-openstack-rocky
+   sudo yum install -y centos-release-openstack-stein
    sudo yum install -y openvswitch
    sudo systemctl enable openvswitch
    sudo systemctl start openvswitch
-
-*NOTE*: Before deploying TENKS, ensure that the ``admin-openrc.sh`` file of
-OpenStack credentials is removed:
-
-.. code-block:: console
-
-   rm ./config/src/kayobe-config/etc/kolla/admin-openrc.sh
 
 We use the `TENKS project <https://www.stackhpc.com/tenks.html>`_ to model
 some 'bare metal' VMs for the controller and compute node.  Here we set up
@@ -194,7 +182,7 @@ our model development environment, alongside the seed VM.
 
    # NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
    export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
-   ./dev/tenks-deploy.sh ./tenks
+   ./dev/tenks-deploy-overcloud.sh ./tenks
 
    # Activate the Kayobe environment, to allow running commands directly.
    source dev/environment-setup.sh
@@ -228,6 +216,15 @@ VM:
 
    source config/src/kayobe-config/etc/kolla/public-openrc.sh
    ./config/src/kayobe-config/init-runonce.sh
+
+We also need to relax iptables policies that are changed by Docker, which
+prevent traffic from reaching instances. You may need to rerun this command if
+Docker reverts the FORWARD policy to DENY again. A proper fix will be
+integrated soon.
+
+.. code-block:: console
+
+   kayobe overcloud host command run --command "iptables -P FORWARD ACCEPT" --become --limit controllers
 
 Following the instructions displayed by the above script, boot a VM.
 You'll need to have activated the `~/os-venv` virtual environment.

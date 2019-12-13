@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -o pipefail
 
 # This should be run on the seed hypervisor.
 
@@ -52,7 +53,9 @@ for port in $forwarded_ports; do
 done
 
 # Configure an IP on the 'public' network to allow access to/from the cloud.
-sudo ip a add $public_ip/24 dev braio
+if ! sudo ip a show dev braio | grep $public_ip/24 >/dev/null 2>&1; then
+  sudo ip a add $public_ip/24 dev braio
+fi
 
 echo
 echo "NOTE: The network configuration applied by this script is not"
