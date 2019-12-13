@@ -50,13 +50,6 @@
 ###############################################################################
 # Ironic Python Agent (IPA) images configuration.
 
-# Suffix of upstream Ironic deployment image files. Default is based on
-# {{ openstack_branch }}.
-#
-# NOTE(priteau): We use tinyipa from train until
-# https://review.opendev.org/#/c/695018/ is merged
-ipa_images_upstream_url_suffix: "-stable-train"
-
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:
 
