@@ -80,7 +80,8 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    screen -drR
 
    # Clone Kayobe.
-   git clone https://git.openstack.org/openstack/kayobe.git -b stable/stein
+   # FIXME(mgoddard): stable/train
+   git clone https://git.openstack.org/openstack/kayobe.git -b master
    cd kayobe
 
    # Clone this Kayobe configuration.
@@ -103,7 +104,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh stein
+   ./config/src/kayobe-config/pull-retag-push-images.sh train
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
@@ -165,11 +166,11 @@ is present and running.
 *NOTE*: before starting the deploy of TENKS, make sure that an ``openvswitch``
 RPM is available for download.  If you're basing on CentOS 7.7, an additional
 repo is required for installation and setup of ``openvswitch``, and the RDO
-repo for Stein is a good option:
+repo for Train is a good option:
 
 .. code-block:: console
 
-   sudo yum install -y centos-release-openstack-stein
+   sudo yum install -y centos-release-openstack-train
    sudo yum install -y openvswitch
    sudo systemctl enable openvswitch
    sudo systemctl start openvswitch

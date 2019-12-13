@@ -39,7 +39,7 @@ kolla_ansible_source_url: https://github.com/stackhpc/kolla-ansible
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'.
 #kolla_ansible_source_version:
-kolla_ansible_source_version: a-universe-from-nothing/stein
+kolla_ansible_source_version: a-universe-from-nothing/train
 
 # Path to virtualenv in which to install kolla-ansible.
 #kolla_ansible_venv:

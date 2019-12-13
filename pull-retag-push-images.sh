@@ -2,7 +2,7 @@
 
 set -e
 
-tag=${1:-stein}
+tag=${1:-train}
 images="kolla/centos-binary-kolla-toolbox
 kolla/centos-binary-haproxy
 kolla/centos-binary-mariadb
@@ -20,7 +20,6 @@ kolla/centos-binary-keystone-fernet
 kolla/centos-binary-keystone-ssh
 kolla/centos-binary-keystone
 kolla/centos-binary-nova-api
-kolla/centos-binary-nova-consoleauth
 kolla/centos-binary-nova-conductor
 kolla/centos-binary-nova-ssh
 kolla/centos-binary-nova-novncproxy
