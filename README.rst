@@ -115,8 +115,9 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone the Tenks repository.
    git clone https://git.openstack.org/openstack/tenks.git
 
-   # Shutdown the seed VM.
-   sudo virsh shutdown seed
+   # Shutdown the seed VM. virsh shutdown doesn't work due to the lack of ACPI
+   ssh centos@192.168.33.5 shutdown -h now
+   sleep 60 && sudo virsh destroy seed
 
 If required, add any additional SSH public keys to /home/centos/.ssh/authorized_keys
 
