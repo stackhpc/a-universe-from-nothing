@@ -27,49 +27,59 @@
 # Kolla-ansible installation.
 
 # Type of Kolla-ansible control installation. One of 'binary' or 'source'.
+# Default is 'source'.
 #kolla_ansible_ctl_install_type:
 
 # Path to directory for kolla-ansible source code checkout.
+# Default is $KOLLA_SOURCE_PATH, or $PWD/src/kolla-ansible if
+# $KOLLA_SOURCE_PATH is not set.
 #kolla_ansible_source_path:
 
-# URL of Kolla Ansible source code repository if type is 'source'.
+# URL of Kolla Ansible source code repository if type is 'source'. Default is
+# https://opendev.org/openstack/kolla-ansible.
 #kolla_ansible_source_url:
 
 # Version (branch, tag, etc.) of Kolla Ansible source code repository if type
 # is 'source'. Default is {{ openstack_branch }}.
 #kolla_ansible_source_version:
 
-# Path to virtualenv in which to install kolla-ansible.
+# Path to virtualenv in which to install kolla-ansible. Default is
+# $KOLLA_VENV_PATH or $PWD/venvs/kolla-ansible if $KOLLA_VENV_PATH is not set.
 #kolla_ansible_venv:
 
 # Extra requirements to install inside the kolla-ansible virtualenv.
 #kolla_ansible_venv_extra_requirements:
 
-# Path to Kolla-ansible configuration directory.
+# Path to Kolla-ansible configuration directory. Default is $KOLLA_CONFIG_PATH
+# or /etc/kolla if $KOLLA_CONFIG_PATH is not set.
 #kolla_config_path:
 
-# Path to Kolla-ansible node custom configuration directory.
+# Path to Kolla-ansible node custom configuration directory. Default is
+# {{ kolla_config_path }}/config.
 #kolla_node_custom_config_path:
 
 ###############################################################################
 # Kolla configuration.
 
-# Kolla base container image distribution.
+# Kolla base container image distribution. Default is 'centos'.
 #kolla_base_distro:
 
-# Kolla container image type: binary or source.
+# Kolla container image type: binary or source. Default is 'binary'.
 #kolla_install_type:
 
-# URL of docker registry to use for Kolla images.
+# URL of docker registry to use for Kolla images. Default is not set, in which
+# case Dockerhub will be used.
 #kolla_docker_registry:
 
-# Docker namespace to use for Kolla images.
+# Docker namespace to use for Kolla images. Default is 'kolla'.
 #kolla_docker_namespace:
 
-# Username to use to access a docker registry.
+# Username to use to access a docker registry. Default is not set, in which
+# case the registry will be used without authentication.
 #kolla_docker_registry_username:
 
-# Password to use to access a docker registry.
+# Password to use to access a docker registry. Default is not set, in which
+# case the registry will be used without authentication.
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
@@ -80,7 +90,7 @@
 # kolla_install_type=source. See kolla.common.config for details.
 # Example:
 # kolla_sources:
-#   ironic_base:
+#   ironic-base:
 #     type: git
 #     location: https://github.com/openstack/ironic
 #     reference: master
@@ -139,23 +149,27 @@
 # remotely on the target nodes. If None, no virtualenv will be used.
 #kolla_ansible_target_venv:
 
-# Whether TLS is enabled for the external API endpoints.
+# Whether TLS is enabled for the external API endpoints. Default is 'no'.
 #kolla_enable_tls_external:
 
-# Whether debug logging is enabled.
+# Whether TLS is enabled for the internal API endpoints. Default is 'no'.
+#kolla_enable_tls_internal:
+
+# Whether debug logging is enabled. Default is 'false'.
 #kolla_openstack_logging_debug:
 
 # Upper constraints file for installation of Kolla.
+# Default value is {{ pip_upper_constraints_file }}.
 #kolla_upper_constraints_file:
 
-# User account to use for Kolla SSH access.
+# User account to use for Kolla SSH access. Default is 'kolla'.
 #kolla_ansible_user:
 
-# Primary group of Kolla SSH user.
+# Primary group of Kolla SSH user. Default is 'kolla'.
 #kolla_ansible_group:
 
 # Whether to use privilege escalation for all operations performed via Kolla
-# Ansible.
+# Ansible. Default is 'true'.
 #kolla_ansible_become:
 
 ###############################################################################
@@ -206,6 +220,7 @@
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_manila_backend_cephfs_native:
 #kolla_enable_manila_backend_cephfs_nfs:
+#kolla_enable_mariabackup:
 #kolla_enable_mistral:
 #kolla_enable_monasca:
 #kolla_enable_mongodb:
@@ -258,17 +273,34 @@
 ###############################################################################
 # TLS certificate bundle management
 
-# Optionally copy a TLS certificate bundle into place.
+# External API certificate bundle.
 #
-# When enabled, this will copy the contents of kolla_tls_cert into place for
-# use by HAproxy.
+# When kolla_enable_tls_external is true, this should contain an X.509
+# certificate bundle for the external API.
 #
 # Note that this should be formatted as a literal style block scalar.
-#kolla_tls_cert:
+#
+# NOTE: kolla_tls_cert has been renamed to kolla_external_tls_cert. Support for
+# the deprecated name kolla_tls_cert will be removed in a future release.
+#kolla_external_tls_cert:
 
-# Path to a CA certificate file to use for the OS_CACERT environment variable in
-# openrc files when TLS is enabled, instead of Kolla-Ansible's default.
+# Path to a CA certificate file to use for the OS_CACERT environment variable
+# in public-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
+# default.
 #kolla_external_fqdn_cacert:
+
+# Internal API certificate bundle.
+#
+# When kolla_enable_tls_internal is true, this should contain an X.509
+# certificate bundle for the internal API.
+#
+# Note that this should be formatted as a literal style block scalar.
+#kolla_internal_tls_cert:
+
+# Path to a CA certificate file to use for the OS_CACERT environment variable
+# in admin-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
+# default.
+#kolla_internal_fqdn_cacert:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

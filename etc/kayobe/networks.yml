@@ -59,6 +59,22 @@ storage_net_name: aio
 #storage_mgmt_net_name:
 storage_mgmt_net_name: aio
 
+# Name of the network used to carry ceph storage data traffic.
+#ceph_storage_net_name:
+ceph_storage_net_name: aio
+
+# Name of the network used to carry ceph storage management traffic.
+#ceph_storage_mgmt_net_name:
+ceph_storage_mgmt_net_name: aio
+
+# Name of the network used to carry swift storage data traffic.
+#swift_storage_net_name:
+swift_storage_net_name: aio
+
+# Name of the network used to carry swift storage replication traffic.
+#swift_storage_replication_net_name:
+swift_storage_replication_net_name: aio
+
 # Name of the network used to perform hardware introspection on the bare metal
 # workload hosts.
 #inspection_net_name:
