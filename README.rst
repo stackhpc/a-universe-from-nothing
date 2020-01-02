@@ -80,8 +80,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    screen -drR
 
    # Clone Kayobe.
-   # FIXME(mgoddard): stable/train
-   git clone https://git.openstack.org/openstack/kayobe.git -b master
+   git clone https://git.openstack.org/openstack/kayobe.git -b stable/train
    cd kayobe
 
    # Clone this Kayobe configuration.
