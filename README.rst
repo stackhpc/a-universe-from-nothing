@@ -6,9 +6,9 @@ This repository was originally created as a workshop to configure, deploy and
 get hands-on with Kayobe.
 
 It provides a configuration and walkthrough for the `Kayobe
-<https://kayobe.readthedocs.io/en/latest>`__ project based on the
+<https://docs.openstack.org/kayobe/latest/>`__ project based on the
 configuration provided by the `kayobe-config
-<https://git.openstack.org/cgit/openstack/kayobe-config>`__ repository.
+<https://opendev.org/openstack/kayobe-config>`__ repository.
 It deploys a containerised OpenStack environment using Kolla, Ansible and
 Kayobe.
 
@@ -80,7 +80,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    screen -drR
 
    # Clone Kayobe.
-   git clone https://git.openstack.org/openstack/kayobe.git -b stable/stein
+   git clone https://opendev.org/openstack/kayobe.git -b stable/stein
    cd kayobe
 
    # Clone this Kayobe configuration.
@@ -113,7 +113,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    ./config/src/kayobe-config/configure-local-networking.sh
 
    # Clone the Tenks repository.
-   git clone https://git.openstack.org/openstack/tenks.git
+   git clone https://opendev.org/openstack/tenks.git
 
    # Shutdown the seed VM. virsh shutdown doesn't work due to the lack of ACPI
    ssh centos@192.168.33.5 shutdown -h now
@@ -194,7 +194,7 @@ our model development environment, alongside the seed VM.
    kayobe overcloud provision
 
 Configure and deploy OpenStack to the control plane
-(following `Kayobe host configuration documentation <https://kayobe.readthedocs.io/en/latest/deployment.html#id3>`_):
+(following `Kayobe host configuration documentation <https://docs.openstack.org/kayobe/latest/deployment.html#id3>`_):
 
 .. code-block:: console
 
@@ -314,7 +314,7 @@ Verify that Tenks has created ``controller0`` and ``compute0`` VMs:
 
     sudo virsh list --all
 
-Verify that `virtualbmc <https://github.com/openstack/virtualbmc>`_ is running:
+Verify that `virtualbmc <https://opendev.org/openstack/virtualbmc>`_ is running:
 
 .. code-block:: console
 
@@ -537,7 +537,7 @@ Congratulations, you have successfully installed Barbican on Kayobe.
 References
 ==========
 
-* Kayobe documentation: https://kayobe.readthedocs.io/en/latest/
-* Source: https://git.openstack.org/cgit/openstack/kayobe-config-dev
-* Bugs: https://storyboard.openstack.org/#!/project/openstack/kayobe-config-dev
-* IRC: #openstack-kayobe
+* Kayobe documentation: https://docs.openstack.org/kayobe/latest/
+* Source: https://github.com/stackhpc/a-universe-from-nothing
+* Bugs: https://github.com/stackhpc/a-universe-from-nothing/issues
+* IRC: #openstack-kolla
