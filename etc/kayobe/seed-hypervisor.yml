@@ -19,6 +19,12 @@
 #seed_hypervisor_extra_network_interfaces:
 
 ###############################################################################
+# Seed hypervisor node software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#seed_hypervisor_mdadm_arrays:
+
+###############################################################################
 # Seed hypervisor node LVM configuration.
 
 # List of seed hypervisor volume groups. See mrlesmithjr.manage-lvm role for

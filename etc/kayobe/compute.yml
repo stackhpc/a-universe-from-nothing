@@ -49,6 +49,12 @@ compute_bootstrap_user: centos
 #compute_raid_config_extra:
 
 ###############################################################################
+# Compute node software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#compute_mdadm_arrays:
+
+###############################################################################
 # Compute node LVM configuration.
 
 # List of compute volume groups. See mrlesmithjr.manage-lvm role for
