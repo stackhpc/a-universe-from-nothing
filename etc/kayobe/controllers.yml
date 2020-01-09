@@ -52,6 +52,12 @@ controller_bootstrap_user: centos
 #controller_raid_config_extra:
 
 ###############################################################################
+# Controller node software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#controller_mdadm_arrays:
+
+###############################################################################
 # Controller node LVM configuration.
 
 # List of controller volume groups. See mrlesmithjr.manage-lvm role for

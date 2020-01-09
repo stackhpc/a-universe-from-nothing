@@ -26,9 +26,6 @@
 ###############################################################################
 # Ironic inspector processing configuration.
 
-# Whether inspector should manage the firewall.
-#inspector_manage_firewall:
-
 # List of of default inspector processing plugins.
 #inspector_processing_hooks_default:
 

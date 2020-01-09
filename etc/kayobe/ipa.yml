@@ -10,15 +10,8 @@
 # URL of IPA source repository.
 #ipa_build_source_url:
 
-# Version of IPA source repository.
+# Version of IPA source repository. Default is {{ openstack_branch }}.
 #ipa_build_source_version:
-
-# URL of IPA upper constraints file.
-#ipa_build_upper_constraints_file_url:
-
-# Custom python package version constraints for IPA. Dict mapping package name
-# to upper version constraint.
-#ipa_build_custom_upper_constraints:
 
 # List of default Diskimage Builder (DIB) elements to use when building IPA
 # images.
@@ -47,8 +40,15 @@
 # stackhpc.os-images role for usage.
 #ipa_build_dib_git_elements:
 
+# List of DIB packages to install. Default is none.
+#ipa_build_dib_packages:
+
 ###############################################################################
 # Ironic Python Agent (IPA) images configuration.
+
+# Suffix of upstream Ironic deployment image files. Default is based on
+# {{ openstack_branch }}.
+#ipa_images_upstream_url_suffix:
 
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:

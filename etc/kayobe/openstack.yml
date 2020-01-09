@@ -1,9 +1,12 @@
 ---
 ###############################################################################
-# cAdvisor configuration.
+# OpenStack release configuration.
 
-# Whether cAdvisor is enabled.
-#cadvisor_enabled:
+# Name of the current OpenStack release. Default is "train".
+#openstack_release:
+
+# Name of the current OpenStack branch. Default is "stable/train".
+#openstack_branch:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

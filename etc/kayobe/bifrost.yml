@@ -7,7 +7,8 @@
 # URL of Bifrost source code repository.
 #kolla_bifrost_source_url:
 
-# Version (branch, tag, etc.) of Bifrost source code repository.
+# Version (branch, tag, etc.) of Bifrost source code repository. Default is
+# {{ openstack_branch }}.
 #kolla_bifrost_source_version:
 
 ###############################################################################
@@ -19,11 +20,23 @@
 # DIB image OS release.
 #kolla_bifrost_dib_os_release:
 
+# List of default DIB elements.
+#kolla_bifrost_dib_elements_default:
+
+# List of additional DIB elements.
+#kolla_bifrost_dib_elements_extra:
+
 # List of DIB elements.
 #kolla_bifrost_dib_elements:
 
 # DIB init element.
 #kolla_bifrost_dib_init_element:
+
+# DIB default environment variables.
+#kolla_bifrost_dib_env_vars_default:
+
+# DIB additional environment variables.
+#kolla_bifrost_dib_env_vars_extra:
 
 # DIB environment variables.
 #kolla_bifrost_dib_env_vars:

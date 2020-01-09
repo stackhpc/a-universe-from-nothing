@@ -2,8 +2,7 @@
 ###############################################################################
 # Docker configuration.
 
-# Name of the docker storage driver. Supported values include 'devicemapper'
-# and 'overlay'.
+# Name of the docker storage driver. Default is 'devicemapper'.
 docker_storage_driver: overlay
 
 # Name of the docker storage LVM volume group.
@@ -26,11 +25,11 @@ docker_storage_driver: overlay
 # Use a docker registry on the seed.
 docker_registry: 192.168.33.5:4000
 
-# Use a local registry mirror.
-#docker_registry_mirrors:
-
 # CA of docker registry
 #docker_registry_ca:
+
+# List of Docker registry mirrors.
+#docker_registry_mirrors:
 
 # Enable live-restore on docker daemon
 #docker_daemon_live_restore:
