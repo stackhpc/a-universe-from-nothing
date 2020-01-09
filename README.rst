@@ -86,7 +86,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git -b stable/stein kayobe-config
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
