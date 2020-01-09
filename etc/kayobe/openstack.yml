@@ -1,9 +1,12 @@
 ---
 ###############################################################################
-# Prometheus node exporter configuration.
+# OpenStack release configuration.
 
-# Whether Prometheus node exporter is enabled.
-#nodeexporter_enabled:
+# Name of the current OpenStack release. Default is "stein".
+#openstack_release:
+
+# Name of the current OpenStack branch. Default is "stable/stein".
+#openstack_branch:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

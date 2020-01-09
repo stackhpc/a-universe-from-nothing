@@ -10,6 +10,10 @@
 ###############################################################################
 # Network Time Protocol (NTP).
 
+# Whether to enable the NTP daemon on the host. Default is true unless
+# 'kolla_enable_chrony' has been set to true on overcloud hosts.
+#ntp_service_enabled:
+
 # List of names of NTP servers.
 #ntp_config_server:
 
