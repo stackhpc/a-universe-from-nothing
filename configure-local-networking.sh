@@ -3,6 +3,9 @@
 set -e
 set -o pipefail
 
+# Make sure sbin directories are in PATH, to run binaries such as route
+export PATH=/usr/sbin:/sbin:$PATH
+
 # This should be run on the seed hypervisor.
 
 # IP addresses on the all-in-one Kayobe cloud network.
