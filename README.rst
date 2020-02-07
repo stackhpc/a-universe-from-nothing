@@ -2,8 +2,8 @@
 Kayobe Configuration for "A Universe from Nothing: Containerised OpenStack deployment using Kolla, Ansible and Kayobe"
 ======================================================================================================================
 
-This repository was originally created as a workshop to configure, deploy and
-get hands-on with Kayobe.
+This repository may be used as a workshop to configure, deploy and
+get hands-on with OpenStack Kayobe.
 
 It provides a configuration and walkthrough for the `Kayobe
 <https://kayobe.readthedocs.io/en/latest>`__ project based on the
@@ -46,11 +46,15 @@ out booting an instance using Nova, access the Horizon dashboard, etc.
 Usage
 =====
 
-There are three parts to this guide:
+There are four parts to this guide:
 
+* `Preparation`_
 * `Deploying a Seed`_
 * `A Universe from a Seed`_
 * `Next Steps`_
+
+*Preparation* has instructions to prepare the seed hypervisor for the
+exercise, and fetching the necessary source code.
 
 *Deploying a Seed* includes all instructions necessary to download and
 install the Kayobe prerequisites on a plain CentOS 7 cloud image, including
@@ -64,11 +68,11 @@ via `Optional: Creating a Seed Snapshot`_.
 Once the control plane has been deployed see `Next Steps`_ for
 some ideas for what to try next.
 
-Deploying a Seed
-----------------
+Preparation
+-----------
 
-This shows how to create an image suitable for deploying Kayobe.
-It assumes you have created a seed hypervisor instance fitting the requirements
+This shows how to prepare the seed hypervisor for the exercise. It assumes
+you have created a seed hypervisor instance fitting the requirements
 above and have already logged in (e.g. ``ssh centos@<ip>``).
 
 .. code-block:: console
@@ -76,12 +80,18 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Install git and screen.
    sudo yum -y install git screen
 
+   # Disable the firewall.
+   sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
+
    # Optional: start a new screen session in case we lose our connection.
    screen -drR
 
    # Clone Kayobe.
    git clone https://git.openstack.org/openstack/kayobe.git -b stable/rocky
    cd kayobe
+
+   # Clone the Tenks repository.
+   git clone https://opendev.org/openstack/tenks.git
 
    # Clone this Kayobe configuration.
    mkdir -p config/src
@@ -94,6 +104,18 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Install kayobe.
    cd ~/kayobe
    ./dev/install.sh
+
+Deploying a Seed
+----------------
+
+This shows how to create an image suitable for deploying Kayobe.
+It assumes you have created a seed hypervisor instance fitting the requirements
+above and have already logged in (e.g. ``ssh centos@<ip>``), and performed the
+necessary `Preparation`_.
+
+.. code-block:: console
+
+   cd ~/kayobe
 
    # Deploy hypervisor services.
    ./dev/seed-hypervisor-deploy.sh
@@ -117,11 +139,10 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    ssh centos@192.168.33.5 sudo docker exec bifrost_deploy pip install proliantutils==2.7.0
    ssh centos@192.168.33.5 sudo docker exec bifrost_deploy systemctl restart ironic-conductor
 
-   # Clone the Tenks repository.
-   git clone https://git.openstack.org/openstack/tenks.git
-
-   # Shutdown the seed VM.
-   sudo virsh shutdown seed
+   # Optional: Shutdown the seed VM if creating a seed snapshot.
+   # virsh shutdown doesn't work due to the lack of ACPI
+   ssh centos@192.168.33.5 shutdown -h now
+   sleep 60 && sudo virsh destroy seed
 
 If required, add any additional SSH public keys to /home/centos/.ssh/authorized_keys
 
