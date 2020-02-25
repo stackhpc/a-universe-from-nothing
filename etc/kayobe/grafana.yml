@@ -5,13 +5,16 @@
 # Grafana local admin user name. If you are deploying Monasca Grafana this
 # should not conflict with an OpenStack user name.
 #grafana_local_admin_user_name:
+grafana_local_admin_user_name: "grafana_local_admin"
 
 # Path to git repo containing Grafana dashboards. Eg.
 # https://github.com/stackhpc/grafana-reference-dashboards.git
 #grafana_monitoring_node_dashboard_repo:
+grafana_monitoring_node_dashboard_repo: "https://github.com/stackhpc/grafana-reference-dashboards.git"
 
 # Dashboard repo version. Optional, defaults to 'HEAD'.
 #grafana_monitoring_node_dashboard_repo_version:
+grafana_monitoring_node_dashboard_repo_version: "master"
 
 # Path to which Grafana dashboards will be cloned to a monitoring node
 #grafana_monitoring_node_dashboard_repo_checkout_path:
@@ -19,11 +22,13 @@
 # The path, relative to the grafana_monitoring_node_dashboard_repo_checkout_path
 # containing the dashboards. Eg. /prometheus/control_plane
 #grafana_monitoring_node_dashboard_repo_path:
+grafana_monitoring_node_dashboard_repo_path: "/monasca/control_plane"
 
 # The Grafana organisation for the control plane. Note that for Monasca
 # Grafana with domain support the format is:
 # organisation_name@openstack_domain
 #grafana_control_plane_organisation:
+grafana_control_plane_organisation: "monasca@default"
 
 # A dict of datasources to configure. See the stackhpc.grafana-conf role
 # for all supported datasources. Example:
@@ -41,6 +46,17 @@
 #     project_id: "some_id"
 #
 #grafana_datasources:
+grafana_datasources:
+  monasca_api:
+    port: 8070
+    host: "{{ aio_vip_address }}"
+  monasca_log_api:
+    port: 5607
+    host: "{{ aio_vip_address }}"
+  elasticsearch:
+    port: 9200
+    host: "{{ aio_vip_address }}"
+    project_id: "{{ monasca_control_plane_project_id | default('') }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

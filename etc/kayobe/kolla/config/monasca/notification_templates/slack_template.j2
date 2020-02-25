@@ -1,0 +1,6 @@
+{% raw %}{% set base_url = "http://{% endraw %}{{ aio_vip_address }}{% raw %}:3001/plugins/monasca-app/page/alarms" -%}
+Alarm: `{{ alarm_name }}`
+{%- if metrics[0].dimensions.hostname is defined -%}
+{% set hosts = metrics|map(attribute='dimensions.hostname')|unique|list %} on host(s): `{{ hosts|join(', ') }}` moved to <{{ base_url }}?dimensions=hostname:{{ hosts|join('|') }}|status>: `{{ state }}`
+{%- else %} moved to <{{ base_url }}|status>: `{{ state }}`
+{%- endif %}.{% endraw %}
