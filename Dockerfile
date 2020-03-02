@@ -15,6 +15,9 @@ RUN groupadd -g $KAYOBE_USER_GID -o $KAYOBE_USER_NAME &&  \
     -o -s /bin/bash $KAYOBE_USER_NAME
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+COPY docker-entrypoint.sh /bin/entrypoint.sh
+RUN chmod +x /bin/entrypoint.sh
+
 WORKDIR /$KAYOBE_USER_NAME
 USER $KAYOBE_USER_NAME
 
@@ -43,8 +46,5 @@ ENV KOLLA_SOURCE_PATH=$SRC_PATH/kolla-ansible
 ENV KOLLA_VENV_PATH=$VENVS_PATH/kolla-ansible
 
 RUN kayobe control host bootstrap
-
-COPY docker-entrypoint.sh /bin/entrypoint.sh
-RUN chmod +x /bin/entrypoint.sh
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
