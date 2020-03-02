@@ -5,6 +5,7 @@ RUN yum update -y && \
     yum clean all
 
 ARG KAYOBE_USER_NAME=stack
+ENV KAYOBE_USER=$KAYOBE_USER_NAME
 ARG KAYOBE_USER_UID=1000
 ARG KAYOBE_USER_GID=1000
 
@@ -42,4 +43,8 @@ ENV KOLLA_SOURCE_PATH=$SRC_PATH/kolla-ansible
 ENV KOLLA_VENV_PATH=$VENVS_PATH/kolla-ansible
 
 RUN kayobe control host bootstrap
-CMD ["kayobe", "--help"]
+
+COPY docker-entrypoint.sh /bin/entrypoint.sh
+RUN chmod +x /bin/entrypoint.sh
+
+ENTRYPOINT ["/bin/entrypoint.sh"]
