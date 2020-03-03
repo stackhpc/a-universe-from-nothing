@@ -45,6 +45,6 @@ ENV KOLLA_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kolla
 ENV KOLLA_SOURCE_PATH=$SRC_PATH/kolla-ansible
 ENV KOLLA_VENV_PATH=$VENVS_PATH/kolla-ansible
 
-RUN kayobe control host bootstrap
+RUN kayobe control host bootstrap && rm -rf $HOME/.ssh
 
 ENTRYPOINT ["/bin/entrypoint.sh"]

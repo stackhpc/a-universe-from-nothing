@@ -9,6 +9,9 @@ if [ -d /secrets/.ssh ]; then
 	chmod 644 /$KAYOBE_USER/.ssh/id_rsa.pub
     fi
     chmod 600 /$KAYOBE_USER/.ssh/id_rsa
+    if [ -f /$KAYOBE_USER/.ssh/config ]; then
+	chmod 600 /$KAYOBE_USER/.ssh/config
+    fi
 fi
 
 exec "$@"
