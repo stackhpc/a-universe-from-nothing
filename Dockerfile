@@ -14,6 +14,8 @@ RUN groupadd -g $KAYOBE_USER_GID -o $KAYOBE_USER_NAME &&  \
     -G wheel -m -d /$KAYOBE_USER_NAME \
     -o -s /bin/bash $KAYOBE_USER_NAME
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN mkdir -p /secrets && \
+    chown $KAYOBE_USER_NAME /secrets
 
 COPY docker-entrypoint.sh /bin/entrypoint.sh
 RUN chmod +x /bin/entrypoint.sh
