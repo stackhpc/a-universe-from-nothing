@@ -31,6 +31,7 @@
 # User with which to access remote hosts. This user will be created if it does
 # not exist.
 #kayobe_ansible_user:
+kayobe_ansible_user: stack
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
