@@ -8,7 +8,9 @@ if [ -d /secrets/.ssh ]; then
     if [ -f /$KAYOBE_USER/.ssh/id_rsa.pub ]; then
 	chmod 644 /$KAYOBE_USER/.ssh/id_rsa.pub
     fi
-    chmod 600 /$KAYOBE_USER/.ssh/id_rsa
+    if [ -f /$KAYOBE_USER/.ssh/id_rsa ]; then
+	chmod 600 /$KAYOBE_USER/.ssh/id_rsa
+    fi
     if [ -f /$KAYOBE_USER/.ssh/config ]; then
 	chmod 600 /$KAYOBE_USER/.ssh/config
     fi
