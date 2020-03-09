@@ -57,7 +57,7 @@ There are four parts to this guide:
 exercise, and fetching the necessary source code.
 
 *Deploying a Seed* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain CentOS 7 cloud image, including
+install the Kayobe prerequisites on a plain CentOS 8 cloud image, including
 provisioning and configuration of a seed VM. Optionally, snapshot the
 instance after this step to reduce setup time in future.
 
@@ -77,14 +77,17 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
 
 .. code-block:: console
 
-   # Install git and screen.
-   sudo yum -y install git screen
+   # Install git and tmux.
+   sudo dnf -y install git tmux
 
    # Disable the firewall.
    sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
-   # Optional: start a new screen session in case we lose our connection.
-   screen -drR
+   # Disable SELinux.
+   sudo setenforce 0
+
+   # Optional: start a new tmux session in case we lose our connection.
+   tmux
 
    # Clone Kayobe.
    git clone https://opendev.org/openstack/kayobe.git -b stable/train
@@ -161,8 +164,8 @@ Otherwise, continue working with the instance from `Deploying a Seed`_.
 
 .. code-block:: console
 
-   # Optional: start a new screen session in case we lose our connection.
-   screen -drR
+   # Optional: start a new tmux session in case we lose our connection.
+   tmux
 
    # Set working directory
    cd ~/kayobe
@@ -180,18 +183,6 @@ is present and running.
 
    # Start up the seed VM if it is shut off.
    sudo virsh start seed
-
-*NOTE*: before starting the deploy of TENKS, make sure that an ``openvswitch``
-RPM is available for download.  If you're basing on CentOS 7.7, an additional
-repo is required for installation and setup of ``openvswitch``, and the RDO
-repo for Train is a good option:
-
-.. code-block:: console
-
-   sudo yum install -y centos-release-openstack-train
-   sudo yum install -y openvswitch
-   sudo systemctl enable openvswitch
-   sudo systemctl start openvswitch
 
 We use the `TENKS project <https://www.stackhpc.com/tenks.html>`_ to model
 some 'bare metal' VMs for the controller and compute node.  Here we set up

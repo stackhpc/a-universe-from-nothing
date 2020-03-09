@@ -26,6 +26,11 @@ forwarded_ports="80 6080"
 # IP of the seed hypervisor on the OpenStack 'public' network created by init-runonce.sh.
 public_ip="10.0.2.1"
 
+# Install iptables.
+if $(which dnf >/dev/null 2>&1); then
+    sudo dnf -y install iptables
+fi
+
 # Configure local networking.
 # Add a bridge 'braio' for the Kayobe all-in-one cloud network.
 if ! sudo ip l show braio >/dev/null 2>&1; then
