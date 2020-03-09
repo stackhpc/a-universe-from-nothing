@@ -27,7 +27,7 @@ seed_vm_vcpus: 1
 
 # Base image for the seed VM root volume.
 #seed_vm_root_image:
-seed_vm_root_image: https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
+seed_vm_root_image: https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.1.1911-20200113.3.x86_64.qcow2
 
 # Capacity of the seed VM data volume.
 #seed_vm_data_capacity:
