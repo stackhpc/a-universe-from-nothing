@@ -24,27 +24,47 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent {
-                docker {
-                    image "$KAYOBE_IMAGE"
-                    registryUrl "$REGISTRY"
-                    reuseNode true
+            stages {
+                stage('Prepare Secrets') {
+                    agent { label 'docker' }
+                    environment {
+                        KAYOBE_VAULT_PASSWORD = "${params.KAYOBE_VAULT_PASSWORD}"
+                        KAYOBE_SSH_CONFIG_FILE = credentials("${params.KAYOBE_SSH_CONFIG}")
+                        KAYOBE_SSH_CREDS_FILE = credentials("${params.KAYOBE_SSH_CREDS}")
+                    }
+                    steps {
+                        sh 'mkdir -p secrets/.ssh'
+                        sh "cp $KAYOBE_SSH_CONFIG_FILE secrets/.ssh/config"
+                        sh "cp $KAYOBE_SSH_CREDS_FILE secrets/.ssh/id_rsa"
+                        sh(returnStdout: false, script: 'ssh-keygen -y -f secrets/.ssh/id_rsa > secrets/.ssh/id_rsa.pub')
+                        sh(returnStdout: false, script: 'echo $KAYOBE_VAULT_PASSWORD > secrets/vault.pass')
+                    }
                 }
-            }
-            environment {
-                KAYOBE_VAULT_PASSWORD = "${params.KAYOBE_VAULT_PASSWORD}"
-                KAYOBE_SSH_CONFIG_FILE = credentials("${params.KAYOBE_SSH_CONFIG}")
-            }
-            steps {
-                sshagent (credentials: ["${params.KAYOBE_SSH_CREDS}"]) {
-                    sh 'mkdir -p /secrets/.ssh'
-                    sh "cp $KAYOBE_SSH_CONFIG_FILE /secrets/.ssh/config"
-                    sh '/bin/entrypoint.sh echo READY'
-                    sh 'kayobe control host bootstrap'
-                    sh 'kayobe overcloud inventory discover'
-                    sh 'kayobe overcloud host command run --command "hostname" -v'
+                stage('Run Kayobe') {
+                    agent {
+                        docker {
+                            image "$KAYOBE_IMAGE"
+                            registryUrl "$REGISTRY"
+                            reuseNode true
+                            args "-v ${env.WORKSPACE}/secrets:/secrets -w /stack"
+                        }
+                    }
+                    environment {
+                        KAYOBE_VAULT_PASSWORD = "${params.KAYOBE_VAULT_PASSWORD}"
+                    }
+                    steps {
+                        sh '/bin/entrypoint.sh echo READY'
+                        sh 'kayobe control host bootstrap'
+                        sh 'kayobe overcloud inventory discover'
+                        sh 'kayobe overcloud service reconfigure'
+                    }
                 }
             }
         }
     }
+    post {
+        cleanup {
+            cleanWs()
+        }
+   }
 }
