@@ -26,7 +26,6 @@ pipeline {
         stage('Deploy') {
             stages {
                 stage('Prepare Secrets') {
-                    agent { label 'docker' }
                     environment {
                         KAYOBE_VAULT_PASSWORD = "${params.KAYOBE_VAULT_PASSWORD}"
                         KAYOBE_SSH_CONFIG_FILE = credentials("${params.KAYOBE_SSH_CONFIG}")
@@ -46,13 +45,13 @@ pipeline {
                             image "$KAYOBE_IMAGE"
                             registryUrl "$REGISTRY"
                             reuseNode true
-                            args "-v ${env.WORKSPACE}/secrets:/secrets -w /stack"
                         }
                     }
                     environment {
                         KAYOBE_VAULT_PASSWORD = "${params.KAYOBE_VAULT_PASSWORD}"
                     }
                     steps {
+                        sh 'cp -R secrets/. /secrets'
                         sh '/bin/entrypoint.sh echo READY'
                         sh 'kayobe control host bootstrap'
                         sh 'kayobe overcloud inventory discover'
@@ -64,7 +63,9 @@ pipeline {
     }
     post {
         cleanup {
-            cleanWs()
+            dir('secrets') {
+                deleteDir()
+            }
         }
    }
 }
