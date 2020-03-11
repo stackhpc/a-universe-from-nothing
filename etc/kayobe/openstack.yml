@@ -4,9 +4,11 @@
 
 # Name of the current OpenStack release. Default is "stein".
 #openstack_release:
+openstack_release: "stein"
 
 # Name of the current OpenStack branch. Default is "stable/stein".
 #openstack_branch:
+openstack_branch: "stable/stein"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
