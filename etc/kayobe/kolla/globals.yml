@@ -22,3 +22,6 @@ monasca_agent_authorized_roles:
 
 # Project name to send control plane logs and metrics to
 monasca_control_plane_project: monasca
+
+# Increase the Elasticsearch heap size (defaults to 1GB)
+es_heap_size: "2g"
