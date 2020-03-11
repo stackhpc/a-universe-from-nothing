@@ -39,7 +39,7 @@ RUN pip install -U pip && \
 
 ENV KAYOBE_CONFIG_ROOT=$SRC_PATH/kayobe_config
 COPY --chown=stack:stack . $KAYOBE_CONFIG_ROOT
-COPY --chown=stack:stack ansible.cfg /stack
+COPY --chown=stack:stack ansible.cfg /stack/.ansible.cfg
 
 ENV KAYOBE_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kayobe
 ENV KOLLA_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kolla
