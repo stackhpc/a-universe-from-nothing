@@ -6,13 +6,13 @@
 set -eu
 
 # Clone Kayobe.
-[[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b stable/train
+[[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b master
 cd kayobe
 
 # Clone this Kayobe configuration.
 mkdir -p config/src
 cd config/src/
-[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b stable/train kayobe-config
+[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b master kayobe-config
 
 # Configure host networking (bridge, routes & firewall)
 ./kayobe-config/configure-local-networking.sh
@@ -28,7 +28,7 @@ cd ~/kayobe
 # FIXME: Will fail first time due to missing bifrost image.
 if ! ./dev/seed-deploy.sh; then
     # Pull, retag images, then push to our local registry.
-    ./config/src/kayobe-config/pull-retag-push-images.sh train
+    ./config/src/kayobe-config/pull-retag-push-images.sh master
 
     # Deploy a seed VM. Should work this time.
     ./dev/seed-deploy.sh
