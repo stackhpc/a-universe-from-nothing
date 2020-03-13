@@ -8,6 +8,8 @@ set -eu
 # Clone Kayobe.
 [[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b stable/train
 cd kayobe
+git fetch https://review.opendev.org/openstack/kayobe refs/changes/67/711067/3 && git checkout FETCH_HEAD
+git fetch https://review.opendev.org/openstack/kayobe refs/changes/33/712133/3 && git cherry-pick FETCH_HEAD
 
 # Clone this Kayobe configuration.
 mkdir -p config/src
@@ -19,7 +21,7 @@ cd config/src/
 
 # Install kayobe.
 cd ~/kayobe
-./dev/install.sh
+./dev/install-dev.sh
 
 # Deploy hypervisor services.
 ./dev/seed-hypervisor-deploy.sh

@@ -26,13 +26,13 @@ node_types:
 
 specs:
   - type: controller
-    count: 1
+    count: 3
     node_name_prefix: controller
     ironic_config:
       resource_class: test-rc
       network_interface: noop
   - type: compute
-    count: 1
+    count: 3
     node_name_prefix: compute
     ironic_config:
       resource_class: test-rc
