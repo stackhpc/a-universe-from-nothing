@@ -21,7 +21,7 @@ For this workshop we require the use of a single server, configured as a
 CentOS 7, with the following minimum requirements:
 
 * 32GB RAM
-* 40GB disk
+* 80GB disk
 
 We will also need SSH access to the seed hypervisor, and passwordless sudo
 configured for the login user.
