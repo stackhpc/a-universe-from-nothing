@@ -3,12 +3,12 @@
     check:
       jobs:
         - openstack-tox-pep8
-        - kayobe-overcloud-centos
-        - kayobe-seed-centos
+        - kayobe-overcloud-centos8
+        - kayobe-seed-centos8
 
     gate:
       queue: kayobe
       jobs:
         - openstack-tox-pep8
-        - kayobe-overcloud-centos
-        - kayobe-seed-centos
+        - kayobe-overcloud-centos8
+        - kayobe-seed-centos8
