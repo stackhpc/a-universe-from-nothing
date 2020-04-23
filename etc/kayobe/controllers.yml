@@ -69,8 +69,6 @@
 # List of controller volume groups. See mrlesmithjr.manage-lvm role for
 # format.
 #controller_lvm_groups:
-# Don't create any LVM groups - use overlay docker storage driver.
-controller_lvm_groups: []
 
 # Default list of controller volume groups. See mrlesmithjr.manage-lvm role for
 # format.
