@@ -135,9 +135,7 @@ necessary `Preparation`_.
    ./config/src/kayobe-config/configure-local-networking.sh
 
    # Optional: Shutdown the seed VM if creating a seed snapshot.
-   # virsh shutdown doesn't work due to the lack of ACPI
-   ssh centos@192.168.33.5 shutdown -h now
-   sleep 60 && sudo virsh destroy seed
+   sudo virsh shutdown seed
 
 If required, add any additional SSH public keys to /home/centos/.ssh/authorized_keys
 
