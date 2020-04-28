@@ -45,5 +45,7 @@ nova_flavors: []
 physnet_mappings:
   physnet1: braio
 
+bridge_type: linuxbridge
+
 # No placement service.
 wait_for_placement: false

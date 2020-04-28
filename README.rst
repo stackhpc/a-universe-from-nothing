@@ -57,7 +57,7 @@ There are four parts to this guide:
 exercise, and fetching the necessary source code.
 
 *Deploying a Seed* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain CentOS 7 cloud image, including
+install the Kayobe prerequisites on a plain CentOS 8 cloud image, including
 provisioning and configuration of a seed VM. Optionally, snapshot the
 instance after this step to reduce setup time in future.
 
@@ -77,17 +77,20 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
 
 .. code-block:: console
 
-   # Install git and screen.
-   sudo yum -y install git screen
+   # Install git and tmux.
+   sudo dnf -y install git tmux
 
    # Disable the firewall.
    sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
-   # Optional: start a new screen session in case we lose our connection.
-   screen -drR
+   # Disable SELinux.
+   sudo setenforce 0
+
+   # Optional: start a new tmux session in case we lose our connection.
+   tmux
 
    # Clone Kayobe.
-   git clone https://opendev.org/openstack/kayobe.git -b stable/train
+   git clone https://opendev.org/openstack/kayobe.git
    cd kayobe
 
    # Clone the Tenks repository.
@@ -96,14 +99,14 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git -b stable/train kayobe-config
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
 
    # Install kayobe.
    cd ~/kayobe
-   ./dev/install.sh
+   ./dev/install-dev.sh
 
 Deploying a Seed
 ----------------
@@ -125,7 +128,7 @@ necessary `Preparation`_.
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh train
+   ./config/src/kayobe-config/pull-retag-push-images.sh master
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
@@ -161,8 +164,8 @@ Otherwise, continue working with the instance from `Deploying a Seed`_.
 
 .. code-block:: console
 
-   # Optional: start a new screen session in case we lose our connection.
-   screen -drR
+   # Optional: start a new tmux session in case we lose our connection.
+   tmux
 
    # Set working directory
    cd ~/kayobe
@@ -180,18 +183,6 @@ is present and running.
 
    # Start up the seed VM if it is shut off.
    sudo virsh start seed
-
-*NOTE*: before starting the deploy of TENKS, make sure that an ``openvswitch``
-RPM is available for download.  If you're basing on CentOS 7.7, an additional
-repo is required for installation and setup of ``openvswitch``, and the RDO
-repo for Train is a good option:
-
-.. code-block:: console
-
-   sudo yum install -y centos-release-openstack-train
-   sudo yum install -y openvswitch
-   sudo systemctl enable openvswitch
-   sudo systemctl start openvswitch
 
 We use the `TENKS project <https://www.stackhpc.com/tenks.html>`_ to model
 some 'bare metal' VMs for the controller and compute node.  Here we set up
@@ -391,13 +382,13 @@ the seed VM, as follows:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-elasticsearch:rocky
-    sudo docker tag kolla/centos-binary-elasticsearch:rocky 192.168.33.5:4000/kolla/centos-binary-elasticsearch:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:rocky
+    sudo docker pull kolla/centos-binary-elasticsearch:master
+    sudo docker tag kolla/centos-binary-elasticsearch:master 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
 
-    sudo docker pull kolla/centos-binary-kibana:rocky
-    sudo docker tag kolla/centos-binary-kibana:rocky 192.168.33.5:4000/kolla/centos-binary-kibana:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:rocky
+    sudo docker pull kolla/centos-binary-kibana:master
+    sudo docker tag kolla/centos-binary-kibana:master 192.168.33.5:4000/kolla/centos-binary-kibana:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:master
 
 
 Alternatively, add `kolla/centos-binary-elasticsearch` and
@@ -420,8 +411,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 sudo docker ps
     CONTAINER ID        IMAGE                                                                    COMMAND                  CREATED             STATUS              PORTS               NAMES
-    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:rocky                      "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
-    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:rocky               "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
+    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:master                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
+    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
     ...
 
 We can see the log indexes in ElasticSearch:
@@ -487,17 +478,17 @@ containers. Provide these to the docker registry either manually:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-barbican-api:rocky
-    sudo docker tag kolla/centos-binary-barbican-api:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-api:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:rocky
+    sudo docker pull kolla/centos-binary-barbican-api:master
+    sudo docker tag kolla/centos-binary-barbican-api:master 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
 
-    sudo docker pull kolla/centos-binary-barbican-worker:rocky
-    sudo docker tag kolla/centos-binary-barbican-worker:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-worker:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:rocky
+    sudo docker pull kolla/centos-binary-barbican-worker:master
+    sudo docker tag kolla/centos-binary-barbican-worker:master 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
 
-    sudo docker pull kolla/centos-binary-barbican-keystone-listener:rocky
-    sudo docker tag kolla/centos-binary-barbican-keystone-listener:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:rocky
+    sudo docker pull kolla/centos-binary-barbican-keystone-listener:master
+    sudo docker tag kolla/centos-binary-barbican-keystone-listener:master 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
 
 Or add the following to the convenience script at
 ``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and re-run it:
