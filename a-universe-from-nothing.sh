@@ -5,9 +5,21 @@
 
 set -eu
 
+# Install git and tmux.
+sudo dnf -y install git tmux
+
+# Disable the firewall.
+sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
+
+# Disable SELinux.
+sudo setenforce 0
+
 # Clone Kayobe.
 [[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b stable/train
 cd kayobe
+
+# Clone the Tenks repository.
+[[ -d tenks ]] || git clone https://git.openstack.org/openstack/tenks.git
 
 # Clone this Kayobe configuration.
 mkdir -p config/src
@@ -19,7 +31,7 @@ cd config/src/
 
 # Install kayobe.
 cd ~/kayobe
-./dev/install.sh
+./dev/install-dev.sh
 
 # Deploy hypervisor services.
 ./dev/seed-hypervisor-deploy.sh
@@ -37,15 +49,6 @@ fi
 # Deploying the seed restarts networking interface,
 # run configure-local-networking.sh again to re-add routes.
 ./config/src/kayobe-config/configure-local-networking.sh
-
-# Clone the Tenks repository.
-[[ -d tenks ]] || git clone https://git.openstack.org/openstack/tenks.git
-
-# Install Open vSwitch for Tenks.
-sudo yum install -y centos-release-openstack-train
-sudo yum install -y openvswitch
-sudo systemctl enable openvswitch
-sudo systemctl start openvswitch
 
 # NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
 export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
