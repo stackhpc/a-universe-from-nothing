@@ -91,7 +91,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    cd kayobe
 
    # Clone the Tenks repository.
-   git clone https://opendev.org/openstack/tenks.git
+   git clone https://opendev.org/openstack/tenks.git -b stable/1.0
 
    # Clone this Kayobe configuration.
    mkdir -p config/src
