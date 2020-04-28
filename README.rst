@@ -106,7 +106,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
 
    # Install kayobe.
    cd ~/kayobe
-   ./dev/install.sh
+   ./dev/install-dev.sh
 
 Deploying a Seed
 ----------------
