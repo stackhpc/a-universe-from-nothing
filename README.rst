@@ -382,13 +382,13 @@ the seed VM, as follows:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-elasticsearch:rocky
-    sudo docker tag kolla/centos-binary-elasticsearch:rocky 192.168.33.5:4000/kolla/centos-binary-elasticsearch:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:rocky
+    sudo docker pull kolla/centos-binary-elasticsearch:master
+    sudo docker tag kolla/centos-binary-elasticsearch:master 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
 
-    sudo docker pull kolla/centos-binary-kibana:rocky
-    sudo docker tag kolla/centos-binary-kibana:rocky 192.168.33.5:4000/kolla/centos-binary-kibana:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:rocky
+    sudo docker pull kolla/centos-binary-kibana:master
+    sudo docker tag kolla/centos-binary-kibana:master 192.168.33.5:4000/kolla/centos-binary-kibana:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:master
 
 
 Alternatively, add `kolla/centos-binary-elasticsearch` and
@@ -411,8 +411,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 sudo docker ps
     CONTAINER ID        IMAGE                                                                    COMMAND                  CREATED             STATUS              PORTS               NAMES
-    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:rocky                      "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
-    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:rocky               "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
+    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:master                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
+    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
     ...
 
 We can see the log indexes in ElasticSearch:
@@ -478,17 +478,17 @@ containers. Provide these to the docker registry either manually:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-barbican-api:rocky
-    sudo docker tag kolla/centos-binary-barbican-api:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-api:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:rocky
+    sudo docker pull kolla/centos-binary-barbican-api:master
+    sudo docker tag kolla/centos-binary-barbican-api:master 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
 
-    sudo docker pull kolla/centos-binary-barbican-worker:rocky
-    sudo docker tag kolla/centos-binary-barbican-worker:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-worker:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:rocky
+    sudo docker pull kolla/centos-binary-barbican-worker:master
+    sudo docker tag kolla/centos-binary-barbican-worker:master 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
 
-    sudo docker pull kolla/centos-binary-barbican-keystone-listener:rocky
-    sudo docker tag kolla/centos-binary-barbican-keystone-listener:rocky 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:rocky
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:rocky
+    sudo docker pull kolla/centos-binary-barbican-keystone-listener:master
+    sudo docker tag kolla/centos-binary-barbican-keystone-listener:master 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
 
 Or add the following to the convenience script at
 ``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and re-run it:
