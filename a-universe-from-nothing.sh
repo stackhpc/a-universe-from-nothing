@@ -39,7 +39,7 @@ fi
 ./config/src/kayobe-config/configure-local-networking.sh
 
 # Clone the Tenks repository.
-[[ -d tenks ]] || git clone https://git.openstack.org/openstack/tenks.git
+[[ -d tenks ]] || git clone https://git.openstack.org/openstack/tenks.git -b stable/1.0
 
 # Install Open vSwitch for Tenks.
 sudo yum install -y centos-release-openstack-train
