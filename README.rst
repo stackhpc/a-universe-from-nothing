@@ -90,7 +90,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    tmux
 
    # Clone Kayobe.
-   git clone https://opendev.org/openstack/kayobe.git -b stable/train
+   git clone https://opendev.org/openstack/kayobe.git
    cd kayobe
 
    # Clone the Tenks repository.
@@ -99,7 +99,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git -b stable/train kayobe-config
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
@@ -128,7 +128,7 @@ necessary `Preparation`_.
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh train
+   ./config/src/kayobe-config/pull-retag-push-images.sh master
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
