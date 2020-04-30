@@ -38,6 +38,13 @@ if ! sudo ip l show braio >/dev/null 2>&1; then
   sudo ip l set braio up
   sudo ip a add $seed_hv_ip/24 dev braio
 fi
+# On CentOS 8, bridges without a port are DOWN, which causes network
+# configuration to fail. Add a dummy interface and plug it into the bridge.
+if ! sudo ip l show dummy1 >/dev/null 2>&1; then
+  sudo ip l add dummy1 type dummy
+  sudo ip l set dummy1 up
+  sudo ip l set dummy1 master braio
+fi
 
 # Configure IP routing and NAT to allow the seed VM and overcloud hosts to
 # route via this route to the outside world.
