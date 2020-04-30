@@ -18,7 +18,7 @@ Requirements
 
 For this workshop we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-CentOS 7, with the following minimum requirements:
+CentOS 8, with the following minimum requirements:
 
 * 32GB RAM
 * 80GB disk
