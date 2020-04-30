@@ -1,3 +1,4 @@
 ---
 aio_interface: braio
-aio_bridge_ports: []
+aio_bridge_ports:
+  - dummy1
