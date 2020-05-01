@@ -12,11 +12,11 @@ controller_vip=192.168.33.2
 seed_hv_ip=192.168.33.4
 seed_vm_ip=192.168.33.5
 
-iface=$(route | grep '^default' | grep -o '[^ ]*$')
+iface=$(ip route | awk '$1 == "default" {print $5; exit}')
 
 # Private IP address by which the seed hypervisor is accessible in the cloud
 # hosting the VM.
-seed_hv_private_ip=$(ip a show dev $iface | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g' | head -n1)
+seed_hv_private_ip=$(ip a show dev $iface | awk '$1 == "inet" { gsub(/\/[0-9]*/,"",$2); print $2; exit }')
 
 # Forward the following ports to the controller.
 # 80: Horizon
