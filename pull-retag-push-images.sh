@@ -2,7 +2,7 @@
 
 set -e
 
-tag=${1:-train}
+tag=${1:-train-centos8}
 images="kolla/centos-binary-kolla-toolbox
 kolla/centos-binary-haproxy
 kolla/centos-binary-mariadb

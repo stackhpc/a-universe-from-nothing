@@ -40,7 +40,7 @@ cd ~/kayobe
 # FIXME: Will fail first time due to missing bifrost image.
 if ! ./dev/seed-deploy.sh; then
     # Pull, retag images, then push to our local registry.
-    ./config/src/kayobe-config/pull-retag-push-images.sh train
+    ./config/src/kayobe-config/pull-retag-push-images.sh train-centos8
 
     # Deploy a seed VM. Should work this time.
     ./dev/seed-deploy.sh
