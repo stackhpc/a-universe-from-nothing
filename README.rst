@@ -12,6 +12,8 @@ configuration provided by the `kayobe-config
 It deploys a containerised OpenStack environment using Kolla, Ansible and
 Kayobe.
 
+Select the Git branch of this repository for the OpenStack release you
+are interested in, and follow the README.
 
 Requirements
 ============
