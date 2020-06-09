@@ -45,12 +45,6 @@
 # Name of the network used to carry storage management traffic.
 #storage_mgmt_net_name:
 
-# Name of the network used to carry ceph storage data traffic.
-#ceph_storage_net_name:
-
-# Name of the network used to carry ceph storage management traffic.
-#ceph_storage_mgmt_net_name:
-
 # Name of the network used to carry swift storage data traffic.
 #swift_storage_net_name:
 

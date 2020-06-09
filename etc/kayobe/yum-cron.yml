@@ -1,4 +1,6 @@
 ---
+# DEPRECATED: Variables in this file are deprecated and will be removed in a
+# future release. Please use dnf.yml instead.
 
 # Whether to enable Yum automatic updates.
 #yum_cron_enabled: false
