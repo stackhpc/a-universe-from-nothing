@@ -25,6 +25,12 @@
 #seed_hypervisor_mdadm_arrays:
 
 ###############################################################################
+# Seed hypervisor node encryption configuration.
+
+# List of block devices to encrypt. See stackhpc.luks role for format.
+#seed_hypervisor_luks_devices:
+
+###############################################################################
 # Seed hypervisor node LVM configuration.
 
 # List of seed hypervisor volume groups. See mrlesmithjr.manage-lvm role for
@@ -66,9 +72,6 @@
 
 # Name of the libvirt storage pool for the seed VM.
 #seed_hypervisor_libvirt_pool_name:
-
-# Capacity of the libvirt storage pool for the seed VM.
-#seed_hypervisor_libvirt_pool_capacity:
 
 # Directory path of the libvirt storage pool for the seed VM.
 #seed_hypervisor_libvirt_pool_path:

@@ -2,10 +2,10 @@
 ###############################################################################
 # OpenStack release configuration.
 
-# Name of the current OpenStack release. Default is "train".
+# Name of the current OpenStack release. Default is "ussuri".
 #openstack_release:
 
-# Name of the current OpenStack branch. Default is "stable/train".
+# Name of the current OpenStack branch. Default is "stable/ussuri".
 #openstack_branch:
 
 ###############################################################################
