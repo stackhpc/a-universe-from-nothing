@@ -1,41 +1,13 @@
 ---
 # Kayobe NTP configuration.
 
-###############################################################################
-# Timezone.
-
-# Name of the local timezone.
-#timezone:
-
-###############################################################################
-# Network Time Protocol (NTP).
-
-# Whether to enable the NTP daemon on the host. Default is true unless
-# 'kolla_enable_chrony' has been set to true on overcloud hosts.
-#ntp_service_enabled:
-
-# List of names of NTP servers.
-#ntp_config_server:
-
-# List of NTP restrictions to add to ntp.conf.
-#ntp_config_restrict:
-
-# List of addresses for NTP daemon to listen on.
-#ntp_config_listen:
-
-# Other NTP configuration options.
-#ntp_config_filegen:
-#ntp_config_statistics:
-#ntp_config_crypto:
-#ntp_config_includefile:
-#ntp_config_keys:
-#ntp_config_trustedkey:
-#ntp_config_requestkey:
-#ntp_config_controlkey:
-#ntp_config_broadcast:
-#ntp_config_broadcastclient:
-#ntp_config_multicastclient:
-#ntp_config_tinker_panic_enabled:
+# Timezone configuration has moved to time.yml.
+#
+# Support for running an NTP daemon on the host is no longer available.
+# Instead the Kolla Ansible 'chrony' container is deployed by default. Set
+# 'kolla_enable_chrony' to 'false' in kolla.yml to disable it.
+#
+# This file will be removed in the Victoria release.
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

@@ -14,34 +14,38 @@
 ###############################################################################
 # Diskimage-builder configuration.
 
-# DIB base OS element.
+# DIB base OS element. Default is "centos".
 #kolla_bifrost_dib_os_element:
 
-# DIB image OS release.
+# DIB image OS release. Default is "8".
 #kolla_bifrost_dib_os_release:
 
-# List of default DIB elements.
+# List of default DIB elements. Default is ["disable-selinux",
+# "enable-serial-console", "vm"].
 #kolla_bifrost_dib_elements_default:
 
-# List of additional DIB elements.
+# List of additional DIB elements. Default is none.
 #kolla_bifrost_dib_elements_extra:
 
-# List of DIB elements.
+# List of DIB elements. Default is a combination of
+# kolla_bifrost_dib_elements_default and kolla_bifrost_dib_elements_extra.
 #kolla_bifrost_dib_elements:
 
-# DIB init element.
+# DIB init element. Default is "cloud-init-datasources".
 #kolla_bifrost_dib_init_element:
 
-# DIB default environment variables.
+# DIB default environment variables. Default is {"DIB_CLOUD_INIT_DATASOURCES":
+# "ConfigDrive", "DIB_DISABLE_KERNEL_CLEANUP": 1}.
 #kolla_bifrost_dib_env_vars_default:
 
-# DIB additional environment variables.
+# DIB additional environment variables. Default is none.
 #kolla_bifrost_dib_env_vars_extra:
 
-# DIB environment variables.
+# DIB environment variables. Default is combination of
+# kolla_bifrost_dib_env_vars_default and kolla_bifrost_dib_env_vars_extra.
 #kolla_bifrost_dib_env_vars:
 
-# List of DIB packages to install.
+# List of DIB packages to install. Default is to install no extra packages.
 #kolla_bifrost_dib_packages:
 
 ###############################################################################

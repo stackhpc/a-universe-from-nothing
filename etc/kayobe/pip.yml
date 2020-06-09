@@ -23,6 +23,9 @@
 # disabled
 #pip_trusted_hosts: []
 
+# PyPI proxy URL (format: http(s)://[user:password@]proxy_name:port)
+#pip_proxy: ""
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

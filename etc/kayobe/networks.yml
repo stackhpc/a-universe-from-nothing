@@ -59,14 +59,6 @@ storage_net_name: aio
 #storage_mgmt_net_name:
 storage_mgmt_net_name: aio
 
-# Name of the network used to carry ceph storage data traffic.
-#ceph_storage_net_name:
-ceph_storage_net_name: aio
-
-# Name of the network used to carry ceph storage management traffic.
-#ceph_storage_mgmt_net_name:
-ceph_storage_mgmt_net_name: aio
-
 # Name of the network used to carry swift storage data traffic.
 #swift_storage_net_name:
 swift_storage_net_name: aio

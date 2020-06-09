@@ -55,6 +55,12 @@
 #monitoring_mdadm_arrays:
 
 ###############################################################################
+# Monitoring node encryption configuration.
+
+# List of block devices to encrypt. See stackhpc.luks role for format.
+#monitoring_luks_devices:
+
+###############################################################################
 # Monitoring node LVM configuration.
 
 # List of monitoring node volume groups. See mrlesmithjr.manage-lvm role for

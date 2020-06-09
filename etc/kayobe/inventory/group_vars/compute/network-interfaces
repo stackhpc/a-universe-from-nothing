@@ -22,11 +22,6 @@
 # storage_net_bridge_ports:
 # storage_net_bond_slaves:
 
-# Ceph storage network IP information.
-# ceph_storage_net_interface:
-# ceph_storage_net_bridge_ports:
-# ceph_storage_net_bond_slaves:
-
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
