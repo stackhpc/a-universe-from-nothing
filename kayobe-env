@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-KAYOBE_CONFIG_ROOT=$(dirname $(realpath ${BASH_SOURCE[0]}))
+KAYOBE_CONFIG_ROOT=$(dirname $(realpath ${BASH_SOURCE[0]:-${(%):-%x}}))
 echo "Using Kayobe config from $KAYOBE_CONFIG_ROOT"
 
 export KAYOBE_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kayobe

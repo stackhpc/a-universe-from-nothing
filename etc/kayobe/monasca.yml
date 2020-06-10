@@ -1,0 +1,18 @@
+---
+###############################################################################
+# Monasca configuration.
+
+# Monasca OpenStack Project name.
+# The default is "monasca_control_plane".
+#monasca_control_plane_project:
+
+# Monasca OpenStack Domain name. Default is "default".
+#monasca_control_plane_domain:
+
+# Monasca Grafana Server port. Must match kolla-ansible
+# var of the same name. Default is "3001".
+#monasca_grafana_server_port:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
