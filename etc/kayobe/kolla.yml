@@ -86,6 +86,10 @@
 # Default is {{ openstack_release }}.
 #kolla_openstack_release:
 
+# Docker tag applied to built container images. Default is
+# {{ kolla_openstack_release }}.
+#kolla_tag:
+
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
 # Example:
@@ -169,8 +173,12 @@
 #kolla_ansible_group:
 
 # Whether to use privilege escalation for all operations performed via Kolla
-# Ansible. Default is 'true'.
+# Ansible. Default is 'false'.
 #kolla_ansible_become:
+
+# Whether to create a user account, configure passwordless sudo and authorise
+# an SSH key for Kolla Ansible. Default is 'true'.
+#kolla_ansible_create_user:
 
 ###############################################################################
 # Kolla feature flag configuration.
@@ -239,6 +247,7 @@ kolla_enable_ironic: false
 #kolla_enable_neutron_vpnaas:
 #kolla_enable_nova_serialconsole_proxy:
 #kolla_enable_octavia:
+#kolla_enable_openstack_core:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:
 #kolla_enable_prometheus:

@@ -58,6 +58,12 @@ controller_bootstrap_user: centos
 #controller_mdadm_arrays:
 
 ###############################################################################
+# Controller node encryption configuration.
+
+# List of block devices to encrypt. See stackhpc.luks role for format.
+#controller_luks_devices:
+
+###############################################################################
 # Controller node LVM configuration.
 
 # List of controller volume groups. See mrlesmithjr.manage-lvm role for
@@ -93,16 +99,6 @@ controller_lvm_groups: []
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #controller_lvm_group_data_lv_docker_volumes_fs:
-
-###############################################################################
-# Controller node Ceph configuration.
-
-# List of Ceph disks.
-# The format is a list of dict like :
-# - { osd: "/dev/sdb", journal: "/dev/sdc" }
-# - { osd: "/dev/sdd" }
-# Journal variable is not mandatory.
-#controller_ceph_disks:
 
 ###############################################################################
 # Controller node sysctl configuration.

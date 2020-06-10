@@ -25,6 +25,12 @@ seed_bootstrap_user: centos
 #seed_mdadm_arrays:
 
 ###############################################################################
+# Seed node encryption configuration.
+
+# List of block devices to encrypt. See stackhpc.luks role for format.
+#seed_luks_devices:
+
+###############################################################################
 # LVM configuration.
 
 # List of seed volume groups. See mrlesmithjr.manage-lvm role for

@@ -1,0 +1,37 @@
+---
+###############################################################################
+# Network interface definitions for the storage group.
+
+# Overcloud provisioning network IP information.
+# provision_oc_net_interface:
+# provision_oc_net_bridge_ports:
+# provision_oc_net_bond_slaves:
+
+# External network IP information.
+# external_net_interface:
+# external_net_bridge_ports:
+# external_net_bond_slaves:
+
+# Storage network IP information.
+# storage_net_interface:
+# storage_net_bridge_ports:
+# storage_net_bond_slaves:
+
+# Storage management network IP information.
+# storage_mgmt_net_interface:
+# storage_mgmt_net_bridge_ports:
+# storage_mgmt_net_bond_slaves:
+
+# Swift storage network IP information.
+# swift_storage_net_interface:
+# swift_storage_net_bridge_ports:
+# swift_storage_net_bond_slaves:
+
+# Swift storage management network IP information.
+# swift_storage_replication_net_interface:
+# swift_storage_replication_net_bridge_ports:
+# swift_storage_replication_net_bond_slaves:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
