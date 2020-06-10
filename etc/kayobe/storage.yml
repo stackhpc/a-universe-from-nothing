@@ -71,6 +71,7 @@
 # List of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.
 #storage_lvm_groups:
+storage_lvm_groups: []
 
 # Default list of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.

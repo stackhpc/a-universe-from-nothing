@@ -60,7 +60,6 @@ seed
 controllers
 network
 monitoring
-storage
 compute
 
 [docker-registry:children]
