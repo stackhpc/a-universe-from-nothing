@@ -1,6 +1,6 @@
 ---
 # This file holds the config given to Tenks when running `tenks-deploy.sh`. It
-# assumes the existence of the bridge `braio`.
+# assumes the existence of the bridges `brmgmt` and `brcloud`.
 
 node_types:
   controller:
@@ -11,7 +11,20 @@ node_types:
       # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
       - capacity: 20GiB
     physical_networks:
-      - physnet1
+      - provision-net
+      - mgmt-net
+      - cloud-net
+    console_log_enabled: true
+  storage:
+    memory_mb: 8192
+    vcpus: 4
+    volumes:
+      # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
+      # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
+      - capacity: 10GiB
+    physical_networks:
+      - provision-net
+      - cloud-net
     console_log_enabled: true
   compute:
     memory_mb: 8192
@@ -19,31 +32,54 @@ node_types:
     volumes:
       # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
       # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
-      - capacity: 20GiB
+      - capacity: 10GiB
     physical_networks:
-      - physnet1
+      - provision-net
+      - cloud-net
+    console_log_enabled: true
+  baremetal:
+    memory_mb: 4096
+    vcpus: 1
+    volumes:
+      # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
+      # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
+      - capacity: 5GiB
+    physical_networks:
+      - cloud-net
     console_log_enabled: true
 
 specs:
   - type: controller
-    count: 1
+    count: 3
     node_name_prefix: controller
     ironic_config:
       resource_class: test-rc
       network_interface: noop
-  - type: compute
+  - type: storage
     count: 1
+    node_name_prefix: storage
+    ironic_config:
+      resource_class: test-rc
+      network_interface: noop
+  - type: compute
+    count: 3
     node_name_prefix: compute
     ironic_config:
       resource_class: test-rc
       network_interface: noop
+  - type: baremetal
+    count: 1
+    node_name_prefix: baremetal
 
 ipmi_address: 192.168.33.4
+ipmi_port_range_end: 6250
 
 nova_flavors: []
 
 physnet_mappings:
-  physnet1: braio
+  mgmt-net: brmgmt
+  provision-net: brprov
+  cloud-net: brcloud
 
 bridge_type: linuxbridge
 
