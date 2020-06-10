@@ -15,7 +15,7 @@ sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo sys
 sudo setenforce 0
 
 # Clone Kayobe.
-[[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b master
+[[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b stable/ussuri
 cd kayobe
 
 # Clone the Tenks repository.
@@ -24,7 +24,7 @@ cd kayobe
 # Clone this Kayobe configuration.
 mkdir -p config/src
 cd config/src/
-[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b master kayobe-config
+[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b stable/ussuri kayobe-config
 
 # Configure host networking (bridge, routes & firewall)
 ./kayobe-config/configure-local-networking.sh
@@ -40,7 +40,7 @@ cd ~/kayobe
 # FIXME: Will fail first time due to missing bifrost image.
 if ! ./dev/seed-deploy.sh; then
     # Pull, retag images, then push to our local registry.
-    ./config/src/kayobe-config/pull-retag-push-images.sh master
+    ./config/src/kayobe-config/pull-retag-push-images.sh ussuri
 
     # Deploy a seed VM. Should work this time.
     ./dev/seed-deploy.sh
