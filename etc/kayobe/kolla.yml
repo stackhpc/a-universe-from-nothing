@@ -135,6 +135,9 @@
 # concatenation of the top level, component, and service inventories.
 #kolla_overcloud_inventory_custom:
 
+# Don't give storage nodes to kolla-ansible - we're using Ceph-ansible.
+kolla_overcloud_inventory_storage_groups: []
+
 # Dict mapping from kolla-ansible groups to kayobe groups and variables. Each
 # item is a dict with the following items:
 # * groups: A list of kayobe ansible groups to map to this kolla-ansible group.

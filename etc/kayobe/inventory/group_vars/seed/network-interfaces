@@ -2,12 +2,11 @@
 ###############################################################################
 # Network interface definitions for the seed group.
 
-aio_interface: eth0
+mgmt_interface: eth0
 
+provision_oc_interface: eth1
 # Route via the seed-hypervisor to the outside world.
-# FIXME: Circular reference between seed & seed-hypervisor?
-#aio_gateway: "{{ 'aio' | net_ip('localhost') }}"
-aio_gateway: 192.168.33.4
+provision_oc_gateway: 192.168.33.4
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

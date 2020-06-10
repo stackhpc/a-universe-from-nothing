@@ -1,4 +1,16 @@
 ---
-aio_interface: braio
-aio_bridge_ports:
-  - dummy1
+mgmt_interface: brmgmt
+mgmt_bridge_ports:
+  - dummy-mgmt
+
+provision_oc_interface: brprov
+provision_oc_bridge_ports:
+  - dummy-prov
+
+provision_wl_interface: brcloud
+provision_wl_bridge_ports:
+  - dummy-cloud
+
+internal_interface: "{{ provision_wl_interface }}.{{ internal_vlan }}"
+
+public_interface: "{{ provision_wl_interface }}.{{ public_vlan }}"

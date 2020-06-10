@@ -16,7 +16,10 @@
 #seed_hypervisor_default_network_interfaces:
 
 # List of extra networks to which seed hypervisor nodes are attached.
-#seed_hypervisor_extra_network_interfaces:
+seed_hypervisor_extra_network_interfaces:
+  - "{{ provision_wl_net_name }}"
+  - "{{ internal_net_name }}"
+  - "{{ public_net_name }}"
 
 ###############################################################################
 # Seed hypervisor node software RAID configuration.

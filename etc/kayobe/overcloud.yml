@@ -15,8 +15,16 @@
 overcloud_group_hosts_map:
   controllers:
     - controller0
+    - controller1
+    - controller2
   compute:
     - compute0
+    - compute1
+    - compute2
+  storage:
+    - storage0
+    - storage1
+    - storage2
 
 # To prevent some network issues you can choose to disable cloud-init
 #disable_cloud_init:

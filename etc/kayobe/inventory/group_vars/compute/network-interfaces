@@ -2,13 +2,15 @@
 ###############################################################################
 # Network interface definitions for the compute group.
 
-# Controller interface on all-in-one network.
-aio_interface: breth0
-aio_bridge_ports:
-  - eth0
-
+provision_oc_interface: eth0
 # Route via the seed-hypervisor to the outside world.
-aio_gateway: 192.168.33.4
+provision_oc_gateway: 192.168.33.4
+
+internal_interface: "eth1.{{ internal_vlan }}"
+
+storage_interface: "eth1.{{ storage_vlan }}"
+
+tunnel_interface: "eth1.{{ tunnel_vlan }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
