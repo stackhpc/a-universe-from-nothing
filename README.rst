@@ -101,7 +101,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b master
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b stable/ussuri
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
@@ -130,7 +130,7 @@ necessary `Preparation`_.
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh master
+   ./config/src/kayobe-config/pull-retag-push-images.sh ussuri
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
@@ -384,13 +384,13 @@ the seed VM, as follows:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-elasticsearch:master
-    sudo docker tag kolla/centos-binary-elasticsearch:master 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
+    sudo docker pull kolla/centos-binary-elasticsearch:ussuri
+    sudo docker tag kolla/centos-binary-elasticsearch:ussuri 192.168.33.5:4000/kolla/centos-binary-elasticsearch:ussuri
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:ussuri
 
-    sudo docker pull kolla/centos-binary-kibana:master
-    sudo docker tag kolla/centos-binary-kibana:master 192.168.33.5:4000/kolla/centos-binary-kibana:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:master
+    sudo docker pull kolla/centos-binary-kibana:ussuri
+    sudo docker tag kolla/centos-binary-kibana:ussuri 192.168.33.5:4000/kolla/centos-binary-kibana:ussuri
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:ussuri
 
 
 Alternatively, add `kolla/centos-binary-elasticsearch` and
@@ -413,8 +413,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 sudo docker ps
     CONTAINER ID        IMAGE                                                                    COMMAND                  CREATED             STATUS              PORTS               NAMES
-    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:master                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
-    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
+    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:ussuri                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
+    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:ussuri              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
     ...
 
 We can see the log indexes in ElasticSearch:
@@ -480,17 +480,17 @@ containers. Provide these to the docker registry either manually:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-barbican-api:master
-    sudo docker tag kolla/centos-binary-barbican-api:master 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
+    sudo docker pull kolla/centos-binary-barbican-api:ussuri
+    sudo docker tag kolla/centos-binary-barbican-api:ussuri 192.168.33.5:4000/kolla/centos-binary-barbican-api:ussuri
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:ussuri
 
-    sudo docker pull kolla/centos-binary-barbican-worker:master
-    sudo docker tag kolla/centos-binary-barbican-worker:master 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
+    sudo docker pull kolla/centos-binary-barbican-worker:ussuri
+    sudo docker tag kolla/centos-binary-barbican-worker:ussuri 192.168.33.5:4000/kolla/centos-binary-barbican-worker:ussuri
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:ussuri
 
-    sudo docker pull kolla/centos-binary-barbican-keystone-listener:master
-    sudo docker tag kolla/centos-binary-barbican-keystone-listener:master 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
+    sudo docker pull kolla/centos-binary-barbican-keystone-listener:ussuri
+    sudo docker tag kolla/centos-binary-barbican-keystone-listener:ussuri 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:ussuri
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:ussuri
 
 Or add the following to the convenience script at
 ``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and re-run it:
@@ -525,7 +525,7 @@ OpenStack venv:
     . ~/os-venv/bin/activate
 
     # Install barbicanclient
-    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/master
+    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/ussuri
 
     # Source the OpenStack environment variables
     source ~/kayobe/config/src/kayobe-config/etc/kolla/public-openrc.sh

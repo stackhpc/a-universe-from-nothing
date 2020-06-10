@@ -2,7 +2,7 @@
 
 set -e
 
-tag=${1:-master}
+tag=${1:-ussuri}
 images="kolla/centos-binary-kolla-toolbox
 kolla/centos-binary-haproxy
 kolla/centos-binary-mariadb
