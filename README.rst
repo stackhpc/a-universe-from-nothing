@@ -92,7 +92,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    tmux
 
    # Clone Kayobe.
-   git clone https://opendev.org/openstack/kayobe.git
+   git clone https://opendev.org/openstack/kayobe.git -b stable/ussuri
    cd kayobe
 
    # Clone the Tenks repository.
