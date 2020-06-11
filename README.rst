@@ -130,7 +130,7 @@ necessary `Preparation`_.
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh master
+   ./config/src/kayobe-config/pull-retag-push-images.sh
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
@@ -379,24 +379,11 @@ logging via ``fluentd`` so that logging from all deployed Docker containers will
 be routed to ElasticSearch.
 
 Before this can be applied, it is necessary to download the missing images to
-the seed VM, as follows:
+the seed VM. Pull, retag and push the centralised logging images:
 
 .. code-block:: console
 
-    ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-elasticsearch:master
-    sudo docker tag kolla/centos-binary-elasticsearch:master 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:master
-
-    sudo docker pull kolla/centos-binary-kibana:master
-    sudo docker tag kolla/centos-binary-kibana:master 192.168.33.5:4000/kolla/centos-binary-kibana:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:master
-
-
-Alternatively, add `kolla/centos-binary-elasticsearch` and
-`kolla/centos-binary-kibana` to the list of containers in
-``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and rerun
-the script.
+   ~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh kibana elasticsearch
 
 To deploy the logging stack:
 
@@ -475,31 +462,11 @@ As with the Logging service above, enable Barbican by modifying the flag in
     +kolla_enable_barbican: yes
 
 This instructs Kolla to install the barbican api, worker & keystone-listener
-containers. Provide these to the docker registry either manually:
+containers. Pull down barbican images:
 
 .. code-block:: console
 
-    ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-barbican-api:master
-    sudo docker tag kolla/centos-binary-barbican-api:master 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:master
-
-    sudo docker pull kolla/centos-binary-barbican-worker:master
-    sudo docker tag kolla/centos-binary-barbican-worker:master 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:master
-
-    sudo docker pull kolla/centos-binary-barbican-keystone-listener:master
-    sudo docker tag kolla/centos-binary-barbican-keystone-listener:master 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:master
-
-Or add the following to the convenience script at
-``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and re-run it:
-
-.. code-block::
-
-    kolla/centos-binary-barbican-api
-    kolla/centos-binary-barbican-worker
-    kolla/centos-binary-barbican-keystone-listener
+   ~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh barbican
 
 To deploy the Barbican service:
 
