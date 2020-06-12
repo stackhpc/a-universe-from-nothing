@@ -191,7 +191,7 @@ kolla_overcloud_inventory_storage_groups: []
 #kolla_enable_blazar:
 #kolla_enable_cadf_notifications:
 #kolla_enable_ceilometer:
-#kolla_enable_central_logging:
+kolla_enable_central_logging: true
 #kolla_enable_ceph:
 #kolla_enable_ceph_mds:
 #kolla_enable_ceph_nfs:
@@ -213,14 +213,14 @@ kolla_overcloud_inventory_storage_groups: []
 #kolla_enable_fluentd:
 #kolla_enable_freezer:
 #kolla_enable_gnocchi:
-#kolla_enable_grafana:
+kolla_enable_grafana: true
 #kolla_enable_haproxy:
 #kolla_enable_heat:
 #kolla_enable_horizon:
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
-kolla_enable_ironic: false
-#kolla_enable_ironic_ipxe:
+kolla_enable_ironic: true
+kolla_enable_ironic_ipxe: true
 #kolla_enable_ironic_pxe_uefi:
 #kolla_enable_iscsid:
 #kolla_enable_karbor:

@@ -10,3 +10,7 @@ provision_oc_ips:
   storage0: 192.168.33.11
   storage1: 192.168.33.12
   storage2: 192.168.33.13
+provision_wl_ips:
+  seed-hypervisor: 192.168.36.1
+public_ips:
+  seed-hypervisor: 192.168.39.3

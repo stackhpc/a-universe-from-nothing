@@ -15,7 +15,9 @@ seed
 #controllers
 
 [baremetal-compute]
-# Add baremetal compute nodes here if required.
+baremetal0
+baremetal1
+baremetal2
 
 [mgmt-switches]
 # Add management network switches here if required.

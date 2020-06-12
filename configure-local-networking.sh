@@ -20,7 +20,7 @@ seed_hv_private_ip=$(ip a show dev $iface | awk '$1 == "inet" { gsub(/\/[0-9]*/,
 # Forward the following ports to the controller.
 # 80: Horizon
 # 6080: VNC console
-forwarded_ports="80 6080"
+forwarded_ports="80 6080 5601 3000"
 
 # IP of the seed hypervisor on the OpenStack 'public' network created by init-runonce.sh.
 public_ip="10.0.2.1"
@@ -64,11 +64,11 @@ sudo iptables -A FORWARD -i $iface -o brprov -m conntrack --ctstate ESTABLISHED,
 sudo iptables -A FORWARD -i brprov -o $iface -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 for port in $forwarded_ports; do
   # Allow new connections.
-  sudo iptables -A FORWARD -i $iface -o brcloud -p tcp --syn --dport $port -m conntrack --ctstate NEW -j ACCEPT
+  sudo iptables -A FORWARD -i $iface -o brcloud.103 -p tcp --syn --dport $port -m conntrack --ctstate NEW -j ACCEPT
   # Destination NAT.
   sudo iptables -t nat -A PREROUTING -i $iface -p tcp --dport $port -j DNAT --to-destination $controller_vip
   # Source NAT.
-  sudo iptables -t nat -A POSTROUTING -o brcloud -p tcp --dport $port -d $controller_vip -j SNAT --to-source $seed_hv_private_ip
+  sudo iptables -t nat -A POSTROUTING -o brcloud.103 -p tcp --dport $port -d $controller_vip -j SNAT --to-source $seed_hv_private_ip
 done
 
 # Configure an IP on the 'public' network to allow access to/from the cloud.

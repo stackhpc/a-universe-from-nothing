@@ -5,7 +5,7 @@
 # Ironic Python Agent (IPA) image build configuration.
 
 # Whether to build IPA images from source.
-#ipa_build_images:
+ipa_build_images: true
 
 # URL of IPA source repository.
 #ipa_build_source_url:

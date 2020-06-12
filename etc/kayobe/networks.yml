@@ -119,8 +119,10 @@ provision_wl_inspection_allocation_pool_start: 192.168.36.128
 provision_wl_inspection_allocation_pool_end: 192.168.36.254
 provision_wl_neutron_allocation_pool_start: 192.168.36.2
 provision_wl_neutron_allocation_pool_end: 192.168.36.127
+# Route via seed-hypervisor
+provision_wl_neutron_gateway: 192.168.36.1
 # Native VLAN
-provision_wl_physical_network: cloud
+provision_wl_physical_network: physnet1
 
 internal_cidr: 192.168.37.0/24
 internal_mtu: 1450
@@ -128,12 +130,12 @@ internal_allocation_pool_start: 192.168.37.3
 internal_allocation_pool_end: 192.168.37.254
 internal_vip_address: 192.168.37.2
 internal_vlan: 101
-internal_physical_network: cloud
+internal_physical_network: physnet1
 
 external_cidr: 192.168.38.0/24
 external_mtu: 1450
 external_vlan: 102
-external_physical_network: cloud
+external_physical_network: physnet1
 
 public_cidr: 192.168.39.0/24
 public_mtu: 1450
@@ -141,22 +143,22 @@ public_allocation_pool_start: 192.168.39.3
 public_allocation_pool_end: 192.168.39.254
 public_vip_address: 192.168.39.2
 public_vlan: 103
-public_physical_network: cloud
+public_physical_network: physnet1
 
 tunnel_cidr: 192.168.40.0/24
 tunnel_mtu: 1450
 tunnel_vlan: 104
-tunnel_physical_network: cloud
+tunnel_physical_network: physnet1
 
 storage_cidr: 192.168.41.0/24
 storage_mtu: 1450
 storage_vlan: 105
-storage_physical_network: cloud
+storage_physical_network: physnet1
 
 storage_mgmt_cidr: 192.168.42.0/24
 storage_mgmt_mtu: 1450
 storage_mgmt_vlan: 106
-storage_mgmt_physical_network: cloud
+storage_mgmt_physical_network: physnet1
 
 ###############################################################################
 # Network virtual patch link configuration.

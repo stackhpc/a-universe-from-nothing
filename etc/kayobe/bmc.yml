@@ -9,10 +9,10 @@
 #ipmi_address:
 
 # Username to use to access a host's BMC via IPMI.
-#ipmi_username:
+ipmi_username: username
 
 # Password to use to access a host's BMC via IPMI.
-#ipmi_password:
+ipmi_password: password
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
