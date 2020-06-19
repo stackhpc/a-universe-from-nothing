@@ -1,4 +1,7 @@
 ---
+# DEPRECATED: Variables in this file are deprecated and will be removed in a
+# future release. Please use dnf.yml instead.
+
 # Yum configuration. Dict mapping Yum config option names to their values.
 # yum_config:
 #   proxy: http://proxy.example.com

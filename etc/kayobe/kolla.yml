@@ -86,6 +86,10 @@
 # Default is {{ openstack_release }}.
 #kolla_openstack_release:
 
+# Docker tag applied to built container images. Default is
+# {{ kolla_openstack_release }}.
+#kolla_tag:
+
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
 # Example:
@@ -185,8 +189,10 @@
 #kolla_enable_ceph_mds:
 #kolla_enable_ceph_nfs:
 #kolla_enable_ceph_rgw:
-# The chrony container is disabled by default because we enable an NTP daemon
-# on the host. Setting this to true will disable NTP on the host.
+# The chrony container is disabled by default on CentOS 7 because we enable an
+# NTP daemon on the host. On CentOS 8 the chrony container is enabled by
+# default because the NTP daemon is not supported. Setting this to true will
+# disable NTP on the host.
 #kolla_enable_chrony:
 #kolla_enable_cinder:
 #kolla_enable_cinder_backend_hnas_iscsi:

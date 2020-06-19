@@ -10,8 +10,10 @@
 ###############################################################################
 # Network Time Protocol (NTP).
 
-# Whether to enable the NTP daemon on the host. Default is true unless
-# 'kolla_enable_chrony' has been set to true on overcloud hosts.
+# Whether to enable the NTP daemon on the host. On CentOS 7 the default is true
+# unless 'kolla_enable_chrony' has been set to true on overcloud hosts. On
+# CentOS 8 the host NTP daemon is not supported, and kolla_enable_chrony is set
+# to true by default.
 #ntp_service_enabled:
 
 # List of names of NTP servers.
