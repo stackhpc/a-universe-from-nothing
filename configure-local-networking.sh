@@ -60,8 +60,8 @@ sudo sysctl -w net.ipv4.conf.all.forwarding=1
 
 # Configure port forwarding from the hypervisor to the Horizon GUI on the
 # controller.
-sudo iptables -A FORWARD -i $iface -o brprov -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A FORWARD -i brprov -o $iface -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -i $iface -o brcloud.103 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -i brcloud.103 -o $iface -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 for port in $forwarded_ports; do
   # Allow new connections.
   sudo iptables -A FORWARD -i $iface -o brcloud.103 -p tcp --syn --dport $port -m conntrack --ctstate NEW -j ACCEPT

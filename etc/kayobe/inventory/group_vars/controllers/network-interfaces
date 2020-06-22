@@ -2,6 +2,13 @@
 ###############################################################################
 # Network interface definitions for the controller group.
 
+# List of IP routing tables. Each item should be a dict containing 'id' and
+# 'name' items. These tables will be added to /etc/iproute2/rt_tables.
+# Use a separate routing table for the public API to avoid asymmetric routing.
+network_route_tables:
+  - name: public
+    id: 2
+
 provision_oc_interface: eth0
 # Route via the seed-hypervisor to the outside world.
 provision_oc_gateway: 192.168.33.4
@@ -17,6 +24,14 @@ internal_interface: "eth2.{{ internal_vlan }}"
 external_interface: "breth2.{{ external_vlan }}"
 
 public_interface: "eth2.{{ public_vlan }}"
+public_rules:
+  - "from {{ public_vip_address }} lookup public"
+public_routes:
+  - cidr: "{{ public_cidr }}"
+    table: public
+  - cidr: 0.0.0.0/0
+    gateway: "{{ public_ips['seed-hypervisor'] }}"
+    table: public
 
 storage_interface: "eth2.{{ storage_vlan }}"
 
