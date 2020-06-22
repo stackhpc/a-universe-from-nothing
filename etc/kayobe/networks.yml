@@ -160,6 +160,13 @@ storage_mgmt_mtu: 1450
 storage_mgmt_vlan: 106
 storage_mgmt_physical_network: physnet1
 
+octavia_cidr: 192.168.43.0/24
+octavia_mtu: 1450
+octavia_vlan: 107
+octavia_physical_network: physnet1
+octavia_allocation_pool_start: 192.168.43.1
+octavia_allocation_pool_end: 192.168.43.9
+
 ###############################################################################
 # Network virtual patch link configuration.
 

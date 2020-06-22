@@ -7,3 +7,9 @@ nova_compute_virt_type: qemu
 # Reduce the control plane's memory footprint by limiting the number of worker
 # processes to one per-service.
 openstack_service_workers: "1"
+
+octavia_network_interface: breth2.107
+octavia_amp_boot_network_list: b28aebb2-0f6d-422a-bb36-5fac4e59a688
+octavia_amp_secgroup_list: 9089f1ad-c03c-480d-900d-3b346fe385fa
+octavia_amp_flavor_id: 200
+

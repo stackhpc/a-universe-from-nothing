@@ -37,6 +37,8 @@ storage_interface: "eth2.{{ storage_vlan }}"
 
 tunnel_interface: "eth2.{{ tunnel_vlan }}"
 
+octavia_interface: "breth2.{{ octavia_vlan }}"
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

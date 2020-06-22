@@ -143,7 +143,22 @@ kolla_overcloud_inventory_storage_groups: []
 # * groups: A list of kayobe ansible groups to map to this kolla-ansible group.
 # * vars: A dict mapping variable names to values for hosts in this
 #         kolla-ansible group.
-#kolla_overcloud_inventory_top_level_group_map:
+kolla_overcloud_inventory_top_level_group_map:
+  control:
+    groups:
+      - controllers
+  network:
+    groups:
+      - network
+  compute:
+    groups:
+      - compute
+  monitoring:
+    groups:
+      - controllers
+  storage:
+    groups:
+      "{{ kolla_overcloud_inventory_storage_groups }}"
 
 # List of names of top level kolla-ansible groups. Any of these groups which
 # have no hosts mapped to them will be provided with an empty group definition.
@@ -243,13 +258,13 @@ kolla_enable_ironic_ipxe: true
 #kolla_enable_neutron_dvr:
 #kolla_enable_neutron_fwaas:
 #kolla_enable_neutron_lbaas:
-#kolla_enable_neutron_provider_networks:
+kolla_enable_neutron_provider_networks: true
 #kolla_enable_neutron_qos:
 #kolla_enable_neutron_segments:
 #kolla_enable_neutron_sriov:
 #kolla_enable_neutron_vpnaas:
 #kolla_enable_nova_serialconsole_proxy:
-#kolla_enable_octavia:
+kolla_enable_octavia: true
 #kolla_enable_openstack_core:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:

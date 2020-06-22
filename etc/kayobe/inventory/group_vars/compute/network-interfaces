@@ -6,6 +6,8 @@ provision_oc_interface: eth0
 # Route via the seed-hypervisor to the outside world.
 provision_oc_gateway: 192.168.33.4
 
+external_interface: eth1
+
 internal_interface: "eth1.{{ internal_vlan }}"
 
 storage_interface: "eth1.{{ storage_vlan }}"
