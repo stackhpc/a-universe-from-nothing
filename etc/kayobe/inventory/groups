@@ -28,6 +28,10 @@ controllers
 [monitoring]
 # Empty group to provide declaration of monitoring group.
 
+[monitoring:children]
+# Add controllers to monitoring group
+controllers
+
 [storage]
 # Empty group to provide declaration of storage group.
 
