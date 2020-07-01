@@ -231,7 +231,7 @@ kolla_enable_ironic: false
 #kolla_enable_manila_backend_cephfs_nfs:
 #kolla_enable_mariabackup:
 #kolla_enable_mistral:
-#kolla_enable_monasca:
+kolla_enable_monasca: yes
 #kolla_enable_mongodb:
 #kolla_enable_multipathd:
 #kolla_enable_murano:

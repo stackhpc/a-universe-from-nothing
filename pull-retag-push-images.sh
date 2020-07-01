@@ -36,6 +36,20 @@ kolla/centos-binary-heat-api
 kolla/centos-binary-heat-api-cfn
 kolla/centos-binary-heat-engine
 kolla/centos-binary-horizon
+kolla/centos-binary-zookeeper
+kolla/centos-binary-kafka
+kolla/centos-binary-storm
+kolla/centos-binary-logstash
+kolla/centos-binary-kibana
+kolla/centos-binary-elasticsearch
+kolla/centos-binary-influxdb
+kolla/centos-source-monasca-api
+kolla/centos-source-monasca-log-api
+kolla/centos-source-monasca-notification
+kolla/centos-source-monasca-persister
+kolla/centos-source-monasca-agent
+kolla/centos-source-monasca-thresh
+kolla/centos-source-monasca-grafana
 kolla/centos-source-bifrost-deploy"
 registry=192.168.33.5:4000
 

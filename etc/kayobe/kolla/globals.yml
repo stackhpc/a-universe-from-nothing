@@ -7,3 +7,21 @@ nova_compute_virt_type: qemu
 # Reduce the control plane's memory footprint by limiting the number of worker
 # processes to one per-service.
 openstack_service_workers: "1"
+
+# Monasca doesn't support binary type container builds
+monasca_install_type: "source"
+
+# Roles which grant read/write access to Monasca APIs
+monasca_default_authorized_roles:
+  - admin
+  - monasca-user
+
+# Roles which grant write access to Monasca APIs
+monasca_agent_authorized_roles:
+  - monasca-agent
+
+# Project name to send control plane logs and metrics to
+monasca_control_plane_project: monasca
+
+# Increase the Elasticsearch heap size (defaults to 1GB)
+es_heap_size: "2g"
