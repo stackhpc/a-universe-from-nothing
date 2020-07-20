@@ -130,7 +130,7 @@ necessary `Preparation`_.
    ./dev/seed-deploy.sh
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh train
+   ./config/src/kayobe-config/pull-retag-push-images.sh train-centos8
 
    # Deploy a seed VM. Should work this time.
    ./dev/seed-deploy.sh
