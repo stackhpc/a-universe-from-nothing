@@ -5,4 +5,4 @@ download_ipa: true
 
 # Use a locally hosted CentOS8 cloud image.
 use_cirros: true
-cirros_deploy_image_upstream_url: https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.1.1911-20200113.3.x86_64.qcow2
+cirros_deploy_image_upstream_url: https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.2.2004-20200611.2.x86_64.qcow2
