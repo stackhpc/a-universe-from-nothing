@@ -275,7 +275,7 @@ Here's some ideas for things to explore with the deployment:
 
 * **Access Control Plane Components**: take a deep dive into the internals
   by `Exploring the Deployment`_.
-* **Deploy ElasticSearch and Kibana**: see `Enabling Centralised Logging`_
+* **Deploy Elasticsearch and Kibana**: see `Enabling Centralised Logging`_
   to get logs aggregated from across our OpenStack control plane.
 
 Exploring the Deployment
@@ -363,7 +363,7 @@ Enabling Centralised Logging
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In Kolla-Ansible, centralised logging is easily enabled and results in the
-deployment of ElasticSearch and Kibana services and configuration to forward
+deployment of Elasticsearch and Kibana services and configuration to forward
 all OpenStack service logging.
 
 To enable the service, one flag must be changed in
@@ -376,7 +376,7 @@ To enable the service, one flag must be changed in
 
 This will install ``elasticsearch`` and ``kibana`` containers, and configure
 logging via ``fluentd`` so that logging from all deployed Docker containers will
-be routed to ElasticSearch.
+be routed to Elasticsearch.
 
 Before this can be applied, it is necessary to download the missing images to
 the seed VM, as follows:
@@ -417,7 +417,7 @@ The new containers can be seen running on the controller node:
     9eb0cf47c7f7        192.168.33.5:4000/kolla/centos-binary-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
     ...
 
-We can see the log indexes in ElasticSearch:
+We can see the log indexes in Elasticsearch:
 
 .. code-block:: console
 
