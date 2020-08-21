@@ -1,0 +1,105 @@
+---
+- import_playbook: ../../../../../../ansible/kolla-build.yml
+
+- name: Pull, retag, and push images
+  hosts: container-image-builders
+  vars:
+    # Set this variable to a space-separated list of regexes to override the
+    # default set of images.
+    container_image_regexes: ""
+    container_image_sets: "{{ seed_container_image_sets + overcloud_container_image_sets }}"
+    kolla_build_log_path: "/var/log/kolla-build.log"
+    docker_pull_namespace: kolla
+    docker_pull_registry: ""
+    docker_pull_tag: "{{ kolla_tag }}"
+  tasks:
+    - name: Set the container image sets to build if images regexes specified
+      set_fact:
+        container_image_sets:
+          - regexes: "{{ container_image_regexes }}"
+      when: container_image_regexes != ''
+
+    - name: Display the regexes for container images that will be built
+      debug:
+        msg: >
+          Building container images of type
+          '{{ item.type | default(kolla_install_type) }}' matching
+          '{{ item.regexes }}'. Build logs will be appended to
+          {{ kolla_build_log_path }}.
+      with_items: "{{ container_image_sets }}"
+
+    - name: Ensure Kolla build log file exists
+      file:
+        path: "{{ kolla_build_log_path }}"
+        state: touch
+        owner: "{{ ansible_user_uid }}"
+        group: "{{ ansible_user_gid }}"
+      become: True
+
+    - name: Login to docker registry
+      docker_login:
+        registry_url: "{{ kolla_docker_registry or omit }}"
+        username: "{{ kolla_docker_registry_username }}"
+        password: "{{ kolla_docker_registry_password }}"
+        reauthorize: yes
+      when:
+        - kolla_docker_registry_username is not none
+        - kolla_docker_registry_password is not none
+
+    - name: List container images
+      shell: >
+        set -o pipefail &&
+        source {{ kolla_venv }}/bin/activate &&
+        kolla-build \
+        --config-dir {{ kolla_build_config_path }} \
+        {% if item.type is defined %}--type {{ item.type }}{% endif %} \
+        {% if kolla_docker_registry is not none %}--registry {{ kolla_docker_registry }}{% endif %} \
+        --list-images
+        {{ item.regexes }}
+      with_items: "{{ container_image_sets }}"
+      when: item.regexes != ''
+      register: list_result
+      changed_when: false
+
+    - name: Build a list of images
+      vars:
+        image: "{{ kolla_base_distro }}-{{ type }}-{{ image_name }}"
+        type: "{{ item.0.item.type | default(kolla_install_type) }}"
+        image_name: "{{ item.1.split()[2] }}"
+      set_fact:
+        images: "{{ (images | default([])) + [image] }}"
+      with_subelements:
+        - "{{ list_result.results }}"
+        - stdout_lines
+        - skip_missing: true
+      when:
+        - not item.1.endswith('base')
+
+    - name: Display images which will be pulled, retagged and pushed
+      debug:
+        var: images
+
+    - name: Pull container images (may take a long time)
+      become: true
+      vars:
+        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}"
+      command:
+        cmd: "docker pull {{ remote_image }}"
+      with_items: "{{ images }}"
+
+    - name: Retag container images
+      become: true
+      vars:
+        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}"
+        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}"
+      command:
+        cmd: "docker tag {{ remote_image }} {{ local_image }}"
+      with_items: "{{ images }}"
+
+    - name: Push container images (may take a long time)
+      become: true
+      vars:
+        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}"
+      command:
+        cmd: "docker push {{ local_image }}"
+      with_items: "{{ images }}"
