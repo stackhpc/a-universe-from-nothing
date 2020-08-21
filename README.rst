@@ -384,13 +384,13 @@ the seed VM, as follows:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-elasticsearch:train
-    sudo docker tag kolla/centos-binary-elasticsearch:train 192.168.33.5:4000/kolla/centos-binary-elasticsearch:train
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch:train
+    sudo docker pull kolla/centos-binary-elasticsearch6:train-centos8
+    sudo docker tag kolla/centos-binary-elasticsearch6:train-centos8 192.168.33.5:4000/kolla/centos-binary-elasticsearch6:train-centos8
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-elasticsearch6:train-centos8
 
-    sudo docker pull kolla/centos-binary-kibana:train
-    sudo docker tag kolla/centos-binary-kibana:train 192.168.33.5:4000/kolla/centos-binary-kibana:train
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana:train
+    sudo docker pull kolla/centos-binary-kibana6:train-centos8
+    sudo docker tag kolla/centos-binary-kibana6:train-centos8 192.168.33.5:4000/kolla/centos-binary-kibana6:train-centos8
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-kibana6:train-centos8
 
 
 Alternatively, add `kolla/centos-binary-elasticsearch` and
@@ -412,9 +412,9 @@ The new containers can be seen running on the controller node:
 .. code-block:: console
 
     $ ssh stack@192.168.33.3 sudo docker ps
-    CONTAINER ID        IMAGE                                                                    COMMAND                  CREATED             STATUS              PORTS               NAMES
-    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:train                      "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
-    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:train               "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
+    CONTAINER ID        IMAGE                                                                            COMMAND                  CREATED             STATUS              PORTS               NAMES
+    0a370a6af0c5        192.168.33.5:4000/kolla/centos-binary-kibana6:train-centos8                      "dumb-init --single-…"   12 minutes ago      Up 12 minutes                           kibana
+    be71d5665d61        192.168.33.5:4000/kolla/centos-binary-elasticsearch6:train-centos8               "dumb-init --single-…"   12 minutes ago      Up 12 minutes                           elasticsearch
     ...
 
 We can see the log indexes in ElasticSearch:
@@ -480,17 +480,17 @@ containers. Provide these to the docker registry either manually:
 .. code-block:: console
 
     ssh stack@192.168.33.5
-    sudo docker pull kolla/centos-binary-barbican-api:train
-    sudo docker tag kolla/centos-binary-barbican-api:train 192.168.33.5:4000/kolla/centos-binary-barbican-api:train
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:train
+    sudo docker pull kolla/centos-binary-barbican-api:train-centos8
+    sudo docker tag kolla/centos-binary-barbican-api:train-centos8 192.168.33.5:4000/kolla/centos-binary-barbican-api:train-centos8
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-api:train-centos8
 
-    sudo docker pull kolla/centos-binary-barbican-worker:train
-    sudo docker tag kolla/centos-binary-barbican-worker:train 192.168.33.5:4000/kolla/centos-binary-barbican-worker:train
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:train
+    sudo docker pull kolla/centos-binary-barbican-worker:train-centos8
+    sudo docker tag kolla/centos-binary-barbican-worker:train-centos8 192.168.33.5:4000/kolla/centos-binary-barbican-worker:train-centos8
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-worker:train-centos8
 
-    sudo docker pull kolla/centos-binary-barbican-keystone-listener:train
-    sudo docker tag kolla/centos-binary-barbican-keystone-listener:train 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:train
-    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:train
+    sudo docker pull kolla/centos-binary-barbican-keystone-listener:train-centos8
+    sudo docker tag kolla/centos-binary-barbican-keystone-listener:train-centos8 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:train-centos8
+    sudo docker push 192.168.33.5:4000/kolla/centos-binary-barbican-keystone-listener:train-centos8
 
 Or add the following to the convenience script at
 ``~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh`` and re-run it:
