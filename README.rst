@@ -412,9 +412,9 @@ The new containers can be seen running on the controller node:
 .. code-block:: console
 
     $ ssh stack@192.168.33.3 sudo docker ps
-    CONTAINER ID        IMAGE                                                                    COMMAND                  CREATED             STATUS              PORTS               NAMES
-    304b197f888b        147.75.105.15:4000/kolla/centos-binary-kibana:master                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
-    9eb0cf47c7f7        147.75.105.15:4000/kolla/centos-binary-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
+    CONTAINER ID        IMAGE                                                                   COMMAND                  CREATED             STATUS              PORTS               NAMES
+    304b197f888b        192.168.33.5:4000/kolla/centos-binary-kibana:master                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
+    9eb0cf47c7f7        192.168.33.5:4000/kolla/centos-binary-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
     ...
 
 We can see the log indexes in ElasticSearch:
