@@ -11,8 +11,9 @@ sudo dnf -y install git tmux
 # Disable the firewall.
 sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
-# Disable SELinux.
+# Disable SELinux both immediately and permanently.
 sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
 # Clone Kayobe.
 [[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b stable/ussuri

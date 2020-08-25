@@ -85,8 +85,9 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Disable the firewall.
    sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
-   # Disable SELinux.
+   # Disable SELinux both immediately and permanently.
    sudo setenforce 0
+   sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
    # Optional: start a new tmux session in case we lose our connection.
    tmux
