@@ -230,15 +230,6 @@ VM:
    source config/src/kayobe-config/etc/kolla/public-openrc.sh
    ./config/src/kayobe-config/init-runonce.sh
 
-We also need to relax iptables policies that are changed by Docker, which
-prevent traffic from reaching instances. You may need to rerun this command if
-Docker reverts the FORWARD policy to DENY again. A proper fix will be
-integrated soon.
-
-.. code-block:: console
-
-   kayobe overcloud host command run --command "iptables -P FORWARD ACCEPT" --become --limit controllers
-
 Following the instructions displayed by the above script, boot a VM.
 You'll need to have activated the `~/os-venv` virtual environment.
 
