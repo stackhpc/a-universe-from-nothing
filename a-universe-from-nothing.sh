@@ -69,6 +69,5 @@ kayobe overcloud container image pull
 kayobe overcloud service deploy
 source config/src/kayobe-config/etc/kolla/public-openrc.sh
 kayobe overcloud post configure
-kayobe overcloud host command run --command "iptables -P FORWARD ACCEPT" --become --limit controllers
 source config/src/kayobe-config/etc/kolla/public-openrc.sh
 ./config/src/kayobe-config/init-runonce.sh
