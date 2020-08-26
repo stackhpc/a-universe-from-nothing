@@ -11,8 +11,9 @@ sudo dnf -y install git tmux
 # Disable the firewall.
 sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
-# Disable SELinux.
+# Disable SELinux both immediately and permanently.
 sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
 # Clone Kayobe.
 [[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b stable/train
@@ -68,6 +69,5 @@ kayobe overcloud container image pull
 kayobe overcloud service deploy
 source config/src/kayobe-config/etc/kolla/public-openrc.sh
 kayobe overcloud post configure
-kayobe overcloud host command run --command "iptables -P FORWARD ACCEPT" --become --limit controllers
 source config/src/kayobe-config/etc/kolla/public-openrc.sh
 ./config/src/kayobe-config/init-runonce.sh
