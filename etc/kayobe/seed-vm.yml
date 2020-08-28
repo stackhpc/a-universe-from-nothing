@@ -25,7 +25,8 @@ seed_vm_vcpus: 1
 # Format of the seed VM root volume.
 #seed_vm_root_format:
 
-# Base image for the seed VM root volume.
+# Base image for the seed VM root volume. Default is
+# "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2"
 #seed_vm_root_image:
 seed_vm_root_image: https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.2.2004-20200611.2.x86_64.qcow2
 
@@ -34,6 +35,22 @@ seed_vm_root_image: https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-Gen
 
 # Format of the seed VM data volume.
 #seed_vm_data_format:
+
+# List of network interfaces to attach to the seed VM. Format is as accepted by
+# the stackhpc.libvirt-vm role's libvirt_vms.interfaces variable. Default is
+# one interface for each network in 'network_interfaces'.
+#
+# Example with one interface connected to a libvirt network called
+# 'libvirt-net', and another interface directly plugged into a host device
+# called 'eth1':
+#
+# seed_vm_interfaces:
+#   - network: libvirt-net
+#   - type: direct
+#     source:
+#       dev: eth1
+#
+#seed_vm_interfaces:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
