@@ -11,4 +11,4 @@ fi
 
 cd ${KAYOBE_PATH}
 source dev/environment-setup.sh
-kayobe playbook run ${KAYOBE_CONFIG_PATH}/ansible/pull-retag-push.yml "${KAYOBE_EXTRA_ARGS}"
+kayobe playbook run ${KAYOBE_CONFIG_PATH}/ansible/pull-retag-push.yml ${KAYOBE_EXTRA_ARGS:+"$KAYOBE_EXTRA_ARGS"}
