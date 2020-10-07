@@ -16,11 +16,11 @@ sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
 # Clone Kayobe.
-[[ -d kayobe ]] || git clone https://git.openstack.org/openstack/kayobe.git -b master
+[[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b master
 cd kayobe
 
 # Clone the Tenks repository.
-[[ -d tenks ]] || git clone https://git.openstack.org/openstack/tenks.git
+[[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
 
 # Clone this Kayobe configuration.
 mkdir -p config/src
