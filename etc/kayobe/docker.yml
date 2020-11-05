@@ -2,7 +2,7 @@
 ###############################################################################
 # Docker configuration.
 
-# Name of the docker storage driver. Default is 'devicemapper'.
+# Name of the docker storage driver. Default is 'overlay2'.
 #docker_storage_driver:
 
 # Name of the docker storage LVM volume group.
