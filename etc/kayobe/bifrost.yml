@@ -11,6 +11,10 @@
 # {{ openstack_branch }}.
 #kolla_bifrost_source_version:
 
+# Firewalld zone used by Bifrost. Default is "trusted", to avoid blocking other
+# services running on the seed host.
+#kolla_bifrost_firewalld_internal_zone:
+
 ###############################################################################
 # Diskimage-builder configuration.
 
@@ -54,6 +58,10 @@
 # List of hardware types to enable for Bifrost's Ironic.
 #kolla_bifrost_enabled_hardware_types:
 
+# List of extra kernel parameters for Bifrost's Ironic PXE configuration.
+# Default is empty.
+#kolla_bifrost_extra_kernel_options:
+
 ###############################################################################
 # Ironic Inspector configuration.
 
@@ -85,6 +93,10 @@
 
 # Ironic inspector deployment ramdisk location.
 #kolla_bifrost_inspector_deploy_ramdisk:
+
+# Timeout of hardware inspection on overcloud nodes, in seconds. Default is
+# {{ inspector_inspection_timeout }}.
+#kolla_bifrost_inspection_timeout:
 
 ###############################################################################
 # Ironic Python Agent (IPA) configuration.

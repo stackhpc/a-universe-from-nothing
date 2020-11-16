@@ -4,10 +4,6 @@
 ###############################################################################
 # DNF repository configuration.
 
-# For backwards compatibility, all variables in this section default to the
-# equivalently named variables starting with 'yum_' instead of 'dnf_'.
-# The yum variables will be removed in a future release.
-
 # Yum configuration. Dict mapping Yum config option names to their values.
 # dnf_config:
 #   proxy: http://proxy.example.com
@@ -48,18 +44,11 @@
 ###############################################################################
 # DNF Automatic configuration.
 
-# For backwards compatibility, all variables in this section default to the
-# equivalently named variables starting with 'yum_cron' instead of
-# 'dnf_automatic'.  # The yum-cron variables will be removed in a future
-# release.
-
 # Whether DNF Automatic is enabled. This can be used to regularly apply
 # security updates. Default value is 'false'.
 #dnf_automatic_enabled:
 
-# DNF Automatic upgrade type. Default value is 'security'. Note that the
-# equivalent yum-cron variable is named slightly differently -
-# 'yum_cron_update_cmd'.
+# DNF Automatic upgrade type. Default value is 'security'.
 #dnf_automatic_upgrade_type:
 
 ###############################################################################

@@ -2,7 +2,7 @@
 ###############################################################################
 # Docker registry configuration.
 
-# Whether a docker registry is enabled.
+# Whether a docker registry is enabled. Default is false.
 #docker_registry_enabled:
 
 # Dict of environment variables to provide to the docker registry container.
@@ -11,11 +11,31 @@
 # For example, the registry can be configured as a pull through cache to Docker
 # Hub by setting REGISTRY_PROXY_REMOTEURL to "https://registry-1.docker.io".
 # Note that it is not possible to push to a registry configured as a
-# pull through cache.
+# pull through cache. Default is an empty dict.
 #docker_registry_env:
 
-# The port on which the docker registry server should listen.
+# The port on which the docker registry server should listen. Default is 4000.
 #docker_registry_port:
+
+# Name or path to use as the volume for the docker registry. Default is
+# 'docker_registry'.
+#docker_registry_datadir_volume:
+
+# Whether to enable TLS for the registry. Default is false.
+#docker_registry_enable_tls:
+
+# Path to a TLS certificate to use when TLS is enabled. Default is none.
+#docker_registry_cert_path:
+
+# Path to a TLS key to use when TLS is enabled. Default is none.
+#docker_registry_key_path:
+
+# Whether to enable basic authentication for the registry. Default is false.
+#docker_registry_enable_basic_auth:
+
+# Path to a htpasswd formatted password store for the registry. Default is
+# none.
+#docker_registry_basic_auth_htpasswd_path:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
