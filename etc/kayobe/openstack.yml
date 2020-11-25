@@ -2,10 +2,10 @@
 ###############################################################################
 # OpenStack release configuration.
 
-# Name of the current OpenStack release. Default is "ussuri".
+# Name of the current OpenStack release. Default is "victoria".
 #openstack_release:
 
-# Name of the current OpenStack branch. Default is "stable/ussuri".
+# Name of the current OpenStack branch. Default is "stable/victoria".
 #openstack_branch:
 
 ###############################################################################
