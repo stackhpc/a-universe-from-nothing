@@ -1,5 +1,12 @@
 ---
 ###############################################################################
+# General configuration of inspection.
+
+# Timeout of hardware inspection on baremetal compute nodes, in seconds.
+# Default is 1200.
+#inspector_inspection_timeout:
+
+###############################################################################
 # Ironic inspector PXE configuration.
 
 # List of extra kernel parameters for the inspector default PXE configuration.
