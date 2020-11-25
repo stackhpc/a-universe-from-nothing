@@ -265,7 +265,6 @@
 #kolla_enable_hyperv:
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
-kolla_enable_ironic: false
 #kolla_enable_ironic_ipxe:
 #kolla_enable_ironic_neutron_agent:
 #kolla_enable_ironic_pxe_uefi:

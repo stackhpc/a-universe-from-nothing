@@ -33,11 +33,8 @@ seed_bootstrap_user: centos
 ###############################################################################
 # Seed node LVM configuration.
 
-# List of seed volume groups. See mrlesmithjr.manage-lvm role for
-# format.
-# NOTE: We set this to an empty list here because the default Docker storage
-# driver (overlay) does not require any LVM groups.
-seed_lvm_groups: []
+# List of seed volume groups. See mrlesmithjr.manage-lvm role for format.
+#seed_lvm_groups:
 
 # Default list of seed volume groups. See mrlesmithjr.manage-lvm role for
 # format.
@@ -69,7 +66,6 @@ seed_lvm_groups: []
 
 # Size of docker volumes LVM backing volume.
 #seed_lvm_group_data_lv_docker_volumes_size:
-seed_lvm_group_data_lv_docker_volumes_size: 50%VG
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #seed_lvm_group_data_lv_docker_volumes_fs:
