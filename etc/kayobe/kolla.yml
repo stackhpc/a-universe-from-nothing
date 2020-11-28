@@ -254,7 +254,6 @@
 #kolla_enable_horizon_octavia:
 #kolla_enable_horizon_qinling:
 #kolla_enable_horizon_sahara:
-#kolla_enable_horizon_searchlight:
 #kolla_enable_horizon_senlin:
 #kolla_enable_horizon_solum:
 #kolla_enable_horizon_tacker:
@@ -322,7 +321,6 @@
 #kolla_enable_rally:
 #kolla_enable_redis:
 #kolla_enable_sahara:
-#kolla_enable_searchlight:
 #kolla_enable_senlin:
 #kolla_enable_skydive:
 #kolla_enable_solum:
