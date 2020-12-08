@@ -252,7 +252,6 @@
 #kolla_enable_horizon_murano:
 #kolla_enable_horizon_neutron_vpnaas:
 #kolla_enable_horizon_octavia:
-#kolla_enable_horizon_qinling:
 #kolla_enable_horizon_sahara:
 #kolla_enable_horizon_senlin:
 #kolla_enable_horizon_solum:
@@ -316,7 +315,6 @@
 #kolla_enable_placement:
 #kolla_enable_prometheus:
 #kolla_enable_qdrouterd:
-#kolla_enable_qinling:
 #kolla_enable_rabbitmq:
 #kolla_enable_rally:
 #kolla_enable_redis:
