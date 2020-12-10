@@ -13,4 +13,4 @@ openstack_service_workers: "1"
 docker_disable_default_iptables_rules: true
 
 # Workaround to avoid Docker 20.10 due to bad code for version check
-docker_yum_package: “docker-ce-19.03.14-3.el8.x86_64"
+docker_yum_package: "docker-ce-19.03.14-3.el8.x86_64"
