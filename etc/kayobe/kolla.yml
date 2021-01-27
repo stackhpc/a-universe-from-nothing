@@ -120,6 +120,17 @@
 # Full custom seed inventory contents.
 #kolla_seed_inventory_custom:
 
+# List of names of host variables to pass through from kayobe hosts to
+# the kolla-ansible seed host, if set. See also
+# kolla_seed_inventory_pass_through_host_vars_map.
+#kolla_seed_inventory_pass_through_host_vars:
+
+# Dict mapping names of variables in
+# kolla_seed_inventory_pass_through_host_vars to the variable to use in
+# kolla-ansible. If a variable name is not in this mapping the kayobe name is
+# used.
+#kolla_seed_inventory_pass_through_host_vars_map:
+
 # Custom overcloud inventory containing a mapping from top level groups to
 # hosts.
 #kolla_overcloud_inventory_custom_top_level:
@@ -145,6 +156,17 @@
 # List of names of top level kolla-ansible groups. Any of these groups which
 # have no hosts mapped to them will be provided with an empty group definition.
 #kolla_overcloud_inventory_kolla_top_level_groups:
+
+# List of names of host variables to pass through from kayobe hosts to
+# kolla-ansible hosts, if set. See also
+# kolla_overcloud_inventory_pass_through_host_vars_map.
+#kolla_overcloud_inventory_pass_through_host_vars:
+
+# Dict mapping names of variables in
+# kolla_overcloud_inventory_pass_through_host_vars to the variable to use in
+# kolla-ansible. If a variable name is not in this mapping the kayobe name is
+# used.
+#kolla_overcloud_inventory_pass_through_host_vars_map:
 
 ###############################################################################
 # Kolla-ansible configuration.
@@ -188,71 +210,117 @@
 #kolla_enable_blazar:
 #kolla_enable_cadf_notifications:
 #kolla_enable_ceilometer:
+#kolla_enable_ceilometer_ipmi:
+#kolla_enable_cells:
 #kolla_enable_central_logging:
-#kolla_enable_ceph:
-#kolla_enable_ceph_mds:
-#kolla_enable_ceph_nfs:
-#kolla_enable_ceph_rgw:
-# The chrony container is disabled by default because we enable an NTP daemon
-# on the host. Setting this to true will disable NTP on the host.
 #kolla_enable_chrony:
 #kolla_enable_cinder:
-#kolla_enable_cinder_backend_hnas_iscsi:
 #kolla_enable_cinder_backend_hnas_nfs:
 #kolla_enable_cinder_backend_iscsi:
 #kolla_enable_cinder_backend_lvm:
 #kolla_enable_cinder_backend_nfs:
+#kolla_enable_cinder_backend_quobyte:
 #kolla_enable_cinder_backend_zfssa_iscsi:
+#kolla_enable_cinder_backup:
 #kolla_enable_cloudkitty:
-#kolla_enable_congress:
+#kolla_enable_collectd:
+#kolla_enable_cyborg:
 #kolla_enable_designate:
+#kolla_enable_destroy_images:
+#kolla_enable_elasticsearch:
 #kolla_enable_etcd:
 #kolla_enable_fluentd:
 #kolla_enable_freezer:
+#kolla_enable_glance:
 #kolla_enable_gnocchi:
 #kolla_enable_grafana:
 #kolla_enable_haproxy:
 #kolla_enable_heat:
 #kolla_enable_horizon:
+#kolla_enable_horizon_blazar:
+#kolla_enable_horizon_cloudkitty:
+#kolla_enable_horizon_congress:
+#kolla_enable_horizon_designate:
+#kolla_enable_horizon_freezer:
+#kolla_enable_horizon_heat:
+#kolla_enable_horizon_ironic:
+#kolla_enable_horizon_karbor:
+#kolla_enable_horizon_magnum:
+#kolla_enable_horizon_manila:
+#kolla_enable_horizon_masakari:
+#kolla_enable_horizon_mistral:
+#kolla_enable_horizon_murano:
+#kolla_enable_horizon_neutron_vpnaas:
+#kolla_enable_horizon_octavia:
+#kolla_enable_horizon_qinling:
+#kolla_enable_horizon_sahara:
+#kolla_enable_horizon_searchlight:
+#kolla_enable_horizon_senlin:
+#kolla_enable_horizon_solum:
+#kolla_enable_horizon_tacker:
+#kolla_enable_horizon_trove:
+#kolla_enable_horizon_vitrage:
+#kolla_enable_horizon_watcher:
+#kolla_enable_horizon_zun:
+#kolla_enable_hyperv:
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
-kolla_enable_ironic: false
 #kolla_enable_ironic_ipxe:
+#kolla_enable_ironic_neutron_agent:
 #kolla_enable_ironic_pxe_uefi:
 #kolla_enable_iscsid:
+#kolla_enable_kafka:
 #kolla_enable_karbor:
+#kolla_enable_keepalived:
 #kolla_enable_keystone:
+#kolla_enable_kibana:
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
 #kolla_enable_manila:
-#kolla_enable_manila_backend_generic:
-#kolla_enable_manila_backend_hnas:
 #kolla_enable_manila_backend_cephfs_native:
 #kolla_enable_manila_backend_cephfs_nfs:
+#kolla_enable_manila_backend_generic:
+#kolla_enable_manila_backend_hnas:
 #kolla_enable_mariabackup:
+#kolla_enable_mariadb:
+#kolla_enable_masakari:
+#kolla_enable_memcached:
 #kolla_enable_mistral:
 #kolla_enable_monasca:
-#kolla_enable_mongodb:
 #kolla_enable_multipathd:
 #kolla_enable_murano:
+#kolla_enable_neutron:
 #kolla_enable_neutron_agent_ha:
 #kolla_enable_neutron_bgp_dragent:
 #kolla_enable_neutron_dvr:
-#kolla_enable_neutron_fwaas:
-#kolla_enable_neutron_lbaas:
+#kolla_enable_neutron_infoblox_ipam_agent:
+#kolla_enable_neutron_metering:
+#kolla_enable_neutron_mlnx:
+#kolla_enable_neutron_port_forwarding:
 #kolla_enable_neutron_provider_networks:
 #kolla_enable_neutron_qos:
 #kolla_enable_neutron_segments:
+#kolla_enable_neutron_sfc:
 #kolla_enable_neutron_sriov:
 #kolla_enable_neutron_vpnaas:
+#kolla_enable_nova:
 #kolla_enable_nova_serialconsole_proxy:
+#kolla_enable_nova_ssh:
 #kolla_enable_octavia:
+#kolla_enable_onos:
 #kolla_enable_openstack_core:
+#kolla_enable_openvswitch:
 #kolla_enable_osprofiler:
+#kolla_enable_outward_rabbitmq:
+#kolla_enable_ovs_dpdk:
 #kolla_enable_panko:
+#kolla_enable_placement:
 #kolla_enable_prometheus:
 #kolla_enable_qdrouterd:
+#kolla_enable_qinling:
+#kolla_enable_rabbitmq:
 #kolla_enable_rally:
+#kolla_enable_redis:
 #kolla_enable_sahara:
 #kolla_enable_searchlight:
 #kolla_enable_senlin:
@@ -260,13 +328,16 @@ kolla_enable_ironic: false
 #kolla_enable_solum:
 #kolla_enable_storm:
 #kolla_enable_swift:
+#kolla_enable_swift_s3api:
 #kolla_enable_tacker:
 #kolla_enable_telegraf:
 #kolla_enable_tempest:
 #kolla_enable_trove:
+#kolla_enable_trove_singletenant:
 #kolla_enable_vitrage:
 #kolla_enable_vmtp:
 #kolla_enable_watcher:
+#kolla_enable_zookeeper:
 #kolla_enable_zun:
 
 ###############################################################################

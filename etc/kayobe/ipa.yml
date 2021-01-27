@@ -13,15 +13,24 @@
 # Version of IPA source repository. Default is {{ openstack_branch }}.
 #ipa_build_source_version:
 
+# URL of IPA builder source repository.
+#ipa_builder_source_url:
+
+# Version of IPA builder source repository. Default is master.
+#ipa_build_source_version:
+
 # List of default Diskimage Builder (DIB) elements to use when building IPA
-# images.
+# images. Default is ["centos", "enable-serial-console",
+# "ironic-python-agent-ramdisk"].
 #ipa_build_dib_elements_default:
 
 # List of additional Diskimage Builder (DIB) elements to use when building IPA
-# images.
+# images. Default is none.
 #ipa_build_dib_elements_extra:
 
 # List of Diskimage Builder (DIB) elements to use when building IPA images.
+# Default is combination of ipa_build_dib_elements_default and
+# ipa_build_dib_elements_extra.
 #ipa_build_dib_elements:
 
 # Dictionary of default environment variables to provide to Diskimage Builder
@@ -36,8 +45,17 @@
 # during IPA image build.
 #ipa_build_dib_env:
 
+# List of default git repositories containing Diskimage Builder (DIB) elements.
+# See stackhpc.os-images role for usage. Default is one item for IPA builder.
+#ipa_build_dib_git_elements_default:
+
+# List of additional git repositories containing Diskimage Builder (DIB)
+# elements. See stackhpc.os-images role for usage. Default is empty.
+#ipa_build_dib_git_elements_extra:
+
 # List of git repositories containing Diskimage Builder (DIB) elements. See
-# stackhpc.os-images role for usage.
+# stackhpc.os-images role for usage. Default is a combination of
+# ipa_build_dib_git_elements_default and ipa_build_dib_git_elements_extra.
 #ipa_build_dib_git_elements:
 
 # List of DIB packages to install. Default is none.
@@ -63,24 +81,12 @@ ipa_kernel_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tin
 # Algorithm of checksum of Ironic deployment kernel image.
 #ipa_kernel_checksum_algorithm:
 
-# URL of checksum of Ironic deployment kernel image.
-#ipa_kernel_checksum_url:
-
-# Algorithm of checksum of Ironic deployment kernel image.
-#ipa_kernel_checksum_algorithm:
-
 # Name of Ironic deployment ramdisk image to register in Glance.
 #ipa_images_ramdisk_name:
 
 # URL of Ironic deployment ramdisk image to download.
 # yamllint disable-line rule:line-length
 ipa_ramdisk_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa{{ ipa_images_upstream_url_suffix }}.gz"
-
-# URL of checksum of Ironic deployment ramdisk image.
-#ipa_ramdisk_checksum_url:
-
-# Algorithm of checksum of Ironic deployment ramdisk image.
-#ipa_ramdisk_checksum_algorithm:
 
 # URL of checksum of Ironic deployment ramdisk image.
 #ipa_ramdisk_checksum_url:
