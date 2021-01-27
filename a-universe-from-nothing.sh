@@ -16,7 +16,7 @@ sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
 # Clone Kayobe.
-[[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b master
+[[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b stable/victoria
 cd kayobe
 
 # Clone the Tenks repository.
@@ -25,7 +25,7 @@ cd kayobe
 # Clone this Kayobe configuration.
 mkdir -p config/src
 cd config/src/
-[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b master kayobe-config
+[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b stable/victoria kayobe-config
 
 # Configure host networking (bridge, routes & firewall)
 ./kayobe-config/configure-local-networking.sh

@@ -93,7 +93,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    tmux
 
    # Clone Kayobe.
-   git clone https://opendev.org/openstack/kayobe.git -b master
+   git clone https://opendev.org/openstack/kayobe.git -b stable/victoria
    cd kayobe
 
    # Clone the Tenks repository.
@@ -102,7 +102,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b master
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b stable/victoria
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
