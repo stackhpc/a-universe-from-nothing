@@ -5,6 +5,8 @@ set -o pipefail
 
 # This should be run on the seed hypervisor.
 
+source /etc/os-release
+
 # IP addresses on the all-in-one Kayobe cloud network.
 # These IP addresses map to those statically configured in
 # etc/kayobe/network-allocation.yml and etc/kayobe/networks.yml.
@@ -31,19 +33,43 @@ if $(which dnf >/dev/null 2>&1); then
     sudo dnf -y install iptables
 fi
 
+if [[ $ID = "ubuntu" ]]; then
+    sudo apt update
+    sudo apt -y install ifupdown
+fi
+
 # Configure local networking.
 # Add a bridge 'braio' for the Kayobe all-in-one cloud network.
 if ! sudo ip l show braio >/dev/null 2>&1; then
   sudo ip l add braio type bridge
-  sudo ip l set braio up
-  sudo ip a add $seed_hv_ip/24 dev braio
+  if [[ $ID = "ubuntu" ]]; then
+    cat << EOF | sudo tee /etc/network/interfaces.d/ifcfg-braio
+auto braio
+iface braio inet static
+address $seed_hv_ip/24
+netmask 255.255.255.0
+bridge_ports dummy1
+EOF
+    sudo ifup braio
+  else
+    sudo ip l set braio up
+    sudo ip a add $seed_hv_ip/24 dev braio
+  fi
 fi
 # On CentOS 8, bridges without a port are DOWN, which causes network
 # configuration to fail. Add a dummy interface and plug it into the bridge.
 if ! sudo ip l show dummy1 >/dev/null 2>&1; then
   sudo ip l add dummy1 type dummy
-  sudo ip l set dummy1 up
-  sudo ip l set dummy1 master braio
+  if [[ $ID = "ubuntu" ]]; then
+    cat << EOF | sudo tee /etc/network/interfaces.d/ifcfg-dummy1
+auto dummy1
+iface dummy1  inet manual
+EOF
+    sudo ifup dummy1
+  else
+    sudo ip l set dummy1 up
+    sudo ip l set dummy1 master braio
+  fi
 fi
 
 # Configure IP routing and NAT to allow the seed VM and overcloud hosts to
