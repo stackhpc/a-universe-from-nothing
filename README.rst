@@ -95,6 +95,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone Kayobe.
    git clone https://opendev.org/openstack/kayobe.git -b master
    cd kayobe
+   git fetch "https://review.opendev.org/openstack/kayobe" refs/changes/19/773719/1 && git checkout FETCH_HEAD
 
    # Clone the Tenks repository.
    git clone https://opendev.org/openstack/tenks.git
@@ -102,7 +103,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b master
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b multiple-environments
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
@@ -122,6 +123,10 @@ necessary `Preparation`_.
 .. code-block:: console
 
    cd ~/kayobe
+
+   # Set a Kayobe environment. It doesn't matter which one at this stage
+   # because the seed is shared between both environments.
+   export KAYOBE_ENVIRONMENT=dev
 
    # Deploy hypervisor services.
    ./dev/seed-hypervisor-deploy.sh
