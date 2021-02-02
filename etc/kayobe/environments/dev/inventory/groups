@@ -1,0 +1,3 @@
+# We have only one node in the dev environment
+[compute]
+controllers

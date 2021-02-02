@@ -1,0 +1,13 @@
+---
+# Most development environments will use nested virtualisation, and we can't
+# guarantee that nested KVM support is available. Use QEMU as a lowest common
+# denominator.
+nova_compute_virt_type: qemu
+
+# Reduce the control plane's memory footprint by limiting the number of worker
+# processes to one per-service.
+openstack_service_workers: "1"
+
+# Prevent Docker from manipulating iptables. Docker changes the default policy
+# on the FORWARD chain, which prevents traffic from reaching instances.
+docker_disable_default_iptables_rules: true

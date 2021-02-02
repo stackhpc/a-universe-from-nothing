@@ -26,7 +26,7 @@ node_types:
 
 specs:
   - type: controller
-    count: 1
+    count: 2
     node_name_prefix: controller
     ironic_config:
       resource_class: test-rc
