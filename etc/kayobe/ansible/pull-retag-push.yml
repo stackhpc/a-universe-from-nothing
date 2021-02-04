@@ -47,15 +47,17 @@
         - kolla_docker_registry_password is not none
 
     - name: List container images
-      shell: >
-        set -o pipefail &&
-        source {{ kolla_venv }}/bin/activate &&
-        kolla-build \
-        --config-dir {{ kolla_build_config_path }} \
-        {% if item.type is defined %}--type {{ item.type }}{% endif %} \
-        {% if kolla_docker_registry is not none %}--registry {{ kolla_docker_registry }}{% endif %} \
-        --list-images
-        {{ item.regexes }}
+      shell:
+        cmd: >
+          set -o pipefail &&
+          source {{ kolla_venv }}/bin/activate &&
+          kolla-build
+          --config-dir {{ kolla_build_config_path }}
+          {% if item.type is defined %}--type {{ item.type }} {% endif %}
+          {% if kolla_docker_registry is not none %}--registry {{ kolla_docker_registry }} {% endif %}
+          --list-images
+          {{ item.regexes }}
+        executable: /bin/bash
       with_items: "{{ container_image_sets }}"
       when: item.regexes != ''
       register: list_result
