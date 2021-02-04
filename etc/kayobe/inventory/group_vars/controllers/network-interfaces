@@ -3,9 +3,9 @@
 # Network interface definitions for the controller group.
 
 # Controller interface on all-in-one network.
-aio_interface: breth0
+aio_interface: "br{{ aio_bridge_ports[0] }}"
 aio_bridge_ports:
-  - eth0
+  - "{{ 'ens2' if aufn_os_distro == 'ubuntu' else 'eth0' }}"
 
 # Route via the seed-hypervisor to the outside world.
 aio_gateway: 192.168.33.4
