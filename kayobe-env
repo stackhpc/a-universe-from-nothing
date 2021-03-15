@@ -35,3 +35,30 @@ export KOLLA_SOURCE_PATH=${KOLLA_SOURCE_PATH:-${base_path}/src/kolla-ansible}
 # NOTE: This should not be in the Vagrant shared directory, as there are
 # issues with symlinks on Windows hosts.
 export KOLLA_VENV_PATH=~/kolla-venv
+
+function usage {
+  echo "usage: ${BASH_SOURCE[0]:-${(%):-%x}} [--environment <env-name>]"
+  return 1
+}
+
+if [ "$#" -ge 1 ]; then
+  if [ "$1" = "--environment" -a "$#" -eq 2 ]; then
+    kayobe_env="$2"
+    # Look for existing Kayobe environments
+    if [ -d "${KAYOBE_CONFIG_PATH}/environments" ]; then
+      if [ -d "${KAYOBE_CONFIG_PATH}/environments/${kayobe_env}" ]; then
+        export KAYOBE_ENVIRONMENT="${kayobe_env}"
+        echo "Using Kayobe environment ${KAYOBE_ENVIRONMENT}"
+        return 0
+      else
+        echo "Unable to find Kayobe environment ${kayobe_env} in ${KAYOBE_CONFIG_PATH}/environments"
+        return 1
+      fi
+    else
+      echo "Cannot find environments folder in ${KAYOBE_CONFIG_PATH}"
+      return 1
+    fi
+  else
+    usage
+  fi
+fi
