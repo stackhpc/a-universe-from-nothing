@@ -21,6 +21,12 @@ if $(which setenforce 2>/dev/null >/dev/null); then
     sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 fi
 
+# Prevent sudo from performing DNS queries.
+echo 'Defaults	!fqdn' | sudo tee /etc/sudoers.d/no-fqdn
+
+# Start at home.
+cd
+
 # Clone Kayobe.
 [[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b master
 cd kayobe

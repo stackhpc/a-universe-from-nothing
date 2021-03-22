@@ -95,8 +95,14 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
        sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
    fi
 
+   # Prevent sudo from making DNS queries.
+   echo 'Defaults  !fqdn' | sudo tee /etc/sudoers.d/no-fqdn
+
    # Optional: start a new tmux session in case we lose our connection.
    tmux
+
+   # Start at home.
+   cd
 
    # Clone Kayobe.
    git clone https://opendev.org/openstack/kayobe.git -b master
