@@ -62,10 +62,10 @@
 # Kolla configuration.
 
 # Kolla base container image distribution. Default is 'centos'.
-#kolla_base_distro:
+kolla_base_distro: "{{ aufn_os_distro }}"
 
 # Kolla container image type: binary or source. Default is 'binary'.
-#kolla_install_type:
+kolla_install_type: source
 
 # URL of docker registry to use for Kolla images. Default is not set, in which
 # case Dockerhub will be used.

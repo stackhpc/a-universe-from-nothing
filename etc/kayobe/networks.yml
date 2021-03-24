@@ -116,5 +116,10 @@ aio_mtu: 1450
 #network_route_tables:
 
 ###############################################################################
+# MichaelRigart interfaces configuration.
+
+interfaces_pause_time: 5
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

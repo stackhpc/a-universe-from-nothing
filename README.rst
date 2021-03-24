@@ -80,17 +80,29 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
 .. code-block:: console
 
    # Install git and tmux.
-   sudo dnf -y install git tmux
+   if $(which dnf 2>/dev/null >/dev/null); then
+       sudo dnf -y install git tmux
+   else
+       sudo apt -y install git tmux
+   fi
 
    # Disable the firewall.
    sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
    # Disable SELinux both immediately and permanently.
-   sudo setenforce 0
-   sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+   if $(which setenforce 2>/dev/null >/dev/null); then
+       sudo setenforce 0
+       sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+   fi
+
+   # Prevent sudo from making DNS queries.
+   echo 'Defaults  !fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 
    # Optional: start a new tmux session in case we lose our connection.
    tmux
+
+   # Start at home.
+   cd
 
    # Clone Kayobe.
    git clone https://opendev.org/openstack/kayobe.git -b master

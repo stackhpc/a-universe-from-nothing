@@ -4,7 +4,7 @@
 
 # User with which to access the controllers via SSH during bootstrap, in order
 # to setup the Kayobe user account.
-controller_bootstrap_user: centos
+controller_bootstrap_user: "{{ aufn_os_distro }}"
 
 ###############################################################################
 # Controller network interface configuration.

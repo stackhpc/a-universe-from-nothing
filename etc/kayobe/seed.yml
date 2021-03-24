@@ -4,7 +4,7 @@
 
 # User with which to access the seed via SSH during bootstrap, in order to
 # setup the Kayobe user account.
-seed_bootstrap_user: centos
+seed_bootstrap_user: "{{ aufn_os_distro }}"
 
 ###############################################################################
 # Seed network interface configuration.
