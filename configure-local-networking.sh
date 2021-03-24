@@ -46,7 +46,7 @@ if ! sudo ip l show braio >/dev/null 2>&1; then
     cat << EOF | sudo tee /etc/network/interfaces.d/ifcfg-braio
 auto braio
 iface braio inet static
-address $seed_hv_ip/24
+address $seed_hv_ip
 netmask 255.255.255.0
 bridge_ports dummy1
 EOF
