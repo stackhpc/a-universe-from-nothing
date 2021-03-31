@@ -33,17 +33,20 @@ base_path=$(realpath $KAYOBE_CONFIG_ROOT/../../)
 export KOLLA_SOURCE_PATH=${KOLLA_SOURCE_PATH:-${base_path}/src/kolla-ansible}
 export KOLLA_VENV_PATH=${KOLLA_VENV_PATH:-${base_path}/venvs/kolla-ansible}
 
-if [ "$1" = "--environment" ]; then
-  if [ "$#" -ne 2 ]; then
-    echo "usage: ${BASH_SOURCE[0]:-${(%):-%x}} [--environment <env-name>]"
-  else
-    kayobe_env="$2"
+function usage {
+  echo "usage: ${BASH_SOURCE[0]:-${(%):-%x}} [--environment <env-name>]"
+  return 1
+}
 
+if [ "$#" -ge 1 ]; then
+  if [ "$1" = "--environment" -a "$#" -eq 2 ]; then
+    kayobe_env="$2"
     # Look for existing Kayobe environments
     if [ -d "${KAYOBE_CONFIG_PATH}/environments" ]; then
       if [ -d "${KAYOBE_CONFIG_PATH}/environments/${kayobe_env}" ]; then
         export KAYOBE_ENVIRONMENT="${kayobe_env}"
         echo "Using Kayobe environment ${KAYOBE_ENVIRONMENT}"
+        return 0
       else
         echo "Unable to find Kayobe environment ${kayobe_env} in ${KAYOBE_CONFIG_PATH}/environments"
         return 1
@@ -52,8 +55,7 @@ if [ "$1" = "--environment" ]; then
       echo "Cannot find environments folder in ${KAYOBE_CONFIG_PATH}"
       return 1
     fi
+  else
+    usage
   fi
-elif [ "$#" -ne 0 ]; then
-  echo "usage: ${BASH_SOURCE[0]:-${(%):-%x}} [--environment <env-name>]"
-  return 1
 fi
