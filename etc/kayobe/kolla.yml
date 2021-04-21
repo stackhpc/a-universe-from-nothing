@@ -62,7 +62,7 @@
 # Kolla configuration.
 
 # Kolla base container image distribution. Default is 'centos'.
-kolla_base_distro: "{{ aufn_os_distro }}"
+#kolla_base_distro:
 
 # Kolla container image type: binary or source. Default is 'binary'.
 kolla_install_type: source

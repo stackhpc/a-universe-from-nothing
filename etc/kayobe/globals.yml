@@ -33,5 +33,12 @@
 #kayobe_ansible_user:
 
 ###############################################################################
+# OS distribution.
+
+# OS distribution name. Valid options are "centos", "ubuntu". Default is
+# "centos".
+os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

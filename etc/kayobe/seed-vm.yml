@@ -27,12 +27,7 @@ seed_vm_vcpus: 1
 
 # Base image for the seed VM root volume. Default is
 # "https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.2.2004-20200611.2.x86_64.qcow2".
-seed_vm_root_image: >-
-  {%- if aufn_os_distro == 'ubuntu' %}
-  https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
-  {%- else -%}
-  https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.3.2011-20201204.2.x86_64.qcow2
-  {%- endif %}
+#seed_vm_root_image:
 
 # Capacity of the seed VM data volume.
 #seed_vm_data_capacity:
