@@ -3,7 +3,7 @@
 # Storage node configuration.
 
 # User with which to access the storages via SSH during bootstrap, in order
-# to setup the Kayobe user account.
+# to setup the Kayobe user account. Default is {{ os_distribution }}.
 #storage_bootstrap_user:
 
 ###############################################################################

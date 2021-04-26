@@ -3,7 +3,7 @@
 # Seed node configuration.
 
 # User with which to access the seed via SSH during bootstrap, in order to
-# setup the Kayobe user account.
+# setup the Kayobe user account. Default is {{ os_distribution }}.
 seed_bootstrap_user: "{{ lookup('env', 'USER') }}"
 
 ###############################################################################
@@ -92,8 +92,8 @@ seed_bootstrap_user: "{{ lookup('env', 'USER') }}"
 #   squid:
 #     name: "squid"
 #     image: "stackhpc/squid:3.5.20-1"
-#     pre: "{{ kayobe_config_path }}/containers/squid/pre.yml"
-#     post: "{{ kayobe_config_path }}/containers/squid/post.yml"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
 #
 #seed_containers:
 

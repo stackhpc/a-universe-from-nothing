@@ -3,7 +3,7 @@
 # Seed hypervisor node configuration.
 
 # User with which to access the seed hypervisor via SSH during bootstrap, in
-# order to setup the Kayobe user account.
+# order to setup the Kayobe user account. Default is {{ os_distribution }}.
 seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 
 ###############################################################################

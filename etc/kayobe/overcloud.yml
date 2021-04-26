@@ -17,16 +17,5 @@
 #disable_cloud_init:
 
 ###############################################################################
-# Overcloud host image configuration.
-
-# The CentOS cloud images have a bogus name server entry in /etc/resolv.conf,
-# 192.168.122.1. Cloud-init only appends name server entries to this file, and
-# will not remove this bogus entry. Typically this leads to a delay of around
-# 30 seconds when connecting via SSH, due to a timeout in NSS. The workaround
-# employed here is to remove this bogus entry from the image using
-# virt-customize, if it exists. See https://bugs.centos.org/view.php?id=14369.
-#overcloud_host_image_workaround_resolv_enabled:
-
-###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

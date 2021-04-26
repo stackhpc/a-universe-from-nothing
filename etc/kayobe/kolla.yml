@@ -61,7 +61,8 @@
 ###############################################################################
 # Kolla configuration.
 
-# Kolla base container image distribution. Default is 'centos'.
+# Kolla base container image distribution. Options are "centos", "debian",
+# "ubuntu". Default is {{ os_distribution }}.
 #kolla_base_distro:
 
 # Kolla container image type: binary or source. Default is 'binary'.
@@ -109,9 +110,9 @@
 # Dict mapping image customization variable names to their values.
 # Each variable takes the form:
 # <image name>_<customization>_<operation>
-# Hyphens in the image name are replaced with underscores. The customization is
-# most commonly packages. The operation should be one of override, append or
-# remove. The value should be a list.
+# Hyphens in the image name must be replaced with underscores. The
+# customization is most commonly packages. The operation should be one of
+# override, append or remove. The value should be a list.
 #kolla_build_customizations:
 
 ###############################################################################
@@ -208,8 +209,8 @@
 #kolla_enable_aodh:
 #kolla_enable_barbican:
 #kolla_enable_blazar:
-#kolla_enable_cadf_notifications:
 #kolla_enable_ceilometer:
+#kolla_enable_ceilometer_horizon_policy_file:
 #kolla_enable_ceilometer_ipmi:
 #kolla_enable_cells:
 #kolla_enable_central_logging:
@@ -222,24 +223,33 @@
 #kolla_enable_cinder_backend_quobyte:
 #kolla_enable_cinder_backend_zfssa_iscsi:
 #kolla_enable_cinder_backup:
+#kolla_enable_cinder_horizon_policy_file:
 #kolla_enable_cloudkitty:
 #kolla_enable_collectd:
+#kolla_enable_container_healthchecks:
 #kolla_enable_cyborg:
 #kolla_enable_designate:
 #kolla_enable_destroy_images:
 #kolla_enable_elasticsearch:
+#kolla_enable_elasticsearch_curator:
 #kolla_enable_etcd:
+#kolla_enable_external_mariadb_load_balancer:
 #kolla_enable_fluentd:
 #kolla_enable_freezer:
 #kolla_enable_glance:
+#kolla_enable_glance_horizon_policy_file:
+#kolla_enable_glance_image_cache:
 #kolla_enable_gnocchi:
+#kolla_enable_gnocchi_statsd:
 #kolla_enable_grafana:
+#kolla_enable_hacluster:
 #kolla_enable_haproxy:
+#kolla_enable_haproxy_memcached:
 #kolla_enable_heat:
+#kolla_enable_heat_horizon_policy_file:
 #kolla_enable_horizon:
 #kolla_enable_horizon_blazar:
 #kolla_enable_horizon_cloudkitty:
-#kolla_enable_horizon_congress:
 #kolla_enable_horizon_designate:
 #kolla_enable_horizon_freezer:
 #kolla_enable_horizon_heat:
@@ -248,6 +258,7 @@
 #kolla_enable_horizon_manila:
 #kolla_enable_horizon_masakari:
 #kolla_enable_horizon_mistral:
+#kolla_enable_horizon_monasca:
 #kolla_enable_horizon_murano:
 #kolla_enable_horizon_neutron_vpnaas:
 #kolla_enable_horizon_octavia:
@@ -259,7 +270,6 @@
 #kolla_enable_horizon_vitrage:
 #kolla_enable_horizon_watcher:
 #kolla_enable_horizon_zun:
-#kolla_enable_hyperv:
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
 #kolla_enable_ironic_ipxe:
@@ -269,6 +279,8 @@
 #kolla_enable_kafka:
 #kolla_enable_keepalived:
 #kolla_enable_keystone:
+#kolla_enable_keystone_federation:
+#kolla_enable_keystone_horizon_policy_file:
 #kolla_enable_kibana:
 #kolla_enable_kuryr:
 #kolla_enable_magnum:
@@ -276,6 +288,7 @@
 #kolla_enable_manila_backend_cephfs_native:
 #kolla_enable_manila_backend_cephfs_nfs:
 #kolla_enable_manila_backend_generic:
+#kolla_enable_manila_backend_glusterfs_nfs:
 #kolla_enable_manila_backend_hnas:
 #kolla_enable_mariabackup:
 #kolla_enable_mariadb:
@@ -289,6 +302,7 @@
 #kolla_enable_neutron_agent_ha:
 #kolla_enable_neutron_bgp_dragent:
 #kolla_enable_neutron_dvr:
+#kolla_enable_neutron_horizon_policy_file:
 #kolla_enable_neutron_infoblox_ipam_agent:
 #kolla_enable_neutron_metering:
 #kolla_enable_neutron_mlnx:
@@ -298,20 +312,36 @@
 #kolla_enable_neutron_segments:
 #kolla_enable_neutron_sfc:
 #kolla_enable_neutron_sriov:
+#kolla_enable_neutron_trunk:
 #kolla_enable_neutron_vpnaas:
 #kolla_enable_nova:
+#kolla_enable_nova_fake:
+#kolla_enable_nova_horizon_policy_file:
 #kolla_enable_nova_serialconsole_proxy:
 #kolla_enable_nova_ssh:
 #kolla_enable_octavia:
-#kolla_enable_onos:
+#kolla_enable_octavia_driver_agent:
 #kolla_enable_openstack_core:
 #kolla_enable_openvswitch:
 #kolla_enable_osprofiler:
 #kolla_enable_outward_rabbitmq:
+#kolla_enable_ovn:
 #kolla_enable_ovs_dpdk:
 #kolla_enable_panko:
 #kolla_enable_placement:
 #kolla_enable_prometheus:
+#kolla_enable_prometheus_alertmanager:
+#kolla_enable_prometheus_blackbox_exporter:
+#kolla_enable_prometheus_cadvisor:
+#kolla_enable_prometheus_ceph_mgr_exporter:
+#kolla_enable_prometheus_elasticsearch_exporter:
+#kolla_enable_prometheus_haproxy_exporter:
+#kolla_enable_prometheus_memcached_exporter:
+#kolla_enable_prometheus_mysqld_exporter:
+#kolla_enable_prometheus_node_exporter:
+#kolla_enable_prometheus_openstack_exporter:
+#kolla_enable_prometheus_rabbitmq_exporter:
+#kolla_enable_prometheus_server:
 #kolla_enable_qdrouterd:
 #kolla_enable_rabbitmq:
 #kolla_enable_rally:
@@ -322,6 +352,7 @@
 #kolla_enable_solum:
 #kolla_enable_storm:
 #kolla_enable_swift:
+#kolla_enable_swift_recon:
 #kolla_enable_swift_s3api:
 #kolla_enable_tacker:
 #kolla_enable_telegraf:
@@ -329,6 +360,7 @@
 #kolla_enable_trove:
 #kolla_enable_trove_singletenant:
 #kolla_enable_vitrage:
+#kolla_enable_vitrage_prometheus_datasource:
 #kolla_enable_vmtp:
 #kolla_enable_watcher:
 #kolla_enable_zookeeper:
@@ -344,6 +376,27 @@
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
 #kolla_ansible_custom_passwords:
+
+###############################################################################
+# OpenStack API addresses.
+
+# Virtual IP address of OpenStack internal API. Default is the vip_address
+# attribute of the internal network.
+#kolla_internal_vip_address:
+
+# Fully Qualified Domain Name (FQDN) of OpenStack internal API. Default is the
+# fqdn attribute of the internal network if set, otherwise
+# kolla_internal_vip_address.
+#kolla_internal_fqdn:
+
+# Virtual IP address of OpenStack external API. Default is the vip_address
+# attribute of the external network.
+#kolla_external_vip_address:
+
+# Fully Qualified Domain Name (FQDN) of OpenStack external API. Default is the
+# fqdn attribute of the external network if set, otherwise
+# kolla_external_vip_address.
+#kolla_external_fqdn:
 
 ###############################################################################
 # TLS certificate bundle management
