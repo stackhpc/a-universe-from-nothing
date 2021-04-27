@@ -4,7 +4,7 @@
 
 # User with which to access the controllers via SSH during bootstrap, in order
 # to setup the Kayobe user account.
-#controller_bootstrap_user:
+controller_bootstrap_user: "{{ lookup('env', 'USER') }}"
 
 ###############################################################################
 # Controller network interface configuration.
