@@ -47,7 +47,7 @@
 
 # OS distribution name. Valid options are "centos", "ubuntu". Default is
 # "centos".
-#os_distribution:
+os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
