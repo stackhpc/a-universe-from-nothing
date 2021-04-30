@@ -46,18 +46,30 @@ cd config/src/
 cd ~/kayobe
 ./dev/install-dev.sh
 
-# Deploy hypervisor services.
-./dev/seed-hypervisor-deploy.sh
+# Activate the Kayobe environment, to allow running commands directly.
+# NOTE: Virtualenv's activate script references an unbound variable.
+set +u
+source ~/kayobe-venv/bin/activate
+set -u
+source config/src/kayobe-config/kayobe-env
 
-# Deploy a seed VM.
-# FIXME: Will fail first time due to missing bifrost image.
-if ! ./dev/seed-deploy.sh; then
-    # Pull, retag images, then push to our local registry.
-    ./config/src/kayobe-config/pull-retag-push-images.sh
+# Bootstrap the Ansible control host.
+kayobe control host bootstrap
 
-    # Deploy a seed VM. Should work this time.
-    ./dev/seed-deploy.sh
-fi
+# Configure the seed hypervisor host.
+kayobe seed hypervisor host configure
+
+# Provision the seed VM.
+kayobe seed vm provision
+
+# Configure the seed host, and deploy a local registry.
+kayobe seed host configure
+
+# Pull, retag images, then push to our local registry.
+./config/src/kayobe-config/pull-retag-push-images.sh
+
+# Deploy the seed services.
+kayobe seed service deploy
 
 # Deploying the seed restarts networking interface,
 # run configure-local-networking.sh again to re-add routes.
@@ -66,11 +78,6 @@ fi
 # NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
 export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
 ./dev/tenks-deploy-overcloud.sh ./tenks
-
-# Activate the Kayobe environment, to allow running commands directly.
-source dev/environment-setup.sh
-
-set -eu
 
 # Inspect and provision the overcloud hardware:
 kayobe overcloud inventory discover

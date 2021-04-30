@@ -135,18 +135,27 @@ necessary `Preparation`_.
 
    cd ~/kayobe
 
-   # Deploy hypervisor services.
-   ./dev/seed-hypervisor-deploy.sh
+   # Activate the Kayobe environment, to allow running commands directly.
+   source ~/kayobe-venv/bin/activate
+   source config/src/kayobe-config/kayobe-env
 
-   # Deploy a seed VM.
-   # FIXME: Will fail first time due to missing bifrost image.
-   ./dev/seed-deploy.sh
+   # Bootstrap the Ansible control host.
+   kayobe control host bootstrap
+
+   # Configure the seed hypervisor host.
+   kayobe seed hypervisor host configure
+
+   # Provision the seed VM.
+   kayobe seed vm provision
+
+   # Configure the seed host, and deploy a local registry.
+   kayobe seed host configure
 
    # Pull, retag images, then push to our local registry.
    ./config/src/kayobe-config/pull-retag-push-images.sh
 
-   # Deploy a seed VM. Should work this time.
-   ./dev/seed-deploy.sh
+   # Deploy the seed services.
+   kayobe seed service deploy
 
    # Deploying the seed restarts networking interface,
    # run configure-local-networking.sh again to re-add routes.
