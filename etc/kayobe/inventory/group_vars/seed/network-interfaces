@@ -2,7 +2,7 @@
 ###############################################################################
 # Network interface definitions for the seed group.
 
-aio_interface: "{{ 'ens2' if aufn_os_distro == 'ubuntu' else 'eth0' }}"
+aio_interface: "{{ 'ens2' if os_distribution == 'ubuntu' else 'eth0' }}"
 
 # Route via the seed-hypervisor to the outside world.
 # FIXME: Circular reference between seed & seed-hypervisor?

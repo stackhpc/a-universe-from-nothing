@@ -1,6 +1,0 @@
----
-# Configuration options for the a-universe-from-nothing tutorial.
-
-# OS distribution to use. Options are 'centos', 'ubuntu'.
-# Uses the distribution of the Ansible control host by default.
-aufn_os_distro: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
