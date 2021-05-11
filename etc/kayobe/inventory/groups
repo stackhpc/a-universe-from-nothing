@@ -42,7 +42,7 @@ storage
 compute
 
 ###############################################################################
-# Docker groups.
+# Service groups.
 
 [docker:children]
 # Hosts in this group will have Docker installed.
@@ -58,6 +58,12 @@ compute
 # generally contain only a single host, to avoid deploying multiple independent
 # registries which may become unsynchronized.
 seed
+
+[ntp:children]
+# Kayobe will configure Chrony on members of this group.
+seed
+seed-hypervisor
+overcloud
 
 ###############################################################################
 # Baremetal compute node groups.
