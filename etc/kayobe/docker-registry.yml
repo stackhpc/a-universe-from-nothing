@@ -14,6 +14,9 @@
 # pull through cache. Default is an empty dict.
 #docker_registry_env:
 
+# The network mode of the docker registry container. Default is 'host'.
+#docker_registry_network_mode:
+
 # The port on which the docker registry server should listen. Default is 4000.
 #docker_registry_port:
 

@@ -121,10 +121,32 @@
 # Full custom seed inventory contents.
 #kolla_seed_inventory_custom:
 
+# List of names of default host variables to pass through from kayobe hosts to
+# the kolla-ansible seed host, if set. See also
+# kolla_seed_inventory_pass_through_host_vars_map.
+#kolla_seed_inventory_pass_through_host_vars_default:
+
+# List of names of additional host variables to pass through from kayobe hosts
+# to the kolla-ansible seed host, if set. See also
+# kolla_seed_inventory_pass_through_host_vars_map.
+#kolla_seed_inventory_pass_through_host_vars_extra:
+
 # List of names of host variables to pass through from kayobe hosts to
 # the kolla-ansible seed host, if set. See also
 # kolla_seed_inventory_pass_through_host_vars_map.
 #kolla_seed_inventory_pass_through_host_vars:
+
+# Dict mapping names of default variables in
+# kolla_seed_inventory_pass_through_host_vars to the variable to use in
+# kolla-ansible. If a variable name is not in this mapping the kayobe name is
+# used.
+#kolla_seed_inventory_pass_through_host_vars_map_default:
+
+# Dict mapping names of extra variables in
+# kolla_seed_inventory_pass_through_host_vars to the variable to use in
+# kolla-ansible. If a variable name is not in this mapping the kayobe name is
+# used.
+#kolla_seed_inventory_pass_through_host_vars_map_extra:
 
 # Dict mapping names of variables in
 # kolla_seed_inventory_pass_through_host_vars to the variable to use in
@@ -158,10 +180,32 @@
 # have no hosts mapped to them will be provided with an empty group definition.
 #kolla_overcloud_inventory_kolla_top_level_groups:
 
+# List of names of default host variables to pass through from kayobe hosts to
+# kolla-ansible hosts, if set. See also
+# kolla_overcloud_inventory_pass_through_host_vars_map.
+#kolla_overcloud_inventory_pass_through_host_vars_default:
+
+# List of names of additional host variables to pass through from kayobe hosts
+# to kolla-ansible hosts, if set. See also
+# kolla_overcloud_inventory_pass_through_host_vars_map.
+#kolla_overcloud_inventory_pass_through_host_vars_extra:
+
 # List of names of host variables to pass through from kayobe hosts to
 # kolla-ansible hosts, if set. See also
 # kolla_overcloud_inventory_pass_through_host_vars_map.
 #kolla_overcloud_inventory_pass_through_host_vars:
+
+# Dict mapping names of default variables in
+# kolla_overcloud_inventory_pass_through_host_vars to the variable to use in
+# kolla-ansible. If a variable name is not in this mapping the kayobe name is
+# used.
+#kolla_overcloud_inventory_pass_through_host_vars_map_default:
+
+# Dict mapping names of additional variables in
+# kolla_overcloud_inventory_pass_through_host_vars to the variable to use in
+# kolla-ansible. If a variable name is not in this mapping the kayobe name is
+# used.
+#kolla_overcloud_inventory_pass_through_host_vars_map_extra:
 
 # Dict mapping names of variables in
 # kolla_overcloud_inventory_pass_through_host_vars to the variable to use in
