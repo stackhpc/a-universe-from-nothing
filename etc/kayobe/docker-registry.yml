@@ -2,7 +2,7 @@
 ###############################################################################
 # Docker registry configuration.
 
-# Whether a docker registry is enabled.
+# Whether a docker registry is enabled. Default is false.
 docker_registry_enabled: true
 
 # Dict of environment variables to provide to the docker registry container.
@@ -13,6 +13,9 @@ docker_registry_enabled: true
 # Note that it is not possible to push to a registry configured as a
 # pull through cache. Default is an empty dict.
 #docker_registry_env:
+
+# The network mode of the docker registry container. Default is 'host'.
+#docker_registry_network_mode:
 
 # The port on which the docker registry server should listen. Default is 4000.
 #docker_registry_port:

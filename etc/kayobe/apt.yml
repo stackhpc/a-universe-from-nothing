@@ -1,12 +1,9 @@
 ---
 ###############################################################################
-# OpenStack release configuration.
+# Apt package manager configuration.
 
-# Name of the current OpenStack release. Default is "wallaby".
-#openstack_release:
-
-# Name of the current OpenStack branch. Default is "stable/wallaby".
-#openstack_branch:
+# Apt cache TTL in seconds. Default is 3600.
+#apt_cache_valid_time:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
