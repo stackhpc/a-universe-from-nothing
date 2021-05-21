@@ -21,8 +21,7 @@
 # DIB base OS element. Default is {{ os_distribution }}.
 #kolla_bifrost_dib_os_element:
 
-# DIB image OS release. Default is "focal" when os_distribution is "ubuntu", or
-# "8" otherwise.
+# DIB image OS release. Default is {{ os_release }}.
 #kolla_bifrost_dib_os_release:
 
 # List of default DIB elements. Default is ["disable-selinux",
