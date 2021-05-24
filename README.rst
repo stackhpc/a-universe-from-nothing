@@ -106,7 +106,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    cd
 
    # Clone Kayobe.
-   git clone https://opendev.org/openstack/kayobe.git -b master
+   git clone https://opendev.org/openstack/kayobe.git -b stable/wallaby
    cd kayobe
 
    # Clone the Tenks repository.
@@ -115,7 +115,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b master
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b stable/wallaby
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
@@ -414,8 +414,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 sudo docker ps
     CONTAINER ID        IMAGE                                                                   COMMAND                  CREATED             STATUS              PORTS               NAMES
-    304b197f888b        192.168.33.5:4000/kolla/centos-binary-kibana:master                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
-    9eb0cf47c7f7        192.168.33.5:4000/kolla/centos-binary-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
+    304b197f888b        192.168.33.5:4000/kolla/centos-binary-kibana:wallaby                    "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
+    9eb0cf47c7f7        192.168.33.5:4000/kolla/centos-binary-elasticsearch:wallaby             "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
     ...
 
 We can see the log indexes in Elasticsearch:
@@ -506,7 +506,7 @@ OpenStack venv:
     . ~/os-venv/bin/activate
 
     # Install barbicanclient
-    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/master
+    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/stable/wallaby
 
     # Source the OpenStack environment variables
     source ~/kayobe/config/src/kayobe-config/etc/kolla/public-openrc.sh
