@@ -5,6 +5,13 @@
 # Specify the list of hardware types to load during service initialization.
 #kolla_ironic_enabled_hardware_types:
 
+# Specify the list of bios interfaces to load during service initialization.
+#kolla_ironic_enabled_bios_interfaces:
+
+# Default bios interface to be used for nodes that do not have bios_interface
+# field set.
+#kolla_ironic_default_bios_interface:
+
 # Specify the list of boot interfaces to load during service initialization.
 #kolla_ironic_enabled_boot_interfaces:
 

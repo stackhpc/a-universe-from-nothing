@@ -3,7 +3,7 @@
 # Compute node configuration.
 
 # User with which to access the computes via SSH during bootstrap, in order
-# to setup the Kayobe user account.
+# to setup the Kayobe user account. Default is {{ os_distribution }}.
 #compute_bootstrap_user:
 
 ###############################################################################
