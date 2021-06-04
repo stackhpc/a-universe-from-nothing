@@ -506,7 +506,7 @@ OpenStack venv:
     . ~/os-venv/bin/activate
 
     # Install barbicanclient
-    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/stable/wallaby
+    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/wallaby
 
     # Source the OpenStack environment variables
     source ~/kayobe/config/src/kayobe-config/etc/kolla/public-openrc.sh
