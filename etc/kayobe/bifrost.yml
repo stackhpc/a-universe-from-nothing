@@ -11,6 +11,10 @@
 # {{ openstack_branch }}.
 #kolla_bifrost_source_version:
 
+# Firewalld zone used by Bifrost. Default is "trusted", to avoid blocking other
+# services running on the seed host.
+#kolla_bifrost_firewalld_internal_zone:
+
 ###############################################################################
 # Diskimage-builder configuration.
 
