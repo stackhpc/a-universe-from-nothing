@@ -14,6 +14,9 @@ controller0
 [compute:children]
 controllers
 
+[monitoring:children]
+controllers
+
 [baremetal-compute]
 # Add baremetal compute nodes here if required.
 
