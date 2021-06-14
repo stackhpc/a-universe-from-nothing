@@ -3,12 +3,24 @@
     check:
       jobs:
         - openstack-tox-pep8
-        - kayobe-overcloud-centos
-        - kayobe-seed-centos
+        - kayobe-overcloud-centos7
+        - kayobe-overcloud-centos8
+        - kayobe-overcloud-host-configure-centos7
+        - kayobe-overcloud-host-configure-centos8
+        - kayobe-overcloud-upgrade-centos7
+        - kayobe-seed-centos7
+        - kayobe-seed-centos8
+        - kayobe-seed-upgrade-centos7
 
     gate:
       queue: kayobe
       jobs:
         - openstack-tox-pep8
-        - kayobe-overcloud-centos
-        - kayobe-seed-centos
+        - kayobe-overcloud-centos7
+        - kayobe-overcloud-centos8
+        - kayobe-overcloud-host-configure-centos7
+        - kayobe-overcloud-host-configure-centos8
+        - kayobe-overcloud-upgrade-centos7
+        - kayobe-seed-centos7
+        - kayobe-seed-centos8
+        - kayobe-seed-upgrade-centos7
