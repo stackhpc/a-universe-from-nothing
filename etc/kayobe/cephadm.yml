@@ -1,0 +1,14 @@
+---
+# Networking
+cephadm_public_interface: "{{ storage_net_name | net_interface }}"
+cephadm_public_network: "{{ storage_net_name | net_cidr }}"
+cephadm_cluster_interface: "{{ storage_mgmt_net_name | net_interface }}"
+cephadm_cluster_network: "{{ storage_mgmt_net_name | net_cidr }}"
+# OSDs
+cephadm_osd_spec:
+  service_type: osd
+  service_id: osd_spec_default
+  placement:
+    host_pattern: "*"
+  data_devices:
+    all: true

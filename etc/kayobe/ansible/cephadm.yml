@@ -1,0 +1,37 @@
+---
+- name: Run cephadm role
+  any_errors_fatal: True
+  gather_facts: True
+  hosts: storage
+  vars:
+    cephadm_host: "{{ groups['mons'][0] }}"
+  tasks:
+    # https://bugzilla.redhat.com/show_bug.cgi?id=1946982
+    - name: Use container-tools:3.0
+      command:
+        cmd: dnf -y module enable container-tools:3.0
+      become: true
+      when: ansible_facts.os_family == 'RedHat'
+
+    - name: Ensure podman is installed
+      package:
+        name: "{{ 'podman' if ansible_facts.os_family == 'RedHat' else 'docker' }}"
+      become: true
+
+    - import_role:
+        name: stackhpc.cephadm.cephadm
+
+    - name: Set OSD pool default size
+      command:
+        cmd: cephadm shell -- ceph config set global osd_pool_default_size "{{ [3, groups['osds'] | length] | min }}"
+      become: true
+      run_once: true
+      delegate_to: "{{ groups['mons'][0] }}"
+
+    - name: Set auth_allow_insecure_global_id_reclaim to true (Ubuntu)
+      command:
+        cmd: cephadm shell -- ceph config set mon auth_allow_insecure_global_id_reclaim true
+      become: true
+      run_once: true
+      delegate_to: "{{ groups['mons'][0] }}"
+      when: ansible_facts.distribution == 'Ubuntu'
