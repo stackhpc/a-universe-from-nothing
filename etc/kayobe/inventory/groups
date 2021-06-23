@@ -96,3 +96,21 @@ overcloud
 mgmt-switches
 ctl-switches
 hs-switches
+
+###############################################################################
+# Ceph groups
+
+[ceph:children]
+storage
+
+[mons:children]
+storage
+
+[mgrs:children]
+storage
+
+[osds:children]
+storage
+
+[rgws:children]
+storage

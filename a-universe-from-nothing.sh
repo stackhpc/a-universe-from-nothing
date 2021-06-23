@@ -38,7 +38,7 @@ cd kayobe
 # Clone this Kayobe configuration.
 mkdir -p config/src
 cd config/src/
-[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b a-multiverse-from-nothing-master kayobe-config
+[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b a-multiverse-from-nothing-ceph-master kayobe-config
 
 # Configure host networking (bridge, routes & firewall)
 ./kayobe-config/configure-local-networking.sh
@@ -86,6 +86,8 @@ kayobe overcloud hardware inspect
 kayobe overcloud introspection data save
 kayobe overcloud provision
 kayobe overcloud host configure
+kayobe playbook run config/src/kayobe-config/etc/kayobe/ansible/cephadm.yml
+kayobe playbook run config/src/kayobe-config/etc/kayobe/ansible/ceph-config.yml
 kayobe overcloud container image pull
 kayobe overcloud service deploy
 source config/src/kayobe-config/etc/kolla/public-openrc.sh

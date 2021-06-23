@@ -1,0 +1,5 @@
+---
+collections:
+- name: https://github.com/stackhpc/ansible-collection-cephadm
+  type: git
+  version: master

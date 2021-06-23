@@ -8,3 +8,7 @@ nova_compute_virt_type: qemu
 # processes to one per-service.
 openstack_service_workers: "1"
 openstack_service_rpc_workers: "1"
+
+glance_backend_ceph: "yes"
+cinder_backend_ceph: "yes"
+nova_backend_ceph: "yes"
