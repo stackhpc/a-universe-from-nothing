@@ -7,10 +7,16 @@
 #kolla_neutron_ml2_mechanism_drivers:
 
 # List of Neutron ML2 type drivers to use.
-#kolla_neutron_ml2_type_drivers:
+kolla_neutron_ml2_type_drivers:
+  - geneve
+  - vlan
+  - flat
 
 # List of Neutron ML2 tenant network types to use.
-#kolla_neutron_ml2_tenant_network_types:
+kolla_neutron_ml2_tenant_network_types:
+  - geneve
+  - vlan
+  - flat
 
 # List of Neutron ML2 network VLAN ranges to use. Each item should be a dict
 # containing the following items:

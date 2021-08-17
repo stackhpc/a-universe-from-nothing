@@ -11,3 +11,7 @@ openstack_service_workers: "1"
 # Prevent Docker from manipulating iptables. Docker changes the default policy
 # on the FORWARD chain, which prevents traffic from reaching instances.
 docker_disable_default_iptables_rules: true
+
+# Enable OVN as Neutron SDN mechanism
+neutron_plugin_agent: "ovn"
+neutron_ovn_dhcp_agent: "yes"
