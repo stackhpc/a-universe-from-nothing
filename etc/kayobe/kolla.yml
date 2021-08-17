@@ -384,7 +384,7 @@
 #kolla_enable_openvswitch:
 #kolla_enable_osprofiler:
 #kolla_enable_outward_rabbitmq:
-#kolla_enable_ovn:
+kolla_enable_ovn: yes
 #kolla_enable_ovs_dpdk:
 #kolla_enable_placement:
 #kolla_enable_prometheus:
