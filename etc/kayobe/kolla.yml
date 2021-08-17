@@ -369,7 +369,7 @@ kolla_install_type: source
 #kolla_enable_openvswitch:
 #kolla_enable_osprofiler:
 #kolla_enable_outward_rabbitmq:
-#kolla_enable_ovn:
+kolla_enable_ovn: yes
 #kolla_enable_ovs_dpdk:
 #kolla_enable_panko:
 #kolla_enable_placement:

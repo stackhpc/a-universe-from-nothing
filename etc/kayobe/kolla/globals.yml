@@ -7,3 +7,7 @@ nova_compute_virt_type: qemu
 # Reduce the control plane's memory footprint by limiting the number of worker
 # processes to one per-service.
 openstack_service_workers: "1"
+
+# Enable OVN as Neutron SDN mechanism
+neutron_plugin_agent: "ovn"
+neutron_ovn_dhcp_agent: "yes"
