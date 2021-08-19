@@ -426,7 +426,7 @@
 
 # Virtual IP address of OpenStack internal API. Default is the vip_address
 # attribute of the internal network.
-#kolla_internal_vip_address:
+kolla_internal_vip_address: 192.168.33.2
 
 # Fully Qualified Domain Name (FQDN) of OpenStack internal API. Default is the
 # fqdn attribute of the internal network if set, otherwise
