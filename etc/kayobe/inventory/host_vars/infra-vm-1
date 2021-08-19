@@ -1,0 +1,7 @@
+---
+
+# Number of vCPUs.
+infra_vm_vcpus: 1
+
+# Memory in MB.
+infra_vm_memory_mb: "{{ 2 * 1024 }}"
