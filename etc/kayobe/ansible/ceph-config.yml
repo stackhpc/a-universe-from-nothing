@@ -21,66 +21,65 @@
       - { name: "glance", keyring: "ceph.client.glance.keyring" }
       - { name: "nova", keyring: "ceph.client.cinder.keyring" }
   tasks:
-    - block:
-        # Create pools and users.
-        - name: Create and initialise pools for OpenStack services
-          command:
-            cmd: >
-              cephadm shell --
-              ceph osd pool create {{ item }}
-          with_items: "{{ cephadm_ceph_pools }}"
-          become: true
+    # Create pools and users.
+    - name: Create and initialise pools for OpenStack services
+      command:
+        cmd: >
+          cephadm shell --
+          ceph osd pool create {{ item }}
+      with_items: "{{ cephadm_ceph_pools }}"
+      become: true
 
-        - name: Create users for OpenStack services
-          command:
-            cmd: >
-              cephadm shell --
-              ceph auth get-or-create {{ item }}
-          become: true
-          with_items: "{{ cephadm_ceph_users }}"
+    - name: Create users for OpenStack services
+      command:
+        cmd: >
+          cephadm shell --
+          ceph auth get-or-create {{ item }}
+      become: true
+      with_items: "{{ cephadm_ceph_users }}"
 
-        - name: Check ceph health
-          command:
-            cmd: cephadm shell -- ceph health detail
-          become: True
-          changed_when: false
+    - name: Check ceph health
+      command:
+        cmd: cephadm shell -- ceph health detail
+      become: True
+      changed_when: false
 
-        # Create config files.
-        - name: Ensure required kolla config directories exist
-          file:
-            state: directory
-            name: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}"
-            mode: 0755
-          with_items: "{{ cephadm_kolla_ceph_services }}"
-          delegate_to: localhost
+    # Create config files.
+    - name: Ensure required kolla config directories exist
+      file:
+        state: directory
+        name: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}"
+        mode: 0755
+      with_items: "{{ cephadm_kolla_ceph_services }}"
+      delegate_to: localhost
 
-        - name: copy ceph.conf to enabled services
-          fetch:
-            src: "/etc/ceph/ceph.conf"
-            dest: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}/ceph.conf"
-            flat: true
-          with_items: "{{ cephadm_kolla_ceph_services }}"
+    - name: copy ceph.conf to enabled services
+      fetch:
+        src: "/etc/ceph/ceph.conf"
+        dest: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}/ceph.conf"
+        flat: true
+      with_items: "{{ cephadm_kolla_ceph_services }}"
 
-        - name: remove tabs in ceph.conf
-          replace:
-            path: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}/ceph.conf"
-            regexp: "^\t"
-          with_items: "{{ cephadm_kolla_ceph_services }}"
-          delegate_to: localhost
+    - name: remove tabs in ceph.conf
+      replace:
+        path: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}/ceph.conf"
+        regexp: "^\t"
+      with_items: "{{ cephadm_kolla_ceph_services }}"
+      delegate_to: localhost
 
-        - name: Get cluster fsid
-          command:
-            cmd: "cephadm shell -- ceph fsid"
-          become: true
-          register: cephadm_fsid_current
-          changed_when: false
+    - name: Get cluster fsid
+      command:
+        cmd: "cephadm shell -- ceph fsid"
+      become: true
+      register: cephadm_fsid_current
+      changed_when: false
 
-        - name: copy keyrings to enabled services
-          fetch:
-            src: "/var/run/ceph/{{ cephadm_fsid_current.stdout }}/{{ item.keyring }}"
-            dest: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}/{{ item.keyring }}"
-            owner: "{{ lookup('env', 'USER') }}"
-            group: "{{ lookup('env', 'USER') }}"
-            flat: true
-          with_items: "{{ cephadm_kolla_ceph_services }}"
-          become: true
+    - name: copy keyrings to enabled services
+      fetch:
+        src: "/var/run/ceph/{{ cephadm_fsid_current.stdout }}/{{ item.keyring }}"
+        dest: "{{ kayobe_config_path }}/kolla/config/{{ item.name }}/{{ item.keyring }}"
+        owner: "{{ lookup('env', 'USER') }}"
+        group: "{{ lookup('env', 'USER') }}"
+        flat: true
+      with_items: "{{ cephadm_kolla_ceph_services }}"
+      become: true
