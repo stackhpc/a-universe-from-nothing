@@ -6,7 +6,7 @@
   vars:
     kayobe_config_path: "{{ lookup('env', 'KAYOBE_CONFIG_PATH') }}"
     cephadm_ceph_pools:
-      - backup
+      - backups
       - images
       - vms
       - volumes
