@@ -61,7 +61,8 @@
 
 # List of extra kernel parameters for Bifrost's Ironic PXE configuration.
 # Default is empty.
-#kolla_bifrost_extra_kernel_options:
+kolla_bifrost_extra_kernel_options:
+  - "console=ttyS0"
 
 ###############################################################################
 # Ironic Inspector configuration.
