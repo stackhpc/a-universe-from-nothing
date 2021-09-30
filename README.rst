@@ -225,6 +225,7 @@ our model development environment, alongside the seed VM.
    # Inspect and provision the overcloud hardware:
    kayobe overcloud inventory discover
    kayobe overcloud hardware inspect
+   kayobe overcloud introspection data save
    kayobe overcloud provision
 
 Configure and deploy OpenStack to the control plane
