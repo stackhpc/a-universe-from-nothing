@@ -83,6 +83,7 @@ export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
 # Inspect and provision the overcloud hardware:
 kayobe overcloud inventory discover
 kayobe overcloud hardware inspect
+kayobe overcloud introspection data save
 kayobe overcloud provision
 kayobe overcloud host configure
 kayobe overcloud container image pull
