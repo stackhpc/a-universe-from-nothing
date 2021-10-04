@@ -1,0 +1,4 @@
+---
+provision_oc_interface: "{{ 'ens2' if os_distribution == 'ubuntu' else 'eth0' }}"
+# Route via the seed-hypervisor to the outside world.
+provision_oc_gateway: 192.168.33.4

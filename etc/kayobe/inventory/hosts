@@ -25,3 +25,13 @@ seed
 
 [hs-switches]
 # Add high speed switches here if required.
+
+[infra-vms:children]
+foo
+bar
+
+[foo]
+ivm0
+
+[bar]
+ivm1

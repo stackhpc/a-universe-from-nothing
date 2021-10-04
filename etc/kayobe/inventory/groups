@@ -10,6 +10,9 @@
 [seed-hypervisor]
 # Empty group to provide declaration of seed-hypervisor group.
 
+[hypervisors:children]
+seed-hypervisor
+
 [container-image-builders:children]
 # Build container images on the seed by default.
 seed

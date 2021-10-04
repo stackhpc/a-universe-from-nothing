@@ -31,6 +31,7 @@ cd
 # Clone Kayobe.
 [[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b master
 cd kayobe
+git fetch "https://review.opendev.org/openstack/kayobe" refs/changes/27/783627/9 && git cherry-pick FETCH_HEAD
 
 # Clone the Tenks repository.
 [[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
@@ -38,7 +39,7 @@ cd kayobe
 # Clone this Kayobe configuration.
 mkdir -p config/src
 cd config/src/
-[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b a-multiverse-from-nothing-master kayobe-config
+[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b infra-vms kayobe-config
 
 # Configure host networking (bridge, routes & firewall)
 ./kayobe-config/configure-local-networking.sh
@@ -59,6 +60,11 @@ kayobe control host bootstrap
 
 # Configure the seed hypervisor host.
 kayobe seed hypervisor host configure
+
+kayobe infra vm provision
+kayobe infra vm host configure
+kayobe infra vm service deploy
+exit 1
 
 # Provision the seed VM.
 kayobe seed vm provision
