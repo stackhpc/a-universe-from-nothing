@@ -15,6 +15,16 @@
 seed
 
 ###############################################################################
+# Infra VM groups.
+
+[hypervisors:children]
+# Group that contains all hypervisors used for infra VMs
+seed-hypervisor
+
+[infra-vms]
+# Empty group to provide declaration of infra-vms group.
+
+###############################################################################
 # Overcloud groups.
 
 [controllers]

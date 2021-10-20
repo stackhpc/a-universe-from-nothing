@@ -65,7 +65,7 @@
 # "ubuntu". Default is {{ os_distribution }}.
 #kolla_base_distro:
 
-# Kolla container image type: binary or source. Default is 'binary'.
+# Kolla container image type: binary or source. Default is 'source'.
 #kolla_install_type:
 
 # URL of docker registry to use for Kolla images. Default is not set, in which
@@ -74,6 +74,11 @@
 
 # Docker namespace to use for Kolla images. Default is 'kolla'.
 #kolla_docker_namespace:
+
+# Whether docker should be configured to use an insecure registry for Kolla
+# images. Default is false, unless docker_registry_enabled is true and
+# docker_registry_enable_tls is false.
+#kolla_docker_registry_insecure:
 
 # Username to use to access a docker registry. Default is not set, in which
 # case the registry will be used without authentication.
@@ -258,14 +263,14 @@
 #kolla_enable_ceilometer_ipmi:
 #kolla_enable_cells:
 #kolla_enable_central_logging:
-#kolla_enable_chrony:
+#kolla_enable_ceph_rgw:
+#kolla_enable_ceph_rgw_loadbalancer:
 #kolla_enable_cinder:
 #kolla_enable_cinder_backend_hnas_nfs:
 #kolla_enable_cinder_backend_iscsi:
 #kolla_enable_cinder_backend_lvm:
 #kolla_enable_cinder_backend_nfs:
 #kolla_enable_cinder_backend_quobyte:
-#kolla_enable_cinder_backend_zfssa_iscsi:
 #kolla_enable_cinder_backup:
 #kolla_enable_cinder_horizon_policy_file:
 #kolla_enable_cloudkitty:
@@ -327,6 +332,7 @@
 #kolla_enable_keystone_horizon_policy_file:
 #kolla_enable_kibana:
 #kolla_enable_kuryr:
+#kolla_enable_loadbalancer:
 #kolla_enable_magnum:
 #kolla_enable_manila:
 #kolla_enable_manila_backend_cephfs_native:
@@ -350,6 +356,7 @@
 #kolla_enable_neutron_infoblox_ipam_agent:
 #kolla_enable_neutron_metering:
 #kolla_enable_neutron_mlnx:
+#kolla_enable_neutron_packet_logging:
 #kolla_enable_neutron_port_forwarding:
 #kolla_enable_neutron_provider_networks:
 #kolla_enable_neutron_qos:
@@ -371,7 +378,6 @@
 #kolla_enable_outward_rabbitmq:
 #kolla_enable_ovn:
 #kolla_enable_ovs_dpdk:
-#kolla_enable_panko:
 #kolla_enable_placement:
 #kolla_enable_prometheus:
 #kolla_enable_prometheus_alertmanager:
@@ -379,6 +385,7 @@
 #kolla_enable_prometheus_cadvisor:
 #kolla_enable_prometheus_ceph_mgr_exporter:
 #kolla_enable_prometheus_elasticsearch_exporter:
+#kolla_enable_prometheus_fluentd_integration:
 #kolla_enable_prometheus_haproxy_exporter:
 #kolla_enable_prometheus_memcached_exporter:
 #kolla_enable_prometheus_mysqld_exporter:
@@ -388,7 +395,6 @@
 #kolla_enable_prometheus_server:
 #kolla_enable_qdrouterd:
 #kolla_enable_rabbitmq:
-#kolla_enable_rally:
 #kolla_enable_redis:
 #kolla_enable_sahara:
 #kolla_enable_senlin:
@@ -400,7 +406,6 @@
 #kolla_enable_swift_s3api:
 #kolla_enable_tacker:
 #kolla_enable_telegraf:
-#kolla_enable_tempest:
 #kolla_enable_trove:
 #kolla_enable_trove_singletenant:
 #kolla_enable_vitrage:

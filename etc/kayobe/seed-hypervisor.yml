@@ -98,11 +98,39 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 #seed_hypervisor_sysctl_parameters:
 
 ###############################################################################
+# Seed hypervisor tuned configuration.
+
+# Builtin tuned profile to use. Format is same as that used by giovtorres.tuned
+# role. Default is virtual-host.
+#seed_hypervisor_tuned_active_builtin_profile:
+
+###############################################################################
 # Seed hypervisor user configuration.
 
 # List of users to create. This should be in a format accepted by the
 # singleplatform-eng.users role.
 #seed_hypervisor_users:
+
+###############################################################################
+# Seed hypervisor node firewalld configuration.
+
+# Whether to install and enable firewalld.
+#seed_hypervisor_firewalld_enabled:
+
+# A list of zones to create. Each item is a dict containing a 'zone' item.
+#seed_hypervisor_firewalld_zones:
+
+# A firewalld zone to set as the default. Default is unset, in which case the
+# default zone will not be changed.
+#seed_hypervisor_firewalld_default_zone:
+
+# A list of firewall rules to apply. Each item is a dict containing arguments
+# to pass to the firewalld module. Arguments are omitted if not provided, with
+# the following exceptions:
+# - offline: true
+# - permanent: true
+# - state: enabled
+#seed_hypervisor_firewalld_rules:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
