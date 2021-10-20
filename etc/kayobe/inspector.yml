@@ -103,7 +103,7 @@
 # Ironic inspector rule to save introspection data to the node.
 #inspector_rule_save_data:
 
-# List of default ironic insepctor rules.
+# List of default ironic inspector rules.
 #inspector_rules_default:
 
 # List of additional ironic inspector rules.

@@ -2,10 +2,10 @@
 ###############################################################################
 # OpenStack release configuration.
 
-# Name of the current OpenStack release. Default is "wallaby".
+# Name of the current OpenStack release. Default is "xena".
 #openstack_release:
 
-# Name of the current OpenStack branch. Default is "stable/wallaby".
+# Name of the current OpenStack branch. Default is "stable/xena".
 #openstack_branch:
 
 ###############################################################################

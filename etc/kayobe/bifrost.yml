@@ -11,6 +11,10 @@
 # {{ openstack_branch }}.
 #kolla_bifrost_source_version:
 
+# Whether Bifrost uses firewalld. Default value is false to avoid conflicting
+# with iptables rules configured on the seed host by Kayobe.
+#kolla_bifrost_use_firewalld:
+
 # Firewalld zone used by Bifrost. Default is "trusted", to avoid blocking other
 # services running on the seed host.
 #kolla_bifrost_firewalld_internal_zone:
@@ -39,8 +43,10 @@
 # DIB init element. Default is "cloud-init-datasources".
 #kolla_bifrost_dib_init_element:
 
-# DIB default environment variables. Default is {"DIB_CLOUD_INIT_DATASOURCES":
-# "ConfigDrive", "DIB_DISABLE_KERNEL_CLEANUP": 1}.
+# DIB default environment variables. Default is
+# {DIB_BOOTLOADER_DEFAULT_CMDLINE:
+# "nofb nomodeset gfxpayload=text net.ifnames=1",
+# "DIB_CLOUD_INIT_DATASOURCES": "ConfigDrive"}.
 #kolla_bifrost_dib_env_vars_default:
 
 # DIB additional environment variables. Default is none.
@@ -52,6 +58,12 @@
 
 # List of DIB packages to install. Default is to install no extra packages.
 #kolla_bifrost_dib_packages:
+
+###############################################################################
+# Disk image deployment configuration.
+
+# Name of disk image file to deploy. Default is "deployment_image.qcow2".
+#kolla_bifrost_deploy_image_filename:
 
 ###############################################################################
 # Ironic configuration.
