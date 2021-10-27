@@ -5,6 +5,12 @@
 # Apt cache TTL in seconds. Default is 3600.
 #apt_cache_valid_time:
 
+# Apt proxy URL for HTTP. Default is empty (no proxy).
+#apt_proxy_http:
+
+# Apt proxy URL for HTTPS. Default is {{ apt_proxy_http }}.
+#apt_proxy_https:
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

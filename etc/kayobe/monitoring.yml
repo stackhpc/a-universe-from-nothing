@@ -82,11 +82,39 @@
 #monitoring_sysctl_parameters:
 
 ###############################################################################
+# Monitoring node tuned configuration.
+
+# Builtin tuned profile to use. Format is same as that used by giovtorres.tuned
+# role. Default is throughput-performance.
+#monitoring_tuned_active_builtin_profile:
+
+###############################################################################
 # Monitoring node user configuration.
 
 # List of users to create. This should be in a format accepted by the
 # singleplatform-eng.users role.
 #monitoring_users:
+
+###############################################################################
+# Monitoring node firewalld configuration.
+
+# Whether to install and enable firewalld.
+#monitoring_firewalld_enabled:
+
+# A list of zones to create. Each item is a dict containing a 'zone' item.
+#monitoring_firewalld_zones:
+
+# A firewalld zone to set as the default. Default is unset, in which case the
+# default zone will not be changed.
+#monitoring_firewalld_default_zone:
+
+# A list of firewall rules to apply. Each item is a dict containing arguments
+# to pass to the firewalld module. Arguments are omitted if not provided, with
+# the following exceptions:
+# - offline: true
+# - permanent: true
+# - state: enabled
+#monitoring_firewalld_rules:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

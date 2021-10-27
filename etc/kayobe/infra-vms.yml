@@ -1,0 +1,174 @@
+---
+###############################################################################
+# Infrastructure VM configuration.
+
+# Name of the infra VM.
+#infra_vm_name:
+
+# Memory in MB.
+#infra_vm_memory_mb:
+
+# Number of vCPUs.
+#infra_vm_vcpus:
+
+# List of volumes.
+#infra_vm_volumes:
+
+# Root volume.
+#infra_vm_root_volume:
+
+# Data volume.
+#infra_vm_data_volume:
+
+# Name of the storage pool for the infra VM volumes.
+#infra_vm_pool:
+
+# Capacity of the infra VM root volume.
+#infra_vm_root_capacity:
+
+# Format of the infra VM root volume.
+#infra_vm_root_format:
+
+# Base image for the infra VM root volume. Default is
+# "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+# when os_distribution is "ubuntu", or
+# "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210210.0.x86_64.qcow2"
+# otherwise.
+#infra_vm_root_image:
+
+# Capacity of the infra VM data volume.
+#infra_vm_data_capacity:
+
+# Format of the infra VM data volume.
+#infra_vm_data_format:
+
+# List of network interfaces to attach to the infra VM.
+#infra_vm_interfaces:
+
+# Hypervisor that the VM runs on.
+#infra_vm_hypervisor:
+
+# Customise ansible_ssh_extra_args for the test that checks SSH connectivity
+# after provisioning. Defaults to disabling ssh host key checking.
+#infra_vm_wait_connection_ssh_extra_args:
+
+# OS family. Needed for config drive generation.
+# infra_vm_os_family:
+
+###############################################################################
+# Infrastructure VM node configuration.
+
+# User with which to access the infrastructure vm via SSH during bootstrap, in
+# order to setup the Kayobe user account.
+#infra_vm_bootstrap_user:
+
+###############################################################################
+# Infrastructure VM network interface configuration.
+
+# List of networks to which infrastructure vm nodes are attached.
+#infra_vm_network_interfaces:
+
+# List of default networks to which infrastructure vm nodes are attached.
+#infra_vm_default_network_interfaces:
+
+# List of extra networks to which infrastructure vm nodes are attached.
+#infra_vm_extra_network_interfaces:
+
+###############################################################################
+# Infrastructure VM node software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#infra_vm_mdadm_arrays:
+
+###############################################################################
+# Infrastructure VM node encryption configuration.
+
+# List of block devices to encrypt. See stackhpc.luks role for format.
+#infra_vm_luks_devices:
+
+###############################################################################
+# Infrastructure VM node LVM configuration.
+
+# List of infrastructure vm volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+#infra_vm_lvm_groups:
+
+# Default list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# role for format.
+#infra_vm_lvm_groups_default:
+
+# Additional list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# role for format.
+#infra_vm_lvm_groups_extra:
+
+# Whether a 'data' LVM volume group should exist on the infrastructure vm. By
+# default this contains a 'docker-volumes' logical volume for Docker volume
+# storage. It will also be used for Docker container and image storage if
+# 'docker_storage_driver' is set to 'devicemapper'. Default is true if
+# 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
+#infra_vm_lvm_group_data_enabled:
+
+# Infrastructure VM LVM volume group for data. See mrlesmithjr.manage-lvm role
+# for format.
+#infra_vm_lvm_group_data:
+
+# List of disks for use by infrastructure vm LVM data volume group. Default to
+# an invalid value to require configuration.
+#infra_vm_lvm_group_data_disks:
+
+# List of LVM logical volumes for the data volume group.
+#infra_vm_lvm_group_data_lvs:
+
+# Docker volumes LVM backing volume.
+#infra_vm_lvm_group_data_lv_docker_volumes:
+
+# Size of docker volumes LVM backing volume.
+#infra_vm_lvm_group_data_lv_docker_volumes_size:
+
+# Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
+#infra_vm_lvm_group_data_lv_docker_volumes_fs:
+
+###############################################################################
+# Infrastructure VM node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+#infra_vm_sysctl_parameters:
+
+###############################################################################
+# Infrastructure VM node tuned configuration.
+
+# Builtin tuned profile to use. Format is same as that used by giovtorres.tuned
+# role. Default is virtual-guest.
+#infra_vm_tuned_active_builtin_profile:
+
+###############################################################################
+# Infrastructure VM node user configuration.
+
+# List of users to create. This should be in a format accepted by the
+# singleplatform-eng.users role.
+#infra_vm_users:
+
+###############################################################################
+# Infrastructure VM node firewalld configuration.
+
+# Whether to install and enable firewalld.
+#infra_vm_firewalld_enabled:
+
+# A list of zones to create. Each item is a dict containing a 'zone' item.
+#infra_vm_firewalld_zones:
+
+# A firewalld zone to set as the default. Default is unset, in which case the
+# default zone will not be changed.
+#infra_vm_firewalld_default_zone:
+
+# A list of firewall rules to apply. Each item is a dict containing arguments
+# to pass to the firewalld module. Arguments are omitted if not provided, with
+# the following exceptions:
+# - offline: true
+# - permanent: true
+# - state: enabled
+#infra_vm_firewalld_rules:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
