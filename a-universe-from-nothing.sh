@@ -29,7 +29,7 @@ echo 'Defaults	!fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 cd
 
 # Clone Kayobe.
-[[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b master
+[[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b stable/xena
 cd kayobe
 
 # Clone the Tenks repository.
@@ -38,7 +38,7 @@ cd kayobe
 # Clone this Kayobe configuration.
 mkdir -p config/src
 cd config/src/
-[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b master kayobe-config
+[[ -d kayobe-config ]] || git clone https://github.com/stackhpc/a-universe-from-nothing.git -b stable/xena kayobe-config
 
 # Configure host networking (bridge, routes & firewall)
 ./kayobe-config/configure-local-networking.sh
