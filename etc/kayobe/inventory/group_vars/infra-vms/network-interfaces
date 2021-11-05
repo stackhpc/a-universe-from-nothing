@@ -1,0 +1,12 @@
+---
+###############################################################################
+# Network interface definitions for the infra-vms group.
+
+# Overcloud provisioning network IP information.
+# provision_oc_net_interface:
+# provision_oc_net_bridge_ports:
+# provision_oc_net_bond_slaves:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
