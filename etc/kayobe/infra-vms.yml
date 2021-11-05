@@ -53,7 +53,7 @@
 #infra_vm_wait_connection_ssh_extra_args:
 
 # OS family. Needed for config drive generation.
-# infra_vm_os_family:
+#infra_vm_os_family:
 
 ###############################################################################
 # Infrastructure VM node configuration.
