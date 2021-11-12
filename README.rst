@@ -339,8 +339,8 @@ Note that the controller and compute node are registered in Ironic, in the bifro
 
 .. code-block:: console
 
-    ssh centos@192.168.33.5
-    sudo docker exec -it bifrost_deploy bash
+    ssh stack@192.168.33.5
+    docker exec -it bifrost_deploy bash
     export OS_CLOUD=bifrost
     baremetal node list
     +--------------------------------------+-------------+---------------+-------------+--------------------+-------------+
