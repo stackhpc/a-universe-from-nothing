@@ -364,8 +364,8 @@ Note that the controller and compute node are registered in Ironic, in the bifro
 
     ssh centos@192.168.33.5
     sudo docker exec -it bifrost_deploy bash
-    source env-vars
-    openstack baremetal node list
+    export OS_CLOUD=bifrost
+    baremetal node list
     +--------------------------------------+-------------+---------------+-------------+--------------------+-------------+
     | UUID                                 | Name        | Instance UUID | Power State | Provisioning State | Maintenance |
     +--------------------------------------+-------------+---------------+-------------+--------------------+-------------+
