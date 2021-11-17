@@ -9,9 +9,11 @@
         - kayobe-overcloud-host-configure-centos8s
         - kayobe-overcloud-host-configure-ubuntu-focal
         - kayobe-overcloud-upgrade-centos8s
+        - kayobe-overcloud-upgrade-ubuntu-focal
         - kayobe-seed-centos8s
         - kayobe-seed-ubuntu-focal
         - kayobe-seed-upgrade-centos8s
+        - kayobe-seed-upgrade-ubuntu-focal
         - kayobe-seed-vm-centos8s
         - kayobe-seed-vm-ubuntu-focal
 
@@ -25,8 +27,10 @@
         - kayobe-overcloud-host-configure-centos8s
         - kayobe-overcloud-host-configure-ubuntu-focal
         - kayobe-overcloud-upgrade-centos8s
+        - kayobe-overcloud-upgrade-ubuntu-focal
         - kayobe-seed-centos8s
         - kayobe-seed-ubuntu-focal
         - kayobe-seed-upgrade-centos8s
+        - kayobe-seed-upgrade-ubuntu-focal
         - kayobe-seed-vm-centos8s
         - kayobe-seed-vm-ubuntu-focal
