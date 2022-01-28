@@ -230,9 +230,11 @@ kolla_overcloud_inventory_storage_groups: []
 
 # Whether TLS is enabled for the external API endpoints. Default is 'no'.
 #kolla_enable_tls_external:
+kolla_enable_tls_external: "yes"
 
 # Whether TLS is enabled for the internal API endpoints. Default is 'no'.
 #kolla_enable_tls_internal:
+kolla_enable_tls_internal: "yes"
 
 # Whether debug logging is enabled. Default is 'false'.
 #kolla_openstack_logging_debug:

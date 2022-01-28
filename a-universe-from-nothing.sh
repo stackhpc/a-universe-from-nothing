@@ -80,8 +80,13 @@ kayobe seed service deploy
 export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
 ./dev/tenks-deploy-overcloud.sh ./tenks
 
-# Inspect and provision the overcloud hardware:
+# Generate inventory
 kayobe overcloud inventory discover
+
+# Generate certificates.
+kayobe kolla ansible run certificates --kolla-extra kolla_certificates_dir=${KAYOBE_CONFIG_PATH}/kolla/certificates
+
+# Inspect and provision the overcloud hardware:
 kayobe overcloud hardware inspect
 kayobe overcloud introspection data save
 kayobe overcloud provision
