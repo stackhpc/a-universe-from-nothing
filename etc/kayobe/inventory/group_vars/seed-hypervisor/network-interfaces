@@ -1,4 +1,9 @@
 ---
+# The Universe From Nothing lab has minimal impact on the external networking
+# of the lab host, but it does need to be declared for Ubuntu.
+external_net_interface: "{{ ansible_facts['default_ipv4']['interface'] }}"
+external_net_bootproto: "dhcp"
+
 aio_interface: braio
 aio_bridge_ports:
   - dummy1
