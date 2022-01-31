@@ -197,5 +197,14 @@
 #network_route_tables:
 
 ###############################################################################
+# Network connectivity check configuration.
+
+# External IP address to check. Default is 8.8.8.8.
+#nc_external_ip:
+
+# External hostname to check. Default is google.com.
+#nc_external_hostname:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

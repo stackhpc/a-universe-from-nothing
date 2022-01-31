@@ -16,7 +16,7 @@
 # URL of IPA builder source repository.
 #ipa_builder_source_url:
 
-# Version of IPA builder source repository. Default is master.
+# Version of IPA builder source repository. Default is {{ openstack_branch }}.
 #ipa_builder_source_version:
 
 # List of default Diskimage Builder (DIB) elements to use when building IPA

@@ -1,0 +1,16 @@
+---
+###############################################################################
+# Configuration of HTTP(S) proxies.
+
+# HTTP proxy URL (format: http(s)://[user:password@]proxy_name:port). By
+# default no proxy is used.
+#http_proxy:
+
+# HTTPS proxy URL (format: http(s)://[user:password@]proxy_name:port). By
+# default no proxy is used.
+#https_proxy:
+
+# List of domains, hostnames, IP addresses and networks for which no proxy is
+# used. Defaults to ["127.0.0.1", "localhost", "{{ docker_registry }}"]. This
+# is configured only if either http_proxy or https_proxy is set.
+#no_proxy:

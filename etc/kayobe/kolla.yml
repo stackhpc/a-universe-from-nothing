@@ -480,5 +480,20 @@
 #kolla_internal_fqdn_cacert:
 
 ###############################################################################
+# Proxy configuration
+
+# HTTP proxy URL (format: http(s)://[user:password@]proxy_name:port) used by
+# Kolla. Default value is "{{ http_proxy }}".
+#kolla_http_proxy:
+
+# HTTPS proxy URL (format: http(s)://[user:password@]proxy_name:port) used by
+# Kolla. Default value is "{{ https_proxy }}".
+#kolla_https_proxy:
+
+# List of domains, hostnames, IP addresses and networks for which no proxy is
+# used. Default value is "{{ no_proxy }}".
+#kolla_no_proxy:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

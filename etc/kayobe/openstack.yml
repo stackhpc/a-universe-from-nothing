@@ -2,10 +2,10 @@
 ###############################################################################
 # OpenStack release configuration.
 
-# Name of the current OpenStack release. Default is "xena".
+# Name of the current OpenStack release. Default is "master".
 #openstack_release:
 
-# Name of the current OpenStack branch. Default is "stable/xena".
+# Name of the current OpenStack branch. Default is "master".
 #openstack_branch:
 
 ###############################################################################
