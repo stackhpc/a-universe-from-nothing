@@ -143,6 +143,8 @@
 # - state: enabled
 #compute_firewalld_rules:
 
+libvirt_host_require_vt: false
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
