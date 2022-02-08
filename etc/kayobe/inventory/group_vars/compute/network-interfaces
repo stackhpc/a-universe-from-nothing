@@ -2,15 +2,15 @@
 ###############################################################################
 # Network interface definitions for the compute group.
 
-provision_oc_interface: "{{ 'ens2' if os_distribution == 'ubuntu' else 'eth0' }}"
+provision_oc_interface: "{{ 'ens2' if predictable_interface_names else 'eth0' }}"
 # Route via the seed-hypervisor to the outside world.
 provision_oc_gateway: 192.168.33.4
 
-internal_interface: "{{ 'ens3' if os_distribution == 'ubuntu' else 'eth1' }}.{{ internal_vlan }}"
+internal_interface: "{{ 'ens3' if predictable_interface_names else 'eth1' }}.{{ internal_vlan }}"
 
-storage_interface: "{{ 'ens3' if os_distribution == 'ubuntu' else 'eth1' }}.{{ storage_vlan }}"
+storage_interface: "{{ 'ens3' if predictable_interface_names else 'eth1' }}.{{ storage_vlan }}"
 
-tunnel_interface: "{{ 'ens3' if os_distribution == 'ubuntu' else 'eth1' }}.{{ tunnel_vlan }}"
+tunnel_interface: "{{ 'ens3' if predictable_interface_names else 'eth1' }}.{{ tunnel_vlan }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

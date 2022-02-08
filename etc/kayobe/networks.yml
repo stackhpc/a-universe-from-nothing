@@ -162,5 +162,10 @@ storage_mgmt_physical_network: cloud
 #network_route_tables:
 
 ###############################################################################
+
+# Ubuntu or CentOS+UEFI.
+predictable_interface_names: "{{ os_distribution == 'ubuntu' or True }}"
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
