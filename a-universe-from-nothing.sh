@@ -83,14 +83,19 @@ export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
 # Generate inventory
 kayobe overcloud inventory discover
 
-# Generate certificates.
-kayobe kolla ansible run certificates --kolla-extra kolla_certificates_dir=${KAYOBE_CONFIG_PATH}/kolla/certificates
-
 # Inspect and provision the overcloud hardware:
 kayobe overcloud hardware inspect
 kayobe overcloud introspection data save
 kayobe overcloud provision
-kayobe overcloud host configure
+
+kayobe overcloud host configure --skip-tags libvirt-host
+
+# Generate certificates.
+kayobe kolla ansible run certificates \
+  --kolla-extra kolla_certificates_dir=${KAYOBE_CONFIG_PATH}/kolla/certificates \
+  --kolla-extra certificates_generate_libvirt=true
+
+kayobe overcloud host configure --tags libvirt-host --kolla-tags none
 kayobe playbook run config/src/kayobe-config/etc/kayobe/ansible/cephadm.yml
 kayobe playbook run config/src/kayobe-config/etc/kayobe/ansible/ceph-config.yml
 kayobe overcloud container image pull
