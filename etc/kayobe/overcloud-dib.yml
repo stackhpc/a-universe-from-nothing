@@ -1,0 +1,57 @@
+---
+# Overcloud host disk image configuration.
+
+###############################################################################
+# Diskimage-builder configuration for overcloud host disk images.
+
+# Whether to build host disk images with DIB directly instead of through
+# Bifrost. Setting it to true disables Bifrost image build and allows images to
+# be built with the `kayobe overcloud host image build` command. Default value
+# is False. This will change in a future release.
+overcloud_dib_build_host_images: true
+
+# DIB base OS element. Default is {{ os_distribution }}.
+#overcloud_dib_os_element:
+
+# DIB image OS release. Default is {{ os_release }}.
+#overcloud_dib_os_release:
+
+# List of default DIB elements. Default is ["centos", "cloud-init-datasources",
+# "disable-selinux", "enable-serial-console", "vm"] when
+# overcloud_dib_os_element is "centos", or ["ubuntu", "cloud-init-datasources",
+# "enable-serial-console", "vm"] when overcloud_dib_os_element is "ubuntu".
+#overcloud_dib_elements_default:
+
+# List of additional DIB elements. Default is none.
+overcloud_dib_elements_extra:
+  - block-device-efi
+  - grub2
+
+# List of DIB elements. Default is a combination of
+# overcloud_dib_elements_default and overcloud_dib_elements_extra.
+#overcloud_dib_elements:
+
+# DIB default environment variables. Default is
+# {"DIB_BOOTLOADER_DEFAULT_CMDLINE": "nofb nomodeset gfxpayload=text
+# net.ifnames=1", "DIB_CLOUD_INIT_DATASOURCES": "ConfigDrive", "DIB_RELEASE":
+# "{{ overcloud_dib_os_release }}"}.
+#overcloud_dib_env_vars_default:
+
+# DIB additional environment variables. Default is none.
+#overcloud_dib_env_vars_extra:
+
+# DIB environment variables. Default is combination of
+# overcloud_dib_env_vars_default and overcloud_dib_env_vars_extra.
+#overcloud_dib_env_vars:
+
+# List of DIB packages to install. Default is to install no extra packages.
+overcloud_dib_packages:
+  - gdisk
+  - efibootmgr
+  - efivar
+
+# Upper constraints file for installing packages in the virtual environment
+# used for building overcloud host disk images. Default is {{
+# pip_upper_constraints_file }}.
+#overcloud_dib_upper_constraints_file:
+
