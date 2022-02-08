@@ -29,7 +29,7 @@ echo 'Defaults	!fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 cd
 
 # Clone Kayobe.
-[[ -d kayobe ]] || git clone https://opendev.org/openstack/kayobe.git -b master
+[[ -d kayobe ]] || git clone https://github.com/stackhpc/kayobe -b libvirt-on-host
 cd kayobe
 
 # Clone the Tenks repository.
