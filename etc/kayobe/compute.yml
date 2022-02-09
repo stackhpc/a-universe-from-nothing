@@ -145,6 +145,40 @@
 
 libvirt_host_require_vt: false
 
+#compute_libvirt_enabled: "{{ not kolla_enable_nova_libvirt_container | bool }}"
+#
+#compute_libvirt_conf_default:
+#  auth_tcp: "none"
+#  log_level: "{{ compute_libvirtd_log_level }}"
+#  log_outputs: "{{ compute_libvirtd_log_level }}:syslog:local5"
+#
+#compute_libvirt_conf_extra: {}
+#
+#compute_libvirt_conf: "{{ compute_libvirt_conf_default | combine(compute_libvirt_conf_extra) }}"
+#
+#compute_libvirtd_log_level: 3
+#
+#compute_qemu_conf_default:
+#  max_files: "{{ compute_qemu_max_files }}"
+#  max_processes: "{{ compute_qemu_max_processes }}"
+#
+#compute_qemu_conf_extra: {}
+#
+#compute_qemu_conf: "{{ compute_qemu_conf_default | combine(compute_qemu_conf_extra) }}"
+#
+#compute_qemu_max_files: 32768
+#compute_qemu_max_processes: 131072
+#
+## Enable TCP listener by default, but disable it if TCP listener is
+## enabled.
+#compute_libvirt_tcp_listen: "{{ not compute_libvirt_tls_listen | bool }}"
+#compute_libvirt_tcp_listen_address: "{{ internal_net_name | net_ip }}:{{ compute_libvirt_tcp_listen_port }}"
+#compute_libvirt_tcp_listen_port: 16509
+#
+compute_libvirt_tls_listen: true
+#compute_libvirt_tls_listen_address: "{{ internal_net_name | net_ip }}:{{ compute_libvirt_tls_listen_port }}"
+#compute_libvirt_tls_listen_port: 16514
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
