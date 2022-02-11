@@ -15,6 +15,6 @@ nova_backend_ceph: "yes"
 
 kolla_copy_ca_into_containers: "yes"
 kolla_enable_tls_backend: "yes"
-openstack_cacert: "/etc/pki/tls/certs/ca-bundle.crt"
+openstack_cacert: "{% raw %}{% if ansible_facts.os_family == 'RedHat' %}/etc/pki/tls/certs/ca-bundle.crt{% else %}/etc/ssl/certs/ca-certificates.crt{% endif %}{% endraw %}"
 kolla_admin_openrc_cacert: "{% raw %}{{ kolla_certificates_dir }}{% endraw %}/ca/root.crt"
 certificates_libvirt_output_dir: "{{ kayobe_env_config_path }}/certificates/libvirt"
