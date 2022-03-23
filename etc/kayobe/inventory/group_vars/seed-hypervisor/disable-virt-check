@@ -1,0 +1,3 @@
+---
+# This check might not work for latest AMD EPYC CPUs
+libvirt_host_require_vt: false
