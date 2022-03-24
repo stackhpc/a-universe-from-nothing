@@ -88,7 +88,7 @@ aio_neutron_allocation_pool_start: 192.168.33.31
 aio_neutron_allocation_pool_end: 192.168.33.127
 aio_inspection_allocation_pool_start: 192.168.33.128
 aio_inspection_allocation_pool_end: 192.168.33.254
-aio_mtu: 1450
+aio_mtu: 1442
 
 ###############################################################################
 # Network virtual patch link configuration.
