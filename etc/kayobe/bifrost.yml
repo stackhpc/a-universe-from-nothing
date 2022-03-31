@@ -65,6 +65,12 @@
 # Name of disk image file to deploy. Default is "deployment_image.qcow2".
 #kolla_bifrost_deploy_image_filename:
 
+# UUID of the root filesystem contained within the deployment image.
+# See below URL for instructions on how to extract it:
+# https://docs.openstack.org/ironic/latest/admin/raid.html#image-requirements
+# Default is none.
+#kolla_bifrost_deploy_image_rootfs:
+
 ###############################################################################
 # Ironic configuration.
 
