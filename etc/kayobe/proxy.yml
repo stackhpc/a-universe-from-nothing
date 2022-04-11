@@ -14,3 +14,7 @@
 # used. Defaults to ["127.0.0.1", "localhost", "{{ docker_registry }}"]. This
 # is configured only if either http_proxy or https_proxy is set.
 #no_proxy:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
