@@ -1,0 +1,4 @@
+---
+# Hosts used for development, test or CI may not have Virtualization Technology
+# (VT) enabled. Don't fail if it's disabled.
+libvirt_host_require_vt: false

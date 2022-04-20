@@ -18,6 +18,9 @@
 # List of extra networks to which seed hypervisor nodes are attached.
 #seed_hypervisor_extra_network_interfaces:
 
+# Whether to enable SNAT on seed hypervisor node. Default is false.
+#seed_hypervisor_enable_snat:
+
 ###############################################################################
 # Seed hypervisor node software RAID configuration.
 
