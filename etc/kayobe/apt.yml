@@ -11,6 +11,41 @@
 # Apt proxy URL for HTTPS. Default is {{ apt_proxy_http }}.
 #apt_proxy_https:
 
+# List of Apt configuration options. Each item is a dict with the following
+# keys:
+# * content: free-form configuration file content
+# * filename: name of a file in /etc/apt/apt.conf.d/ in which to write the
+#   configuration
+# Default is an empty list.
+#apt_config:
+
+# List of apt keys. Each item is a dict containing the following keys:
+# * url: URL of key
+# * filename: Name of a file in which to store the downloaded key. The
+#   extension should be '.asc' for ASCII-armoured keys, or '.gpg' otherwise.
+# Default is an empty list.
+#apt_keys:
+
+# A list of Apt repositories. Each item is a dict with the following keys:
+# * types: whitespace-separated list of repository types, e.g. deb or deb-src
+#   (optional, default is 'deb')
+# * url: URL of the repository
+# * suites: whitespace-separated list of suites, e.g. focal (optional, default
+#   is ansible_facts.distribution_release)
+# * components: whitespace-separated list of components, e.g. main (optional,
+#   default is 'main')
+# * signed_by: whitespace-separated list of names of GPG keyring files in
+#   apt_keys_path (optional, default is unset)
+# * architecture: whitespace-separated list of architectures that will be used
+#   (optional, default is unset)
+# Default is an empty list.
+#apt_repositories:
+
+# Whether to disable repositories in /etc/apt/sources.list. This may be used
+# when replacing the distribution repositories via apt_repositories.
+# Default is false.
+#apt_disable_sources_list:
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

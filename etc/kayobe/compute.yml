@@ -144,5 +144,52 @@
 #compute_firewalld_rules:
 
 ###############################################################################
+# Compute node host libvirt configuration.
+
+# Whether to enable a host libvirt daemon. Default is true if kolla_enable_nova
+# is true and kolla_enable_nova_libvirt_container is false.
+#compute_libvirt_enabled:
+
+# A dict of default configuration options to write to
+# /etc/libvirt/libvirtd.conf.
+#compute_libvirt_conf_default:
+
+# A dict of additional configuration options to write to
+# /etc/libvirt/libvirtd.conf.
+#compute_libvirt_conf_extra:
+
+# A dict of configuration options to write to /etc/libvirt/libvirtd.conf.
+# Default is a combination of compute_libvirt_conf_default and
+# compute_libvirt_conf_extra.
+#compute_libvirt_conf:
+
+# Numerical log level for libvirtd. Default is 3.
+#compute_libvirtd_log_level:
+
+# A dict of default configuration options to write to
+# /etc/libvirt/qemu.conf.
+#compute_qemu_conf_default:
+
+# A dict of additional configuration options to write to
+# /etc/libvirt/qemu.conf.
+#compute_qemu_conf_extra:
+
+# A dict of configuration options to write to /etc/libvirt/qemu.conf.
+# Default is a combination of compute_qemu_conf_default and
+# compute_qemu_conf_extra.
+#compute_qemu_conf:
+
+# Whether to enable a libvirt TLS listener. Default is false.
+#compute_libvirt_enable_tls:
+
+# Whether to install a Ceph package repository on CentOS and Rocky hosts.
+# Default is true.
+#compute_libvirt_ceph_repo_install:
+
+# Ceph package repository release to install on CentOS and Rocky hosts when
+# compute_libvirt_ceph_repo_install is true. Default is 'pacific'.
+#compute_libvirt_ceph_repo_release:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

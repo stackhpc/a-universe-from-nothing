@@ -1,0 +1,3 @@
+---
+# Use a virtual environment for remote operations.
+ansible_python_interpreter: "{{ virtualenv_path }}/kayobe/bin/python"
