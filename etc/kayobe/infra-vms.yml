@@ -32,7 +32,10 @@
 # Base image for the infra VM root volume. Default is
 # "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
 # when os_distribution is "ubuntu", or
-# "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210210.0.x86_64.qcow2"
+# http://dl.rockylinux.org/pub/rocky/8.5/images/Rocky-8-GenericCloud-8.5-20211114.2.x86_64.qcow2
+# when os_distribution is "rocky",
+# or
+# "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210603.0.x86_64.qcow2"
 # otherwise.
 #infra_vm_root_image:
 
@@ -53,7 +56,7 @@
 #infra_vm_wait_connection_ssh_extra_args:
 
 # OS family. Needed for config drive generation.
-# infra_vm_os_family:
+#infra_vm_os_family:
 
 ###############################################################################
 # Infrastructure VM node configuration.
