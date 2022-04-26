@@ -12,11 +12,17 @@
 # Whether or not to use a local Yum mirror. Default value is 'false'.
 #dnf_use_local_mirror:
 
-# Mirror FQDN for Yum repos. Default value is 'mirror.centos.org'.
+# Mirror FQDN for Yum CentOS repos. Default value is 'mirror.centos.org'.
 #dnf_centos_mirror_host:
 
 # Mirror directory for Yum CentOS repos. Default value is 'centos'.
 #dnf_centos_mirror_directory:
+
+# Mirror FQDN for Yum Rocky repos. Default value is 'dl.rockylinux.org'.
+#dnf_rocky_mirror_host:
+
+# Mirror directory for Yum Rocky repos. Default value is 'pub/rocky'.
+#dnf_rocky_mirror_directory:
 
 # Mirror FQDN for Yum EPEL repos. Default value is
 # 'download.fedoraproject.org'.
@@ -38,7 +44,7 @@
 #dnf_custom_repos:
 
 # Whether to install the epel-release package. This affects RedHat-based
-# systems only. Default value is 'true'.
+# systems only. Default value is 'false'.
 #dnf_install_epel:
 
 ###############################################################################
