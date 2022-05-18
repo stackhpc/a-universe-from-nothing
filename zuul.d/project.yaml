@@ -1,10 +1,10 @@
 ---
 - project:
+    queue: kayobe
     check:
       jobs:
         - openstack-tox-pep8
 
     gate:
-      queue: kayobe
       jobs:
         - openstack-tox-pep8
