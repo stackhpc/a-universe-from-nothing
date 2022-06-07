@@ -278,8 +278,8 @@ You'll need to have activated the `~/os-venv` virtual environment.
 
 *Note*: when accessing the VNC console of an instance via Horizon,
 you will be sent to the internal IP address of the controller,
-``192.168.33.2``, which will fail. Choose the console-only display and
-replace this IP with the public IP of the hypervisor host.
+``192.168.33.2``, which will fail. Open the console-only display link in new broser tab and
+replace this IP in the address bar with the public IP of the hypervisor host.
 
 That's it, you're done!
 
@@ -344,7 +344,7 @@ Verify that `virtualbmc <https://opendev.org/openstack/virtualbmc>`_ is running:
 
 .. code-block:: console
 
-    ~/tenks-venv/bin/vbmc list
+    /usr/local/bin/vbmc list
     +-------------+---------+--------------+------+
     | Domain name | Status  | Address      | Port |
     +-------------+---------+--------------+------+
