@@ -382,8 +382,8 @@ Enabling Centralised Logging
 
 In Kolla-Ansible, centralised logging is easily enabled and results in the
 deployment of Elasticsearch and Kibana services and configuration to forward
-all OpenStack service logging. **Be cautious as Elastic search will consume
-significant portion of available resources on standard deployment.**
+all OpenStack service logging. **Be cautious as Elasticsearch will consume a
+significant portion of available resources on a standard deployment.**
 
 To enable the service, one flag must be changed in
 ``~/kayobe/config/src/kayobe-config/etc/kayobe/kolla.yml``:
