@@ -357,7 +357,9 @@ VirtualBMC config is here (on the VM hypervisor host):
 
     /root/.vbmc/controller0/config
 
-Note that the controller and compute node are registered in Ironic, in the bifrost container:
+Note that the controller and compute node are registered in Ironic, in the bifrost container.
+Once kayobe is deployed and configured the compute0 and controller0 will be controlled by
+bifrost and not virsh commands.
 
 .. code-block:: console
 
@@ -378,7 +380,8 @@ Enabling Centralised Logging
 
 In Kolla-Ansible, centralised logging is easily enabled and results in the
 deployment of Elasticsearch and Kibana services and configuration to forward
-all OpenStack service logging.
+all OpenStack service logging. **Be cautious as Elasticsearch will consume a
+significant portion of available resources on a standard deployment.**
 
 To enable the service, one flag must be changed in
 ``~/kayobe/config/src/kayobe-config/etc/kayobe/kolla.yml``:
