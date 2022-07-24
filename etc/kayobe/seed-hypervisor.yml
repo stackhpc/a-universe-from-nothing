@@ -49,7 +49,7 @@ seed_hypervisor_lvm_groups: "{{ seed_hypervisor_lvm_groups_with_data }}"
 # List of disks for use by seed hypervisor LVM data volume group. Default to an
 # invalid value to require configuration.
 seed_hypervisor_lvm_group_data_disks:
-  - "/dev/vdb"
+  - "/dev/sdb"
 
 # List of LVM logical volumes for the data volume group.
 #seed_hypervisor_lvm_group_data_lvs:
