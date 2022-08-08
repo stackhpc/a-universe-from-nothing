@@ -5,32 +5,47 @@
       jobs:
         - openstack-tox-pep8
         - kayobe-overcloud-centos8s
-        - kayobe-overcloud-ubuntu-focal
+        - kayobe-overcloud-rocky8
+        - kayobe-overcloud-ubuntu-jammy
         - kayobe-overcloud-tls-centos8s
         - kayobe-overcloud-host-configure-centos8s
-        - kayobe-overcloud-host-configure-ubuntu-focal
+        - kayobe-overcloud-host-configure-rocky8
+        - kayobe-overcloud-host-configure-ubuntu-jammy
         - kayobe-overcloud-upgrade-centos8s
         - kayobe-overcloud-upgrade-ubuntu-focal
         - kayobe-seed-centos8s
-        - kayobe-seed-ubuntu-focal
+        - kayobe-seed-rocky8
+        - kayobe-seed-ubuntu-jammy
+        - kayobe-seed-images-centos8s
         - kayobe-seed-upgrade-centos8s
         - kayobe-seed-upgrade-ubuntu-focal
         - kayobe-seed-vm-centos8s
-        - kayobe-seed-vm-ubuntu-focal
+        - kayobe-seed-vm-rocky8
+        - kayobe-seed-vm-ubuntu-jammy
+        - kayobe-infra-vm-centos8s
+        - kayobe-infra-vm-rocky8
+        - kayobe-infra-vm-ubuntu-jammy
 
     gate:
       jobs:
         - openstack-tox-pep8
         - kayobe-overcloud-centos8s
-        - kayobe-overcloud-ubuntu-focal
+        - kayobe-overcloud-rocky8
+        - kayobe-overcloud-ubuntu-jammy
         - kayobe-overcloud-tls-centos8s
         - kayobe-overcloud-host-configure-centos8s
-        - kayobe-overcloud-host-configure-ubuntu-focal
+        - kayobe-overcloud-host-configure-rocky8
+        - kayobe-overcloud-host-configure-ubuntu-jammy
         - kayobe-overcloud-upgrade-centos8s
         - kayobe-overcloud-upgrade-ubuntu-focal
         - kayobe-seed-centos8s
-        - kayobe-seed-ubuntu-focal
+        - kayobe-seed-rocky8
+        - kayobe-seed-ubuntu-jammy
         - kayobe-seed-upgrade-centos8s
         - kayobe-seed-upgrade-ubuntu-focal
         - kayobe-seed-vm-centos8s
-        - kayobe-seed-vm-ubuntu-focal
+        - kayobe-seed-vm-rocky8
+        - kayobe-seed-vm-ubuntu-jammy
+        - kayobe-infra-vm-centos8s
+        - kayobe-infra-vm-rocky8
+        - kayobe-infra-vm-ubuntu-jammy
