@@ -39,7 +39,7 @@ dnf_centos_mirror_host: 'uk.mirror.nsec.pt'
 
 # Whether to install the epel-release package. This affects RedHat-based
 # systems only. Default value is 'true'.
-#dnf_install_epel:
+dnf_install_epel: false
 
 ###############################################################################
 # DNF Automatic configuration.
