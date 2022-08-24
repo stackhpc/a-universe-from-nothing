@@ -10,10 +10,10 @@
 #dnf_config:
 
 # Whether or not to use a local Yum mirror. Default value is 'false'.
-#dnf_use_local_mirror:
+dnf_use_local_mirror: true
 
 # Mirror FQDN for Yum repos. Default value is 'mirror.centos.org'.
-#dnf_centos_mirror_host:
+dnf_centos_mirror_host: 'uk.mirror.nsec.pt'
 
 # Mirror directory for Yum CentOS repos. Default value is 'centos'.
 #dnf_centos_mirror_directory:
