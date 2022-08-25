@@ -22,6 +22,9 @@ if command -v setenforce >/dev/null 2>&1; then
     sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 fi
 
+# Enable squid
+sudo systemctl enable squid && sudo systemctl start squid
+
 # Prevent sudo from performing DNS queries.
 echo 'Defaults	!fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 

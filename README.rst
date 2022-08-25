@@ -96,6 +96,9 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
        sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
    fi
 
+   # Enable squid
+   sudo systemctl enable squid && sudo systemctl start squid
+
    # Prevent sudo from performing DNS queries.
    echo 'Defaults  !fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 

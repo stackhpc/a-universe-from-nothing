@@ -6,10 +6,10 @@
 #apt_cache_valid_time:
 
 # Apt proxy URL for HTTP. Default is empty (no proxy).
-#apt_proxy_http:
+apt_proxy_http: "{{ http_proxy if 'seed-hypervisor' not in group_names else '' }}"
 
 # Apt proxy URL for HTTPS. Default is {{ apt_proxy_http }}.
-#apt_proxy_https:
+apt_proxy_https: "{{ https_proxy if 'seed-hypervisor' not in group_names else '' }}"
 
 # List of Apt configuration options. Each item is a dict with the following
 # keys:
