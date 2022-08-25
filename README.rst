@@ -81,7 +81,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
 
    # Install git and tmux.
    if $(which dnf 2>/dev/null >/dev/null); then
-       sudo dnf -y install git tmux
+       sudo dnf -y install git squid tmux
    else
        sudo apt update
        sudo apt -y install git tmux
@@ -89,6 +89,9 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
 
    # Disable the firewall.
    sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
+
+   # Enable squid
+   sudo systemctl enable squid && sudo systemctl start squid
 
    # Disable SELinux both immediately and permanently.
    if $(which setenforce 2>/dev/null >/dev/null); then
