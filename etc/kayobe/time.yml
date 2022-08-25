@@ -28,7 +28,8 @@
 #       - option: maxsources
 #         val: 3
 #
-#chrony_ntp_servers:
+chrony_ntp_servers:
+  - server: 192.168.33.4
 
 # Synchronise hardware clock with system time. Default is true.
 #chrony_rtcsync_enabled:
