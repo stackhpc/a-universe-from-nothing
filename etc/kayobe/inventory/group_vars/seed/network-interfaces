@@ -4,11 +4,6 @@
 
 aio_interface: "{{ 'eth0' if (os_release | string).startswith('9') else 'ens2' }}"
 
-# Route via the seed-hypervisor to the outside world.
-# FIXME: Circular reference between seed & seed-hypervisor?
-#aio_gateway: "{{ 'aio' | net_ip('localhost') }}"
-aio_gateway: 192.168.33.4
-
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

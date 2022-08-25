@@ -7,7 +7,7 @@ set -eu
 
 # Install git and tmux.
 if $(which dnf 2>/dev/null >/dev/null); then
-    sudo dnf -y install git python3 tmux
+    sudo dnf -y install git python3 squid tmux
 else
     sudo apt update
     sudo apt -y install git python3 tmux
@@ -21,6 +21,9 @@ if $(which setenforce 2>/dev/null >/dev/null); then
     sudo setenforce 0
     sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 fi
+
+# Enable squid
+sudo systemctl enable squid && sudo systemctl start squid
 
 # Prevent sudo from performing DNS queries.
 echo 'Defaults	!fqdn' | sudo tee /etc/sudoers.d/no-fqdn

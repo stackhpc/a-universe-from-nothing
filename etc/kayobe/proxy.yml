@@ -4,11 +4,11 @@
 
 # HTTP proxy URL (format: http(s)://[user:password@]proxy_name:port). By
 # default no proxy is used.
-#http_proxy:
+http_proxy: http://192.168.33.4:3128
 
 # HTTPS proxy URL (format: http(s)://[user:password@]proxy_name:port). By
 # default no proxy is used.
-#https_proxy:
+https_proxy: http://192.168.33.4:3128
 
 # List of domains, hostnames, IP addresses and networks for which no proxy is
 # used. Defaults to ["127.0.0.1", "localhost", "{{ ('http://' ~

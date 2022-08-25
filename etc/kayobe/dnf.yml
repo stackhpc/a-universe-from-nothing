@@ -7,7 +7,8 @@
 # Yum configuration. Dict mapping Yum config option names to their values.
 # dnf_config:
 #   proxy: http://proxy.example.com
-#dnf_config:
+dnf_config:
+   proxy: "{{ http_proxy }}"
 
 # Whether or not to use a local Yum mirror. Default value is 'false'.
 #dnf_use_local_mirror:
