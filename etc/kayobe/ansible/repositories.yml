@@ -1,0 +1,9 @@
+---
+- name: "Switch repository address to baseurl"
+  hosts: seed
+  become: true
+  command: >
+    "sed -i -e 's/^mirrorlist/#mirrorlist/g'
+    -e 's/^#baseurl/baseurl/g'
+    -e 's/mirror\.centos\.org/uk.mirror.nsec.pt/g'
+    /etc/yum.repos.d/CentOS-Stream-*.repo"
