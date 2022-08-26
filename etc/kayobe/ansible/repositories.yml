@@ -1,9 +1,15 @@
 ---
 - name: "Switch repository address to baseurl"
   hosts: seed
+  gather_facts: false
+  vars:
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+    ansible_ssh_user: "centos"
   become: true
-  command: >
-    "sed -i -e 's/^mirrorlist/#mirrorlist/g'
-    -e 's/^#baseurl/baseurl/g'
-    -e 's/mirror\.centos\.org/uk.mirror.nsec.pt/g'
-    /etc/yum.repos.d/CentOS-Stream-*.repo"
+  tasks:
+    - name: "Change repo files"
+      raw: >
+        sed -i -e 's/^mirrorlist/#mirrorlist/g'
+        -e 's/^#baseurl/baseurl/g'
+        -e 's/mirror\.centos\.org/uk.mirror.nsec.pt/g'
+        /etc/yum.repos.d/CentOS-Stream-*.repo
