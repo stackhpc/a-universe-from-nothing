@@ -10,3 +10,14 @@ cirros_deploy_image_upstream_url: "https://cloud-images.ubuntu.com/focal/current
 {% else %}
 cirros_deploy_image_upstream_url: "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210210.0.x86_64.qcow2"
 {% endif %}
+
+dib_git_url: https://github.com/openstack/diskimage-builder
+ipa_builder_git_url: https://github.com/openstack/ironic-python-agent-builder
+ipa_git_url: https://github.com/openstack/ironic-python-agent
+ironic_git_url: https://github.com/openstack/ironic
+ironicclient_git_url: https://github.com/openstack/python-ironicclient
+ironicinspector_git_url: https://github.com/openstack/ironic-inspector
+ironicinspectorclient_git_url: https://github.com/openstack/python-ironic-inspector-client
+openstacksdk_git_url: https://github.com/openstack/openstacksdk
+prometheus_exporter_git_url: https://github.com/openstack/ironic-prometheus-exporter
+staging_drivers_git_url: https://github.com/cityofships/ironic-staging-drivers
