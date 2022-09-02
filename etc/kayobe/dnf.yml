@@ -5,8 +5,8 @@
 # DNF repository configuration.
 
 # Yum configuration. Dict mapping Yum config option names to their values.
-dnf_config:
-  proxy: http://10.10.50.192:3128
+# dnf_config:
+#   proxy: http://proxy.example.com
 #dnf_config:
 
 # Whether or not to use a local Yum mirror. Default value is 'false'.
