@@ -28,7 +28,12 @@
 #       - option: maxsources
 #         val: 3
 #
-#chrony_ntp_servers:
+chrony_ntp_servers:
+  - server: 10.63.1.128
+    type: pool
+    options:
+      - option: maxsources
+        val: 3
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
