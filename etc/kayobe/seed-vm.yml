@@ -11,7 +11,7 @@ seed_vm_memory_mb: "{{ 4 * 1024 }}"
 
 # Number of vCPUs.
 #seed_vm_vcpus:
-seed_vm_vcpus: 1
+seed_vm_vcpus: 2
 
 # List of volumes.
 #seed_vm_volumes:
