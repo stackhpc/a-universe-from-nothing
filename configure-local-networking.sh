@@ -31,6 +31,10 @@ if $(which dnf >/dev/null 2>&1); then
     sudo dnf -y install iptables
 fi
 
+if $(which apt >/dev/null 2>&1); then
+    sudo apt -y install iptables
+fi
+
 # Configure local networking.
 # Add a bridge 'braio' for the Kayobe all-in-one cloud network.
 if ! sudo ip l show braio >/dev/null 2>&1; then
