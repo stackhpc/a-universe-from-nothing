@@ -62,7 +62,7 @@
 
     - name: Build a list of images
       vars:
-        image: "{{ kolla_base_distro }}-{{ image_name }}"
+        image: "{{ image_name }}"
         image_name: "{{ item.1.split()[2] }}"
       set_fact:
         images: "{{ (images | default([])) + [image] }}"
@@ -80,7 +80,7 @@
     - name: Pull container images (may take a long time)
       become: true
       vars:
-        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}"
+        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}-{{ kolla_base_distro }}-{{ ansible_facts.distribution_release }}"
       command:
         cmd: "docker pull {{ remote_image }}"
       with_items: "{{ images }}"
@@ -88,8 +88,8 @@
     - name: Retag container images
       become: true
       vars:
-        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}"
-        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}"
+        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}-{{ kolla_base_distro }}-{{ ansible_facts.distribution_release }}"
+        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}-{{ kolla_base_distro }}-{{ ansible_facts.distribution_release }}"
       command:
         cmd: "docker tag {{ remote_image }} {{ local_image }}"
       with_items: "{{ images }}"
@@ -97,7 +97,7 @@
     - name: Push container images (may take a long time)
       become: true
       vars:
-        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}"
+        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}-{{ kolla_base_distro }}-{{ ansible_facts.distribution_release }}"
       command:
         cmd: "docker push {{ local_image }}"
       with_items: "{{ images }}"
