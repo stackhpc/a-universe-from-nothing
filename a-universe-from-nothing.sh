@@ -16,6 +16,9 @@ fi
 # Disable the firewall.
 sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
+# Configure a 10GB disk cache
+sudo sed -i -e 's|^#cache_dir ufs /var/spool/squid 100|cache_dir ufs /var/spool/squid 10000|' /etc/squid/squid.conf
+
 # Enable squid
 sudo systemctl enable squid && sudo systemctl start squid
 
