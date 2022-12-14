@@ -19,6 +19,9 @@
 # Version of IPA builder source repository. Default is {{ openstack_branch }}.
 #ipa_builder_source_version:
 
+# List of additional build host packages to install. Default is an empty list.
+#ipa_build_dib_host_packages_extra:
+
 # List of default Diskimage Builder (DIB) elements to use when building IPA
 # images. Default is ["centos", "enable-serial-console",
 # "ironic-python-agent-ramdisk"].
@@ -64,6 +67,10 @@
 # Upper constraints file for installing packages in the virtual environment
 # used for building IPA images. Default is {{ pip_upper_constraints_file }}.
 #ipa_build_upper_constraints_file:
+
+# Upper constraints file for installation of DIB to build IPA images.
+# Default is empty string.
+#ipa_build_dib_upper_constraints_file:
 
 ###############################################################################
 # Ironic Python Agent (IPA) images configuration.

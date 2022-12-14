@@ -100,7 +100,6 @@
 # Example:
 # seed_containers:
 #   squid:
-#     name: "squid"
 #     image: "stackhpc/squid:3.5.20-1"
 #     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
 #     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"

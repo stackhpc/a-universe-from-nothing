@@ -2,35 +2,18 @@
 ###############################################################################
 # Network interface definitions for the controller group.
 
-# Overcloud provisioning network IP information.
-# provision_oc_net_interface:
-# provision_oc_net_bridge_ports:
-# provision_oc_net_bond_slaves:
-
-# Workload provisioning network IP information.
-# provision_wl_net_interface:
-# provision_wl_net_bridge_ports:
-# provision_wl_net_bond_slaves:
-
-# Internal network IP information.
-# internal_net_interface:
-# internal_net_bridge_ports:
-# internal_net_bond_slaves:
-
-# External network IP information.
-# external_net_interface:
-# external_net_bridge_ports:
-# external_net_bond_slaves:
-
-# Storage network IP information.
-# storage_net_interface:
-# storage_net_bridge_ports:
-# storage_net_bond_slaves:
-
-# Storage management network IP information.
-# swift_storage_net_interface:
-# swift_storage_net_bridge_ports:
-# swift_storage_net_bond_slaves:
+# NOTE: The content of this section is very deployment-specific, since it
+# depends on the names and types of networks in the deployment. It should
+# define the group-specific attributes of networks. The following example shows
+# a basic configuration for a network called "example":
+#
+# example_interface: eth0
+#
+# Global network attributes such as subnet CIDRs are typically configured in
+# etc/kayobe/networks.yml.
+#
+# Further information on the available network attributes is provided in the
+# network configuration reference in the Kayobe documentation.
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

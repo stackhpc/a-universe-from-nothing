@@ -30,7 +30,7 @@
 # * types: whitespace-separated list of repository types, e.g. deb or deb-src
 #   (optional, default is 'deb')
 # * url: URL of the repository
-# * suites: whitespace-separated list of suites, e.g. focal (optional, default
+# * suites: whitespace-separated list of suites, e.g. jammy (optional, default
 #   is ansible_facts.distribution_release)
 # * components: whitespace-separated list of components, e.g. main (optional,
 #   default is 'main')

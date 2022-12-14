@@ -1,6 +1,6 @@
 ---
 ###############################################################################
-# Network interface definitions for the compute group.
+# Network interface definitions for the seed-hypervisor group.
 
 # NOTE: The content of this section is very deployment-specific, since it
 # depends on the names and types of networks in the deployment. It should

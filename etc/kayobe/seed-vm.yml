@@ -14,6 +14,12 @@
 # List of volumes.
 #seed_vm_volumes:
 
+# Root volume.
+#seed_vm_root_volume:
+
+# Data volume.
+#seed_vm_data_volume:
+
 # Name of the storage pool for the seed VM volumes.
 #seed_vm_pool:
 
@@ -24,12 +30,12 @@
 #seed_vm_root_format:
 
 # Base image for the seed VM root volume. Default is
-# "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+# "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 # when os_distribution is "ubuntu",
-# http://dl.rockylinux.org/pub/rocky/8.5/images/Rocky-8-GenericCloud-8.5-20211114.2.x86_64.qcow2
+# https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2
 # when os_distribution is "rocky",
 # or
-# "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210603.0.x86_64.qcow2"
+# "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-20221206.0.x86_64.qcow2"
 # otherwise.
 #seed_vm_root_image:
 
