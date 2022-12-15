@@ -46,11 +46,11 @@
 # OS distribution.
 
 # OS distribution name. Valid options are "centos", "rocky", "ubuntu". Default
-# is "centos".
+# is "rocky".
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
-# OS release. Valid options are "8-stream" when os_distribution is "centos", or
-# "8" when os_distribution is "rocky", or "focal" when os_distribution is
+# OS release. Valid options are "9-stream" when os_distribution is "centos", or
+# "9" when os_distribution is "rocky", or "jammy" when os_distribution is
 # "ubuntu".
 #os_release:
 

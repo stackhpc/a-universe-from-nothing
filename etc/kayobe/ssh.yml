@@ -2,6 +2,9 @@
 ###############################################################################
 # SSH configuration.
 
+# Type of SSH key. Default is "rsa".
+#ssh_key_type:
+
 # Name of SSH key.
 #ssh_key_name:
 

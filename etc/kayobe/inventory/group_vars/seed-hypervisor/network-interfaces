@@ -1,3 +1,10 @@
 ---
+###############################################################################
+# Network interface definitions for the seed-hypervisor group.
+
 aio_interface: braio
 aio_bridge_ports: []
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
