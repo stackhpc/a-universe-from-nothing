@@ -3,10 +3,12 @@
 create_ipa_image: false
 download_ipa: true
 
-# Use a locally hosted CentOS8 cloud image.
+# Use a locally hosted cloud image.
 use_cirros: true
-{% if os_distribution == 'ubuntu' %}
-cirros_deploy_image_upstream_url: "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+{% if os_distribution == 'centos' %}
+cirros_deploy_image_upstream_url: "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-20221206.0.x86_64.qcow2"
+{% elif os_distribution == 'rocky' %}
+cirros_deploy_image_upstream_url: "https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
 {% else %}
-cirros_deploy_image_upstream_url: "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210210.0.x86_64.qcow2"
+cirros_deploy_image_upstream_url: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 {% endif %}
