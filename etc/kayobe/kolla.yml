@@ -79,7 +79,7 @@
 #kolla_base_distro_version:
 
 # URL of docker registry to use for Kolla images. Default is not set, in which
-# case Dockerhub will be used.
+# case Quay.io will be used.
 #kolla_docker_registry:
 
 # Docker namespace to use for Kolla images. Default is 'kolla'.
@@ -102,8 +102,9 @@
 # Default is {{ openstack_release }}.
 #kolla_openstack_release:
 
-# Docker tag applied to built container images. Default is
-# {{ kolla_openstack_release }}.
+# Docker tag applied to built container images. Default is {{
+# kolla_openstack_release }}-{{ kolla_base_distro }}-{{
+# kolla_base_distro_version }}.
 #kolla_tag:
 
 # Dict mapping names of sources to their definitions.
