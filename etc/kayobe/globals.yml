@@ -50,8 +50,8 @@
 #os_distribution:
 
 # OS release. Valid options are "8-stream" when os_distribution is "centos", or
-# "8" when os_distribution is "rocky", or "focal" when os_distribution is
-# "ubuntu".
+# "8" when os_distribution is "rocky", or "focal" and "jammy" when
+# os_distribution is "ubuntu".
 #os_release:
 
 ###############################################################################

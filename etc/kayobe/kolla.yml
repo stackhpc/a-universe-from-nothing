@@ -75,7 +75,7 @@
 #kolla_install_type:
 
 # URL of docker registry to use for Kolla images. Default is not set, in which
-# case Dockerhub will be used.
+# case Quay.io will be used.
 #kolla_docker_registry:
 
 # Docker namespace to use for Kolla images. Default is 'kolla'.
@@ -417,7 +417,6 @@
 #kolla_enable_telegraf:
 #kolla_enable_trove:
 #kolla_enable_trove_singletenant:
-#kolla_enable_venus:
 #kolla_enable_vitrage:
 #kolla_enable_vitrage_prometheus_datasource:
 #kolla_enable_watcher:
