@@ -20,10 +20,10 @@ Requirements
 
 For this workshop we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-CentOS 8, with the following minimum requirements:
+CentOS Stream 8 or Ubuntu 20.04, with the following minimum requirements:
 
-* 32GB RAM
-* 80GB disk
+* 64GB RAM (more is recommended when growing the lab deployment)
+* 100GB disk
 
 We will also need SSH access to the seed hypervisor, and passwordless sudo
 configured for the login user.
@@ -75,7 +75,8 @@ Preparation
 
 This shows how to prepare the seed hypervisor for the exercise. It assumes
 you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh centos@<ip>``).
+above and have already logged in (e.g. ``ssh centos@<ip>``
+or ``ssh ubuntu@<ip>``).
 
 .. code-block:: console
 
