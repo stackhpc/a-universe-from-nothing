@@ -8,5 +8,5 @@ use_cirros: true
 {% if os_distribution == 'ubuntu' %}
 cirros_deploy_image_upstream_url: "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
 {% else %}
-cirros_deploy_image_upstream_url: "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210210.0.x86_64.qcow2"
+cirros_deploy_image_upstream_url: "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20230501.0.x86_64.qcow2"
 {% endif %}
