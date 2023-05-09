@@ -3,7 +3,7 @@
 set -e
 
 if [[ ! -d ~/os-venv ]]; then
-  virtualenv ~/os-venv
+  python3 -m venv ~/os-venv
 fi
 ~/os-venv/bin/pip install -U pip
 ~/os-venv/bin/pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/yoga
