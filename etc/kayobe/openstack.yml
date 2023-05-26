@@ -2,10 +2,10 @@
 ###############################################################################
 # OpenStack release configuration.
 
-# Name of the current OpenStack release. Default is "zed".
+# Name of the current OpenStack release. Default is "2023.1".
 #openstack_release:
 
-# Name of the current OpenStack branch. Default is "stable/zed".
+# Name of the current OpenStack branch. Default is "stable/2023.1".
 #openstack_branch:
 
 ###############################################################################
