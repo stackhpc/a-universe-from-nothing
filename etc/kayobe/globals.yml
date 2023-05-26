@@ -4,8 +4,7 @@
 ###############################################################################
 # Local path configuration (Ansible control host).
 
-# Path to Kayobe configuration directory on Ansible control host, with an
-# environment path appended if kayobe_environment is set.
+# Path to Kayobe configuration directory on Ansible control host.
 #kayobe_config_path:
 
 # Name of Kayobe environment to use. Default is $KAYOBE_ENVIRONMENT, or an

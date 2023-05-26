@@ -79,7 +79,7 @@
 #kolla_base_distro_version:
 
 # URL of docker registry to use for Kolla images. Default is not set, in which
-# case Dockerhub will be used.
+# case Quay.io will be used.
 #kolla_docker_registry:
 
 # Docker namespace to use for Kolla images. Default is 'kolla'.
@@ -102,8 +102,9 @@
 # Default is {{ openstack_release }}.
 #kolla_openstack_release:
 
-# Docker tag applied to built container images. Default is
-# {{ kolla_openstack_release }}.
+# Docker tag applied to built container images. Default is {{
+# kolla_openstack_release }}-{{ kolla_base_distro }}-{{
+# kolla_base_distro_version }}.
 #kolla_tag:
 
 # Dict mapping names of sources to their definitions.
@@ -234,6 +235,19 @@
 # Virtualenv directory where Kolla-ansible's ansible modules will execute
 # remotely on the target nodes. If None, no virtualenv will be used.
 #kolla_ansible_target_venv:
+
+# Password to use to encrypt the kolla-ansible passwords.yml file.
+#kolla_ansible_vault_password:
+
+# Hashi Vault
+#kolla_ansible_vault_addr:
+#kolla_ansible_vault_mount_point:
+#kolla_ansible_vault_kv_path:
+#kolla_ansible_vault_namespace:
+#kolla_ansible_vault_role_id:
+#kolla_ansible_vault_secret_id:
+#kolla_ansible_vault_token:
+#kolla_ansible_vault_cacert:
 
 # Whether TLS is enabled for the external API endpoints. Default is 'no'.
 #kolla_enable_tls_external:
