@@ -30,8 +30,8 @@ export KOLLA_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kolla
 #     kayobe/
 #     kolla-ansible/
 base_path=$(realpath $KAYOBE_CONFIG_ROOT/../../)
-export KOLLA_SOURCE_PATH=${KOLLA_SOURCE_PATH:-${base_path}/src/kolla-ansible}
-export KOLLA_VENV_PATH=${KOLLA_VENV_PATH:-${base_path}/venvs/kolla-ansible}
+export KOLLA_SOURCE_PATH=${base_path}/src/kolla-ansible
+export KOLLA_VENV_PATH=${base_path}/venvs/kolla-ansible
 
 function check_and_export_env {
   # Look for existing Kayobe environments
