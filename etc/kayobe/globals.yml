@@ -69,7 +69,7 @@ os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
 # Don't reboot after disabling SELinux in all-in-one environments, as Ansible
 # is typically run directly on the controller.
-disable_selinux_do_reboot: false
+selinux_do_reboot: false
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
