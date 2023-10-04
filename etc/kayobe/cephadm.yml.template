@@ -1,0 +1,123 @@
+---
+###############################################################################
+# Cephadm deployment configuration.
+
+# Ceph release name.
+cephadm_ceph_release: "{{ 'quincy' if (ansible_facts['distribution_release'] == 'jammy') else 'pacific' }}"
+
+# Ceph FSID.
+#cephadm_fsid:
+
+# Ceph container image.
+cephadm_image: "quay.io/ceph/ceph:{{ cephadm_image_tag }}"
+
+# Ceph container image tag.
+cephadm_image_tag: "{{ 'v17.2.6' if os_release == 'jammy' else 'v16.2.11' }}"
+
+# Ceph custom repo workaround for Ubuntu Jammy as there are no official ceph repos for jammy.
+cephadm_custom_repos: "{{ ansible_facts['distribution_release'] == 'jammy' }}"
+
+# HAProxy container image.
+cephadm_haproxy_image: "quay.io/ceph/haproxy:{{ cephadm_haproxy_image_tag }}"
+
+# HAProxy container image tag.
+cephadm_haproxy_image_tag: "2.3"
+
+# Keepalived container image.
+cephadm_keepalived_image: "quay.io/ceph/keepalived:{{ cephadm_keepalived_image_tag }}"
+
+# Keepalived container image tag.
+cephadm_keepalived_image_tag: "2.1.5"
+
+# Cephadm admin network interface.
+cephadm_admin_interface: "{{ admin_oc_net_name | net_interface }}"
+
+# Ceph public network interface.
+cephadm_public_interface: "{{ storage_net_name | net_interface }}"
+
+# Ceph public network subnet CIDR.
+cephadm_public_network: "{{ storage_net_name | net_cidr }}"
+
+# Ceph cluster network interface.
+cephadm_cluster_interface: "{{ storage_mgmt_net_name | net_interface }}"
+
+# Ceph cluster network subnet CIDR.
+cephadm_cluster_network: "{{ storage_mgmt_net_name | net_cidr }}"
+
+# Whether to enable firewalld for Ceph storage hosts.
+#cephadm_enable_firewalld:
+
+# List of /dev/device paths to use, e.g. for multipath devices that can't be
+# used with an OSD spec.
+#cephadm_osd_devices:
+
+# Ceph OSD specification.
+#cephadm_osd_spec:
+
+# Additional arguments to pass to `cephadm bootstrap`.
+#cephadm_bootstrap_additional_parameters:
+
+###############################################################################
+# Ceph post-deployment configuration.
+
+# List of Ceph erasure coding profiles. See stackhpc.cephadm.ec_profiles role
+# for format.
+#cephadm_ec_profiles:
+
+# List of Ceph CRUSH rules. See stackhpc.cephadm.crush_rules role for format.
+#cephadm_crush_rules:
+
+# List of Ceph pools. See stackhpc.cephadm.pools role for format.
+#cephadm_pools:
+
+# List of Cephx keys. See stackhpc.cephadm.keys role for format.
+#cephadm_keys:
+
+# A list of commands to pass to cephadm shell -- ceph. See
+# stackhpc.cephadm.commands for format. Pre commands run before the rest of the
+# post-deployment configuration, post commands run after the rest of the
+# post-deployment configuration.
+#cephadm_commands_pre:
+#cephadm_commands_post:
+
+###############################################################################
+# Kolla Ceph auto-configuration.
+
+# List of Kolla Ansible services that require Ceph configuration files.
+kolla_ceph_services:
+  - name: cinder-backup
+    keys:
+      - client.cinder
+      - client.cinder-backup
+    required: "{{ kolla_ceph_cinder_backup_required | bool }}"
+  - name: cinder-volume
+    keys:
+      - client.cinder
+    required: "{{ kolla_ceph_cinder_volume_required | bool }}"
+  - name: glance
+    keys:
+      - client.glance
+    required: "{{ kolla_ceph_glance_required | bool }}"
+  - name: manila
+    keys:
+      - client.manila
+    required: "{{ kolla_ceph_manila_required | bool }}"
+  - name: nova
+    keys:
+      - client.cinder
+    required: "{{ kolla_ceph_nova_required | bool }}"
+
+# Whether to generate Ceph configuration for Cinder volume.
+kolla_ceph_cinder_volume_required: "{{ kolla_enable_cinder | bool }}"
+
+# Whether to generate Ceph configuration for Cinder backup.
+kolla_ceph_cinder_backup_required: "{{ kolla_enable_cinder_backup | default(true) | bool }}"
+
+# Whether to generate Ceph configuration for Glance.
+kolla_ceph_glance_required: "{{ kolla_enable_glance | bool }}"
+
+# Whether to generate Ceph configuration for Manila.
+kolla_ceph_manila_required: "{{ kolla_enable_manila | bool }}"
+
+# Whether to generate Ceph configuration for Nova.
+kolla_ceph_nova_required: "{{ kolla_enable_nova | bool }}"
