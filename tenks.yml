@@ -49,3 +49,9 @@ bridge_type: linuxbridge
 
 # No placement service.
 wait_for_placement: false
+
+# NOTE(priteau): Disable libvirt_vm_trust_guest_rx_filters, which when enabled
+# triggers the following errors when booting baremetal instances with Tenks on
+# Libvirt 9: Cannot set interface flags on 'macvtap1': Value too large for
+# defined data type
+libvirt_vm_trust_guest_rx_filters: false
