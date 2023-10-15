@@ -4,12 +4,12 @@
 
 node_types:
   controller:
-    memory_mb: 8192
+    memory_mb: 20480
     vcpus: 4
     volumes:
       # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
       # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
-      - capacity: 20GiB
+      - capacity: 50GiB
     physical_networks:
       - physnet1
     console_log_enabled: true
