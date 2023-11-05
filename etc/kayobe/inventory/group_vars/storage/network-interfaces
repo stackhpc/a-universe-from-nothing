@@ -1,6 +1,4 @@
 ---
-###############################################################################
-# Network interface definitions for the storage group.
 
 # NOTE: The content of this section is very deployment-specific, since it
 # depends on the names and types of networks in the deployment. It should
@@ -14,6 +12,14 @@
 #
 # Further information on the available network attributes is provided in the
 # network configuration reference in the Kayobe documentation.
+
+# Storage interface on all-in-one network.
+aio_interface: "br{{ aio_bridge_ports[0] }}"
+aio_bridge_ports:
+  - "{{ 'ens2' if os_distribution == 'ubuntu' else 'eth0' }}"
+
+# Route via the seed-hypervisor to the outside world.
+aio_gateway: 192.168.33.4
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
