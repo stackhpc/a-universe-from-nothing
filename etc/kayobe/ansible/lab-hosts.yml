@@ -1,21 +1,18 @@
 ---
-- hosts: all
+- hosts: localhost
   gather_facts: false
   tasks:
     - name: Update /etc/hosts for lab entities
-      local_action:
-        module: blockinfile
+      blockinfile:
         path: /etc/hosts
         block: |
           {% for item in groups['overcloud'] + groups['seed'] %}
           {{ aio_ips[item] }} {{ item }}
           {% endfor %}
-      run_once: true
       become: true
 
     - name: Update ssh config for lab entities
-      local_action:
-        module: blockinfile
+      blockinfile:
         path: "{{ lookup('env','HOME') }}/.ssh/config"
         create: true
         mode: 0600
@@ -24,5 +21,4 @@
           Host {{ item }}
               User stack
           {% endfor %}
-      run_once: true
 
