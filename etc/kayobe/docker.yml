@@ -24,6 +24,11 @@
 # URL of docker registry
 #docker_registry:
 
+# Whether docker should be configured to use an insecure registry.
+# Default is false, unless docker_registry_enabled is true and
+# docker_registry_enable_tls is false.
+#docker_registry_insecure:
+
 # CA of docker registry
 #docker_registry_ca:
 
