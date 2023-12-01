@@ -2,8 +2,7 @@
 ###############################################################################
 # Grafana configuration.
 
-# Grafana local admin user name. If you are deploying Monasca Grafana this
-# should not conflict with an OpenStack user name.
+# Grafana local admin user name.
 #grafana_local_admin_user_name:
 
 ###############################################################################

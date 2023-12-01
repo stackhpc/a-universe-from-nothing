@@ -36,14 +36,14 @@ seed_bootstrap_user: "{{ lookup('env', 'USER') }}"
 ###############################################################################
 # Seed node LVM configuration.
 
-# List of seed volume groups. See mrlesmithjr.manage-lvm role for format.
+# List of seed volume groups. See mrlesmithjr.manage_lvm role for format.
 #seed_lvm_groups:
 
-# Default list of seed volume groups. See mrlesmithjr.manage-lvm role for
+# Default list of seed volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #seed_lvm_groups_default:
 
-# Additional list of seed volume groups. See mrlesmithjr.manage-lvm role for
+# Additional list of seed volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #seed_lvm_groups_extra:
 
@@ -54,7 +54,7 @@ seed_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
 #seed_lvm_group_data_enabled:
 
-# Seed LVM volume group for data. See mrlesmithjr.manage-lvm role for format.
+# Seed LVM volume group for data. See mrlesmithjr.manage_lvm role for format.
 #seed_lvm_group_data:
 
 # List of disks for use by seed LVM data volume group. Default to an invalid
@@ -105,6 +105,10 @@ seed_bootstrap_user: "{{ lookup('env', 'USER') }}"
 #     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
 #
 #seed_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying seed containers
+#seed_deploy_containers_registry_attempt_login:
 
 ###############################################################################
 # Seed node firewalld configuration.
