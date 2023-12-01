@@ -28,9 +28,7 @@
 # DIB image OS release. Default is {{ os_release }}.
 #kolla_bifrost_dib_os_release:
 
-# List of default DIB elements. Default is ["disable-selinux",
-# "enable-serial-console", "vm"] when os_distribution is "centos", or
-# ["enable-serial-console", "vm"] otherwise.
+# List of default DIB elements. Default is ["enable-serial-console", "vm"].
 #kolla_bifrost_dib_elements_default:
 
 # List of additional DIB elements. Default is none.

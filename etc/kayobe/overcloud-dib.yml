@@ -28,13 +28,8 @@ overcloud_dib_build_host_images: false
 # DIB image OS release. Default is {{ os_release }}.
 #overcloud_dib_os_release:
 
-# List of default DIB elements. Default is ["centos", "cloud-init-datasources",
-# "disable-selinux", "enable-serial-console", "vm"] when
-# overcloud_dib_os_element is "centos", or ["rocky-container",
-# "cloud-init-datasources", "disable-selinux", "enable-serial-console", "vm"]
-# when overcloud_dib_os_element is "rocky" or
-# ["ubuntu", "cloud-init-datasources", "enable-serial-console", "vm"]
-# when overcloud_dib_os_element is "ubuntu".
+# List of default DIB elements. Default is ["{{ overcloud_dib_os_element }}",
+# "cloud-init-datasources", "enable-serial-console", "vm"].
 #overcloud_dib_elements_default:
 
 # List of additional DIB elements. Default is none.

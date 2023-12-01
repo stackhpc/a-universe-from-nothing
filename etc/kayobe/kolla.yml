@@ -85,11 +85,6 @@
 # Docker namespace to use for Kolla images. Default is 'kolla'.
 #kolla_docker_namespace:
 
-# Whether docker should be configured to use an insecure registry for Kolla
-# images. Default is false, unless docker_registry_enabled is true and
-# docker_registry_enable_tls is false.
-#kolla_docker_registry_insecure:
-
 # Username to use to access a docker registry. Default is not set, in which
 # case the registry will be used without authentication.
 #kolla_docker_registry_username:
@@ -349,6 +344,7 @@
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
 #kolla_enable_ironic_neutron_agent:
+#kolla_enable_ironic_prometheus_exporter:
 #kolla_enable_ironic_pxe_uefi:
 #kolla_enable_iscsid:
 #kolla_enable_keepalived:
@@ -356,6 +352,7 @@
 #kolla_enable_keystone_federation:
 #kolla_enable_keystone_horizon_policy_file:
 #kolla_enable_kuryr:
+#kolla_enable_letsencrypt:
 #kolla_enable_loadbalancer:
 #kolla_enable_magnum:
 #kolla_enable_manila:
@@ -398,6 +395,7 @@
 #kolla_enable_nova_ssh:
 #kolla_enable_octavia:
 #kolla_enable_octavia_driver_agent:
+#kolla_enable_octavia_jobboard:
 #kolla_enable_opensearch:
 #kolla_enable_opensearch_dashboards:
 #kolla_enable_opensearch_dashboards_external:
@@ -447,6 +445,79 @@
 #kolla_enable_watcher:
 #kolla_enable_zookeeper:
 #kolla_enable_zun:
+
+###############################################################################
+# Kolla custom config generation.
+
+# Feature flag to add $KAYOBE_CONFIG_PATH to the list of search paths used
+# when searching for Kolla custom service configuration. Only has an effect in
+# a multiple environments setup. This allows you to configure merging between
+# your environment and the base layer. Defaults to true. Set to false to for
+# backwards compatability.
+#kolla_openstack_custom_config_environment_merging_enabled:
+
+# Default value for kolla_openstack_custom_config_include_globs.
+#kolla_openstack_custom_config_include_globs_default:
+
+# Extra items to add to kolla_openstack_custom_config_include_globs_default
+# to produce kolla_openstack_custom_config_include_globs.
+#kolla_openstack_custom_config_include_globs_extra:
+
+# List of dictionaries with the following keys:
+#   glob: a glob pattern. Any files matching this pattern will be copied to the
+#         the kolla custom config directory
+#   enabled: boolean to disable the glob.
+# This determines the list of files to copy to the generated kolla config
+# directory.
+#kolla_openstack_custom_config_include_globs:
+
+# Kolla config generation rules. These operate on the list of files produced by
+# applying kolla_openstack_custom_config_include_globs. Each of the paths in
+# kolla_openstack_custom_config_paths is searched for files matching one of the
+# globs. If a match is found, any files with the same relative path are grouped
+# together. The rules determine what to do with these matching files e.g copy
+# the most specific file without templating, merge the files with
+# merge_configs, etc.
+# List of dictionaries with the following keys:
+#   glob: A glob matching files for this rule to match on (relative to the
+#     search path)
+#   priority: The rules are processed in increasing priority order with the
+#     first rule matching taking effect.
+#   strategy: How to process the matched file. One of copy, concat, template,
+#      merge_configs, merge_yaml
+#   params: List of params to pass to module enacting the strategy
+# Strategies:
+#   copy: Copy most specific file to kolla config without templating
+#   template: Template most specific file to kolla config
+#   concat: Concatenate files and copy the result to generated kolla config
+#   merge_configs: Use the merge_configs module to merge an ini file, before
+#     copying to the generated kolla-config.
+#   merge_yaml: Use the merge_yaml module to merge a file, before copying to
+#     the generated kolla-config.
+#kolla_openstack_custom_config_rules:
+
+# Whether to enable ini merging rules in
+# kolla_openstack_custom_config_rules_default. Default is true.
+#kolla_openstack_custom_config_merge_configs_enabled:
+
+# Whether to enable yaml merging rules in
+# kolla_openstack_custom_config_rules_default. Default is true.
+#kolla_openstack_custom_config_merge_yaml_enabled:
+
+# Default merge strategy for ini files in
+# kolla_openstack_custom_config_rules_default. Default is concat.
+#kolla_openstack_custom_config_ini_merge_strategy_default:
+
+# Default value for kolla_openstack_custom_config_rules.
+#kolla_openstack_custom_config_rules_default:
+
+# List of globs to filter from kolla_openstack_custom_config_rules_default.
+# Default is an empty list.
+#kolla_openstack_custom_config_rules_default_remove:
+
+# Extra items to add to kolla_openstack_custom_config_rules_default
+# to produce kolla_openstack_custom_config_rules.
+#kolla_openstack_custom_config_rules_extra:
 
 ###############################################################################
 # Passwords and credentials.
