@@ -38,6 +38,7 @@ fi
 # Add a bridge 'braio' for the Kayobe all-in-one cloud network.
 if ! sudo ip l show braio >/dev/null 2>&1; then
   sudo ip l add braio type bridge
+  sudo ip l set braio mtu 1442
   sudo ip l set braio up
   sudo ip a add $seed_hv_ip/24 dev braio
 fi
@@ -45,6 +46,7 @@ fi
 # configuration to fail. Add a dummy interface and plug it into the bridge.
 if ! sudo ip l show dummy1 >/dev/null 2>&1; then
   sudo ip l add dummy1 type dummy
+  sudo ip l set dummy1 mtu 1442
   sudo ip l set dummy1 up
   sudo ip l set dummy1 master braio
 fi
