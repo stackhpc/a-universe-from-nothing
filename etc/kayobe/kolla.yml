@@ -269,7 +269,7 @@
 #kolla_enable_ceilometer_ipmi:
 #kolla_enable_ceilometer_prometheus_pushgateway:
 #kolla_enable_cells:
-#kolla_enable_central_logging:
+kolla_enable_central_logging: true
 #kolla_enable_ceph_rgw:
 #kolla_enable_ceph_rgw_loadbalancer:
 #kolla_enable_cinder:
