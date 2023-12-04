@@ -92,15 +92,15 @@
 ###############################################################################
 # Infrastructure VM node LVM configuration.
 
-# List of infrastructure vm volume groups. See mrlesmithjr.manage-lvm role for
+# List of infrastructure vm volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #infra_vm_lvm_groups:
 
-# Default list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# Default list of infrastructure vm volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #infra_vm_lvm_groups_default:
 
-# Additional list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# Additional list of infrastructure vm volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #infra_vm_lvm_groups_extra:
 
@@ -111,7 +111,7 @@
 # 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
 #infra_vm_lvm_group_data_enabled:
 
-# Infrastructure VM LVM volume group for data. See mrlesmithjr.manage-lvm role
+# Infrastructure VM LVM volume group for data. See mrlesmithjr.manage_lvm role
 # for format.
 #infra_vm_lvm_group_data:
 
