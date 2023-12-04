@@ -71,6 +71,10 @@
 # Default is none.
 #kolla_bifrost_deploy_image_rootfs:
 
+# Custom cloud-init user-data passed to deploy of the deployment image.
+# Default is an empty string.
+#kolla_bifrost_deploy_image_user_data_content:
+
 ###############################################################################
 # Ironic configuration.
 
@@ -115,6 +119,9 @@
 
 # Ironic inspector deployment ramdisk location.
 #kolla_bifrost_inspector_deploy_ramdisk:
+
+# Ironic inspector legacy deployment kernel location.
+#kolla_bifrost_inspector_legacy_deploy_kernel:
 
 # Timeout of hardware inspection on overcloud nodes, in seconds. Default is
 # {{ inspector_inspection_timeout }}.
