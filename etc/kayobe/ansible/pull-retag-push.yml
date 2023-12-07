@@ -80,7 +80,7 @@
     - name: Pull container images (may take a long time)
       become: true
       vars:
-        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}-{{ kolla_base_distro }}-{{ kolla_base_distro_version }}"
+        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}"
       command:
         cmd: "docker pull {{ remote_image }}"
       with_items: "{{ images }}"
@@ -88,8 +88,8 @@
     - name: Retag container images
       become: true
       vars:
-        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}-{{ kolla_base_distro }}-{{ kolla_base_distro_version }}"
-        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}-{{ kolla_base_distro }}-{{ kolla_base_distro_version }}"
+        remote_image: "{% if docker_pull_registry != '' %}{{ docker_pull_registry }}/{% endif %}{{ docker_pull_namespace }}/{{ item }}:{{ docker_pull_tag }}"
+        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}"
       command:
         cmd: "docker tag {{ remote_image }} {{ local_image }}"
       with_items: "{{ images }}"
@@ -97,7 +97,7 @@
     - name: Push container images (may take a long time)
       become: true
       vars:
-        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}-{{ kolla_base_distro }}-{{ kolla_base_distro_version }}"
+        local_image: "{{ kolla_docker_registry }}/{{ kolla_docker_namespace }}/{{ item }}:{{ kolla_tag }}"
       command:
         cmd: "docker push {{ local_image }}"
       with_items: "{{ images }}"
