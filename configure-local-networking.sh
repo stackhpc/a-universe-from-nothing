@@ -32,8 +32,6 @@ if $(which dnf >/dev/null 2>&1); then
 fi
 
 if $(which apt >/dev/null 2>&1); then
-    sudo apt -y install iptables
-else
     sudo apt update
     sudo apt -y install iptables
 fi
