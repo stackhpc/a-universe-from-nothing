@@ -32,10 +32,12 @@
 # Base image for the infra VM root volume. Default is
 # "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
 # when os_distribution is "ubuntu", or
-# https://dl.rockylinux.org/pub/rocky/8/images/Rocky-8-GenericCloud.latest.x86_64.qcow2
-# when os_distribution is "rocky",
+# https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-GenericCloud.latest.x86_64.qcow2
+# when os_distribution is "rocky" and os_release is "8"
 # or
-# "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20220913.0.x86_64.qcow2"
+# https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2
+# when os_distribution is "rocky" and os_release is "9"
+# "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-latest.x86_64.qcow2"
 # otherwise.
 #infra_vm_root_image:
 
@@ -92,15 +94,15 @@
 ###############################################################################
 # Infrastructure VM node LVM configuration.
 
-# List of infrastructure vm volume groups. See mrlesmithjr.manage-lvm role for
+# List of infrastructure vm volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #infra_vm_lvm_groups:
 
-# Default list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# Default list of infrastructure vm volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #infra_vm_lvm_groups_default:
 
-# Additional list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# Additional list of infrastructure vm volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #infra_vm_lvm_groups_extra:
 
@@ -111,7 +113,7 @@
 # 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
 #infra_vm_lvm_group_data_enabled:
 
-# Infrastructure VM LVM volume group for data. See mrlesmithjr.manage-lvm role
+# Infrastructure VM LVM volume group for data. See mrlesmithjr.manage_lvm role
 # for format.
 #infra_vm_lvm_group_data:
 

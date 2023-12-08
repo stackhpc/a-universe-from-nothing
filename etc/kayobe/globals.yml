@@ -4,8 +4,7 @@
 ###############################################################################
 # Local path configuration (Ansible control host).
 
-# Path to Kayobe configuration directory on Ansible control host, with an
-# environment path appended if kayobe_environment is set.
+# Path to Kayobe configuration directory on Ansible control host.
 #kayobe_config_path:
 
 # Name of Kayobe environment to use. Default is $KAYOBE_ENVIRONMENT, or an
@@ -50,7 +49,7 @@
 #os_distribution:
 
 # OS release. Valid options are "8-stream" when os_distribution is "centos", or
-# "8" when os_distribution is "rocky", or "focal" and "jammy" when
+# "8" or "9" when os_distribution is "rocky", or "focal" and "jammy" when
 # os_distribution is "ubuntu".
 #os_release:
 

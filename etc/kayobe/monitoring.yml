@@ -63,15 +63,15 @@
 ###############################################################################
 # Monitoring node LVM configuration.
 
-# List of monitoring node volume groups. See mrlesmithjr.manage-lvm role for
+# List of monitoring node volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #monitoring_lvm_groups:
 
-# Default list of monitoring node volume groups. See mrlesmithjr.manage-lvm
+# Default list of monitoring node volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #monitoring_lvm_groups_default:
 
-# Additional list of monitoring node volume groups. See mrlesmithjr.manage-lvm
+# Additional list of monitoring node volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #monitoring_lvm_groups_extra:
 

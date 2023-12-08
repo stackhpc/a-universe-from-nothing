@@ -67,8 +67,9 @@
 # Kolla configuration.
 
 # Kolla base container image distribution. Options are "centos", "debian",
-# "ubuntu". Default is
-# {{ 'centos' if os_distribution == 'rocky' else os_distribution }}.
+# "rocky", "ubuntu". Default is
+# {{ 'centos' if (os_distribution == 'rocky' and os_release == '8') else
+# os_distribution }}.
 #kolla_base_distro:
 
 # Kolla container image type: binary or source. Default is 'source'.
@@ -298,6 +299,7 @@
 #kolla_enable_gnocchi:
 #kolla_enable_gnocchi_statsd:
 #kolla_enable_grafana:
+#kolla_enable_grafana_external:
 #kolla_enable_hacluster:
 #kolla_enable_haproxy:
 #kolla_enable_haproxy_memcached:
@@ -337,6 +339,7 @@
 #kolla_enable_keystone_federation:
 #kolla_enable_keystone_horizon_policy_file:
 #kolla_enable_kibana:
+#kolla_enable_kibana_external:
 #kolla_enable_kuryr:
 #kolla_enable_loadbalancer:
 #kolla_enable_magnum:
@@ -349,6 +352,8 @@
 #kolla_enable_mariabackup:
 #kolla_enable_mariadb:
 #kolla_enable_masakari:
+#kolla_enable_masakari_hostmonitor:
+#kolla_enable_masakari_instancemonitor:
 #kolla_enable_memcached:
 #kolla_enable_mistral:
 #kolla_enable_monasca:
@@ -379,6 +384,9 @@
 #kolla_enable_nova_ssh:
 #kolla_enable_octavia:
 #kolla_enable_octavia_driver_agent:
+#kolla_enable_opensearch:
+#kolla_enable_opensearch_dashboards:
+#kolla_enable_opensearch_dashboards_external:
 #kolla_enable_openstack_core:
 #kolla_enable_openvswitch:
 #kolla_enable_osprofiler:
@@ -388,6 +396,7 @@
 #kolla_enable_placement:
 #kolla_enable_prometheus:
 #kolla_enable_prometheus_alertmanager:
+#kolla_enable_prometheus_alertmanager_external:
 #kolla_enable_prometheus_blackbox_exporter:
 #kolla_enable_prometheus_cadvisor:
 #kolla_enable_prometheus_ceph_mgr_exporter:
@@ -397,6 +406,7 @@
 #kolla_enable_prometheus_haproxy_exporter:
 #kolla_enable_prometheus_libvirt_exporter:
 #kolla_enable_prometheus_memcached_exporter:
+#kolla_enable_prometheus_msteams:
 #kolla_enable_prometheus_mysqld_exporter:
 #kolla_enable_prometheus_node_exporter:
 #kolla_enable_prometheus_openstack_exporter:
@@ -429,6 +439,10 @@
 # Dictionary containing default custom passwords to add or override in the
 # Kolla passwords file.
 #kolla_ansible_default_custom_passwords:
+
+# Dictionary containing extra custom passwords to add or override in the Kolla
+# passwords file.
+#kolla_ansible_extra_custom_passwords:
 
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
@@ -469,7 +483,7 @@
 # Path to a CA certificate file to use for the OS_CACERT environment variable
 # in public-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
 # default.
-#kolla_external_fqdn_cacert:
+#kolla_public_openrc_cacert:
 
 # Internal API certificate bundle.
 #
@@ -482,7 +496,7 @@
 # Path to a CA certificate file to use for the OS_CACERT environment variable
 # in admin-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
 # default.
-#kolla_internal_fqdn_cacert:
+#kolla_admin_openrc_cacert:
 
 ###############################################################################
 # Proxy configuration
