@@ -16,10 +16,10 @@ fi
 # Disable the firewall.
 sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
-# Disable SELinux both immediately and permanently.
+# Put SELinux in permissive mode both immediately and permanently.
 if $(which setenforce 2>/dev/null >/dev/null); then
     sudo setenforce 0
-    sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+    sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 fi
 
 # Prevent sudo from performing DNS queries.
