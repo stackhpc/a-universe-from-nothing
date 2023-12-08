@@ -9,8 +9,8 @@
     container_image_regexes: ""
     container_image_sets: "{{ seed_container_image_sets + overcloud_container_image_sets }}"
     kolla_build_log_path: "/var/log/kolla-build.log"
-    docker_pull_namespace: kolla
-    docker_pull_registry: ""
+    docker_pull_namespace: "openstack.kolla"
+    docker_pull_registry: "quay.io"
     docker_pull_tag: "{{ kolla_tag }}"
   tasks:
     - name: Set the container image sets to build if images regexes specified
