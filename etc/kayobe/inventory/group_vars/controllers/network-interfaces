@@ -4,8 +4,8 @@
 
 # Controller interface on all-in-one network.
 aio_interface: breth1
-# Use eth1 if it exists, otherwise the bridge will have no ports.
-aio_bridge_ports: "{{ ['eth1'] if 'ansible_eth1' in hostvars[inventory_hostname] else [] }}"
+# Use dummy1 if it exists, otherwise the bridge will have no ports.
+aio_bridge_ports: "{{ ['dummy1'] if 'ansible_dummy1' in hostvars[inventory_hostname] else [] }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
