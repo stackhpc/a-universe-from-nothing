@@ -28,7 +28,7 @@ docker_registry: 192.168.33.5:4000
 # Whether docker should be configured to use an insecure registry.
 # Default is false, unless docker_registry_enabled is true and
 # docker_registry_enable_tls is false.
-#docker_registry_insecure:
+docker_registry_insecure: yes
 
 # CA of docker registry
 #docker_registry_ca:
