@@ -1,0 +1,57 @@
+---
+# This file holds the config given to Tenks when running `tenks-deploy.sh`. It
+# assumes the existence of the bridge `braio`.
+
+node_types:
+  controller:
+    memory_mb: 8192
+    vcpus: 4
+    volumes:
+      # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
+      # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
+      - capacity: 20GiB
+    physical_networks:
+      - physnet1
+    console_log_enabled: true
+  compute:
+    memory_mb: 8192
+    vcpus: 4
+    volumes:
+      # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
+      # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
+      - capacity: 20GiB
+    physical_networks:
+      - physnet1
+    console_log_enabled: true
+
+specs:
+  - type: controller
+    count: 1
+    node_name_prefix: controller
+    ironic_config:
+      resource_class: test-rc
+      network_interface: noop
+  - type: compute
+    count: 1
+    node_name_prefix: compute
+    ironic_config:
+      resource_class: test-rc
+      network_interface: noop
+
+ipmi_address: 192.168.33.4
+
+nova_flavors: []
+
+physnet_mappings:
+  physnet1: braio
+
+bridge_type: linuxbridge
+
+# No placement service.
+wait_for_placement: false
+
+# NOTE(priteau): Disable libvirt_vm_trust_guest_rx_filters, which when enabled
+# triggers the following errors when booting baremetal instances with Tenks on
+# Libvirt 9: Cannot set interface flags on 'macvtap1': Value too large for
+# defined data type
+libvirt_vm_trust_guest_rx_filters: false

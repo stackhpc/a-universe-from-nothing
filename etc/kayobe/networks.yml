@@ -4,27 +4,35 @@
 ###############################################################################
 # Network role to network mappings.
 
+# Map all networks to the all-in-one network.
+
 # Name of the network used for admin access to the overcloud
 #admin_oc_net_name:
+admin_oc_net_name: aio
 
 # Name of the network used by the seed to manage the bare metal overcloud
 # hosts via their out-of-band management controllers.
 #oob_oc_net_name:
+oob_oc_net_name: aio
 
 # Name of the network used by the seed to provision the bare metal overcloud
 # hosts.
 #provision_oc_net_name:
+provision_oc_net_name: aio
 
 # Name of the network used by the overcloud hosts to manage the bare metal
 # compute hosts via their out-of-band management controllers.
 #oob_wl_net_name:
+oob_wl_net_name: aio
 
 # Name of the network used by the overcloud hosts to provision the bare metal
 # workload hosts.
 #provision_wl_net_name:
+provision_wl_net_name: aio
 
 # Name of the network used to expose the internal OpenStack API endpoints.
 #internal_net_name:
+internal_net_name: aio
 
 # List of names of networks used to provide external network access via
 # Neutron.
@@ -32,32 +40,42 @@
 # If external_net_name is defined, external_net_names will default to a list
 # containing one item, external_net_name.
 #external_net_names:
+external_net_names:
+  - aio
 
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
+public_net_name: aio
 
 # Name of the network used by Neutron to carry tenant overlay network traffic.
 #tunnel_net_name:
+tunnel_net_name: aio
 
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
+storage_net_name: aio
 
 # Name of the network used to carry storage management traffic.
 #storage_mgmt_net_name:
+storage_mgmt_net_name: aio
 
 # Name of the network used to carry swift storage data traffic.
 #swift_storage_net_name:
+swift_storage_net_name: aio
 
 # Name of the network used to carry swift storage replication traffic.
 #swift_storage_replication_net_name:
+swift_storage_replication_net_name: aio
 
 # Name of the network used to perform hardware introspection on the bare metal
 # workload hosts.
 #inspection_net_name:
+inspection_net_name: aio
 
 # Name of the network used to perform cleaning on the bare metal workload
 # hosts
 #cleaning_net_name:
+cleaning_net_name: aio
 
 ###############################################################################
 # Network definitions.
@@ -78,6 +96,16 @@
 #
 # Further information on the available network attributes is provided in the
 # network configuration reference in the Kayobe documentation.
+
+# All-in-one network.
+aio_cidr: 192.168.33.0/24
+aio_allocation_pool_start: 192.168.33.3
+aio_allocation_pool_end: 192.168.33.30
+aio_neutron_allocation_pool_start: 192.168.33.31
+aio_neutron_allocation_pool_end: 192.168.33.127
+aio_inspection_allocation_pool_start: 192.168.33.128
+aio_inspection_allocation_pool_end: 192.168.33.254
+aio_mtu: 1442
 
 ###############################################################################
 # Network virtual patch link configuration.

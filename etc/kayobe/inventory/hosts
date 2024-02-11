@@ -1,21 +1,18 @@
-# Kayobe hosts inventory file. This file should be modified to define the hosts
-# and their top-level group membership.
-
 # This host acts as the configuration management Ansible control host. This must be
 # localhost.
 localhost ansible_connection=local
 
 [seed-hypervisor]
-# Add a seed hypervisor node here if required. This host will run a seed node
-# Virtual Machine.
+seed-hypervisor
 
 [seed]
-# Add a seed node here if required. This host will provide the Bifrost
-# undercloud.
+seed
 
 [controllers]
-# Add controller nodes here if required. These hosts will provide the
-# OpenStack overcloud.
+#controller0
+
+[compute:children]
+#controllers
 
 [baremetal-compute]
 # Add baremetal compute nodes here if required.

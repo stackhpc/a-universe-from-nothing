@@ -22,7 +22,8 @@
 #docker_storage_volume_thinpool_meta_size:
 
 # URL of docker registry
-#docker_registry:
+# Use a docker registry on the seed.
+docker_registry: 192.168.33.5:4000
 
 # Whether docker should be configured to use an insecure registry.
 # Default is false, unless docker_registry_enabled is true and
