@@ -5,32 +5,66 @@
       jobs:
         - openstack-tox-pep8
         - kayobe-overcloud-centos8s
+        - kayobe-overcloud-centos9s
+        - kayobe-overcloud-rocky8
+        - kayobe-overcloud-rocky9
         - kayobe-overcloud-ubuntu-focal
-        - kayobe-overcloud-tls-centos8s
+        - kayobe-overcloud-ubuntu-jammy
         - kayobe-overcloud-host-configure-centos8s
+        - kayobe-overcloud-host-configure-centos9s
+        - kayobe-overcloud-host-configure-rocky8
+        - kayobe-overcloud-host-configure-rocky9
         - kayobe-overcloud-host-configure-ubuntu-focal
-        - kayobe-overcloud-upgrade-centos8s
-        - kayobe-overcloud-upgrade-ubuntu-focal
+        - kayobe-overcloud-host-configure-ubuntu-jammy
+        - kayobe-overcloud-tls-centos8s
+        - kayobe-overcloud-tls-rocky9
         - kayobe-seed-centos8s
+        - kayobe-seed-rocky8
+        - kayobe-seed-rocky9
         - kayobe-seed-ubuntu-focal
-        - kayobe-seed-upgrade-centos8s
-        - kayobe-seed-upgrade-ubuntu-focal
+        - kayobe-seed-ubuntu-jammy
         - kayobe-seed-vm-centos8s
+        - kayobe-seed-vm-rocky8
+        - kayobe-seed-vm-rocky9
         - kayobe-seed-vm-ubuntu-focal
+        - kayobe-seed-vm-rocky9
+        - kayobe-seed-vm-ubuntu-jammy
+        - kayobe-infra-vm-centos8s
+        - kayobe-infra-vm-rocky8
+        - kayobe-infra-vm-rocky9
+        - kayobe-infra-vm-ubuntu-focal
+        - kayobe-infra-vm-ubuntu-jammy
 
     gate:
       jobs:
         - openstack-tox-pep8
         - kayobe-overcloud-centos8s
+        - kayobe-overcloud-centos9s
+        - kayobe-overcloud-rocky8
+        - kayobe-overcloud-rocky9
         - kayobe-overcloud-ubuntu-focal
-        - kayobe-overcloud-tls-centos8s
+        - kayobe-overcloud-ubuntu-jammy
         - kayobe-overcloud-host-configure-centos8s
+        - kayobe-overcloud-host-configure-centos9s
+        - kayobe-overcloud-host-configure-rocky8
+        - kayobe-overcloud-host-configure-rocky9
         - kayobe-overcloud-host-configure-ubuntu-focal
-        - kayobe-overcloud-upgrade-centos8s
-        - kayobe-overcloud-upgrade-ubuntu-focal
+        - kayobe-overcloud-host-configure-ubuntu-jammy
+        - kayobe-overcloud-tls-centos8s
+        - kayobe-overcloud-tls-rocky9
         - kayobe-seed-centos8s
+        - kayobe-seed-rocky8
+        - kayobe-seed-rocky9
         - kayobe-seed-ubuntu-focal
-        - kayobe-seed-upgrade-centos8s
-        - kayobe-seed-upgrade-ubuntu-focal
+        - kayobe-seed-ubuntu-jammy
         - kayobe-seed-vm-centos8s
+        - kayobe-seed-vm-rocky8
+        - kayobe-seed-vm-rocky9
         - kayobe-seed-vm-ubuntu-focal
+        - kayobe-seed-vm-rocky9
+        - kayobe-seed-vm-ubuntu-jammy
+        - kayobe-infra-vm-centos8s
+        - kayobe-infra-vm-rocky8
+        - kayobe-infra-vm-rocky9
+        - kayobe-infra-vm-ubuntu-focal
+        - kayobe-infra-vm-ubuntu-jammy
