@@ -108,6 +108,12 @@
 # Ironic inspector IPMI password to set.
 #kolla_bifrost_inspector_ipmi_password:
 
+# Ironic inspector Redfish username to set.
+#kolla_bifrost_inspector_redfish_username:
+
+# Ironic inspector Redfish password to set.
+#kolla_bifrost_inspector_redfish_password:
+
 # Ironic inspector network interface name on which to check for an LLDP switch
 # port description to use as the node's name.
 #kolla_bifrost_inspector_lldp_switch_port_interface:

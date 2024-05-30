@@ -76,10 +76,8 @@
 #compute_lvm_groups_extra:
 
 # Whether a 'data' LVM volume group should exist on compute hosts. By default
-# this contains a 'docker-volumes' logical volume for Docker volume storage. It
-# will also be used for Docker container and image storage if
-# 'docker_storage_driver' is set to 'devicemapper'. Default is true if
-# 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
+# this contains a 'docker-volumes' logical volume for Docker volume storage.
+# Default is false.
 #compute_lvm_group_data_enabled:
 
 # Compute LVM volume group for data. See mrlesmithjr.manage_lvm role for
@@ -180,7 +178,7 @@
 #compute_qemu_conf:
 
 # Whether to enable libvirt SASL authentication. Default is true.
-#compute_libvirt_enable_sasl: true
+#compute_libvirt_enable_sasl:
 
 # libvirt SASL password. Default is unset.
 #compute_libvirt_sasl_password:
