@@ -50,15 +50,16 @@
 #ipa_build_dib_env:
 
 # List of default git repositories containing Diskimage Builder (DIB) elements.
-# See stackhpc.os-images role for usage. Default is one item for IPA builder.
+# See stackhpc.openstack.os_images role for usage.
+# Default is one item for IPA builder.
 #ipa_build_dib_git_elements_default:
 
 # List of additional git repositories containing Diskimage Builder (DIB)
-# elements. See stackhpc.os-images role for usage. Default is empty.
+# elements. See stackhpc.openstack.os_images role for usage. Default is empty.
 #ipa_build_dib_git_elements_extra:
 
 # List of git repositories containing Diskimage Builder (DIB) elements. See
-# stackhpc.os-images role for usage. Default is a combination of
+# stackhpc.openstack.os_images role for usage. Default is a combination of
 # ipa_build_dib_git_elements_default and ipa_build_dib_git_elements_extra.
 #ipa_build_dib_git_elements:
 
