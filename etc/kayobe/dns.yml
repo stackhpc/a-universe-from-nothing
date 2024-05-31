@@ -3,7 +3,7 @@
 # DNS.
 
 # Whether kayobe should configure resolv.conf.
-#resolv_is_managed:
+resolv_is_managed: false
 
 # List of DNS nameservers.
 #resolv_nameservers:
