@@ -64,6 +64,10 @@ os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 # to not specify a gather subset.
 #kayobe_ansible_setup_gather_subset:
 
+# Global maximum failure percentage. By default this is undefined, which is
+# equivalent to a value of 100.
+#kayobe_max_fail_percentage:
+
 ###############################################################################
 # SELinux configuration.
 
