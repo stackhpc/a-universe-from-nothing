@@ -1,0 +1,11 @@
+---
+###############################################################################
+# Logging configuration
+
+# Journald storage. One of: volatile, persistent, auto, or none. Defaults to
+# `persistent`.
+#journald_storage:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
