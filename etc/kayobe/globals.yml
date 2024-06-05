@@ -64,6 +64,10 @@
 # to not specify a gather subset.
 #kayobe_ansible_setup_gather_subset:
 
+# Global maximum failure percentage. By default this is undefined, which is
+# equivalent to a value of 100.
+#kayobe_max_fail_percentage:
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
