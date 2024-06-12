@@ -291,7 +291,7 @@ Here's some ideas for things to explore with the deployment:
 
 * **Access Control Plane Components**: take a deep dive into the internals
   by `Exploring the Deployment`_.
-* **Deploy Elasticsearch and Kibana**: see `Enabling Centralised Logging`_
+* **Deploy OpenSearch and OpenSearch Dashboards**: see `Enabling Centralised Logging`_
   to get logs aggregated from across our OpenStack control plane.
 
 Exploring the Deployment
@@ -381,8 +381,8 @@ Enabling Centralised Logging
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In Kolla-Ansible, centralised logging is easily enabled and results in the
-deployment of Elasticsearch and Kibana services and configuration to forward
-all OpenStack service logging. **Be cautious as Elasticsearch will consume a
+deployment of OpenSearch services and configuration to forward
+all OpenStack service logging. **Be cautious as OpenSearch will consume a
 significant portion of available resources on a standard deployment.**
 
 To enable the service, one flag must be changed in
@@ -393,16 +393,16 @@ To enable the service, one flag must be changed in
     -#kolla_enable_central_logging:
     +kolla_enable_central_logging: yes
 
-This will install ``elasticsearch`` and ``kibana`` containers, and configure
-logging via ``fluentd`` so that logging from all deployed Docker containers will
-be routed to Elasticsearch.
+This will deploy ``opensearch`` and ``opensearch_dashboards`` containers, and
+configure logging via ``fluentd`` so that logging from all deployed Docker
+containers will be routed to OpenSearch.
 
 Before this can be applied, it is necessary to download the missing images to
 the seed VM. Pull, retag and push the centralised logging images:
 
 .. code-block:: console
 
-   ~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh kibana elasticsearch
+   ~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh ^opensearch
 
 To deploy the logging stack:
 
@@ -417,22 +417,23 @@ The new containers can be seen running on the controller node:
 
 .. code-block:: console
 
-    $ ssh stack@192.168.33.3 sudo docker ps
-    CONTAINER ID        IMAGE                                                                   COMMAND                  CREATED             STATUS              PORTS               NAMES
-    304b197f888b        192.168.33.5:4000/kolla/centos-source-kibana:master                     "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           kibana
-    9eb0cf47c7f7        192.168.33.5:4000/kolla/centos-source-elasticsearch:master              "dumb-init --single-c"   18 minutes ago      Up 18 minutes                           elasticsearch
+    $ ssh stack@192.168.33.3 docker ps
+    CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED       STATUS                 PORTS     NAMES
+    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2024.1-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
+    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2024.1-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
     ...
 
-We can see the log indexes in Elasticsearch:
+We can see the log indexes in OpenSearch:
 
 .. code-block:: console
 
    curl -X GET "192.168.33.3:9200/_cat/indices?v"
 
-To access Kibana, we must first forward connections from our public interface
-to the kibana service running on our ``controller0`` VM.
+To access OpenSearch Dashboards, we must first forward connections from our
+public interface to the OpenSearch Dashboards service running on our
+``controller0`` VM.
 
-The easiest way to do this is to add Kibana's default port (5601) to our
+The easiest way to do this is to add OpenSearch Dashboards's default port (5601) to our
 ``configure-local-networking.sh`` script in ``~/kayobe/config/src/kayobe-config/``:
 
 .. code-block:: diff
@@ -452,17 +453,17 @@ Then rerun the script to apply the change:
 
     config/src/kayobe-config/configure-local-networking.sh
 
-We can now connect to Kibana using our hypervisor host public IP and port 5601.
+We can now connect to OpenSearch Dashboards using our hypervisor host public IP and port 5601.
 
-The username is ``kibana`` and the password we can extract from the
+The username is ``opensearch`` and the password we can extract from the
 Kolla-Ansible passwords (in production these would be vault-encrypted
 but they are not here).
 
 .. code-block:: console
 
-    grep kibana config/src/kayobe-config/etc/kolla/passwords.yml
+   grep opensearch_dashboards config/src/kayobe-config/etc/kolla/passwords.yml
 
-Once you're in, Kibana needs some further setup which is not automated.
+Once you're in, OpenSearch Dashboards needs some further setup which is not automated.
 Set the log index to ``flog-*`` and you should be ready to go.
 
 Adding the Barbican service
