@@ -20,7 +20,7 @@ Requirements
 
 For this workshop we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-CentOS Stream 8 or Ubuntu 20.04, with the following minimum requirements:
+Rocky Linux 9 or Ubuntu 22.04, with the following minimum requirements:
 
 * 64GB RAM (more is recommended when growing the lab deployment)
 * 100GB disk
@@ -59,7 +59,7 @@ There are four parts to this guide:
 exercise, and fetching the necessary source code.
 
 *Deploying a Seed* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain CentOS 8 cloud image, including
+install the Kayobe prerequisites on a plain Rocky 9 cloud image, including
 provisioning and configuration of a seed VM. Optionally, snapshot the
 instance after this step to reduce setup time in future.
 
@@ -75,7 +75,7 @@ Preparation
 
 This shows how to prepare the seed hypervisor for the exercise. It assumes
 you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh centos@<ip>``
+above and have already logged in (e.g. ``ssh rocky@<ip>``
 or ``ssh ubuntu@<ip>``).
 
 .. code-block:: console
@@ -130,7 +130,7 @@ Deploying a Seed
 
 This shows how to create an image suitable for deploying Kayobe.
 It assumes you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh centos@<ip>``), and performed the
+above and have already logged in (e.g. ``ssh rocky@<ip>``), and performed the
 necessary `Preparation`_.
 
 .. code-block:: console
@@ -166,7 +166,7 @@ necessary `Preparation`_.
    # Optional: Shutdown the seed VM if creating a seed snapshot.
    sudo virsh shutdown seed
 
-If required, add any additional SSH public keys to /home/centos/.ssh/authorized_keys
+If required, add any additional SSH public keys to /home/rocky/.ssh/authorized_keys
 
 Optional: Creating a Seed Snapshot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -299,7 +299,7 @@ Exploring the Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once each of the VMs becomes available, they should be accessible
-via SSH as the ``centos`` or ``stack`` user at the following IP addresses:
+via SSH as the ``rocky`` or ``stack`` user at the following IP addresses:
 
 ===========  ================
 Host         IP
