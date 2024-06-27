@@ -76,8 +76,7 @@
 #ipa_images_kernel_name:
 
 # URL of Ironic deployment kernel image to download.
-# yamllint disable-line rule:line-length
-ipa_kernel_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa{{ ipa_images_upstream_url_suffix }}.vmlinuz"
+#ipa_kernel_upstream_url:
 
 # URL of checksum of Ironic deployment kernel image.
 #ipa_kernel_checksum_url:
@@ -89,8 +88,7 @@ ipa_kernel_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tin
 #ipa_images_ramdisk_name:
 
 # URL of Ironic deployment ramdisk image to download.
-# yamllint disable-line rule:line-length
-ipa_ramdisk_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa{{ ipa_images_upstream_url_suffix }}.gz"
+#ipa_ramdisk_upstream_url:
 
 # URL of checksum of Ironic deployment ramdisk image.
 #ipa_ramdisk_checksum_url:
