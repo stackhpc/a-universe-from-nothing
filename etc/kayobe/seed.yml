@@ -36,25 +36,23 @@
 ###############################################################################
 # Seed node LVM configuration.
 
-# List of seed volume groups. See mrlesmithjr.manage-lvm role for format.
+# List of seed volume groups. See mrlesmithjr.manage_lvm role for format.
 #seed_lvm_groups:
 
-# Default list of seed volume groups. See mrlesmithjr.manage-lvm role for
+# Default list of seed volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #seed_lvm_groups_default:
 
-# Additional list of seed volume groups. See mrlesmithjr.manage-lvm role for
+# Additional list of seed volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #seed_lvm_groups_extra:
 
 # Whether a 'data' LVM volume group should exist on the seed. By default this
-# contains a 'docker-volumes' logical volume for Docker volume storage. It will
-# also be used for Docker container and image storage if
-# 'docker_storage_driver' is set to 'devicemapper'. Default is true if
-# 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
+# contains a 'docker-volumes' logical volume for Docker volume storage.
+# Default is false.
 #seed_lvm_group_data_enabled:
 
-# Seed LVM volume group for data. See mrlesmithjr.manage-lvm role for format.
+# Seed LVM volume group for data. See mrlesmithjr.manage_lvm role for format.
 #seed_lvm_group_data:
 
 # List of disks for use by seed LVM data volume group. Default to an invalid
@@ -100,12 +98,15 @@
 # Example:
 # seed_containers:
 #   squid:
-#     name: "squid"
 #     image: "stackhpc/squid:3.5.20-1"
 #     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
 #     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
 #
 #seed_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying seed containers
+#seed_deploy_containers_registry_attempt_login:
 
 ###############################################################################
 # Seed node firewalld configuration.

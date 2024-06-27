@@ -30,7 +30,7 @@
 # * types: whitespace-separated list of repository types, e.g. deb or deb-src
 #   (optional, default is 'deb')
 # * url: URL of the repository
-# * suites: whitespace-separated list of suites, e.g. focal (optional, default
+# * suites: whitespace-separated list of suites, e.g. jammy (optional, default
 #   is ansible_facts.distribution_release)
 # * components: whitespace-separated list of components, e.g. main (optional,
 #   default is 'main')
@@ -45,6 +45,17 @@
 # when replacing the distribution repositories via apt_repositories.
 # Default is false.
 #apt_disable_sources_list:
+
+# List of Apt auth configurations. Each item is a dict with the following keys:
+# * machine: 'machine' entry in the auth file
+# * login: 'login' entry in the auth file
+# * password: 'password' entry in the auth file
+# * filename: Name of a file in which to store the auth configuration. The
+#   extension should be '.conf'.
+# * filename: Name of a file in /etc/apt/auth.conf.d in which to store
+#   the auth configuration. The extension should be ``.conf``.
+# Default is an empty list.
+#apt_auth:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

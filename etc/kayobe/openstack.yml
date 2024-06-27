@@ -2,10 +2,10 @@
 ###############################################################################
 # OpenStack release configuration.
 
-# Name of the current OpenStack release. Default is "yoga".
+# Name of the current OpenStack release. Default is "2024.1".
 #openstack_release:
 
-# Name of the current OpenStack branch. Default is "stable/yoga".
+# Name of the current OpenStack branch. Default is "stable/2024.1".
 #openstack_branch:
 
 ###############################################################################
