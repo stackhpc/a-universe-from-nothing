@@ -1,4 +1,24 @@
 ---
+###############################################################################
+# Network interface definitions for the seed-hypervisor group.
+
+# NOTE: The content of this section is very deployment-specific, since it
+# depends on the names and types of networks in the deployment. It should
+# define the group-specific attributes of networks. The following example shows
+# a basic configuration for a network called "example":
+#
+# example_interface: eth0
+#
+# Global network attributes such as subnet CIDRs are typically configured in
+# etc/kayobe/networks.yml.
+#
+# Further information on the available network attributes is provided in the
+# network configuration reference in the Kayobe documentation.
+
 aio_interface: braio
 aio_bridge_ports:
   - dummy1
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

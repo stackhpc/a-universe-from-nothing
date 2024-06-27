@@ -91,10 +91,6 @@
 # vendor_interface field set.
 #kolla_ironic_default_vendor_interface:
 
-# Default boot option to use when no boot option is requested in node's
-# driver_info.
-#kolla_ironic_default_boot_option:
-
 # Name of the Neutron network to use for cleaning.
 #kolla_ironic_cleaning_network:
 

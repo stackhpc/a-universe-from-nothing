@@ -84,9 +84,6 @@
 # Ironic inspector rule to set deployment ramdisk.
 #inspector_rule_deploy_ramdisk:
 
-# Ironic inspector rule to set local boot capability
-#inspector_rule_local_boot:
-
 # Ironic inspector rule to initialise root device hints.
 #inspector_rule_root_hint_init:
 

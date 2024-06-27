@@ -67,15 +67,19 @@
 # Kolla configuration.
 
 # Kolla base container image distribution. Options are "centos", "debian",
-# "ubuntu". Default is
-# {{ 'centos' if os_distribution == 'rocky' else os_distribution }}.
+# "rocky", "ubuntu". Default is {{ os_distribution }}.
 #kolla_base_distro:
 
-# Kolla container image type: binary or source. Default is 'source'.
-#kolla_install_type:
+# Kolla base container image distribution version default map.
+# Defines default versions for each distribution.
+#kolla_base_distro_version_default_map:
+
+# Kolla base container image distribution version.
+# Default is kolla_base_distro_version_default_map[kolla_base_distro].
+#kolla_base_distro_version:
 
 # URL of docker registry to use for Kolla images. Default is not set, in which
-# case Dockerhub will be used.
+# case Quay.io will be used.
 #kolla_docker_registry:
 
 # Docker namespace to use for Kolla images. Default is 'kolla'.
@@ -98,12 +102,13 @@
 # Default is {{ openstack_release }}.
 #kolla_openstack_release:
 
-# Docker tag applied to built container images. Default is
-# {{ kolla_openstack_release }}.
+# Docker tag applied to built container images. Default is {{
+# kolla_openstack_release }}-{{ kolla_base_distro }}-{{
+# kolla_base_distro_version }}.
 #kolla_tag:
 
-# Dict mapping names of sources to their definitions for
-# kolla_install_type=source. See kolla.common.config for details.
+# Dict mapping names of sources to their definitions.
+# See kolla.common.config for details.
 # Example:
 # kolla_sources:
 #   ironic-base:
@@ -231,6 +236,19 @@
 # remotely on the target nodes. If None, no virtualenv will be used.
 #kolla_ansible_target_venv:
 
+# Password to use to encrypt the kolla-ansible passwords.yml file.
+#kolla_ansible_vault_password:
+
+# Hashi Vault
+#kolla_ansible_vault_addr:
+#kolla_ansible_vault_mount_point:
+#kolla_ansible_vault_kv_path:
+#kolla_ansible_vault_namespace:
+#kolla_ansible_vault_role_id:
+#kolla_ansible_vault_secret_id:
+#kolla_ansible_vault_token:
+#kolla_ansible_vault_cacert:
+
 # Whether TLS is enabled for the external API endpoints. Default is 'no'.
 #kolla_enable_tls_external:
 
@@ -277,6 +295,9 @@
 #kolla_enable_cinder_backend_iscsi:
 #kolla_enable_cinder_backend_lvm:
 #kolla_enable_cinder_backend_nfs:
+#kolla_enable_cinder_backend_pure_fc:
+#kolla_enable_cinder_backend_pure_iscsi:
+#kolla_enable_cinder_backend_pure_roce:
 #kolla_enable_cinder_backend_quobyte:
 #kolla_enable_cinder_backup:
 #kolla_enable_cinder_horizon_policy_file:
@@ -286,9 +307,8 @@
 #kolla_enable_cyborg:
 #kolla_enable_designate:
 #kolla_enable_destroy_images:
-#kolla_enable_elasticsearch:
-#kolla_enable_elasticsearch_curator:
 #kolla_enable_etcd:
+#kolla_enable_external_api_firewalld:
 #kolla_enable_external_mariadb_load_balancer:
 #kolla_enable_fluentd:
 #kolla_enable_freezer:
@@ -298,6 +318,7 @@
 #kolla_enable_gnocchi:
 #kolla_enable_gnocchi_statsd:
 #kolla_enable_grafana:
+#kolla_enable_grafana_external:
 #kolla_enable_hacluster:
 #kolla_enable_haproxy:
 #kolla_enable_haproxy_memcached:
@@ -314,7 +335,6 @@
 #kolla_enable_horizon_manila:
 #kolla_enable_horizon_masakari:
 #kolla_enable_horizon_mistral:
-#kolla_enable_horizon_monasca:
 #kolla_enable_horizon_murano:
 #kolla_enable_horizon_neutron_vpnaas:
 #kolla_enable_horizon_octavia:
@@ -328,16 +348,13 @@
 #kolla_enable_horizon_zun:
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
-#kolla_enable_ironic_ipxe:
 #kolla_enable_ironic_neutron_agent:
 #kolla_enable_ironic_pxe_uefi:
 #kolla_enable_iscsid:
-#kolla_enable_kafka:
 #kolla_enable_keepalived:
 #kolla_enable_keystone:
 #kolla_enable_keystone_federation:
 #kolla_enable_keystone_horizon_policy_file:
-#kolla_enable_kibana:
 #kolla_enable_kuryr:
 #kolla_enable_loadbalancer:
 #kolla_enable_magnum:
@@ -350,9 +367,10 @@
 #kolla_enable_mariabackup:
 #kolla_enable_mariadb:
 #kolla_enable_masakari:
+#kolla_enable_masakari_hostmonitor:
+#kolla_enable_masakari_instancemonitor:
 #kolla_enable_memcached:
 #kolla_enable_mistral:
-#kolla_enable_monasca:
 #kolla_enable_multipathd:
 #kolla_enable_murano:
 #kolla_enable_neutron:
@@ -380,6 +398,9 @@
 #kolla_enable_nova_ssh:
 #kolla_enable_octavia:
 #kolla_enable_octavia_driver_agent:
+#kolla_enable_opensearch:
+#kolla_enable_opensearch_dashboards:
+#kolla_enable_opensearch_dashboards_external:
 #kolla_enable_openstack_core:
 #kolla_enable_openvswitch:
 #kolla_enable_osprofiler:
@@ -389,6 +410,7 @@
 #kolla_enable_placement:
 #kolla_enable_prometheus:
 #kolla_enable_prometheus_alertmanager:
+#kolla_enable_prometheus_alertmanager_external:
 #kolla_enable_prometheus_blackbox_exporter:
 #kolla_enable_prometheus_cadvisor:
 #kolla_enable_prometheus_ceph_mgr_exporter:
@@ -398,19 +420,20 @@
 #kolla_enable_prometheus_haproxy_exporter:
 #kolla_enable_prometheus_libvirt_exporter:
 #kolla_enable_prometheus_memcached_exporter:
+#kolla_enable_prometheus_msteams:
 #kolla_enable_prometheus_mysqld_exporter:
 #kolla_enable_prometheus_node_exporter:
 #kolla_enable_prometheus_openstack_exporter:
+#kolla_enable_prometheus_openstack_exporter_external:
 #kolla_enable_prometheus_rabbitmq_exporter:
 #kolla_enable_prometheus_server:
-#kolla_enable_qdrouterd:
+#kolla_enable_proxysql:
 #kolla_enable_rabbitmq:
 #kolla_enable_redis:
 #kolla_enable_sahara:
 #kolla_enable_senlin:
-#kolla_enable_skydive:
+#kolla_enable_skyline:
 #kolla_enable_solum:
-#kolla_enable_storm:
 #kolla_enable_swift:
 #kolla_enable_swift_recon:
 #kolla_enable_swift_s3api:
@@ -431,6 +454,10 @@
 # Dictionary containing default custom passwords to add or override in the
 # Kolla passwords file.
 #kolla_ansible_default_custom_passwords:
+
+# Dictionary containing extra custom passwords to add or override in the Kolla
+# passwords file.
+#kolla_ansible_extra_custom_passwords:
 
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
@@ -471,7 +498,7 @@ kolla_external_vip_address: 192.168.33.2
 # Path to a CA certificate file to use for the OS_CACERT environment variable
 # in public-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
 # default.
-#kolla_external_fqdn_cacert:
+#kolla_public_openrc_cacert:
 
 # Internal API certificate bundle.
 #
@@ -484,7 +511,22 @@ kolla_external_vip_address: 192.168.33.2
 # Path to a CA certificate file to use for the OS_CACERT environment variable
 # in admin-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
 # default.
-#kolla_internal_fqdn_cacert:
+#kolla_admin_openrc_cacert:
+
+###############################################################################
+# Proxy configuration
+
+# HTTP proxy URL (format: http(s)://[user:password@]proxy_name:port) used by
+# Kolla. Default value is "{{ http_proxy }}".
+#kolla_http_proxy:
+
+# HTTPS proxy URL (format: http(s)://[user:password@]proxy_name:port) used by
+# Kolla. Default value is "{{ https_proxy }}".
+#kolla_https_proxy:
+
+# List of domains, hostnames, IP addresses and networks for which no proxy is
+# used. Default value is "{{ no_proxy }}".
+#kolla_no_proxy:
 
 ###############################################################################
 # Proxy configuration

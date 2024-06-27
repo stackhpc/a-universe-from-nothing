@@ -7,8 +7,11 @@
 # Whether to build host disk images with DIB directly instead of through
 # Bifrost. Setting it to true disables Bifrost image build and allows images to
 # be built with the `kayobe overcloud host image build` command. Default value
-# is {{ os_distribution == 'rocky' }}. This will change in a future release.
-#overcloud_dib_build_host_images:
+# is true.
+overcloud_dib_build_host_images: false
+
+# List of additional build host packages to install. Default is an empty list.
+#overcloud_dib_host_packages_extra:
 
 # List of overcloud host disk images to build. Each element is a dict defining
 # an image in a format accepted by the stackhpc.os-images role. Default is to
@@ -75,6 +78,10 @@
 # used for building overcloud host disk images. Default is {{
 # pip_upper_constraints_file }}.
 #overcloud_dib_upper_constraints_file:
+
+# Upper constraints file for installation of DIB to build overcloud host
+# disk images. Default is empty string.
+#overcloud_dib_dib_upper_constraints_file:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

@@ -80,6 +80,23 @@ cleaning_net_name: aio
 ###############################################################################
 # Network definitions.
 
+# NOTE: The content of this section is very deployment-specific, since it
+# depends on the names and types of networks in the deployment. It should
+# define the global attributes of networks. The following example shows a basic
+# configuration for a network called "example":
+#
+# example_cidr: 10.0.0.0/24
+# example_allocation_pool_start: 10.0.0.2
+# example_allocation_pool_start: 10.0.0.254
+# example_gateway: 10.0.0.1
+# example_vlan: 42
+#
+# Host or group-specific network attributes such as interface names are
+# typically configured via host or group variables.
+#
+# Further information on the available network attributes is provided in the
+# network configuration reference in the Kayobe documentation.
+
 # All-in-one network.
 aio_cidr: 192.168.33.0/24
 aio_allocation_pool_start: 192.168.33.3

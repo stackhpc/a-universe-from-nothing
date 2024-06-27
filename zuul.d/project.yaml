@@ -1,5 +1,6 @@
 ---
 - project:
+    queue: kayobe
     check:
       jobs:
         - openstack-tox-pep8
@@ -7,7 +8,6 @@
         - kayobe-seed-centos
 
     gate:
-      queue: kayobe
       jobs:
         - openstack-tox-pep8
         - kayobe-overcloud-centos

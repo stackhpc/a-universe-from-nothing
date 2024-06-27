@@ -2,6 +2,19 @@
 ###############################################################################
 # Network interface definitions for the seed group.
 
+# NOTE: The content of this section is very deployment-specific, since it
+# depends on the names and types of networks in the deployment. It should
+# define the group-specific attributes of networks. The following example shows
+# a basic configuration for a network called "example":
+#
+# example_interface: eth0
+#
+# Global network attributes such as subnet CIDRs are typically configured in
+# etc/kayobe/networks.yml.
+#
+# Further information on the available network attributes is provided in the
+# network configuration reference in the Kayobe documentation.
+
 aio_interface: "{{ 'ens2' if os_distribution == 'ubuntu' else 'eth0' }}"
 
 # Route via the seed-hypervisor to the outside world.
