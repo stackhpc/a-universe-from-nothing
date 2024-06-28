@@ -1,10 +1,10 @@
 ---
 ###############################################################################
-# Network interface definitions for the seed-hypervisor group.
+# Logging configuration
 
-aio_interface: braio
-aio_bridge_ports:
-  - dummy1
+# Journald storage. One of: volatile, persistent, auto, or none. Defaults to
+# `persistent`.
+#journald_storage:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

@@ -58,6 +58,9 @@
 ###############################################################################
 # Ironic inspector configuration.
 
+# Ironic inspector option to enable IPMI rules. Set to 'True' by default.
+#inspector_rules_ipmi_enabled:
+
 # Ironic inspector IPMI username to set.
 #inspector_ipmi_username:
 
@@ -72,6 +75,21 @@
 # check for an LLDP switch port description to use as the node's name.
 #inspector_lldp_switch_port_interface_map:
 
+# Ironic inspector uses IPMI by default enroll the baremetal nodes, however it
+# is possible to use Redfish instead. To do that enable Redfish and make sure
+# all of the necessary variables below have been properly set.
+# Enable inspector Redfish rules. Set to 'False' by default.
+#inspector_rules_redfish_enabled:
+
+# Ironic inspector Redfish username to set.
+#inspector_redfish_username:
+
+# Ironic inspector Redfish password to set.
+#inspector_redfish_password:
+
+# Redfish CA setting. Set to 'True' by default
+#inspector_rule_var_redfish_verify_ca:
+
 ###############################################################################
 # Ironic inspector introspection rules configuration.
 
@@ -83,9 +101,6 @@
 
 # Ironic inspector rule to set deployment ramdisk.
 #inspector_rule_deploy_ramdisk:
-
-# Ironic inspector rule to set local boot capability
-#inspector_rule_local_boot:
 
 # Ironic inspector rule to initialise root device hints.
 #inspector_rule_root_hint_init:

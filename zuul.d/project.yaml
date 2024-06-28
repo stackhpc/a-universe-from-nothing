@@ -1,14 +1,39 @@
 ---
 - project:
+    queue: kayobe
     check:
       jobs:
         - openstack-tox-pep8
-        - kayobe-overcloud-centos
-        - kayobe-seed-centos
+        - kayobe-overcloud-rocky9
+        - kayobe-overcloud-centos9s
+        - kayobe-overcloud-ubuntu-jammy
+        - kayobe-overcloud-tls-rocky9
+        - kayobe-overcloud-host-configure-rocky9
+        - kayobe-overcloud-host-configure-centos9s
+        - kayobe-overcloud-host-configure-ubuntu-jammy
+        - kayobe-overcloud-upgrade-ubuntu-focal
+        - kayobe-seed-rocky9
+        - kayobe-seed-ubuntu-jammy
+        - kayobe-seed-images-rocky9
+        - kayobe-seed-upgrade-ubuntu-focal
+        - kayobe-seed-vm-rocky9
+        - kayobe-seed-vm-ubuntu-jammy
+        - kayobe-infra-vm-rocky9
+        - kayobe-infra-vm-ubuntu-jammy
 
     gate:
-      queue: kayobe
       jobs:
         - openstack-tox-pep8
-        - kayobe-overcloud-centos
-        - kayobe-seed-centos
+        - kayobe-overcloud-rocky9
+        - kayobe-overcloud-ubuntu-jammy
+        - kayobe-overcloud-tls-rocky9
+        - kayobe-overcloud-host-configure-rocky9
+        - kayobe-overcloud-host-configure-ubuntu-jammy
+        - kayobe-overcloud-upgrade-ubuntu-focal
+        - kayobe-seed-rocky9
+        - kayobe-seed-ubuntu-jammy
+        - kayobe-seed-upgrade-ubuntu-focal
+        - kayobe-seed-vm-rocky9
+        - kayobe-seed-vm-ubuntu-jammy
+        - kayobe-infra-vm-rocky9
+        - kayobe-infra-vm-ubuntu-jammy

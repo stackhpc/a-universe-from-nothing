@@ -30,12 +30,12 @@
 #infra_vm_root_format:
 
 # Base image for the infra VM root volume. Default is
-# "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+# "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 # when os_distribution is "ubuntu", or
-# http://dl.rockylinux.org/pub/rocky/8.5/images/Rocky-8-GenericCloud-8.5-20211114.2.x86_64.qcow2
+# https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2
 # when os_distribution is "rocky",
 # or
-# "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20210603.0.x86_64.qcow2"
+# "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-20221206.0.x86_64.qcow2"
 # otherwise.
 #infra_vm_root_image:
 
@@ -92,26 +92,24 @@
 ###############################################################################
 # Infrastructure VM node LVM configuration.
 
-# List of infrastructure vm volume groups. See mrlesmithjr.manage-lvm role for
+# List of infrastructure vm volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #infra_vm_lvm_groups:
 
-# Default list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# Default list of infrastructure vm volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #infra_vm_lvm_groups_default:
 
-# Additional list of infrastructure vm volume groups. See mrlesmithjr.manage-lvm
+# Additional list of infrastructure vm volume groups. See mrlesmithjr.manage_lvm
 # role for format.
 #infra_vm_lvm_groups_extra:
 
 # Whether a 'data' LVM volume group should exist on the infrastructure vm. By
 # default this contains a 'docker-volumes' logical volume for Docker volume
-# storage. It will also be used for Docker container and image storage if
-# 'docker_storage_driver' is set to 'devicemapper'. Default is true if
-# 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
+# storage. Default is false.
 #infra_vm_lvm_group_data_enabled:
 
-# Infrastructure VM LVM volume group for data. See mrlesmithjr.manage-lvm role
+# Infrastructure VM LVM volume group for data. See mrlesmithjr.manage_lvm role
 # for format.
 #infra_vm_lvm_group_data:
 

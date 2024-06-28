@@ -4,8 +4,7 @@
 ###############################################################################
 # Local path configuration (Ansible control host).
 
-# Path to Kayobe configuration directory on Ansible control host, with an
-# environment path appended if kayobe_environment is set.
+# Path to Kayobe configuration directory on Ansible control host.
 #kayobe_config_path:
 
 # Name of Kayobe environment to use. Default is $KAYOBE_ENVIRONMENT, or an
@@ -46,11 +45,11 @@
 # OS distribution.
 
 # OS distribution name. Valid options are "centos", "rocky", "ubuntu". Default
-# is "centos".
+# is "rocky".
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
-# OS release. Valid options are "8-stream" when os_distribution is "centos", or
-# "8" when os_distribution is "rocky", or "focal" when os_distribution is
+# OS release. Valid options are "9-stream" when os_distribution is "centos", or
+# "9" when os_distribution is "rocky", or "jammy" when os_distribution is
 # "ubuntu".
 #os_release:
 
@@ -64,6 +63,10 @@ os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 # Gather subset to apply to the setup module when gathering facts. Default is
 # to not specify a gather subset.
 #kayobe_ansible_setup_gather_subset:
+
+# Global maximum failure percentage. By default this is undefined, which is
+# equivalent to a value of 100.
+#kayobe_max_fail_percentage:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
