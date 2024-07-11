@@ -18,9 +18,9 @@ are interested in, and follow the README.
 Requirements
 ============
 
-For this workshop we require the use of a single server, configured as a
+For this workshop, we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-CentOS Stream 8 or Ubuntu 20.04, with the following minimum requirements:
+Ubuntu Jammy or Rocky 9, with the following minimum requirements:
 
 * 64GB RAM (more is recommended when growing the lab deployment)
 * 100GB disk
@@ -31,7 +31,7 @@ configured for the login user.
 Exercise
 ========
 
-On the seed hypervisor we will deploy three VMs:
+On the seed hypervisor, we will deploy three VMs:
 
 * 1 seed
 * 1 controller
@@ -58,10 +58,10 @@ There are four parts to this guide:
 *Preparation* has instructions to prepare the seed hypervisor for the
 exercise, and fetching the necessary source code.
 
-*Deploying a Seed* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain CentOS 8 cloud image, including
-provisioning and configuration of a seed VM. Optionally, snapshot the
-instance after this step to reduce setup time in future.
+*Deploying a Seed* includes all instructions necessary to download and install
+the Kayobe prerequisites on a plain Rocky 9 or Ubuntu Jammy cloud image,
+including provisioning and configuration of a seed VM. Optionally, snapshot the
+instance after this step to reduce setup time in the future.
 
 *A Universe from a Seed* contains all instructions necessary to deploy from
 a host running a seed VM. An image suitable for this can be created
@@ -73,10 +73,9 @@ some ideas for what to try next.
 Preparation
 -----------
 
-This shows how to prepare the seed hypervisor for the exercise. It assumes
-you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh centos@<ip>``
-or ``ssh ubuntu@<ip>``).
+This shows how to prepare the seed hypervisor for the exercise. It assumes you
+have created a seed hypervisor instance fitting the requirements above and have
+already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
 
 .. code-block:: console
 
@@ -128,10 +127,10 @@ or ``ssh ubuntu@<ip>``).
 Deploying a Seed
 ----------------
 
-This shows how to create an image suitable for deploying Kayobe.
-It assumes you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh centos@<ip>``), and performed the
-necessary `Preparation`_.
+This shows how to create an image suitable for deploying Kayobe. It assumes you
+have created a seed hypervisor instance fitting the requirements above and have
+already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``), and
+performed the necessary `Preparation`_.
 
 .. code-block:: console
 
@@ -166,13 +165,13 @@ necessary `Preparation`_.
    # Optional: Shutdown the seed VM if creating a seed snapshot.
    sudo virsh shutdown seed
 
-If required, add any additional SSH public keys to /home/centos/.ssh/authorized_keys
+If required, add any additional SSH public keys to ~/.ssh/authorized_keys
 
 Optional: Creating a Seed Snapshot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If necessary, take a snapshot of the hypervisor instance at this point to speed up this
-process in future.
+process in the future.
 
 You are now ready to deploy a control plane using this host or snapshot.
 
@@ -185,7 +184,7 @@ pre-deployed seed VM, or a host that has run through the steps in
 
 Having a snapshot image saves us some time if we need to repeat the deployment.
 If working from a snapshot, create a new instance with the same dimensions as
-the Seed image and log in to it.
+the Seed image and log into it.
 Otherwise, continue working with the instance from `Deploying a Seed`_.
 
 .. code-block:: console
@@ -298,8 +297,8 @@ Here's some ideas for things to explore with the deployment:
 Exploring the Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once each of the VMs becomes available, they should be accessible
-via SSH as the ``centos`` or ``stack`` user at the following IP addresses:
+Once each of the VMs becomes available, they should be accessible via SSH as
+the ``rocky``, ``ubuntu`` or ``stack`` user at the following IP addresses:
 
 ===========  ================
 Host         IP
@@ -422,7 +421,6 @@ The new containers can be seen running on the controller node:
     CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED       STATUS                 PORTS     NAMES
     fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2024.1-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
     64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2024.1-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
-    ...
 
 We can see the log indexes in OpenSearch:
 
