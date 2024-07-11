@@ -20,7 +20,7 @@ Requirements
 
 For this workshop, we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-Rocky 9, with the following minimum requirements:
+Ubuntu Jammy or Rocky 9, with the following minimum requirements:
 
 * 32GB RAM
 * 80GB disk
@@ -58,9 +58,9 @@ There are four parts to this guide:
 *Preparation* has instructions to prepare the seed hypervisor for the
 exercise, and fetching the necessary source code.
 
-*Deploying a Seed* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain Rocky 9 cloud image, including
-provisioning and configuration of a seed VM. Optionally, snapshot the
+*Deploying a Seed* includes all instructions necessary to download and install
+the Kayobe prerequisites on a plain Rocky 9 or Ubuntu Jammy cloud image,
+including provisioning and configuration of a seed VM. Optionally, snapshot the
 instance after this step to reduce setup time in the future.
 
 *A Universe from a Seed* contains all instructions necessary to deploy from
@@ -73,9 +73,9 @@ some ideas for what to try next.
 Preparation
 -----------
 
-This shows how to prepare the seed hypervisor for the exercise. It assumes
-you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh rocky@<ip>``).
+This shows how to prepare the seed hypervisor for the exercise. It assumes you
+have created a seed hypervisor instance fitting the requirements above and have
+already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
 
 .. code-block:: console
 
@@ -127,10 +127,10 @@ above and have already logged in (e.g. ``ssh rocky@<ip>``).
 Deploying a Seed
 ----------------
 
-This shows how to create an image suitable for deploying Kayobe.
-It assumes you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh rocky@<ip>``), and performed the
-necessary `Preparation`_.
+This shows how to create an image suitable for deploying Kayobe. It assumes you
+have created a seed hypervisor instance fitting the requirements above and have
+already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``), and
+performed the necessary `Preparation`_.
 
 .. code-block:: console
 
@@ -165,7 +165,7 @@ necessary `Preparation`_.
    # Optional: Shutdown the seed VM if creating a seed snapshot.
    sudo virsh shutdown seed
 
-If required, add any additional SSH public keys to /home/rocky/.ssh/authorized_keys
+If required, add any additional SSH public keys to ~/.ssh/authorized_keys
 
 Optional: Creating a Seed Snapshot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -297,8 +297,8 @@ Here's some ideas for things to explore with the deployment:
 Exploring the Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once each of the VMs becomes available, they should be accessible
-via SSH as the ``rocky`` or ``stack`` user at the following IP addresses:
+Once each of the VMs becomes available, they should be accessible via SSH as
+the ``rocky``, ``ubuntu`` or ``stack`` user at the following IP addresses:
 
 ===========  ================
 Host         IP
