@@ -18,9 +18,9 @@ are interested in, and follow the README.
 Requirements
 ============
 
-For this workshop we require the use of a single server, configured as a
+For this workshop, we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-CentOS 8, with the following minimum requirements:
+Rocky 9, with the following minimum requirements:
 
 * 32GB RAM
 * 80GB disk
@@ -31,7 +31,7 @@ configured for the login user.
 Exercise
 ========
 
-On the seed hypervisor we will deploy three VMs:
+On the seed hypervisor, we will deploy three VMs:
 
 * 1 seed
 * 1 controller
@@ -59,9 +59,9 @@ There are four parts to this guide:
 exercise, and fetching the necessary source code.
 
 *Deploying a Seed* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain CentOS 8 cloud image, including
+install the Kayobe prerequisites on a plain Rocky 9 cloud image, including
 provisioning and configuration of a seed VM. Optionally, snapshot the
-instance after this step to reduce setup time in future.
+instance after this step to reduce setup time in the future.
 
 *A Universe from a Seed* contains all instructions necessary to deploy from
 a host running a seed VM. An image suitable for this can be created
@@ -75,7 +75,7 @@ Preparation
 
 This shows how to prepare the seed hypervisor for the exercise. It assumes
 you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh centos@<ip>``).
+above and have already logged in (e.g. ``ssh rocky@<ip>``).
 
 .. code-block:: console
 
@@ -106,7 +106,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    cd
 
    # Clone Kayobe.
-   git clone https://opendev.org/openstack/kayobe.git -b master
+   git clone https://opendev.org/openstack/kayobe.git -b stable/2023.1
    cd kayobe
 
    # Clone the Tenks repository.
@@ -115,7 +115,7 @@ above and have already logged in (e.g. ``ssh centos@<ip>``).
    # Clone this Kayobe configuration.
    mkdir -p config/src
    cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b master
+   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b stable/2023.1
 
    # Configure host networking (bridge, routes & firewall)
    ./kayobe-config/configure-local-networking.sh
@@ -129,7 +129,7 @@ Deploying a Seed
 
 This shows how to create an image suitable for deploying Kayobe.
 It assumes you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh centos@<ip>``), and performed the
+above and have already logged in (e.g. ``ssh rocky@<ip>``), and performed the
 necessary `Preparation`_.
 
 .. code-block:: console
@@ -165,13 +165,13 @@ necessary `Preparation`_.
    # Optional: Shutdown the seed VM if creating a seed snapshot.
    sudo virsh shutdown seed
 
-If required, add any additional SSH public keys to /home/centos/.ssh/authorized_keys
+If required, add any additional SSH public keys to /home/rocky/.ssh/authorized_keys
 
 Optional: Creating a Seed Snapshot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If necessary, take a snapshot of the hypervisor instance at this point to speed up this
-process in future.
+process in the future.
 
 You are now ready to deploy a control plane using this host or snapshot.
 
@@ -184,7 +184,7 @@ pre-deployed seed VM, or a host that has run through the steps in
 
 Having a snapshot image saves us some time if we need to repeat the deployment.
 If working from a snapshot, create a new instance with the same dimensions as
-the Seed image and log in to it.
+the Seed image and log into it.
 Otherwise, continue working with the instance from `Deploying a Seed`_.
 
 .. code-block:: console
@@ -298,7 +298,7 @@ Exploring the Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once each of the VMs becomes available, they should be accessible
-via SSH as the ``centos`` or ``stack`` user at the following IP addresses:
+via SSH as the ``rocky`` or ``stack`` user at the following IP addresses:
 
 ===========  ================
 Host         IP
@@ -419,8 +419,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 docker ps
     CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED       STATUS                 PORTS     NAMES
-    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2024.1-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
-    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2024.1-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
+    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2023.1-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
+    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2023.1-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
     ...
 
 We can see the log indexes in OpenSearch:
@@ -512,7 +512,7 @@ OpenStack venv:
     . ~/os-venv/bin/activate
 
     # Install barbicanclient
-    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/master
+    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/2023.1
 
     # Source the OpenStack environment variables
     source ~/kayobe/config/src/kayobe-config/etc/kolla/public-openrc.sh
