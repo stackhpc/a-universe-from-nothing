@@ -1,0 +1,48 @@
+---
+# This file holds the config given to Tenks when running `tenks-deploy.sh`. It
+# assumes the existence of the bridge `braio`.
+
+node_types:
+  storage:
+    memory_mb: 8192
+    vcpus: 1
+    volumes:
+      # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
+      # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
+      - capacity: 20GiB
+      - capacity: 20GiB
+    physical_networks:
+      - physnet1
+    console_log_enabled: true
+
+specs:
+  - type: storage
+    count: 3
+    node_name_prefix: storage
+    ironic_config:
+      resource_class: test-rc
+      network_interface: noop
+
+ipmi_address: 192.168.33.4
+
+nova_flavors: []
+
+physnet_mappings:
+  physnet1: braio
+
+ipmi_port_range_start: 6235
+
+bridge_type: linuxbridge
+
+# No placement service.
+wait_for_placement: false
+
+# NOTE(priteau): Disable libvirt_vm_trust_guest_rx_filters, which when enabled
+# triggers the following errors when booting baremetal instances with Tenks on
+# Libvirt 9: Cannot set interface flags on 'macvtap1': Value too large for
+# defined data type
+libvirt_vm_trust_guest_rx_filters: false
+
+# Use a different state file, to avoid deleting the overcloud VMs.
+state_file_path: >-
+  {{ '/'.join([(playbook_dir | dirname), 'state-storage.yml']) }}
