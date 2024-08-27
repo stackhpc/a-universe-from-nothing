@@ -65,7 +65,7 @@ vgpu
 ###############################################################################
 # Service groups.
 
-[docker:children]
+[container-engine:children]
 # Hosts in this group will have Docker/Podman installed.
 seed
 controllers
