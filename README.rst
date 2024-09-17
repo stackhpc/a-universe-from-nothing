@@ -202,8 +202,12 @@ our model development environment, alongside the seed VM.
 
 .. code-block:: console
 
-   # NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
+   # Set Environment variables for Kayobe dev scripts
+   export KAYOBE_CONFIG_SOURCE_PATH=~/deployment/src/kayobe-config
+   export KAYOBE_VENV_PATH=~/deployment/venvs/kayobe
    export TENKS_CONFIG_PATH=~/deployment/src/kayobe-config/tenks.yml
+
+   # Use tenks to deploy the overcloud machines
    ~/deployment/src/kayobe/dev/tenks-deploy-overcloud.sh ~/deployment/src/tenks
 
    # Activate the Kayobe environment, to allow running commands directly.

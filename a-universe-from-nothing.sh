@@ -60,8 +60,12 @@ kayobe seed service deploy
 # run configure-local-networking.sh again to re-add routes.
 ~/deployment/src/kayobe-config/configure-local-networking.sh
 
-# NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
+# Set Environment variables for Kayobe dev scripts
+export KAYOBE_CONFIG_SOURCE_PATH=~/deployment/src/kayobe-config
+export KAYOBE_VENV_PATH=~/deployment/venvs/kayobe
 export TENKS_CONFIG_PATH=~/deployment/src/kayobe-config/tenks.yml
+
+# Deploy overcloud using Tenks
 ~/deployment/src/kayobe/dev/tenks-deploy-overcloud.sh ~/deployment/src/tenks
 
 # Inspect and provision the overcloud hardware:
