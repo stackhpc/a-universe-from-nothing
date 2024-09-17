@@ -85,11 +85,6 @@
 # Docker namespace to use for Kolla images. Default is 'kolla'.
 #kolla_docker_namespace:
 
-# Whether docker should be configured to use an insecure registry for Kolla
-# images. Default is false, unless docker_registry_enabled is true and
-# docker_registry_enable_tls is false.
-#kolla_docker_registry_insecure:
-
 # Username to use to access a docker registry. Default is not set, in which
 # case the registry will be used without authentication.
 #kolla_docker_registry_username:
@@ -454,6 +449,10 @@
 # Kolla passwords file.
 #kolla_ansible_default_custom_passwords:
 
+# Dictionary containing extra custom passwords to add or override in the Kolla
+# passwords file.
+#kolla_ansible_extra_custom_passwords:
+
 # Dictionary containing custom passwords to add or override in the Kolla
 # passwords file.
 #kolla_ansible_custom_passwords:
@@ -493,7 +492,7 @@ kolla_internal_vip_address: 192.168.33.2
 # Path to a CA certificate file to use for the OS_CACERT environment variable
 # in public-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
 # default.
-#kolla_external_fqdn_cacert:
+#kolla_public_openrc_cacert:
 
 # Internal API certificate bundle.
 #
@@ -506,7 +505,7 @@ kolla_internal_vip_address: 192.168.33.2
 # Path to a CA certificate file to use for the OS_CACERT environment variable
 # in admin-openrc.sh file when TLS is enabled, instead of Kolla-Ansible's
 # default.
-#kolla_internal_fqdn_cacert:
+#kolla_admin_openrc_cacert:
 
 ###############################################################################
 # Proxy configuration

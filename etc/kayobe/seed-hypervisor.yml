@@ -36,7 +36,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 ###############################################################################
 # Seed hypervisor node LVM configuration.
 
-# List of seed hypervisor volume groups. See mrlesmithjr.manage-lvm role for
+# List of seed hypervisor volume groups. See mrlesmithjr.manage_lvm role for
 # format. Set to "{{ seed_hypervisor_lvm_groups_with_data }}" to create a
 # volume group for libvirt storage.
 #seed_hypervisor_lvm_groups:
@@ -45,7 +45,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # default.
 #seed_hypervisor_lvm_groups_with_data:
 
-# Seed LVM volume group for data. See mrlesmithjr.manage-lvm role for format.
+# Seed LVM volume group for data. See mrlesmithjr.manage_lvm role for format.
 #seed_hypervisor_lvm_group_data:
 
 # List of disks for use by seed hypervisor LVM data volume group. Default to an

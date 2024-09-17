@@ -63,15 +63,15 @@
 ###############################################################################
 # Compute node LVM configuration.
 
-# List of compute volume groups. See mrlesmithjr.manage-lvm role for
+# List of compute volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #compute_lvm_groups:
 
-# Default list of compute volume groups. See mrlesmithjr.manage-lvm role for
+# Default list of compute volume groups. See mrlesmithjr.manage_lvm role for
 # format.
 #compute_lvm_groups_default:
 
-# Additional list of compute volume groups. See mrlesmithjr.manage-lvm role
+# Additional list of compute volume groups. See mrlesmithjr.manage_lvm role
 # for format.
 #compute_lvm_groups_extra:
 
@@ -82,7 +82,7 @@
 # 'docker_storage_driver' is set to 'devicemapper', or false otherwise.
 #compute_lvm_group_data_enabled:
 
-# Compute LVM volume group for data. See mrlesmithjr.manage-lvm role for
+# Compute LVM volume group for data. See mrlesmithjr.manage_lvm role for
 # format.
 #compute_lvm_group_data:
 
@@ -180,7 +180,7 @@
 #compute_qemu_conf:
 
 # Whether to enable libvirt SASL authentication. Default is true.
-#compute_libvirt_enable_sasl: true
+#compute_libvirt_enable_sasl:
 
 # libvirt SASL password. Default is unset.
 #compute_libvirt_sasl_password:
