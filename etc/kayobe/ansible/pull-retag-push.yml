@@ -1,5 +1,6 @@
 ---
-- import_playbook: ../../../../../../ansible/kolla-build.yml
+- name: Run the Kayobe kolla-build.yml playbook
+  import_playbook: "{{ lookup('ansible.builtin.env', 'VIRTUAL_ENV') }}/share/kayobe/ansible/kolla-build.yml"
 
 - name: Pull, retag, and push images
   hosts: container-image-builders
