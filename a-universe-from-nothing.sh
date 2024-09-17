@@ -29,13 +29,13 @@ echo 'Defaults	!fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 cd
 
 # Clone Beokay.
-[[ -d src ]] || git clone https://github.com/stackhpc/beokay.git -b master
+[[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git -b master
 
 # Use Beokay to bootstrap your control host.
-beokay/beokay.py create --base-path ~/. --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2023.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2023.1
+beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2023.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2023.1
 
 # Clone the Tenks repository.
-cd src
+cd ~/deployment/src
 git clone https://opendev.org/openstack/tenks.git
 
 # Configure host networking (bridge, routes & firewall)
@@ -51,18 +51,18 @@ kayobe seed vm provision
 kayobe seed host configure
 
 # Pull, retag images, then push to our local registry.
-~/src/kayobe-config/pull-retag-push-images.sh
+~/deployment/src/kayobe-config/pull-retag-push-images.sh
 
 # Deploy the seed services.
 kayobe seed service deploy
 
 # Deploying the seed restarts networking interface,
 # run configure-local-networking.sh again to re-add routes.
-~/src/kayobe-config/configure-local-networking.sh
+~/deployment/src/kayobe-config/configure-local-networking.sh
 
 # NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
-export TENKS_CONFIG_PATH=~/src/kayobe-config/tenks.yml
-~/src/kayobe/dev/tenks-deploy-overcloud.sh ~/src/tenks
+export TENKS_CONFIG_PATH=~/deployment/src/kayobe-config/tenks.yml
+~/deployment/src/kayobe/dev/tenks-deploy-overcloud.sh ~/deployment/src/tenks
 
 # Inspect and provision the overcloud hardware:
 kayobe overcloud inventory discover
@@ -72,7 +72,7 @@ kayobe overcloud provision
 kayobe overcloud host configure
 kayobe overcloud container image pull
 kayobe overcloud service deploy
-source ~/src/kayobe-config/etc/kolla/public-openrc.sh
+source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
 kayobe overcloud post configure
-source ~/src/kayobe-config/etc/kolla/public-openrc.sh
-~/src/kayobe-config/init-runonce.sh
+source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
+~/deployment/src/kayobe-config/init-runonce.sh
