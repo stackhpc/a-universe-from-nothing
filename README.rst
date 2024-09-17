@@ -243,11 +243,11 @@ VM:
    ~/src/kayobe-config/init-runonce.sh
 
 Following the instructions displayed by the above script, boot a VM.
-You'll need to have activated the `~/os-venv` virtual environment.
+You'll need to have activated the `~/venvs/os-venv` virtual environment.
 
 .. code-block:: console
 
-   source ~/os-venv/bin/activate
+   source ~/venvs/os-venv/bin/activate
    openstack server create --image cirros \
              --flavor m1.tiny \
              --key-name mykey \
@@ -497,7 +497,7 @@ OpenStack venv:
     deactivate
 
     # Activate the OpenStack venv
-    . ~/os-venv/bin/activate
+    ~/venvs/os-venv/bin/activate
 
     # Install barbicanclient
     pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/2023.1
