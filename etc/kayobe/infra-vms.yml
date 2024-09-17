@@ -31,10 +31,12 @@
 
 # Base image for the infra VM root volume. Default is
 # "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-# when os_distribution is "ubuntu", or
-# https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2
-# when os_distribution is "rocky",
-# or
+# when os_distribution is "ubuntu",
+# "https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
+# when os_distribution is "rocky" and seed_vm_boot_firmware is "efi",
+# "https://dl.rockylinux.org/vault/rocky/9.3/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
+# when os_distribution is "rocky" and seed_vm_boot_firmware is not "efi"
+# (default is "bios"), or
 # "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-20221206.0.x86_64.qcow2"
 # otherwise.
 #infra_vm_root_image:
@@ -57,6 +59,12 @@
 
 # OS family. Needed for config drive generation.
 #infra_vm_os_family:
+
+# Boot firmware. Possible values are 'bios' or 'efi'. Default is 'bios'.
+#infra_vm_boot_firmware:
+
+# Machine type. Libvirt default configuration is used.
+#infra_vm_machine:
 
 ###############################################################################
 # Infrastructure VM node configuration.
