@@ -3,7 +3,7 @@
 # Docker registry configuration.
 
 # Whether a docker registry is enabled. Default is false.
-#docker_registry_enabled:
+docker_registry_enabled: true
 
 # Dict of environment variables to provide to the docker registry container.
 # This allows to configure the registry by overriding specific configuration
