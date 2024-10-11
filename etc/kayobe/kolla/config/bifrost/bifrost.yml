@@ -5,18 +5,11 @@ download_ipa: true
 
 # Use a locally hosted cloud image.
 download_custom_deploy_image: true
-{% if os_distribution == 'centos' %}
-custom_deploy_image_upstream_url: "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-20221206.0.x86_64.qcow2"
-custom_deploy_image_checksum_url: "https://cloud.centos.org/centos/9-stream/x86_64/images/CHECKSUM"
-custom_deploy_image_checksum_algorithm: "sha256"
-{% elif os_distribution == 'rocky' %}
-# NOTE(priteau): Temporarily using Rocky Linux 9.3 because 9.4 images fail to
-# boot (https://bugs.rockylinux.org/view.php?id=6832)
-custom_deploy_image_upstream_url: "https://dl.rockylinux.org/vault/rocky/9.3/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
-custom_deploy_image_checksum_url: "https://dl.rockylinux.org/vault/rocky/9.3/images/x86_64/CHECKSUM"
-custom_deploy_image_checksum_algorithm: "sha256"
-{% else %}
-custom_deploy_image_upstream_url: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-custom_deploy_image_checksum_url: "https://cloud-images.ubuntu.com/jammy/current/SHA256SUMS"
-custom_deploy_image_checksum_algorithm: "sha256"
+upstream_deploy_image_distribution: "{{ os_distribution }}"
+upstream_deploy_image_release: "{{ os_release }}"
+
+# TODO(priteau): Remove once https://bugs.launchpad.net/bifrost/+bug/2081031 is
+# resolved.
+{% if os_distribution in ['centos', 'rocky'] %}
+custom_deploy_image_checksum_algorithm: "none"
 {% endif %}
