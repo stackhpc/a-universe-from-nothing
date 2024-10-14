@@ -24,7 +24,8 @@
 
 # List of default Diskimage Builder (DIB) elements to use when building IPA
 # images. Default is ["centos", "enable-serial-console",
-# "ironic-python-agent-ramdisk"].
+# "ironic-python-agent-ramdisk"] when os_distribution is "rocky", and
+# ["ubuntu", "enable-serial-console", "ironic-python-agent-ramdisk"] otherwise.
 #ipa_build_dib_elements_default:
 
 # List of additional Diskimage Builder (DIB) elements to use when building IPA
@@ -49,15 +50,16 @@
 #ipa_build_dib_env:
 
 # List of default git repositories containing Diskimage Builder (DIB) elements.
-# See stackhpc.os-images role for usage. Default is one item for IPA builder.
+# See stackhpc.openstack.os_images role for usage.
+# Default is one item for IPA builder.
 #ipa_build_dib_git_elements_default:
 
 # List of additional git repositories containing Diskimage Builder (DIB)
-# elements. See stackhpc.os-images role for usage. Default is empty.
+# elements. See stackhpc.openstack.os_images role for usage. Default is empty.
 #ipa_build_dib_git_elements_extra:
 
 # List of git repositories containing Diskimage Builder (DIB) elements. See
-# stackhpc.os-images role for usage. Default is a combination of
+# stackhpc.openstack.os_images role for usage. Default is a combination of
 # ipa_build_dib_git_elements_default and ipa_build_dib_git_elements_extra.
 #ipa_build_dib_git_elements:
 
@@ -83,8 +85,7 @@
 #ipa_images_kernel_name:
 
 # URL of Ironic deployment kernel image to download.
-# yamllint disable-line rule:line-length
-ipa_kernel_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa{{ ipa_images_upstream_url_suffix }}.vmlinuz"
+#ipa_kernel_upstream_url:
 
 # URL of checksum of Ironic deployment kernel image.
 #ipa_kernel_checksum_url:
@@ -96,8 +97,7 @@ ipa_kernel_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tin
 #ipa_images_ramdisk_name:
 
 # URL of Ironic deployment ramdisk image to download.
-# yamllint disable-line rule:line-length
-ipa_ramdisk_upstream_url: "https://tarballs.openstack.org/ironic-python-agent/tinyipa/files/tinyipa{{ ipa_images_upstream_url_suffix }}.gz"
+#ipa_ramdisk_upstream_url:
 
 # URL of checksum of Ironic deployment ramdisk image.
 #ipa_ramdisk_checksum_url:

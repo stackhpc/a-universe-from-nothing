@@ -1,0 +1,22 @@
+---
+################################################################################
+# VGPU configuration.
+
+# URL pointing to location of GRID driver. Examples are:
+# "file://path/on/ansible/control/host"
+# "http://webserver/NVIDIA-GRID-Linux-KVM-525.105.14-525.105.17-528.89.zip"
+# Default is: None.
+#vgpu_driver_url:
+
+# Flag to control whether the vGPU playbook should automatically reboot the
+# hypervisor. Note: this is necessary for the driver to be loaded correctly.
+# Caution should be used when changing this option. Default is true.
+#vgpu_do_reboot:
+
+# Time to wait when rebooting the host before failing.
+# Default is 600 (seconds).
+#vgpu_reboot_timeout:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

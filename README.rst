@@ -20,10 +20,10 @@ Requirements
 
 For this workshop, we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-Rocky 9, with the following minimum requirements:
+Ubuntu Jammy or Rocky 9, with the following minimum requirements:
 
-* 32GB RAM
-* 80GB disk
+* 64GB RAM (more is recommended when growing the lab deployment)
+* 100GB disk
 
 We will also need SSH access to the seed hypervisor, and passwordless sudo
 configured for the login user.
@@ -58,9 +58,9 @@ There are four parts to this guide:
 *Preparation* has instructions to prepare the seed hypervisor for the
 exercise, and fetching the necessary source code.
 
-*Deploying a Seed* includes all instructions necessary to download and
-install the Kayobe prerequisites on a plain Rocky 9 cloud image, including
-provisioning and configuration of a seed VM. Optionally, snapshot the
+*Deploying a Seed* includes all instructions necessary to download and install
+the Kayobe prerequisites on a plain Rocky 9 or Ubuntu Jammy cloud image,
+including provisioning and configuration of a seed VM. Optionally, snapshot the
 instance after this step to reduce setup time in the future.
 
 *A Universe from a Seed* contains all instructions necessary to deploy from
@@ -73,9 +73,9 @@ some ideas for what to try next.
 Preparation
 -----------
 
-This shows how to prepare the seed hypervisor for the exercise. It assumes
-you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh rocky@<ip>``).
+This shows how to prepare the seed hypervisor for the exercise. It assumes you
+have created a seed hypervisor instance fitting the requirements above and have
+already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
 
 .. code-block:: console
 
@@ -90,10 +90,10 @@ above and have already logged in (e.g. ``ssh rocky@<ip>``).
    # Disable the firewall.
    sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
-   # Disable SELinux both immediately and permanently.
+   # Put SELinux in permissive mode both immediately and permanently.
    if $(which setenforce 2>/dev/null >/dev/null); then
        sudo setenforce 0
-       sudo sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+       sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
    fi
 
    # Prevent sudo from making DNS queries.
@@ -105,43 +105,33 @@ above and have already logged in (e.g. ``ssh rocky@<ip>``).
    # Start at home.
    cd
 
-   # Clone Kayobe.
-   git clone https://opendev.org/openstack/kayobe.git -b stable/2023.1
-   cd kayobe
+   # Clone Beokay.
+   git clone https://github.com/stackhpc/beokay.git -b master
+
+   # Use Beokay to bootstrap your control host.
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2023.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2023.1
 
    # Clone the Tenks repository.
-   git clone https://opendev.org/openstack/tenks.git
-
-   # Clone this Kayobe configuration.
-   mkdir -p config/src
-   cd config/src/
-   git clone https://github.com/stackhpc/a-universe-from-nothing.git kayobe-config -b stable/2023.1
+   cd ~/deployment/src
+   [[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
+   cd
 
    # Configure host networking (bridge, routes & firewall)
-   ./kayobe-config/configure-local-networking.sh
-
-   # Install kayobe.
-   cd ~/kayobe
-   ./dev/install-dev.sh
+   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 Deploying a Seed
 ----------------
 
-This shows how to create an image suitable for deploying Kayobe.
-It assumes you have created a seed hypervisor instance fitting the requirements
-above and have already logged in (e.g. ``ssh rocky@<ip>``), and performed the
-necessary `Preparation`_.
+This shows how to create an image suitable for deploying Kayobe. It assumes you
+have created a seed hypervisor instance fitting the requirements above and have
+already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``), and
+performed the necessary `Preparation`_.
 
 .. code-block:: console
 
-   cd ~/kayobe
-
-   # Activate the Kayobe environment, to allow running commands directly.
-   source ~/kayobe-venv/bin/activate
-   source config/src/kayobe-config/kayobe-env
-
-   # Bootstrap the Ansible control host.
-   kayobe control host bootstrap
+   # If you have not done so already, activate the Kayobe environment, to allow
+   # running commands directly.
+   source ~/deployment/env-vars.sh
 
    # Configure the seed hypervisor host.
    kayobe seed hypervisor host configure
@@ -153,19 +143,19 @@ necessary `Preparation`_.
    kayobe seed host configure
 
    # Pull, retag images, then push to our local registry.
-   ./config/src/kayobe-config/pull-retag-push-images.sh
+   ~/deployment/src/kayobe-config/pull-retag-push-images.sh
 
    # Deploy the seed services.
    kayobe seed service deploy
 
    # Deploying the seed restarts networking interface,
    # run configure-local-networking.sh again to re-add routes.
-   ./config/src/kayobe-config/configure-local-networking.sh
+   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
    # Optional: Shutdown the seed VM if creating a seed snapshot.
    sudo virsh shutdown seed
 
-If required, add any additional SSH public keys to /home/rocky/.ssh/authorized_keys
+If required, add any additional SSH public keys to ~/.ssh/authorized_keys
 
 Optional: Creating a Seed Snapshot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -192,11 +182,8 @@ Otherwise, continue working with the instance from `Deploying a Seed`_.
    # Optional: start a new tmux session in case we lose our connection.
    tmux
 
-   # Set working directory
-   cd ~/kayobe
-
    # Configure non-persistent networking, if the node has rebooted.
-   ./config/src/kayobe-config/configure-local-networking.sh
+   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 Make sure that the seed VM (running Bifrost and supporting services)
 is present and running.
@@ -215,12 +202,16 @@ our model development environment, alongside the seed VM.
 
 .. code-block:: console
 
-   # NOTE: Make sure to use ./tenks, since just ‘tenks’ will install via PyPI.
-   export TENKS_CONFIG_PATH=config/src/kayobe-config/tenks.yml
-   ./dev/tenks-deploy-overcloud.sh ./tenks
+   # Set Environment variables for Kayobe dev scripts
+   export KAYOBE_CONFIG_SOURCE_PATH=~/deployment/src/kayobe-config
+   export KAYOBE_VENV_PATH=~/deployment/venvs/kayobe
+   export TENKS_CONFIG_PATH=~/deployment/src/kayobe-config/tenks.yml
+
+   # Use tenks to deploy the overcloud machines
+   ~/deployment/src/kayobe/dev/tenks-deploy-overcloud.sh ~/deployment/src/tenks
 
    # Activate the Kayobe environment, to allow running commands directly.
-   source dev/environment-setup.sh
+   source ~/deployment/env-vars.sh
 
    # Inspect and provision the overcloud hardware:
    kayobe overcloud inventory discover
@@ -236,7 +227,7 @@ Configure and deploy OpenStack to the control plane
    kayobe overcloud host configure
    kayobe overcloud container image pull
    kayobe overcloud service deploy
-   source config/src/kayobe-config/etc/kolla/public-openrc.sh
+   source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
    kayobe overcloud post configure
 
 At this point it should be possible to access the Horizon GUI via the
@@ -250,15 +241,15 @@ VM:
 
 .. code-block:: console
 
-   source config/src/kayobe-config/etc/kolla/public-openrc.sh
-   ./config/src/kayobe-config/init-runonce.sh
+   source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
+   ~/deployment/src/kayobe-config/init-runonce.sh
 
 Following the instructions displayed by the above script, boot a VM.
-You'll need to have activated the `~/os-venv` virtual environment.
+You'll need to have activated the `~/deployment/venvs/os-venv` virtual environment.
 
 .. code-block:: console
 
-   source ~/os-venv/bin/activate
+   source ~/deployment/venvs/os-venv/bin/activate
    openstack server create --image cirros \
              --flavor m1.tiny \
              --key-name mykey \
@@ -274,7 +265,7 @@ You'll need to have activated the `~/os-venv` virtual environment.
 
    # If the ssh command above fails you may need to reconfigure the local
    networking setup again:
-   ~/kayobe/config/src/kayobe-config/configure-local-networking.sh
+   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 *Note*: when accessing the VNC console of an instance via Horizon,
 you will be sent to the internal IP address of the controller,
@@ -297,8 +288,8 @@ Here's some ideas for things to explore with the deployment:
 Exploring the Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once each of the VMs becomes available, they should be accessible
-via SSH as the ``rocky`` or ``stack`` user at the following IP addresses:
+Once each of the VMs becomes available, they should be accessible via SSH as
+the ``rocky``, ``ubuntu`` or ``stack`` user at the following IP addresses:
 
 ===========  ================
 Host         IP
@@ -386,7 +377,7 @@ all OpenStack service logging. **Be cautious as OpenSearch will consume a
 significant portion of available resources on a standard deployment.**
 
 To enable the service, one flag must be changed in
-``~/kayobe/config/src/kayobe-config/etc/kayobe/kolla.yml``:
+``~/deployment/src/kayobe-config/etc/kayobe/kolla.yml``:
 
 .. code-block:: diff
 
@@ -402,7 +393,7 @@ the seed VM. Pull, retag and push the centralised logging images:
 
 .. code-block:: console
 
-   ~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh ^opensearch
+   ~/deployment/src/kayobe-config/pull-retag-push-images.sh ^opensearch
 
 To deploy the logging stack:
 
@@ -434,7 +425,7 @@ public interface to the OpenSearch Dashboards service running on our
 ``controller0`` VM.
 
 The easiest way to do this is to add OpenSearch Dashboards's default port (5601) to our
-``configure-local-networking.sh`` script in ``~/kayobe/config/src/kayobe-config/``:
+``configure-local-networking.sh`` script in ``~/deployment/src/kayobe-config/``:
 
 .. code-block:: diff
 
@@ -451,7 +442,7 @@ Then rerun the script to apply the change:
 
 .. code-block:: console
 
-    config/src/kayobe-config/configure-local-networking.sh
+    ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 We can now connect to OpenSearch Dashboards using our hypervisor host public IP and port 5601.
 
@@ -461,7 +452,7 @@ but they are not here).
 
 .. code-block:: console
 
-   grep opensearch_dashboards config/src/kayobe-config/etc/kolla/passwords.yml
+   grep opensearch_dashboards ~/deployment/src/kayobe-config/etc/kolla/passwords.yml
 
 Once you're in, OpenSearch Dashboards needs some further setup which is not automated.
 Set the log index to ``flog-*`` and you should be ready to go.
@@ -474,7 +465,7 @@ secret management service. It is an example of a simple service we
 can use to illustrate the process of adding new services to our deployment.
 
 As with the Logging service above, enable Barbican by modifying the flag in
-``~/kayobe/config/src/kayobe-config/etc/kayobe/kolla.yml`` as follows:
+``~/deployment/src/kayobe-config/etc/kayobe/kolla.yml`` as follows:
 
 .. code-block:: diff
 
@@ -486,15 +477,14 @@ containers. Pull down barbican images:
 
 .. code-block:: console
 
-   ~/kayobe/config/src/kayobe-config/pull-retag-push-images.sh barbican
+   ~/deployment/src/kayobe-config/pull-retag-push-images.sh barbican
 
 To deploy the Barbican service:
 
 .. code-block:: console
 
     # Activate the venv if not already active
-    cd ~/kayobe
-    source dev/environment-setup.sh
+    source ~/deployment/env-vars.sh
 
     kayobe overcloud container image pull
     kayobe overcloud service deploy
@@ -509,13 +499,13 @@ OpenStack venv:
     deactivate
 
     # Activate the OpenStack venv
-    . ~/os-venv/bin/activate
+    ~/deployment/venvs/os-venv/bin/activate
 
     # Install barbicanclient
     pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/2023.1
 
     # Source the OpenStack environment variables
-    source ~/kayobe/config/src/kayobe-config/etc/kolla/public-openrc.sh
+    source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
 
     # Store a test secret
     openstack secret store --name mysecret --payload foo=bar
