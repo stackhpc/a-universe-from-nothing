@@ -49,7 +49,7 @@
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
 # OS release. Valid options are "9-stream" when os_distribution is "centos", or
-# "9" when os_distribution is "rocky", or "jammy" when os_distribution is
+# "9" when os_distribution is "rocky", or "noble" when os_distribution is
 # "ubuntu".
 #os_release:
 

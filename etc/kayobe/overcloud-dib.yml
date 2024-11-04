@@ -30,7 +30,7 @@
 #overcloud_dib_os_release:
 
 # List of default DIB elements. Default is ["{{ overcloud_dib_os_element }}",
-# "cloud-init-datasources", "enable-serial-console", "vm"].
+# "cloud-init", "cloud-init-datasources", "enable-serial-console", "vm"].
 #overcloud_dib_elements_default:
 
 # List of additional DIB elements. Default is none.

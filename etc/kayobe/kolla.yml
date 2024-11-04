@@ -66,6 +66,10 @@
 ###############################################################################
 # Kolla configuration.
 
+# Kolla base container image architecture. Options are "x86_64", "aarch64".
+# Default is "{{ ansible_facts.architecture }}"
+#kolla_base_arch:
+
 # Kolla base container image distribution. Options are "centos", "debian",
 # "rocky", "ubuntu". Default is {{ os_distribution }}.
 #kolla_base_distro:
@@ -286,12 +290,12 @@
 #kolla_enable_ceph_rgw:
 #kolla_enable_ceph_rgw_loadbalancer:
 #kolla_enable_cinder:
-#kolla_enable_cinder_backend_hnas_nfs:
 #kolla_enable_cinder_backend_iscsi:
 #kolla_enable_cinder_backend_lvm:
 #kolla_enable_cinder_backend_nfs:
 #kolla_enable_cinder_backend_pure_fc:
 #kolla_enable_cinder_backend_pure_iscsi:
+#kolla_enable_cinder_backend_pure_nvme_tcp:
 #kolla_enable_cinder_backend_pure_roce:
 #kolla_enable_cinder_backend_quobyte:
 #kolla_enable_cinder_backup:
@@ -412,11 +416,11 @@
 #kolla_enable_prometheus_haproxy_exporter:
 #kolla_enable_prometheus_libvirt_exporter:
 #kolla_enable_prometheus_memcached_exporter:
-#kolla_enable_prometheus_msteams:
 #kolla_enable_prometheus_mysqld_exporter:
 #kolla_enable_prometheus_node_exporter:
 #kolla_enable_prometheus_openstack_exporter:
 #kolla_enable_prometheus_openstack_exporter_external:
+#kolla_enable_prometheus_proxysql_exporter:
 #kolla_enable_prometheus_rabbitmq_exporter:
 #kolla_enable_prometheus_server:
 #kolla_enable_proxysql:
