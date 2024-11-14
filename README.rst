@@ -13,5 +13,5 @@ in the Kayobe Continuous Integration (CI) deployment jobs.
 
 * Kayobe documentation: https://docs.openstack.org/kayobe/latest/
 * Source: https://opendev.org/openstack/kayobe-config-dev
-* Bugs: https://storyboard.openstack.org/#!/project/openstack/kayobe-config-dev
+* Bugs: https://bugs.launchpad.net/kayobe
 * IRC: #openstack-kolla
