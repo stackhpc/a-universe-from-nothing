@@ -106,7 +106,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    cd
 
    # Clone Beokay.
-   git clone https://github.com/stackhpc/beokay.git -b master
+   git clone https://github.com/stackhpc/beokay.git
 
    # Use Beokay to bootstrap your control host.
    [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master
