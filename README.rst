@@ -109,7 +109,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    git clone https://github.com/stackhpc/beokay.git
 
    # Use Beokay to bootstrap your control host.
-   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2024.2 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2024.2
 
    # Clone the Tenks repository.
    cd ~/deployment/src
@@ -501,7 +501,7 @@ OpenStack venv:
     ~/deployment/venvs/os-venv/bin/activate
 
     # Install barbicanclient
-    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/master
+    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/2024.2
 
     # Source the OpenStack environment variables
     source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
