@@ -149,7 +149,7 @@
 # data which may be useful in environments without Swift.
 
 # Whether the inspection data store is enabled.
-#inspector_store_enabled:
+inspector_store_enabled: false
 
 # Port on which the inspection data store should listen.
 #inspector_store_port:
