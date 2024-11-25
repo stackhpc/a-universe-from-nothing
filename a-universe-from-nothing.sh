@@ -34,7 +34,7 @@ echo 'Defaults	!fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 cd
 
 # Clone Beokay.
-[[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git -b master
+[[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
 # Use Beokay to bootstrap your control host.
 if $(which dnf 2>/dev/null >/dev/null); then
