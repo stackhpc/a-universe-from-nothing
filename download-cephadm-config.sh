@@ -19,7 +19,4 @@ curl -o $KAYOBE_CONFIG_PATH/ansible/cephadm-keys.yml $BASE_URL/ansible/cephadm-k
 curl -o $KAYOBE_CONFIG_PATH/ansible/cephadm-pools.yml $BASE_URL/ansible/cephadm-pools.yml
 curl -o $KAYOBE_CONFIG_PATH/ansible/cephadm.yml $BASE_URL/ansible/cephadm.yml
 
-# Download the cephadm config file
-curl -o $KAYOBE_CONFIG_PATH/cephadm.yml https://raw.githubusercontent.com/stackhpc/a-universe-from-nothing/cephadm-role/etc/kayobe/cephadm.yml.template
-
 echo "Download of cephadm files complete!"
