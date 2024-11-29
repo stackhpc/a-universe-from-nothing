@@ -12,8 +12,9 @@
 
 # List of domains, hostnames, IP addresses and networks for which no proxy is
 # used. Defaults to ["127.0.0.1", "localhost", "{{ ('http://' ~
-# docker_registry) | urlsplit('hostname') }}"] if docker_registry is set, or
-# ["127.0.0.1", "localhost"] otherwise. This is configured only if either
+# docker_registry) | urlsplit('hostname') }}","{{ kolla_internal_vip_address
+# }}"] if docker_registry is set, or ["127.0.0.1", "localhost","{{
+# kolla_internal_vip_address }}"] otherwise. This is configured only if either
 # http_proxy or https_proxy is set.
 #no_proxy:
 
