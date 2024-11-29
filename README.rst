@@ -336,7 +336,7 @@ Verify that `virtualbmc <https://opendev.org/openstack/virtualbmc>`_ is running:
 
 .. code-block:: console
 
-    /usr/local/bin/vbmc list
+    ~/tenks-venv/bin/vbmc list
     +-------------+---------+--------------+------+
     | Domain name | Status  | Address      | Port |
     +-------------+---------+--------------+------+
