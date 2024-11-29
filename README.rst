@@ -336,7 +336,7 @@ Verify that `virtualbmc <https://opendev.org/openstack/virtualbmc>`_ is running:
 
 .. code-block:: console
 
-    /usr/local/bin/vbmc list
+    ~/tenks-venv/bin/vbmc list
     +-------------+---------+--------------+------+
     | Domain name | Status  | Address      | Port |
     +-------------+---------+--------------+------+
@@ -410,8 +410,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 docker ps
     CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED       STATUS                 PORTS     NAMES
-    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2024.1-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
-    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2024.1-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
+    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:master-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
+    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:master-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
 
 We can see the log indexes in OpenSearch:
 
