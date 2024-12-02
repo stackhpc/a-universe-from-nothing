@@ -1,0 +1,27 @@
+---
+# Direct host OS logs to Fluentd for forwarding to ElasticSearch
+- name: Configure rsyslog to forward messages
+  hosts: overcloud
+  become: yes
+
+  tasks:
+  - name: Check rsyslog is started and enabled
+    systemd:
+      state: started
+      enabled: yes
+      name: rsyslog
+
+  - name: Update rsyslog file
+    lineinfile:
+      path: /etc/rsyslog.conf
+      insertafter: '^#*.* @@remote-host:514'
+      line: '*.* @{{ ansible_default_ipv4.address }}:5140'
+    register: rsyslog_config
+
+  - name: Restart rsyslog
+    systemd:
+      state: restarted
+      name: rsyslog
+    when: rsyslog_config.changed
+
+...
