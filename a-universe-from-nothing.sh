@@ -32,7 +32,7 @@ cd
 [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git -b master
 
 # Use Beokay to bootstrap your control host.
-[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2023.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2023.1
+[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch unmaintained/2023.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch unmaintained/2023.1
 
 # Clone the Tenks repository.
 cd ~/deployment/src

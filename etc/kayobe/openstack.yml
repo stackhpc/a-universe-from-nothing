@@ -6,7 +6,7 @@
 #openstack_release:
 
 # Name of the current OpenStack branch. Default is "stable/2023.1".
-#openstack_branch:
+openstack_branch: unmaintained/2023.1
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
