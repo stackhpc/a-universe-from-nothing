@@ -79,7 +79,8 @@
 
 # Suffix of upstream Ironic deployment image files. Default is based on
 # {{ openstack_branch }}.
-#ipa_images_upstream_url_suffix:
+# TODO(priteau): Remove once master images are working again
+ipa_images_upstream_url_suffix: "-stable-2024.2"
 
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:
