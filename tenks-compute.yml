@@ -23,6 +23,8 @@ ipmi_address: 192.168.33.4
 
 ipmi_port_range_start: 6238
 
+default_boot_mode: uefi
+
 nova_flavors:
   - resource_class: test-rc
     node_type: baremetal-compute
