@@ -1,9 +1,10 @@
 ---
 ###############################################################################
-# Grafana configuration.
+# Logging configuration
 
-# Grafana local admin user name.
-#grafana_local_admin_user_name:
+# Journald storage. One of: volatile, persistent, auto, or none. Defaults to
+# `persistent`.
+#journald_storage:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

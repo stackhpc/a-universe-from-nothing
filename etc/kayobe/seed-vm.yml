@@ -34,9 +34,11 @@ seed_vm_vcpus: 1
 # Base image for the seed VM root volume. Default is
 # "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 # when os_distribution is "ubuntu",
-# https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2
-# when os_distribution is "rocky",
-# or
+# "https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
+# when os_distribution is "rocky" and seed_vm_boot_firmware is "efi",
+# "https://dl.rockylinux.org/vault/rocky/9.3/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
+# when os_distribution is "rocky" and seed_vm_boot_firmware is not "efi"
+# (default is "bios"), or
 # "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-20221206.0.x86_64.qcow2"
 # otherwise.
 # NOTE(priteau): Temporarily using Rocky Linux 9.3 because 9.4 images fail to
@@ -64,6 +66,12 @@ seed_vm_root_image: https://dl.rockylinux.org/vault/rocky/9.3/images/x86_64/Rock
 #       dev: eth1
 #
 #seed_vm_interfaces:
+
+# Boot firmware. Possible values are 'bios' or 'efi'. Default is 'bios'.
+#seed_vm_boot_firmware:
+
+# Machine type. Libvirt default configuration is used.
+#seed_vm_machine:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
