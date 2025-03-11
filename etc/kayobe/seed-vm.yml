@@ -2,6 +2,9 @@
 ###############################################################################
 # Seed node VM configuration.
 
+# Boot firmware - 'efi' or 'bios' - with latter being the default
+seed_vm_boot_firmware: efi
+
 # Name of the seed VM.
 #seed_vm_name:
 
