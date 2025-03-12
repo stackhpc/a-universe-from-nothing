@@ -10,7 +10,7 @@ cirros_deploy_image_upstream_url: "https://cloud.centos.org/centos/9-stream/x86_
 {% elif os_distribution == 'rocky' %}
 # NOTE(priteau): Temporarily using Rocky Linux 9.3 because 9.4 images fail to
 # boot (https://bugs.rockylinux.org/view.php?id=6832)
-cirros_deploy_image_upstream_url: "https://dl.rockylinux.org/vault/rocky/9.3/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
+cirros_deploy_image_upstream_url: "https://dl.rockylinux.org/vault/rocky/9.5/images/x86_64/Rocky-9-GenericCloud-Base-9.5-20241118.0.x86_64.qcow2"
 {% else %}
 cirros_deploy_image_upstream_url: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 {% endif %}
