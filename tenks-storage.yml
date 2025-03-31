@@ -25,6 +25,8 @@ specs:
 
 ipmi_address: 192.168.33.4
 
+default_boot_mode: uefi
+
 nova_flavors: []
 
 physnet_mappings:
