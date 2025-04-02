@@ -19,5 +19,5 @@ upstream_deploy_image_release: "{{ os_release }}"
 # TODO(priteau): Remove once https://bugs.launchpad.net/bifrost/+bug/2081031 is
 # resolved.
 {% if os_distribution in ['centos', 'rocky'] %}
-custom_deploy_image_checksum_algorithm: "none"
+_checksum_algorithm: "none"
 {% endif %}
