@@ -14,6 +14,9 @@
 # Password to use to access a host's BMC via IPMI.
 #ipmi_password:
 
+# Address to use to access a host's BMC via Redfish.
+#redfish_address:
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
