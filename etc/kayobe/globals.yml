@@ -49,7 +49,7 @@
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
 # OS release. Valid options are "9-stream" when os_distribution is "centos", or
-# "9" when os_distribution is "rocky", or "jammy" when os_distribution is
+# "9" when os_distribution is "rocky", or "noble" when os_distribution is
 # "ubuntu".
 #os_release:
 
@@ -67,6 +67,11 @@ os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 # Global maximum failure percentage. By default this is undefined, which is
 # equivalent to a value of 100.
 #kayobe_max_fail_percentage:
+
+# Whether or not we should try and escalate privileges on the control host.
+# This allows us to install packages and create arbitrary directories that our
+# user would not normally have permission to create. Default is true.
+#kayobe_control_host_become:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

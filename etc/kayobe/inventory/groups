@@ -74,11 +74,6 @@ monitoring
 storage
 compute
 
-# NOTE(wszumski): Remove once https://review.opendev.org/c/openstack/kayobe/+/909686 has
-# merged. Added to get the group rename to pass CI.
-[docker:children]
-container-engine
-
 [docker-registry:children]
 # Hosts in this group will have a Docker Registry deployed. This group should
 # generally contain only a single host, to avoid deploying multiple independent

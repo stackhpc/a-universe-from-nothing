@@ -76,7 +76,9 @@
 #compute_lvm_groups_extra:
 
 # Whether a 'data' LVM volume group should exist on compute hosts. By default
-# this contains a 'docker-volumes' logical volume for Docker volume storage.
+# this contains a 'docker-volumes' logical volume for container volume storage
+# if using the docker container engine, or a 'podman-volumes' logical volume
+# for container volume storage if using the podman container engine.
 # Default is false.
 #compute_lvm_group_data_enabled:
 
@@ -88,17 +90,32 @@
 # invalid value to require configuration.
 #compute_lvm_group_data_disks:
 
+# List of LVM logical volumes for the data volume group when using docker.
+#compute_lvm_group_data_docker_lvs:
+
+# List of LVM logical volumes for the data volume group when using podman.
+#compute_lvm_group_data_podman_lvs:
+
 # List of LVM logical volumes for the data volume group.
 #compute_lvm_group_data_lvs:
 
 # Docker volumes LVM backing volume.
 #compute_lvm_group_data_lv_docker_volumes:
 
+# Podman volumes LVM backing volume.
+#compute_lvm_group_data_lv_podman_volumes:
+
 # Size of docker volumes LVM backing volume.
 #compute_lvm_group_data_lv_docker_volumes_size:
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #compute_lvm_group_data_lv_docker_volumes_fs:
+
+# Size of podman volumes LVM backing volume.
+#compute_lvm_group_data_lv_podman_volumes_size:
+
+# Filesystem for podman volumes LVM backing volume. ext4 allows for shrinking.
+#compute_lvm_group_data_lv_podman_volumes_fs:
 
 ###############################################################################
 # Compute node sysctl configuration.

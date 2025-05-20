@@ -27,10 +27,12 @@
 #apt_keys:
 
 # A list of Apt repositories. Each item is a dict with the following keys:
+# * name: the <name>.sources filename part. Optional. Default is 'kayobe' and
+#   the default filename is 'kayobe.sources'.
 # * types: whitespace-separated list of repository types, e.g. deb or deb-src
 #   (optional, default is 'deb')
 # * url: URL of the repository
-# * suites: whitespace-separated list of suites, e.g. jammy (optional, default
+# * suites: whitespace-separated list of suites, e.g. noble (optional, default
 #   is ansible_facts.distribution_release)
 # * components: whitespace-separated list of components, e.g. main (optional,
 #   default is 'main')
@@ -41,6 +43,14 @@
 # Default is an empty list.
 #apt_repositories:
 
+# List of Apt preferences options. Each item is a dict with the following
+# keys:
+# * content: free-form preferences file content
+# * filename: name of a file in /etc/apt/preferences.d/ in which to write
+#   the configuration
+# Default is an empty list.
+#apt_preferences:
+
 # Whether to disable repositories in /etc/apt/sources.list. This may be used
 # when replacing the distribution repositories via apt_repositories.
 # Default is false.
@@ -50,8 +60,6 @@
 # * machine: 'machine' entry in the auth file
 # * login: 'login' entry in the auth file
 # * password: 'password' entry in the auth file
-# * filename: Name of a file in which to store the auth configuration. The
-#   extension should be '.conf'.
 # * filename: Name of a file in /etc/apt/auth.conf.d in which to store
 #   the auth configuration. The extension should be ``.conf``.
 # Default is an empty list.
