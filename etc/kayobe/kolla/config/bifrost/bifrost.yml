@@ -5,19 +5,5 @@ download_ipa: true
 
 # Use a locally hosted cloud image.
 download_custom_deploy_image: true
-{% if os_distribution == 'ubuntu' and os_release == 'noble' %}
-# TODO(priteau): Remove once
-# https://review.opendev.org/c/openstack/bifrost/+/934177 is merged.
-custom_deploy_image_upstream_url: "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
-custom_deploy_image_checksum_url: "https://cloud-images.ubuntu.com/noble/current/SHA256SUMS"
-custom_deploy_image_checksum_algorithm: "sha256"
-{% else %}
 upstream_deploy_image_distribution: "{{ os_distribution }}"
 upstream_deploy_image_release: "{{ os_release }}"
-{% endif %}
-
-# TODO(priteau): Remove once https://bugs.launchpad.net/bifrost/+bug/2081031 is
-# resolved.
-{% if os_distribution in ['centos', 'rocky'] %}
-custom_deploy_image_checksum_algorithm: "none"
-{% endif %}
