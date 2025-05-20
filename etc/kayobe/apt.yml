@@ -27,6 +27,8 @@
 #apt_keys:
 
 # A list of Apt repositories. Each item is a dict with the following keys:
+# * name: the <name>.sources filename part. Optional. Default is 'kayobe' and
+#   the default filename is 'kayobe.sources'.
 # * types: whitespace-separated list of repository types, e.g. deb or deb-src
 #   (optional, default is 'deb')
 # * url: URL of the repository
