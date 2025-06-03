@@ -42,7 +42,7 @@ if $(which dnf 2>/dev/null >/dev/null); then
 else
     PYTHON_ARG=""
 fi
-[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master $PYTHON_ARG
+[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2025.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2025.1 $PYTHON_ARG
 
 # Clone the Tenks repository.
 cd ~/deployment/src
