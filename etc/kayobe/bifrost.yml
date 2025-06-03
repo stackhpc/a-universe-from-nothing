@@ -159,5 +159,11 @@
 #kolla_bifrost_servers:
 
 ###############################################################################
+# Node provisioning configuration
+# Whether to use Ironic introspection data for admin interface MAC address
+# Default is false.
+#kolla_bifrost_use_introspection_mac:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
