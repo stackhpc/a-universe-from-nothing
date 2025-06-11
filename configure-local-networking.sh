@@ -55,7 +55,7 @@ fi
 
 # Configure IP routing and NAT to allow the seed VM and overcloud hosts to
 # route via this route to the outside world.
-sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE
+sudo iptables -A POSTROUTING -t nat -j MASQUERADE
 sudo sysctl -w net.ipv4.conf.all.forwarding=1
 
 # Configure port forwarding from the hypervisor to the Horizon GUI on the

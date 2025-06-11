@@ -3,7 +3,7 @@
 # Upper constraints file for installation of python packages.
 # Default value is
 # "https://releases.openstack.org/constraints/upper/{{ openstack_release }}"
-#pip_upper_constraints_file:
+pip_upper_constraints_file: https://raw.githubusercontent.com/openstack/requirements/unmaintained/2023.1/upper-constraints.txt
 
 # Use a local PyPi mirror for installing Pip packages
 #pip_local_mirror: false

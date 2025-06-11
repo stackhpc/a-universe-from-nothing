@@ -6,7 +6,7 @@ if [[ ! -d ~/deployment/venvs/os-venv ]]; then
   /usr/bin/python3 -m venv ~/deployment/venvs/os-venv
 fi
 ~/deployment/venvs/os-venv/bin/pip install -U pip
-~/deployment/venvs/os-venv/bin/pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/2023.1
+~/deployment/venvs/os-venv/bin/pip install python-openstackclient -c https://opendev.org/openstack/requirements/raw/branch/unmaintained/2023.1/upper-constraints.txt
 
 parent="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 init_runonce=$parent/../kolla-ansible/tools/init-runonce
