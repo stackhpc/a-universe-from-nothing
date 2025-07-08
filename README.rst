@@ -87,6 +87,11 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
        sudo apt -y install git tmux
    fi
 
+   # Install Python 3.12 on Rocky Linux 9
+   if $(which dnf 2>/dev/null >/dev/null); then
+       sudo dnf -y install python3.12
+   fi
+
    # Disable the firewall.
    sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
@@ -96,7 +101,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
        sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
    fi
 
-   # Prevent sudo from making DNS queries.
+   # Prevent sudo from performing DNS queries.
    echo 'Defaults  !fqdn' | sudo tee /etc/sudoers.d/no-fqdn
 
    # Optional: start a new tmux session in case we lose our connection.
@@ -106,10 +111,15 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    cd
 
    # Clone Beokay.
-   git clone https://github.com/stackhpc/beokay.git
+   [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
    # Use Beokay to bootstrap your control host.
-   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2025.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2025.1
+   if $(which dnf 2>/dev/null >/dev/null); then
+       PYTHON_ARG=" --python /usr/bin/python3.12"
+   else
+       PYTHON_ARG=""
+   fi
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2025.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2025.1 $PYTHON_ARG
 
    # Clone the Tenks repository.
    cd ~/deployment/src
