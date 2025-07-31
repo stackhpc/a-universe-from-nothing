@@ -61,7 +61,7 @@
 #infra_vm_os_family:
 
 # Boot firmware. Possible values are 'bios' or 'efi'. Default is 'bios'.
-#infra_vm_boot_firmware:
+infra_vm_boot_firmware: 'efi'
 
 # Machine type. Libvirt default configuration is used.
 #infra_vm_machine:
