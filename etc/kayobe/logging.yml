@@ -1,12 +1,10 @@
 ---
 ###############################################################################
-# OpenStack release configuration.
+# Logging configuration
 
-# Name of the current OpenStack release. Default is "2024.1".
-#openstack_release:
-
-# Name of the current OpenStack branch. Default is "stable/2024.1".
-#openstack_branch:
+# Journald storage. One of: volatile, persistent, auto, or none. Defaults to
+# `persistent`.
+#journald_storage:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

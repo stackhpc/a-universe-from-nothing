@@ -109,7 +109,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    git clone https://github.com/stackhpc/beokay.git -b master
 
    # Use Beokay to bootstrap your control host.
-   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2023.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2023.1
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2024.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2024.1
 
    # Clone the Tenks repository.
    cd ~/deployment/src
@@ -410,8 +410,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 docker ps
     CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED       STATUS                 PORTS     NAMES
-    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2023.1-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
-    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2023.1-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
+    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2024.1-rocky-9       "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
+    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2024.1-rocky-9                  "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
     ...
 
 We can see the log indexes in OpenSearch:
@@ -502,7 +502,7 @@ OpenStack venv:
     ~/deployment/venvs/os-venv/bin/activate
 
     # Install barbicanclient
-    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/2023.1
+    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/2024.1
 
     # Source the OpenStack environment variables
     source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
