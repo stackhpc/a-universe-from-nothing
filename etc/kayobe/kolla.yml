@@ -284,6 +284,7 @@
 
 #kolla_enable_aodh:
 #kolla_enable_barbican:
+#kolla_enable_bifrost:
 #kolla_enable_blazar:
 #kolla_enable_ceilometer:
 #kolla_enable_ceilometer_horizon_policy_file:

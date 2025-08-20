@@ -5,33 +5,38 @@
       jobs:
         - openstack-tox-pep8
         - kayobe-overcloud-ubuntu-noble
+        - kayobe-overcloud-ubuntu-noble-podman
         - kayobe-overcloud-host-configure-rocky9
-        - kayobe-overcloud-host-configure-centos9s
         - kayobe-overcloud-host-configure-ubuntu-noble
-        - kayobe-overcloud-upgrade-ubuntu-jammy
+        - kayobe-overcloud-upgrade-ubuntu-noble
         - kayobe-seed-rocky9
+        - kayobe-seed-rocky9-podman
         - kayobe-seed-ubuntu-noble
-        - kayobe-seed-images-rocky9
+        - kayobe-seed-ubuntu-noble-podman
         - kayobe-seed-upgrade-rocky9
-        - kayobe-seed-upgrade-ubuntu-jammy
-        - kayobe-seed-vm-rocky9
-        - kayobe-seed-vm-rocky9-efi
+        - kayobe-seed-upgrade-ubuntu-noble
+        - kayobe-seed-vm-rocky9:
+            voting: false
+        - kayobe-seed-vm-rocky9-efi:
+            voting: false
         - kayobe-seed-vm-ubuntu-noble
         - kayobe-seed-vm-ubuntu-noble-efi
-        - kayobe-infra-vm-rocky9
+        - kayobe-infra-vm-rocky9:
+            voting: false
         - kayobe-infra-vm-ubuntu-noble
     gate:
       jobs:
         - openstack-tox-pep8
         - kayobe-overcloud-ubuntu-noble
+        - kayobe-overcloud-ubuntu-noble-podman
         - kayobe-overcloud-host-configure-rocky9
         - kayobe-overcloud-host-configure-ubuntu-noble
-        - kayobe-overcloud-upgrade-ubuntu-jammy
+        - kayobe-overcloud-upgrade-ubuntu-noble
         - kayobe-seed-rocky9
+        - kayobe-seed-rocky9-podman
         - kayobe-seed-ubuntu-noble
+        - kayobe-seed-ubuntu-noble-podman
         - kayobe-seed-upgrade-rocky9
-        - kayobe-seed-upgrade-ubuntu-jammy
-        - kayobe-seed-vm-rocky9
+        - kayobe-seed-upgrade-ubuntu-noble
         - kayobe-seed-vm-ubuntu-noble
-        - kayobe-infra-vm-rocky9
         - kayobe-infra-vm-ubuntu-noble

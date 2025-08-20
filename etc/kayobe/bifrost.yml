@@ -4,6 +4,9 @@
 ###############################################################################
 # Bifrost installation.
 
+# Whether to install Bifrost. Default is true.
+#kolla_enable_bifrost:
+
 # URL of Bifrost source code repository.
 #kolla_bifrost_source_url:
 
