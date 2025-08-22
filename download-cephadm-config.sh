@@ -6,7 +6,7 @@ then
     exit -1
 fi
 
-BASE_URL="https://raw.githubusercontent.com/stackhpc/stackhpc-kayobe-config/stackhpc/2023.1/etc/kayobe"
+BASE_URL="https://raw.githubusercontent.com/stackhpc/stackhpc-kayobe-config/stackhpc/2024.1/etc/kayobe"
 
 # Download ansible playbooks
 curl -o $KAYOBE_CONFIG_PATH/ansible/cephadm-commands-post.yml $BASE_URL/ansible/cephadm-commands-post.yml
@@ -20,6 +20,6 @@ curl -o $KAYOBE_CONFIG_PATH/ansible/cephadm-pools.yml $BASE_URL/ansible/cephadm-
 curl -o $KAYOBE_CONFIG_PATH/ansible/cephadm.yml $BASE_URL/ansible/cephadm.yml
 
 # Download the cephadm config file
-curl -o $KAYOBE_CONFIG_PATH/cephadm.yml https://raw.githubusercontent.com/stackhpc/a-universe-from-nothing/cephadm-role/etc/kayobe/cephadm.yml.template
+curl -o $KAYOBE_CONFIG_PATH/cephadm.yml https://raw.githubusercontent.com/stackhpc/a-universe-from-nothing/cephadm-role-caracal/etc/kayobe/cephadm.yml.template
 
 echo "Download of cephadm files complete!"
