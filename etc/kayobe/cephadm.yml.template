@@ -3,16 +3,13 @@
 # Cephadm deployment configuration.
 
 # Ceph release name.
-cephadm_ceph_release: "{{ 'quincy' if (ansible_facts['distribution_release'] == 'jammy') else 'pacific' }}"
+cephadm_ceph_release: ""
 
-# Ceph FSID.
-#cephadm_fsid:
+# Ceph container image tag.
+cephadm_image_tag: ""
 
 # Ceph container image.
 cephadm_image: "quay.io/ceph/ceph:{{ cephadm_image_tag }}"
-
-# Ceph container image tag.
-cephadm_image_tag: "{{ 'v17.2.6' if os_release == 'jammy' else 'v16.2.11' }}"
 
 # Ceph custom repo workaround for Ubuntu Jammy as there are no official ceph repos for jammy.
 cephadm_custom_repos: "{{ ansible_facts['distribution_release'] == 'jammy' }}"
@@ -21,13 +18,13 @@ cephadm_custom_repos: "{{ ansible_facts['distribution_release'] == 'jammy' }}"
 cephadm_haproxy_image: "quay.io/ceph/haproxy:{{ cephadm_haproxy_image_tag }}"
 
 # HAProxy container image tag.
-cephadm_haproxy_image_tag: "2.3"
+cephadm_haproxy_image_tag: "2.6"
 
 # Keepalived container image.
 cephadm_keepalived_image: "quay.io/ceph/keepalived:{{ cephadm_keepalived_image_tag }}"
 
 # Keepalived container image tag.
-cephadm_keepalived_image_tag: "2.1.5"
+cephadm_keepalived_image_tag: "2.2.4"
 
 # Cephadm admin network interface.
 cephadm_admin_interface: "{{ admin_oc_net_name | net_interface }}"
