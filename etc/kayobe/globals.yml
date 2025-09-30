@@ -46,12 +46,15 @@
 
 # OS distribution name. Valid options are "centos", "rocky", "ubuntu". Default
 # is "rocky".
+# NOTE: Avoids using Ansible facts to be compatible with gather_facts: false
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
 # OS release. Valid options are "9-stream" when os_distribution is "centos", or
 # "9" when os_distribution is "rocky", or "noble" when os_distribution is
 # "ubuntu".
-#os_release:
+# NOTE: Avoids using Ansible facts to be compatible with gather_facts: false
+# yamllint disable-line rule:line-length
+os_release: "{{ 'noble' if os_distribution == 'ubuntu' else lookup('pipe', '. /etc/os-release && echo $VERSION_ID | cut -d . -f 1') | trim }}{{ '-stream' if os_distribution == 'centos' else '' }}"
 
 ###############################################################################
 # Ansible configuration.
