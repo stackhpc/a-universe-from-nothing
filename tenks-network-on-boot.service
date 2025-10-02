@@ -1,0 +1,15 @@
+[Unit]
+Description=Runs a script to setup tenks host networking
+After=network.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/home/lab/deployment/src
+ExecStart=/bin/tenks-network-setup
+Restart=no
+User=lab
+Group=root
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
