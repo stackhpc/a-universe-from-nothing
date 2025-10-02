@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+source /home/lab/deployment/venvs/kayobe/bin/activate
+source /home/lab/deployment/src/kayobe-config/kayobe-env
+
+cd /home/lab/deployment/src
+
+for key in $( set | awk '{FS="="}  /^OS_/ {print $1}' ); do unset $key ; done
+export KAYOBE_CONFIG_SOURCE_PATH=/home/lab/deployment/src/kayobe-config
+export KAYOBE_VENV_PATH=/home/lab/deployment/venvs/kayobe
+export TENKS_CONFIG_PATH=/home/lab/deployment/src/kayobe-config/tenks.yml
+
+kayobe/dev/tenks-network-reboot-patch.sh ./tenks
