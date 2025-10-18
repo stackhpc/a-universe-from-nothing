@@ -87,6 +87,8 @@ kayobe overcloud hardware inspect
 kayobe overcloud introspection data save
 kayobe overcloud provision
 kayobe overcloud host configure
+kayobe overcloud host package update --packages '*'
+kayobe playbook run $KAYOBE_CONFIG_PATH/ansible/reboot.yml
 kayobe overcloud container image pull
 kayobe overcloud service deploy
 source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh

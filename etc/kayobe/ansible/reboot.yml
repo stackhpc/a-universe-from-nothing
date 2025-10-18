@@ -1,0 +1,18 @@
+---
+- name: Reboot overcloud hosts if required
+  hosts: overcloud
+  tags:
+    - reboot
+  tasks:
+    - block:
+        - name: Check if hosts need restarting
+          ansible.builtin.command:
+            cmd: needs-restarting -r
+          failed_when: false
+          register: needs_restarting
+
+        - name: Reboot and wait
+          become: true
+          ansible.builtin.reboot:
+          when: needs_restarting.rc == 1
+      when: ansible_facts.os_family == 'RedHat'
