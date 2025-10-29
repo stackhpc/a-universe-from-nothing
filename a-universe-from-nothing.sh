@@ -7,15 +7,10 @@ set -eu
 
 # Install git and tmux.
 if $(which dnf 2>/dev/null >/dev/null); then
-    sudo dnf -y install git tmux
+    sudo dnf -y install git python3 tmux
 else
     sudo apt update
-    sudo apt -y install git tmux
-fi
-
-# Install Python 3.12 on Rocky Linux 9
-if $(which dnf 2>/dev/null >/dev/null); then
-    sudo dnf -y install python3.12
+    sudo apt -y install git python3 tmux
 fi
 
 # Disable the firewall.
@@ -37,12 +32,7 @@ cd
 [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
 # Use Beokay to bootstrap your control host.
-if $(which dnf 2>/dev/null >/dev/null); then
-    PYTHON_ARG=" --python /usr/bin/python3.12"
-else
-    PYTHON_ARG=""
-fi
-[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master $PYTHON_ARG
+[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master
 
 # Clone the Tenks repository.
 cd ~/deployment/src
