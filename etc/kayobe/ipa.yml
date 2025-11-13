@@ -80,7 +80,9 @@
 
 # Suffix of upstream Ironic deployment image files. Default is based on
 # {{ openstack_branch }}.
-#ipa_images_upstream_url_suffix:
+# FIXME(priteau): Temporary fix for removal of TinyIPA, until we support CentOS
+# Stream IPA images in CI.
+ipa_images_upstream_url_suffix: -stable-2025.1
 
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:
