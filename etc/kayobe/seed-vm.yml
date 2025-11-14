@@ -34,10 +34,9 @@ seed_vm_vcpus: 1
 # Base image for the seed VM root volume. Default is
 # "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
 # when os_distribution is "ubuntu",
-# https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2
-# when os_distribution is "rocky",
-# or
-# "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-latest.x86_64.qcow2"
+# "https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-GenericCloud-Base.latest.x86_64.qcow2"
+# when os_distribution is "rocky", or
+# "https://cloud.centos.org/centos/10-stream/x86_64/images/CentOS-Stream-GenericCloud-x86_64-10-latest.x86_64.qcow2"
 # otherwise.
 #seed_vm_root_image:
 

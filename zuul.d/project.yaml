@@ -4,39 +4,40 @@
     check:
       jobs:
         - openstack-tox-pep8
+        - kayobe-infra-vm-rocky10
+        - kayobe-infra-vm-ubuntu-noble
+        - kayobe-overcloud-host-configure-rocky10
+        - kayobe-overcloud-host-configure-ubuntu-noble
+        - kayobe-overcloud-rocky10
+        - kayobe-overcloud-rocky10-podman
+        - kayobe-overcloud-tls-rocky10
         - kayobe-overcloud-ubuntu-noble
         - kayobe-overcloud-ubuntu-noble-podman
-        - kayobe-overcloud-host-configure-rocky9
-        - kayobe-overcloud-host-configure-ubuntu-noble
         - kayobe-overcloud-upgrade-ubuntu-noble
-        - kayobe-seed-rocky9
-        - kayobe-seed-rocky9-podman
+        - kayobe-seed-rocky10
+        - kayobe-seed-rocky10-podman
         - kayobe-seed-ubuntu-noble
         - kayobe-seed-ubuntu-noble-podman
-        - kayobe-seed-upgrade-rocky9
         - kayobe-seed-upgrade-ubuntu-noble
-        - kayobe-seed-vm-rocky9:
-            voting: false
-        - kayobe-seed-vm-rocky9-efi:
-            voting: false
+        - kayobe-seed-vm-rocky10
         - kayobe-seed-vm-ubuntu-noble
-        - kayobe-seed-vm-ubuntu-noble-efi
-        - kayobe-infra-vm-rocky9:
-            voting: false
-        - kayobe-infra-vm-ubuntu-noble
     gate:
       jobs:
         - openstack-tox-pep8
+        - kayobe-infra-vm-rocky10
+        - kayobe-infra-vm-ubuntu-noble
+        - kayobe-overcloud-host-configure-rocky10
+        - kayobe-overcloud-host-configure-ubuntu-noble
+        - kayobe-overcloud-rocky10
+        - kayobe-overcloud-rocky10-podman
+        - kayobe-overcloud-tls-rocky10
         - kayobe-overcloud-ubuntu-noble
         - kayobe-overcloud-ubuntu-noble-podman
-        - kayobe-overcloud-host-configure-rocky9
-        - kayobe-overcloud-host-configure-ubuntu-noble
         - kayobe-overcloud-upgrade-ubuntu-noble
-        - kayobe-seed-rocky9
-        - kayobe-seed-rocky9-podman
+        - kayobe-seed-rocky10
+        - kayobe-seed-rocky10-podman
         - kayobe-seed-ubuntu-noble
         - kayobe-seed-ubuntu-noble-podman
-        - kayobe-seed-upgrade-rocky9
         - kayobe-seed-upgrade-ubuntu-noble
+        - kayobe-seed-vm-rocky10
         - kayobe-seed-vm-ubuntu-noble
-        - kayobe-infra-vm-ubuntu-noble

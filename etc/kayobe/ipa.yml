@@ -19,7 +19,7 @@
 # Version of IPA builder source repository. Default is {{ openstack_branch }}.
 #ipa_builder_source_version:
 
-# List of additional build host packages to install. Default is an empty list.
+# List of additional build host packages to install. Default is [ 'zstd' ].
 #ipa_build_dib_host_packages_extra:
 
 # List of default Diskimage Builder (DIB) elements to use when building IPA
@@ -64,7 +64,7 @@
 # ipa_build_dib_git_elements_default and ipa_build_dib_git_elements_extra.
 #ipa_build_dib_git_elements:
 
-# List of DIB packages to install. Default is none.
+# List of DIB packages to install. Default is empty list.
 #ipa_build_dib_packages:
 
 # Upper constraints file for installing packages in the virtual environment
@@ -80,7 +80,9 @@
 
 # Suffix of upstream Ironic deployment image files. Default is based on
 # {{ openstack_branch }}.
-#ipa_images_upstream_url_suffix:
+# FIXME(priteau): Temporary fix for removal of TinyIPA, until we support CentOS
+# Stream IPA images in CI.
+ipa_images_upstream_url_suffix: -stable-2025.1
 
 # Name of Ironic deployment kernel image to register in Glance.
 #ipa_images_kernel_name:

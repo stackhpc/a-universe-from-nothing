@@ -31,32 +31,40 @@
 #inspector_ipa_ramdisk_checksum_algorithm:
 
 ###############################################################################
-# Ironic inspector processing configuration.
+# Ironic inspector processing configuration for the inspector implementation
+# built-in to Ironic.
 
-# List of of default inspector processing plugins.
-#inspector_processing_hooks_default:
+# List of hooks to enable for inspection. Default is [$default_hooks, memory,
+# boot-mode, cpu-capabilities, pci-devices, parse-lldp].
+#inspector_hooks_default:
 
-# List of of additional inspector processing plugins.
-#inspector_processing_hooks_extra:
+# List of extra inspection hooks to enable. Default is an empty list.
+#inspector_hooks_extra:
 
-# List of of additional inspector processing plugins.
-#inspector_processing_hooks:
+# List of of additional inspector hooks to enable. Default is
+# {{ inspector_hooks_default + inspector_hooks_extra }}.
+#inspector_hooks:
+
+###############################################################################
+# Common Ironic Inspector processing configuration.
 
 # Which MAC addresses to add as ports during introspection. One of 'all',
-# 'active' or 'pxe'.
+# 'active' or 'pxe'. Default is 'pxe'.
 #inspector_add_ports:
 
 # Which ports to keep after introspection. One of 'all', 'present', or 'added'.
+# Default is 'added'.
 #inspector_keep_ports:
 
-# Whether to enable discovery of nodes not managed by Ironic.
+# Whether to enable discovery of nodes not managed by Ironic. Default is true.
 #inspector_enable_discovery:
 
-# The Ironic driver with which to register newly discovered nodes.
+# The Ironic driver with which to register newly discovered nodes. Default is
+# 'ipmi'.
 #inspector_discovery_enroll_node_driver:
 
 ###############################################################################
-# Ironic inspector configuration.
+# Ironic inspector introspection rules configuration.
 
 # Ironic inspector option to enable IPMI rules. Set to 'True' by default.
 #inspector_rules_ipmi_enabled:
@@ -90,9 +98,6 @@
 # Redfish CA setting. Set to 'True' by default
 #inspector_rule_var_redfish_verify_ca:
 
-###############################################################################
-# Ironic inspector introspection rules configuration.
-
 # Ironic inspector rule to set IPMI credentials.
 #inspector_rule_ipmi_credentials:
 
@@ -101,9 +106,6 @@
 
 # Ironic inspector rule to set deployment ramdisk.
 #inspector_rule_deploy_ramdisk:
-
-# Ironic inspector rule to initialise root device hints.
-#inspector_rule_root_hint_init:
 
 # Ironic inspector rule to set serial root device hint.
 #inspector_rule_root_hint_serial:
@@ -142,17 +144,6 @@
 # Ansible group containing switch hosts to which the workaround should be
 # applied.
 #inspector_dell_switch_lldp_workaround_group:
-
-###############################################################################
-# Inspection store configuration.
-# The inspection store provides a Swift-like service for storing inspection
-# data which may be useful in environments without Swift.
-
-# Whether the inspection data store is enabled.
-inspector_store_enabled: false
-
-# Port on which the inspection data store should listen.
-#inspector_store_port:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

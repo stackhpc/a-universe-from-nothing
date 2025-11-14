@@ -3,7 +3,8 @@
 # Controller node configuration.
 
 # User with which to access the controllers via SSH during bootstrap, in order
-# to setup the Kayobe user account. Default is {{ os_distribution }}.
+# to setup the Kayobe user account. Default is 'cloud-user' if os_distribution
+# is set to centos, otherwise 'os_distribution'.
 #controller_bootstrap_user:
 
 ###############################################################################
