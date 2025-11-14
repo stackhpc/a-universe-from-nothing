@@ -508,7 +508,7 @@ OpenStack venv:
     deactivate
 
     # Activate the OpenStack venv
-    ~/deployment/venvs/os-venv/bin/activate
+    source ~/deployment/venvs/os-venv/bin/activate
 
     # Install barbicanclient
     pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/master
