@@ -69,7 +69,7 @@
 # UUID of the root filesystem contained within the deployment image.
 # See below URL for instructions on how to extract it:
 # https://docs.openstack.org/ironic/latest/admin/raid.html#image-requirements
-# Default is none.
+# Default is an empty string.
 #kolla_bifrost_deploy_image_rootfs:
 
 # Custom cloud-init user-data passed to deploy of the deployment image.
@@ -90,7 +90,7 @@
 # Ironic Inspector configuration.
 
 # List of of inspector processing plugins.
-#kolla_bifrost_inspector_processing_hooks:
+#kolla_bifrost_inspector_hooks:
 
 # Which MAC addresses to add as ports during introspection. One of 'all',
 # 'active' or 'pxe'.
@@ -126,9 +126,6 @@
 
 # Ironic inspector deployment ramdisk location.
 #kolla_bifrost_inspector_deploy_ramdisk:
-
-# Ironic inspector legacy deployment kernel location.
-#kolla_bifrost_inspector_legacy_deploy_kernel:
 
 # Timeout of hardware inspection on overcloud nodes, in seconds. Default is
 # {{ inspector_inspection_timeout }}.
