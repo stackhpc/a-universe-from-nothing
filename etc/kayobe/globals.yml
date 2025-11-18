@@ -49,8 +49,8 @@
 # NOTE: Avoids using Ansible facts to be compatible with gather_facts: false
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
-# OS release. Valid options are "9-stream" when os_distribution is "centos", or
-# "9" when os_distribution is "rocky", or "noble" when os_distribution is
+# OS release. Valid options are "10-stream" when os_distribution is "centos",
+# "10" when os_distribution is "rocky", or "noble" when os_distribution is
 # "ubuntu".
 # NOTE: Avoids using Ansible facts to be compatible with gather_facts: false
 # yamllint disable-line rule:line-length

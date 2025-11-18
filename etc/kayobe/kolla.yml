@@ -86,7 +86,7 @@
 # case Quay.io will be used.
 #kolla_docker_registry:
 
-# Docker namespace to use for Kolla images. Default is 'kolla'.
+# Docker namespace to use for Kolla images. Default is 'openstack.kolla'.
 #kolla_docker_namespace:
 
 # Username to use to access a docker registry. Default is not set, in which
@@ -284,7 +284,6 @@
 
 #kolla_enable_aodh:
 #kolla_enable_barbican:
-#kolla_enable_bifrost:
 #kolla_enable_blazar:
 #kolla_enable_ceilometer:
 #kolla_enable_ceilometer_horizon_policy_file:
@@ -344,15 +343,14 @@
 #kolla_enable_horizon_octavia:
 #kolla_enable_horizon_tacker:
 #kolla_enable_horizon_trove:
-#kolla_enable_horizon_venus:
 #kolla_enable_horizon_watcher:
 #kolla_enable_horizon_zun:
 #kolla_enable_influxdb:
 #kolla_enable_ironic:
 #kolla_enable_ironic_dnsmasq:
-#kolla_enable_ironic_inspector:
 #kolla_enable_ironic_neutron_agent:
 #kolla_enable_ironic_prometheus_exporter:
+#kolla_enable_ironic_pxe_filter:
 #kolla_enable_iscsid:
 #kolla_enable_keepalived:
 #kolla_enable_keystone:
@@ -436,13 +434,12 @@
 #kolla_enable_prometheus_server:
 #kolla_enable_proxysql:
 #kolla_enable_rabbitmq:
-#kolla_enable_redis:
 #kolla_enable_skyline:
 #kolla_enable_tacker:
 #kolla_enable_telegraf:
 #kolla_enable_trove:
 #kolla_enable_trove_singletenant:
-#kolla_enable_venus:
+#kolla_enable_valkey:
 #kolla_enable_watcher:
 #kolla_enable_zun:
 
