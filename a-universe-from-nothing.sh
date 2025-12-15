@@ -78,6 +78,7 @@ kayobe overcloud introspection data save
 kayobe overcloud provision
 kayobe overcloud host configure
 kayobe overcloud host package update --packages '*'
+kayobe overcloud host command run --become --command "dnf install -y kernel-modules-extra"
 kayobe playbook run $KAYOBE_CONFIG_PATH/ansible/reboot.yml
 kayobe overcloud container image pull
 kayobe overcloud service deploy

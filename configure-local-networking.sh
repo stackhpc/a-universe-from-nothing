@@ -28,7 +28,7 @@ public_ip="10.0.2.1"
 
 # Install iptables.
 if $(which dnf >/dev/null 2>&1); then
-    sudo dnf -y install iptables
+    sudo dnf -y install iptables kernel-modules-extra
 fi
 
 if $(which apt >/dev/null 2>&1); then
