@@ -28,7 +28,7 @@ public_ip="10.0.2.1"
 
 # Install iptables.
 if $(which dnf >/dev/null 2>&1); then
-    sudo dnf -y install iptables
+    sudo dnf -y install nftables
 fi
 
 if $(which apt >/dev/null 2>&1); then
@@ -51,22 +51,43 @@ if ! sudo ip l show dummy1 >/dev/null 2>&1; then
   sudo ip l set dummy1 master braio
 fi
 
-# Configure IP routing and NAT to allow the seed VM and overcloud hosts to
-# route via this route to the outside world.
-sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE
 sudo sysctl -w net.ipv4.conf.all.forwarding=1
 
-# Configure port forwarding from the hypervisor to the Horizon GUI on the
-# controller.
-sudo iptables -A FORWARD -i $iface -o braio -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A FORWARD -i braio -o $iface -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo nft add rule ip nat postrouting oif "$iface" masquerade
+
+# Create tables if not existing
+sudo nft add table inet filter 2>/dev/null
+sudo nft add table ip nat 2>/dev/null
+
+# Create chains if not existing
+sudo nft add chain inet filter forward '{ type filter hook forward priority 0; }' 2>/dev/null
+sudo nft add chain ip nat prerouting '{ type nat hook prerouting priority -100; }' 2>/dev/null
+sudo nft add chain ip nat postrouting '{ type nat hook postrouting priority 100; }' 2>/dev/null
+
+sudo nft add rule ip nat postrouting oif "$iface" masquerade
+
+# ----- FILTER RULES -----
+
+# Allow established/related traffic: $iface → braio
+sudo nft add rule inet filter forward iif "$iface" oif braio ct state established,related accept
+
+# Allow established/related traffic: braio → $iface
+sudo nft add rule inet filter forward iif braio oif "$iface" ct state established,related accept
+
+# ----- PORT-SPECIFIC RULES -----
+
 for port in $forwarded_ports; do
-  # Allow new connections.
-  sudo iptables -A FORWARD -i $iface -o braio -p tcp --syn --dport $port -m conntrack --ctstate NEW -j ACCEPT
-  # Destination NAT.
-  sudo iptables -t nat -A PREROUTING -i $iface -p tcp --dport $port -j DNAT --to-destination $controller_vip
-  # Source NAT.
-  sudo iptables -t nat -A POSTROUTING -o braio -p tcp --dport $port -d $controller_vip -j SNAT --to-source $seed_hv_private_ip
+  # Allow NEW TCP connections from $iface → braio on this port
+  sudo nft add rule inet filter forward \
+       iif "$iface" oif braio tcp dport "$port" ct state new accept
+
+  # DNAT: incoming traffic on $iface to controller VIP
+  sudo nft add rule ip nat prerouting \
+       iif "$iface" tcp dport "$port" dnat to "$controller_vip"
+
+  # SNAT: return traffic going to controller VIP on braio
+  sudo nft add rule ip nat postrouting \
+       oif braio ip daddr "$controller_vip" tcp dport "$port" snat to "$seed_hv_private_ip"
 done
 
 # Configure an IP on the 'public' network to allow access to/from the cloud.
