@@ -20,7 +20,7 @@ Requirements
 
 For this workshop, we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-Ubuntu Jammy or Rocky 9, with the following minimum requirements:
+Ubuntu Noble or Rocky Linux 10, with the following minimum requirements:
 
 * 64GB RAM (more is recommended when growing the lab deployment)
 * 100GB disk
@@ -59,7 +59,7 @@ There are four parts to this guide:
 exercise, and fetching the necessary source code.
 
 *Deploying a Seed* includes all instructions necessary to download and install
-the Kayobe prerequisites on a plain Rocky 9 or Ubuntu Jammy cloud image,
+the Kayobe prerequisites on a plain Rocky Linux 10 or Ubuntu Noble cloud image,
 including provisioning and configuration of a seed VM. Optionally, snapshot the
 instance after this step to reduce setup time in the future.
 
@@ -81,15 +81,10 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
 
    # Install git and tmux.
    if $(which dnf 2>/dev/null >/dev/null); then
-       sudo dnf -y install git tmux
+       sudo dnf -y install git python3 tmux
    else
        sudo apt update
-       sudo apt -y install git tmux
-   fi
-
-   # Install Python 3.12 on Rocky Linux 9
-   if $(which dnf 2>/dev/null >/dev/null); then
-       sudo dnf -y install python3.12
+       sudo apt -y install git python3 tmux
    fi
 
    # Disable the firewall.
@@ -114,12 +109,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
    # Use Beokay to bootstrap your control host.
-   if $(which dnf 2>/dev/null >/dev/null); then
-       PYTHON_ARG=" --python /usr/bin/python3.12"
-   else
-       PYTHON_ARG=""
-   fi
-   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master $PYTHON_ARG
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master
 
    # Clone the Tenks repository.
    cd ~/deployment/src
@@ -235,6 +225,9 @@ Configure and deploy OpenStack to the control plane
 .. code-block:: console
 
    kayobe overcloud host configure
+   kayobe overcloud host package update --packages '*'
+   kayobe overcloud host command run --become --command "dnf install -y kernel-modules-extra"
+   kayobe playbook run $KAYOBE_CONFIG_PATH/ansible/reboot.yml
    kayobe overcloud container image pull
    kayobe overcloud service deploy
    source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
