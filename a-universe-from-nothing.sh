@@ -6,7 +6,7 @@
 set -eu
 
 # Install git and tmux.
-if $(which dnf 2>/dev/null >/dev/null); then
+if command -v dnf >/dev/null 2>&1; then
     sudo dnf -y install git python3 tmux
 else
     sudo apt update
@@ -17,7 +17,7 @@ fi
 sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
 
 # Put SELinux in permissive mode both immediately and permanently.
-if $(which setenforce 2>/dev/null >/dev/null); then
+if command -v setenforce >/dev/null 2>&1; then
     sudo setenforce 0
     sudo sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 fi
@@ -78,7 +78,9 @@ kayobe overcloud introspection data save
 kayobe overcloud provision
 kayobe overcloud host configure
 kayobe overcloud host package update --packages '*'
-kayobe overcloud host command run --become --command "dnf install -y kernel-modules-extra"
+if command -v dnf >/dev/null 2>&1; then
+    kayobe overcloud host command run --become --command "dnf install -y kernel-modules-extra"
+fi
 kayobe playbook run $KAYOBE_CONFIG_PATH/ansible/reboot.yml
 kayobe overcloud container image pull
 kayobe overcloud service deploy
