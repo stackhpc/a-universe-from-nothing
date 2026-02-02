@@ -10,7 +10,7 @@ if $(which dnf 2>/dev/null >/dev/null); then
     sudo dnf -y install git tmux
 else
     sudo apt update
-    sudo apt -y install git tmux
+    sudo apt -y install git python3 python3-venv tmux
 fi
 
 # Install Python 3.12 on Rocky Linux 9
