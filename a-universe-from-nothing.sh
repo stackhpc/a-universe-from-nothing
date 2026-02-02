@@ -10,7 +10,7 @@ if command -v dnf >/dev/null 2>&1; then
     sudo dnf -y install git python3 tmux
 else
     sudo apt update
-    sudo apt -y install git python3 tmux
+    sudo apt -y install git python3 python3-venv tmux
 fi
 
 # Disable the firewall.
