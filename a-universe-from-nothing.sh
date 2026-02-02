@@ -43,11 +43,11 @@ cd
 [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
 # Use Beokay to bootstrap your control host.
-[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch proxy
+[[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://github.com/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch proxy
 
 # Clone the Tenks repository.
 cd ~/deployment/src
-[[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
+[[ -d tenks ]] || git clone https://github.com/openstack/tenks.git
 
 # Configure host networking (bridge, routes & firewall)
 ./kayobe-config/configure-local-networking.sh
