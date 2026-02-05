@@ -20,7 +20,7 @@ Requirements
 
 For this workshop, we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-Ubuntu Jammy or Rocky 9, with the following minimum requirements:
+Ubuntu Noble or Rocky 9, with the following minimum requirements:
 
 * 64GB RAM (more is recommended when growing the lab deployment)
 * 100GB disk
