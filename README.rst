@@ -20,7 +20,7 @@ Requirements
 
 For this workshop, we require the use of a single server, configured as a
 *seed hypervisor*. This server should be a bare metal node or VM running
-Ubuntu Jammy or Rocky 9, with the following minimum requirements:
+Ubuntu Noble or Rocky 9, with the following minimum requirements:
 
 * 64GB RAM (more is recommended when growing the lab deployment)
 * 100GB disk
@@ -84,7 +84,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
        sudo dnf -y install git tmux
    else
        sudo apt update
-       sudo apt -y install git tmux
+       sudo apt -y install git python3 python3-venv tmux
    fi
 
    # Install Python 3.12 on Rocky Linux 9
@@ -103,6 +103,14 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
 
    # Prevent sudo from performing DNS queries.
    echo 'Defaults  !fqdn' | sudo tee /etc/sudoers.d/no-fqdn
+
+   # Import existing network configuration in systemd-networkd. This prevents
+   # existing netplan configuration (e.g. for a DHCP-configured interface) from
+   # being disabled by kayobe.
+   if command -v apt >/dev/null 2>&1; then
+       sudo find /run/systemd/network -mindepth 1 -maxdepth 1 -exec cp -t /etc/systemd/network/ {} +
+       sudo find /etc/systemd/network -mindepth 1 -maxdepth 1 -exec chown root:systemd-network {} +
+   fi
 
    # Optional: start a new tmux session in case we lose our connection.
    tmux
