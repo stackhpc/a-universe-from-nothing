@@ -84,7 +84,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
        sudo dnf -y install git python3 tmux
    else
        sudo apt update
-       sudo apt -y install git python3 tmux
+       sudo apt -y install git python3 python3-venv tmux
    fi
 
    # Disable the firewall.
@@ -98,6 +98,14 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
 
    # Prevent sudo from performing DNS queries.
    echo 'Defaults  !fqdn' | sudo tee /etc/sudoers.d/no-fqdn
+
+   # Import existing network configuration in systemd-networkd. This prevents
+   # existing netplan configuration (e.g. for a DHCP-configured interface) from
+   # being disabled by kayobe.
+   if command -v apt >/dev/null 2>&1; then
+       sudo find /run/systemd/network -mindepth 1 -maxdepth 1 -exec cp -t /etc/systemd/network/ {} +
+       sudo find /etc/systemd/network -mindepth 1 -maxdepth 1 -exec chown root:systemd-network {} +
+   fi
 
    # Optional: start a new tmux session in case we lose our connection.
    tmux
