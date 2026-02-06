@@ -51,14 +51,15 @@
 # Whether a 'data' LVM volume group should exist on the seed. By default this
 # contains a 'docker-volumes' logical volume for Docker volume storage.
 # Default is false.
-#seed_lvm_group_data_enabled:
+seed_lvm_group_data_enabled: true
 
 # Seed LVM volume group for data. See mrlesmithjr.manage_lvm role for format.
 #seed_lvm_group_data:
 
 # List of disks for use by seed LVM data volume group. Default to an invalid
 # value to require configuration.
-#seed_lvm_group_data_disks:
+seed_lvm_group_data_disks:
+  - "/dev/vdb"
 
 # List of LVM logical volumes for the data volume group.
 #seed_lvm_group_data_lvs:
