@@ -35,4 +35,5 @@
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
+prechecks_enable_host_ntp_checks: false
 workaround_ansible_issue_8743: yes

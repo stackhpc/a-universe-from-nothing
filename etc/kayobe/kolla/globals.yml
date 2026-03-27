@@ -4,6 +4,7 @@
 # denominator.
 nova_compute_virt_type: qemu
 
+prechecks_enable_host_ntp_checks: false
 # Reduce the control plane's memory footprint by limiting the number of worker
 # processes to one per-service.
 openstack_service_workers: "1"
