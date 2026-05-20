@@ -4,6 +4,8 @@
     check:
       jobs:
         - openstack-tox-pep8
+        - kayobe-ansible-control-host-configure-rocky10
+        - kayobe-ansible-control-host-configure-ubuntu-noble
         - kayobe-infra-vm-rocky10
         - kayobe-infra-vm-ubuntu-noble
         - kayobe-overcloud-host-configure-rocky10
@@ -14,18 +16,24 @@
         - kayobe-overcloud-ubuntu-noble
         - kayobe-overcloud-ubuntu-noble-podman
         - kayobe-overcloud-upgrade-rocky10
+        - kayobe-overcloud-upgrade-slurp-rocky10
+        - kayobe-overcloud-upgrade-slurp-ubuntu-noble
         - kayobe-overcloud-upgrade-ubuntu-noble
         - kayobe-seed-rocky10
         - kayobe-seed-rocky10-podman
         - kayobe-seed-ubuntu-noble
         - kayobe-seed-ubuntu-noble-podman
         - kayobe-seed-upgrade-rocky10
+        - kayobe-seed-upgrade-slurp-rocky10
+        - kayobe-seed-upgrade-slurp-ubuntu-noble
         - kayobe-seed-upgrade-ubuntu-noble
         - kayobe-seed-vm-rocky10
         - kayobe-seed-vm-ubuntu-noble
     gate:
       jobs:
         - openstack-tox-pep8
+        - kayobe-ansible-control-host-configure-rocky10
+        - kayobe-ansible-control-host-configure-ubuntu-noble
         - kayobe-infra-vm-rocky10
         - kayobe-infra-vm-ubuntu-noble
         - kayobe-overcloud-host-configure-rocky10
@@ -36,12 +44,16 @@
         - kayobe-overcloud-ubuntu-noble
         - kayobe-overcloud-ubuntu-noble-podman
         - kayobe-overcloud-upgrade-rocky10
+        - kayobe-overcloud-upgrade-slurp-rocky10
+        - kayobe-overcloud-upgrade-slurp-ubuntu-noble
         - kayobe-overcloud-upgrade-ubuntu-noble
         - kayobe-seed-rocky10
         - kayobe-seed-rocky10-podman
         - kayobe-seed-ubuntu-noble
         - kayobe-seed-ubuntu-noble-podman
         - kayobe-seed-upgrade-rocky10
+        - kayobe-seed-upgrade-slurp-rocky10
+        - kayobe-seed-upgrade-slurp-ubuntu-noble
         - kayobe-seed-upgrade-ubuntu-noble
         - kayobe-seed-vm-rocky10
         - kayobe-seed-vm-ubuntu-noble
