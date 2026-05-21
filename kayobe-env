@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-KAYOBE_CONFIG_ROOT=$(dirname $(realpath ${BASH_SOURCE[0]}))
+KAYOBE_CONFIG_ROOT=$(dirname $(realpath ${BASH_SOURCE[0]:-${(%):-%x}}))
 echo "Using Kayobe config from $KAYOBE_CONFIG_ROOT"
 
 export KAYOBE_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kayobe
@@ -30,7 +30,7 @@ export KOLLA_CONFIG_PATH=$KAYOBE_CONFIG_ROOT/etc/kolla
 #     kayobe/
 #     kolla-ansible/
 base_path=$(realpath $KAYOBE_CONFIG_ROOT/../../)
-export KOLLA_SOURCE_PATH=${KOLLA_SOURCE_PATH:-${base_path}/src/kolla-ansible}
+export KOLLA_SOURCE_PATH=${base_path}/src/kolla-ansible
 # Path to the kolla virtual environment.
 # NOTE: This should not be in the Vagrant shared directory, as there are
 # issues with symlinks on Windows hosts.

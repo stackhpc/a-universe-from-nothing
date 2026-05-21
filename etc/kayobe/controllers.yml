@@ -165,6 +165,24 @@ controller_bootstrap_user: "{{ lookup('env', 'USER') }}"
 #controller_users:
 
 ###############################################################################
+# Controller node additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# controller_containers:
+#   squid:
+#     image: "stackhpc/squid:3.5.20-1"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#
+#controller_containers:
+
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying controller containers
+#controller_manage_containers_registry_attempt_login:
+
+###############################################################################
 # Controller node firewalld configuration.
 
 # Whether to install and enable firewalld.
@@ -184,6 +202,21 @@ controller_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # - permanent: true
 # - state: enabled
 #controller_firewalld_rules:
+
+###############################################################################
+# Controller node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#controller_fail2ban_enabled:
+
+# List of fail2ban jails for the controller node.
+#controller_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the controller node.
+#controller_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the controller node.
+#controller_fail2ban_jail_configuration_extra:
 
 ###############################################################################
 # Controller node swap configuration.

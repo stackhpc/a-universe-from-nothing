@@ -97,6 +97,23 @@
 #monitoring_users:
 
 ###############################################################################
+# Monitoring node additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# monitoring_containers:
+#   squid:
+#     image: "stackhpc/squid:3.5.20-1"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#
+#monitoring_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying monitoring containers
+#monitoring_manage_containers_registry_attempt_login:
+
+###############################################################################
 # Monitoring node firewalld configuration.
 
 # Whether to install and enable firewalld.
@@ -116,6 +133,21 @@
 # - permanent: true
 # - state: enabled
 #monitoring_firewalld_rules:
+
+###############################################################################
+# Monitoring node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#monitoring_fail2ban_enabled:
+
+# List of fail2ban jails for the monitoring node.
+#monitoring_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the monitoring node.
+#monitoring_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the monitoring node.
+#monitoring_fail2ban_jail_configuration_extra:
 
 ###############################################################################
 # Monitoring node swap configuration.

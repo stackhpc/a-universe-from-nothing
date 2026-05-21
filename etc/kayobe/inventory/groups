@@ -80,6 +80,7 @@ monitoring
 storage
 compute
 ansible-control
+infra-vms
 
 [docker-registry:children]
 # Hosts in this group will have a Docker Registry deployed. This group should

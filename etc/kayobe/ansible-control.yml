@@ -91,6 +91,24 @@ ansible_control_bootstrap_user: "{{ lookup('env', 'USER') }}"
 #ansible_control_users:
 
 ###############################################################################
+# Ansible control host additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# seed_containers:
+#   squid:
+#     image: "docker.io/stackhpc/squid"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#     tag: "3.5.20-1"
+#
+#ansible_control_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying containers.
+#ansible_control_manage_containers_registry_attempt_login:
+
+###############################################################################
 # Ansible control host firewalld configuration.
 
 # Whether to install and enable firewalld.
@@ -110,6 +128,21 @@ ansible_control_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # - permanent: true
 # - state: enabled
 #ansible_control_firewalld_rules:
+
+###############################################################################
+# Ansible control host fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#ansible_control_fail2ban_enabled:
+
+# List of fail2ban jails for the Ansible control host.
+#ansible_control_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the Ansible control host.
+#ansible_control_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the Ansible control host.
+#ansible_control_fail2ban_jail_configuration_extra:
 
 ###############################################################################
 # Ansible control host swap configuration.

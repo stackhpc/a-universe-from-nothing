@@ -127,6 +127,23 @@
 #storage_users:
 
 ###############################################################################
+# Storage node additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# storage_containers:
+#   squid:
+#     image: "stackhpc/squid:3.5.20-1"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#
+#storage_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying storage containers
+#storage_manage_containers_registry_attempt_login:
+
+###############################################################################
 # Storage node firewalld configuration.
 
 # Whether to install and enable firewalld.
@@ -146,6 +163,21 @@
 # - permanent: true
 # - state: enabled
 #storage_firewalld_rules:
+
+###############################################################################
+# Storage node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#storage_fail2ban_enabled:
+
+# List of fail2ban jails for the storage node.
+#storage_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the storage node.
+#storage_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the storage node.
+#storage_fail2ban_jail_configuration_extra:
 
 ###############################################################################
 # Storage node swap configuration.

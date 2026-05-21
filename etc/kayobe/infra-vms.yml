@@ -168,6 +168,23 @@
 #infra_vm_users:
 
 ###############################################################################
+# Infrastructure VM node additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# infra_vm_containers:
+#   squid:
+#     image: "stackhpc/squid:3.5.20-1"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#
+#infra_vm_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying controller containers
+#infra_vm_manage_containers_registry_attempt_login:
+
+###############################################################################
 # Infrastructure VM node firewalld configuration.
 
 # Whether to install and enable firewalld.
@@ -187,6 +204,21 @@
 # - permanent: true
 # - state: enabled
 #infra_vm_firewalld_rules:
+
+###############################################################################
+# Infrastructure VM node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#infra_vm_fail2ban_enabled:
+
+# List of fail2ban jails for the infrastructure VM node.
+#infra_vm_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the infrastructure VM node.
+#infra_vm_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the infrastructure VM node.
+#infra_vm_fail2ban_jail_configuration_extra:
 
 ###############################################################################
 # Infrastructure VM node swap configuration.

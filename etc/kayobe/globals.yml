@@ -49,6 +49,14 @@
 # NOTE: Avoids using Ansible facts to be compatible with gather_facts: false
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
+# Mapping from OS distribution name to OS family. Supported keys are
+# "centos", "rocky", and "ubuntu".
+#os_family_map:
+
+# OS family. Valid options are "RedHat" and "Debian". Default depends on
+# os_distribution.
+#os_family:
+
 # OS release. Valid options are "10-stream" when os_distribution is "centos",
 # "10" when os_distribution is "rocky", or "noble" when os_distribution is
 # "ubuntu".
@@ -58,6 +66,10 @@ os_release: "{{ 'noble' if os_distribution == 'ubuntu' else lookup('pipe', '. /e
 
 ###############################################################################
 # Ansible configuration.
+
+# String used as the header comment in files managed by Kayobe. Default is
+# "Ansible managed".
+#kayobe_managed:
 
 # Filter to apply to the setup module when gathering facts. Default is to not
 # specify a filter.
@@ -82,6 +94,13 @@ os_release: "{{ 'noble' if os_distribution == 'ubuntu' else lookup('pipe', '. /e
 # Don't reboot after disabling SELinux in all-in-one environments, as Ansible
 # is typically run directly on the controller.
 selinux_do_reboot: false
+
+###############################################################################
+# Networking configuration.
+
+# Network configuration engine. Valid options are "default" and "nmstate".
+# Default is "default".
+#network_engine: default
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
