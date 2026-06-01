@@ -61,6 +61,12 @@ seed_lvm_group_data_enabled: true
 seed_lvm_group_data_disks:
   - "/dev/vdb"
 
+# List of LVM logical volumes for the data volume group when using docker.
+#seed_lvm_group_data_docker_lvs:
+
+# List of LVM logical volumes for the data volume group when using podman.
+#seed_lvm_group_data_podman_lvs:
+
 # List of LVM logical volumes for the data volume group.
 #seed_lvm_group_data_lvs:
 
@@ -72,6 +78,12 @@ seed_lvm_group_data_disks:
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #seed_lvm_group_data_lv_docker_volumes_fs:
+
+# Size of podman volumes LVM backing volume.
+#seed_lvm_group_data_lv_podman_volumes_size:
+
+# Filesystem for podman volumes LVM backing volume. ext4 allows for shrinking.
+#seed_lvm_group_data_lv_podman_volumes_fs:
 
 ###############################################################################
 # Seed node sysctl configuration.
@@ -96,7 +108,7 @@ seed_lvm_group_data_disks:
 ###############################################################################
 # Seed node additional containers configuration
 
-# Dict of container images to start
+# Dict of containers to deploy.
 # Example:
 # seed_containers:
 #   squid:
@@ -108,8 +120,8 @@ seed_lvm_group_data_disks:
 #seed_containers:
 
 # Whether to attempt a basic authentication login to a registry when
-# deploying seed containers
-#seed_deploy_containers_registry_attempt_login:
+# deploying seed containers.
+#seed_manage_containers_registry_attempt_login:
 
 ###############################################################################
 # Seed node firewalld configuration.
@@ -131,6 +143,27 @@ seed_lvm_group_data_disks:
 # - permanent: true
 # - state: enabled
 #seed_firewalld_rules:
+
+###############################################################################
+# Seed node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#seed_fail2ban_enabled:
+
+# List of fail2ban jails for the seed node.
+#seed_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the seed node.
+#seed_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the seed node.
+#seed_fail2ban_jail_configuration_extra:
+
+###############################################################################
+# Seed node swap configuration.
+
+# List of swap devices. Each item is a dict containing a 'device' item.
+#seed_swap:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

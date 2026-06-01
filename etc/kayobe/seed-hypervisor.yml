@@ -137,5 +137,26 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 #seed_hypervisor_firewalld_rules:
 
 ###############################################################################
+# Seed hypervisor node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#seed_hypervisor_fail2ban_enabled:
+
+# List of fail2ban jails for the seed hypervisor node.
+#seed_hypervisor_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the seed hypervisor node.
+#seed_hypervisor_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the seed hypervisor node.
+#seed_hypervisor_fail2ban_jail_configuration_extra:
+
+###############################################################################
+# Seed hypervisor node swap configuration.
+
+# List of swap devices. Each item is a dict containing a 'device' item.
+#seed_hypervisor_swap:
+
+###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes

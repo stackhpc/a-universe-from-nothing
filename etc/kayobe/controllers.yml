@@ -106,8 +106,7 @@
 
 # Whether a 'data' LVM volume group should exist on controller hosts. By
 # default this contains a 'docker-volumes' logical volume for Docker volume
-# storage.
-# Default is false.
+# storage. Default is false.
 #controller_lvm_group_data_enabled:
 
 # Controller LVM volume group for data. See mrlesmithjr.manage_lvm role for
@@ -118,17 +117,32 @@
 # invalid value to require configuration.
 #controller_lvm_group_data_disks:
 
+# List of LVM logical volumes for the data volume group when using docker.
+#controller_lvm_group_data_docker_lvs:
+
+# List of LVM logical volumes for the data volume group when using podman.
+#controller_lvm_group_data_podman_lvs:
+
 # List of LVM logical volumes for the data volume group.
 #controller_lvm_group_data_lvs:
 
 # Docker volumes LVM backing volume.
 #controller_lvm_group_data_lv_docker_volumes:
 
+# Podman volumes LVM backing volume.
+#controller_lvm_group_data_lv_podman_volumes:
+
 # Size of docker volumes LVM backing volume.
 #controller_lvm_group_data_lv_docker_volumes_size:
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #controller_lvm_group_data_lv_docker_volumes_fs:
+
+# Size of podman volumes LVM backing volume.
+#controller_lvm_group_data_lv_podman_volumes_size:
+
+# Filesystem for podman volumes LVM backing volume. ext4 allows for shrinking.
+#controller_lvm_group_data_lv_podman_volumes_fs:
 
 ###############################################################################
 # Controller node sysctl configuration.
@@ -151,6 +165,24 @@
 #controller_users:
 
 ###############################################################################
+# Controller node additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# controller_containers:
+#   squid:
+#     image: "stackhpc/squid:3.5.20-1"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#
+#controller_containers:
+
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying controller containers
+#controller_manage_containers_registry_attempt_login:
+
+###############################################################################
 # Controller node firewalld configuration.
 
 # Whether to install and enable firewalld.
@@ -170,6 +202,27 @@
 # - permanent: true
 # - state: enabled
 #controller_firewalld_rules:
+
+###############################################################################
+# Controller node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#controller_fail2ban_enabled:
+
+# List of fail2ban jails for the controller node.
+#controller_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the controller node.
+#controller_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the controller node.
+#controller_fail2ban_jail_configuration_extra:
+
+###############################################################################
+# Controller node swap configuration.
+
+# List of swap devices. Each item is a dict containing a 'device' item.
+#controller_swap:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

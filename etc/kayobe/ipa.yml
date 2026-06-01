@@ -7,6 +7,14 @@
 # Whether to build IPA images from source.
 #ipa_build_images:
 
+# Override the OS distribution used to build IPA images. Default is the host
+# distribution.
+#ipa_build_distro:
+
+# Override the OS release used to build IPA images. Default is the host
+# release.
+#ipa_build_release:
+
 # URL of IPA source repository.
 #ipa_build_source_url:
 
@@ -23,10 +31,11 @@
 #ipa_build_dib_host_packages_extra:
 
 # List of default Diskimage Builder (DIB) elements to use when building IPA
-# images. Default is ["centos", "dynamic-login", "enable-serial-console",
-# "ironic-python-agent-ramdisk"] when os_distribution is "rocky", and
-# ["ubuntu", "dynamic-login", "enable-serial-console",
-# "ironic-python-agent-ramdisk"] otherwise.
+# images. Default is ["rocky-container", "dynamic-login",
+# "enable-serial-console", "ironic-python-agent-ramdisk", "baremetal"] when
+# ipa_build_distro is "rocky", and [ipa_build_distro, "dynamic-login",
+# "enable-serial-console", "ironic-python-agent-ramdisk", "baremetal"]
+# otherwise.
 #ipa_build_dib_elements_default:
 
 # List of additional Diskimage Builder (DIB) elements to use when building IPA
@@ -64,7 +73,8 @@
 # ipa_build_dib_git_elements_default and ipa_build_dib_git_elements_extra.
 #ipa_build_dib_git_elements:
 
-# List of DIB packages to install. Default is empty list.
+# List of DIB packages to install. Default is ["python3-yaml"] when
+# when ipa_build_distro is "rocky", otherwise [].
 #ipa_build_dib_packages:
 
 # Upper constraints file for installing packages in the virtual environment

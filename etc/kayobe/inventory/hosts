@@ -2,6 +2,9 @@
 # localhost.
 localhost ansible_connection=local
 
+[ansible-control]
+ansible0
+
 [seed-hypervisor]
 seed-hypervisor
 

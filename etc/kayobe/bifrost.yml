@@ -96,11 +96,20 @@
 # 'active' or 'pxe'.
 #kolla_bifrost_inspector_port_addition:
 
+# Which ports to keep after introspection. One of 'all', 'present', or 'added'.
+# Default follows Bifrost's default of 'present'.
+#kolla_bifrost_inspector_keep_ports:
+
 # List of extra kernel parameters for the inspector default PXE configuration.
 # Default is {{ inspector_extra_kernel_options }}, defined in inspector.yml.
 # When customising this variable, the default extra kernel parameters should be
 # kept to retain full node inspection capabilities.
 #kolla_bifrost_inspector_extra_kernel_options:
+
+# Node driver to use for auto-discovered nodes. Default is
+# {{ inspector_discovery_enroll_node_driver }}, defined in inspector.yml. Set
+# to 'redfish' for modern BMC implementations.
+#kolla_bifrost_inspector_default_node_driver:
 
 # List of introspection rules for Bifrost's Ironic Inspector service.
 #kolla_bifrost_inspector_rules:

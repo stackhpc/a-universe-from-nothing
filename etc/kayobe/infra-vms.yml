@@ -123,6 +123,12 @@
 # an invalid value to require configuration.
 #infra_vm_lvm_group_data_disks:
 
+# List of LVM logical volumes for the data volume group when using docker.
+#infra_vm_lvm_group_data_docker_lvs:
+
+# List of LVM logical volumes for the data volume group when using podman.
+#infra_vm_lvm_group_data_podman_lvs:
+
 # List of LVM logical volumes for the data volume group.
 #infra_vm_lvm_group_data_lvs:
 
@@ -134,6 +140,12 @@
 
 # Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
 #infra_vm_lvm_group_data_lv_docker_volumes_fs:
+
+# Size of podman volumes LVM backing volume.
+#infra_vm_lvm_group_data_lv_podman_volumes_size:
+
+# Filesystem for podman volumes LVM backing volume. ext4 allows for shrinking.
+#infra_vm_lvm_group_data_lv_podman_volumes_fs:
 
 ###############################################################################
 # Infrastructure VM node sysctl configuration.
@@ -156,6 +168,23 @@
 #infra_vm_users:
 
 ###############################################################################
+# Infrastructure VM node additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# infra_vm_containers:
+#   squid:
+#     image: "stackhpc/squid:3.5.20-1"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#
+#infra_vm_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying controller containers
+#infra_vm_manage_containers_registry_attempt_login:
+
+###############################################################################
 # Infrastructure VM node firewalld configuration.
 
 # Whether to install and enable firewalld.
@@ -175,6 +204,27 @@
 # - permanent: true
 # - state: enabled
 #infra_vm_firewalld_rules:
+
+###############################################################################
+# Infrastructure VM node fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#infra_vm_fail2ban_enabled:
+
+# List of fail2ban jails for the infrastructure VM node.
+#infra_vm_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the infrastructure VM node.
+#infra_vm_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the infrastructure VM node.
+#infra_vm_fail2ban_jail_configuration_extra:
+
+###############################################################################
+# Infrastructure VM node swap configuration.
+
+# List of swap devices. Each item is a dict containing a 'device' item.
+#infra_vm_swap:
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
