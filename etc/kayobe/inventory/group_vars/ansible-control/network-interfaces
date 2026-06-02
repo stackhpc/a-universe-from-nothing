@@ -1,6 +1,6 @@
 ---
 ###############################################################################
-# Network interface definitions for the controller group.
+# Network interface definitions for the ansible-control group.
 
 # NOTE: The content of this section is very deployment-specific, since it
 # depends on the names and types of networks in the deployment. It should
@@ -15,13 +15,10 @@
 # Further information on the available network attributes is provided in the
 # network configuration reference in the Kayobe documentation.
 
-# Controller interface on all-in-one network.
-aio_interface: "br{{ aio_bridge_ports[0] }}"
-aio_bridge_ports:
-  - "{{ 'eth0' if (os_release | string).startswith('9') else 'ens2' }}"
-
-# Route via the seed-hypervisor to the outside world.
-aio_gateway: 192.168.33.4
+# Ansible control host interface on all-in-one network.
+aio_interface: breth1
+# Use dummy1 if it exists, otherwise the bridge will have no ports.
+aio_bridge_ports: "{{ ['dummy1'] if 'ansible_dummy1' in hostvars[inventory_hostname] else [] }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

@@ -1,0 +1,5 @@
+aio_ips:
+  #NOTE(wszumski): These are intentionally the same so that we can run network
+  #connectivity check in an AIO.
+  controller0: 192.168.33.3
+  controller1: 192.168.33.3

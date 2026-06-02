@@ -1,0 +1,161 @@
+---
+###############################################################################
+# Ansible control host configuration.
+
+# User with which to access the Ansible control host via SSH during bootstrap,
+# in order to setup the Kayobe user account. Default is {{ os_distribution }}.
+ansible_control_bootstrap_user: "{{ lookup('env', 'USER') }}"
+
+###############################################################################
+# Ansible control host network interface configuration.
+
+# List of networks to which Ansible control host are attached.
+#ansible_control_network_interfaces:
+
+# List of default networks to which Ansible control host are attached.
+#ansible_control_default_network_interfaces:
+
+# List of extra networks to which Ansible control host are attached.
+#ansible_control_extra_network_interfaces:
+
+###############################################################################
+# Ansible control host software RAID configuration.
+
+# List of software RAID arrays. See mrlesmithjr.mdadm role for format.
+#ansible_control_mdadm_arrays:
+
+###############################################################################
+# Ansible control host encryption configuration.
+
+# List of block devices to encrypt. See stackhpc.luks role for format.
+#ansible_control_luks_devices:
+
+###############################################################################
+# Ansible control host LVM configuration.
+
+# List of Ansible control host volume groups. See mrlesmithjr.manage_lvm role
+# for format.
+#ansible_control_lvm_groups:
+
+# Default list of Ansible control host volume groups. See
+# mrlesmithjr.manage_lvm role for format.
+#ansible_control_lvm_groups_default:
+
+# Additional list of Ansible control host volume groups. See
+# mrlesmithjr.manage_lvm role for format.
+#ansible_control_lvm_groups_extra:
+
+# Whether a 'data' LVM volume group should exist on the Ansible control host.
+# By default this contains a 'docker-volumes' logical volume for Docker volume
+# storage. Default is false.
+#ansible_control_lvm_group_data_enabled:
+
+# Ansible control host LVM volume group for data. See mrlesmithjr.manage_lvm
+# role for format.
+#ansible_control_lvm_group_data:
+
+# List of disks for use by Ansible control host LVM data volume group. Default
+# to an invalid value to require configuration.
+#ansible_control_lvm_group_data_disks:
+
+# List of LVM logical volumes for the data volume group.
+#ansible_control_lvm_group_data_lvs:
+
+# Docker volumes LVM backing volume.
+#ansible_control_lvm_group_data_lv_docker_volumes:
+
+# Size of docker volumes LVM backing volume.
+#ansible_control_lvm_group_data_lv_docker_volumes_size:
+
+# Filesystem for docker volumes LVM backing volume. ext4 allows for shrinking.
+#ansible_control_lvm_group_data_lv_docker_volumes_fs:
+
+###############################################################################
+# Ansible control host sysctl configuration.
+
+# Dict of sysctl parameters to set.
+#ansible_control_sysctl_parameters:
+
+###############################################################################
+# Ansible control host tuned configuration.
+
+# Builtin tuned profile to use. Format is same as that used by giovtorres.tuned
+# role. Default is throughput-performance.
+#ansible_control_tuned_active_builtin_profile:
+
+###############################################################################
+# Ansible control host user configuration.
+
+# List of users to create. This should be in a format accepted by the
+# singleplatform-eng.users role.
+#ansible_control_users:
+
+###############################################################################
+# Ansible control host additional containers configuration
+
+# Dict of containers to deploy.
+# Example:
+# seed_containers:
+#   squid:
+#     image: "docker.io/stackhpc/squid"
+#     pre: "{{ kayobe_env_config_path }}/containers/squid/pre.yml"
+#     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
+#     tag: "3.5.20-1"
+#
+#ansible_control_containers:
+
+# Whether to attempt a basic authentication login to a registry when
+# deploying containers.
+#ansible_control_manage_containers_registry_attempt_login:
+
+###############################################################################
+# Ansible control host firewalld configuration.
+
+# Whether to install and enable firewalld.
+#ansible_control_firewalld_enabled:
+
+# A list of zones to create. Each item is a dict containing a 'zone' item.
+#ansible_control_firewalld_zones:
+
+# A firewalld zone to set as the default. Default is unset, in which case the
+# default zone will not be changed.
+#ansible_control_firewalld_default_zone:
+
+# A list of firewall rules to apply. Each item is a dict containing arguments
+# to pass to the firewalld module. Arguments are omitted if not provided, with
+# the following exceptions:
+# - offline: true
+# - permanent: true
+# - state: enabled
+#ansible_control_firewalld_rules:
+
+###############################################################################
+# Ansible control host fail2ban configuration.
+
+# Whether to install and enable fail2ban.
+#ansible_control_fail2ban_enabled:
+
+# List of fail2ban jails for the Ansible control host.
+#ansible_control_fail2ban_jail_configuration:
+
+# List of default fail2ban jails for the Ansible control host.
+#ansible_control_fail2ban_jail_configuration_default:
+
+# List of extra fail2ban jails for the Ansible control host.
+#ansible_control_fail2ban_jail_configuration_extra:
+
+###############################################################################
+# Ansible control host swap configuration.
+
+# List of swap devices. Each item is a dict containing a 'device' item.
+#ansible_control_swap:
+
+###############################################################################
+# Ansible control host container engine configuration.
+
+# Whether a container engine should be configured. Default is false.
+#ansible_control_container_engine_enabled:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

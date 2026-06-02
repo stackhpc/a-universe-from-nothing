@@ -66,7 +66,7 @@
 ###############################################################################
 # Ironic inspector introspection rules configuration.
 
-# Ironic inspector option to enable IPMI rules. Set to 'True' by default.
+# Ironic inspector option to enable IPMI rules. Default is true.
 #inspector_rules_ipmi_enabled:
 
 # Ironic inspector IPMI username to set.
@@ -86,7 +86,7 @@
 # Ironic inspector uses IPMI by default enroll the baremetal nodes, however it
 # is possible to use Redfish instead. To do that enable Redfish and make sure
 # all of the necessary variables below have been properly set.
-# Enable inspector Redfish rules. Set to 'False' by default.
+# Enable inspector Redfish rules. Default is false.
 #inspector_rules_redfish_enabled:
 
 # Ironic inspector Redfish username to set.
@@ -95,8 +95,11 @@
 # Ironic inspector Redfish password to set.
 #inspector_redfish_password:
 
-# Redfish CA setting. Set to 'True' by default
+# Redfish CA setting. Default is true.
 #inspector_rule_var_redfish_verify_ca:
+
+# Log Ironic inspector rules marked sensitive. Default is true.
+#ironic_inspector_sensitive_rule_no_log:
 
 # Ironic inspector rule to set IPMI credentials.
 #inspector_rule_ipmi_credentials:
