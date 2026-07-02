@@ -117,11 +117,16 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
    # Use Beokay to bootstrap your control host.
-   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2026.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2026.1
+   # NOTE: kayobe-config-branch temporarily set to feature/redfish.
+   #       Needs to be set back to stable if the branch is merged.
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2026.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch feature/redfish
 
    # Clone the Tenks repository.
    cd ~/deployment/src
    [[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
+   # NOTE: Use WIP Redfish support change.
+   cd tenks
+   git fetch https://review.opendev.org/openstack/tenks refs/changes/97/995697/2 && git checkout FETCH_HEAD
    cd
 
    # Configure host networking (bridge, routes & firewall)
