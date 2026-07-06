@@ -126,7 +126,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    [[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
    # NOTE: Use WIP Redfish support change.
    cd tenks
-   git fetch https://review.opendev.org/openstack/tenks refs/changes/97/995697/2 && git checkout FETCH_HEAD
+   git fetch https://review.opendev.org/openstack/tenks refs/changes/97/995697/16 && git checkout FETCH_HEAD
    cd
 
    # Configure host networking (bridge, routes & firewall)
