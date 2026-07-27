@@ -117,9 +117,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
    # Use Beokay to bootstrap your control host.
-   # NOTE: kayobe-config-branch temporarily set to feature/redfish.
-   #       Needs to be set back to stable if the branch is merged.
-   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2026.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch feature/redfish
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2026.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2026.1
 
    # Clone the Tenks repository.
    cd ~/deployment/src
