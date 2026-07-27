@@ -10,6 +10,7 @@ node_types:
       # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
       # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
       - capacity: 40GiB
+    ironic_driver: redfish
     physical_networks:
       - physnet1
     console_log_enabled: true
@@ -20,6 +21,7 @@ node_types:
       # There is a minimum disk space capacity requirement of 4GiB when using Ironic Python Agent:
       # https://github.com/openstack/ironic-python-agent/blob/master/ironic_python_agent/utils.py#L290
       - capacity: 20GiB
+    ironic_driver: redfish
     physical_networks:
       - physnet1
     console_log_enabled: true
@@ -39,6 +41,7 @@ specs:
       network_interface: noop
 
 ipmi_address: 192.168.33.4
+redfish_address: 192.168.33.4
 
 nova_flavors: []
 
