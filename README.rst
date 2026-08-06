@@ -1,7 +1,7 @@
 ======================================================================================================================
 Kayobe Configuration for "A Universe from Nothing: Containerised OpenStack deployment using Kolla, Ansible and Kayobe"
 ======================================================================================================================
-
+ 
 This repository may be used as a workshop to configure, deploy and
 get hands-on with OpenStack Kayobe.
 
