@@ -93,7 +93,7 @@ os_release: "{{ 'noble' if os_distribution == 'ubuntu' else lookup('pipe', '. /e
 
 # Network configuration engine. Valid options are "default" and "nmstate".
 # Default is "default".
-#network_engine: default
+network_engine: "{{ 'nmstate' if os_release == 'rocky' else 'default' }}"
 
 ###############################################################################
 # SELinux configuration.
