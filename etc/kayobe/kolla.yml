@@ -317,7 +317,7 @@
 #kolla_enable_designate:
 #kolla_enable_destroy_images:
 #kolla_enable_etcd:
-#kolla_enable_external_api_firewalld:
+kolla_enable_external_api_firewalld: true
 #kolla_enable_external_mariadb_load_balancer:
 #kolla_enable_fluentd:
 #kolla_enable_fluentd_systemd:
