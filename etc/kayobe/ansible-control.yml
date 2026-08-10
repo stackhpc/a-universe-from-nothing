@@ -115,11 +115,11 @@ ansible_control_bootstrap_user: "{{ lookup('env', 'USER') }}"
 ansible_control_firewalld_enabled: true
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
-#ansible_control_firewalld_zones:
+ansible_control_firewalld_zones: "{{ stackhpc_firewalld_zones }}"
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
-#ansible_control_firewalld_default_zone:
+ansible_control_firewalld_default_zone: trusted
 
 # A list of firewall rules to apply. Each item is a dict containing arguments
 # to pass to the firewalld module. Arguments are omitted if not provided, with
@@ -127,36 +127,7 @@ ansible_control_firewalld_enabled: true
 # - offline: true
 # - permanent: true
 # - state: enabled
-# ansible_control_firewalld_rules:
-#   - name: Add default interface to public zone
-#     cmd: >-
-#       ip route | awk '$1 == "default" {print $5; exit}'
-#     register: iface
-#     ansible.posix.firewalld:
-#       interface: iface
-#       zone: public
-
-#   - name: NAT for traffic going to the outside world
-#     ansible.posix.firewalld:
-#       permanent: true
-#       immediate: true
-#       masquerade: true
-#       zone: public
-
-#   - name: Port forwarding over TCP braio to iface
-#     loop:
-#       ansible.posix.firewalld:
-#         permanent: true
-#         immediate: true
-#         forward: true
-#         port_forward:
-#           port: "{{ item }}"
-#           proto: "tcp"
-#           toaddr: iface
-#           toport: "{{ item }}"
-#     item:
-
-
+ansible_control_firewalld_rules: "{{ stackhpc_firewalld_rules }}"
 
 ###############################################################################
 # Ansible control host fail2ban configuration.

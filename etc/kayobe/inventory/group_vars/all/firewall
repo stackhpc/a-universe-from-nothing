@@ -1,0 +1,330 @@
+---
+#########################################
+# StackHPC default firewall configuration
+#########################################
+# This file contains the reference StackHPC firewalld rule implementation. It
+# is designed to cover as many services and use cases as possible, however may
+# not be compatible with all deployments. For more information, see the
+# firewall page in the configuration section of the SKC docs.
+
+# A templated list of firewalld zones, according to the host's network
+# interfaces.
+# This variable can be used to set any *_firewalld_zones kayobe variable e.g.
+# compute_firewalld_zones: "{{ stackhpc_firewalld_zones }}" in compute.yml
+stackhpc_firewalld_zones: |
+  {% set network_zones = [] %}
+  {% for network in network_interfaces %}
+  {% if network | net_zone %}
+  {% set _ = network_zones.append({'zone': network | net_zone }) %}
+  {% endif %}
+  {% endfor %}
+  {{ network_zones | unique | list }}
+
+# A templated list of firewalld rules, according to the enabled services,
+# host's group membership, and host's network configuration.
+# This variable can be used to set any *_firewalld_rules kayobe variable e.g.
+# compute_firewalld_rules: "{{ stackhpc_firewalld_rules }}" in compute.yml
+stackhpc_firewalld_rules: |
+  {% set stackhpc_firewalld_rules_verified = stackhpc_firewalld_rules_extra %}
+  {% for rule in stackhpc_firewalld_rules_default | unique %}
+  {% if rule | ansible.utils.remove_keys('state') not in stackhpc_firewalld_rules_verified | map('ansible.utils.remove_keys', 'state') | default([]) %}
+  {% if rule.network is not defined %}
+  {% set _ = stackhpc_firewalld_rules_verified.append(rule) %}
+  {% elif rule.network in network_interfaces and rule.network | net_zone %}
+  {% set _ = stackhpc_firewalld_rules_verified.append(rule) %}
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  {{ stackhpc_firewalld_rules_verified | list }}
+
+# A single list of default firewall rules, combining the enabled rules from
+# stackhpc_firewalld_rules_template. This variable is designed to fail to
+# template if any conflicting rules are found.
+stackhpc_firewalld_rules_default: |
+  {% set stackhpc_firewalld_rules_formatted = [] %}
+  {% for ruleset in stackhpc_firewalld_rules_template %}
+  {% if ruleset.enabled | bool %}
+  {% for rule in ruleset.rules %}
+  {% if rule.zone is not defined %}
+  {% set rule = rule | combine({'zone': rule.network | net_zone }) %}
+  {% endif %}
+  {% if rule not in stackhpc_firewalld_rules_formatted %}
+  {% if rule | ansible.utils.remove_keys('state') in stackhpc_firewalld_rules_formatted | map('ansible.utils.remove_keys', 'state') %}
+  {% set _ = stackhpc_firewalld_rules_formatted.append({'state':'failure'}) %}
+  {% elif rule.network is not defined %}
+  {% set _ = stackhpc_firewalld_rules_formatted.append(rule) %}
+  {% elif rule.network in network_interfaces and rule.network | net_zone %}
+  {% set _ = stackhpc_firewalld_rules_formatted.append(rule) %}
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endfor %}
+  {{ undef(hint='ERROR: Conflicting firewall rules found') if ({'state':'failure'} in stackhpc_firewalld_rules_formatted) else stackhpc_firewalld_rules_formatted }}
+
+stackhpc_firewalld_rules_template: |
+  {{ stackhpc_common_firewalld_rules_template +
+     (stackhpc_controller_firewalld_rules_template if 'controllers' in group_names else []) +
+     (stackhpc_compute_firewalld_rules_template if 'compute' in group_names else []) +
+     (stackhpc_ceph_firewalld_rules_template if 'ceph' in group_names else []) +
+     (stackhpc_monitoring_firewalld_rules_template if 'monitoring' in group_names else []) +
+     (stackhpc_seed_firewalld_rules_template if 'seed' in group_names else []) +
+     (stackhpc_seed_hypervisor_firewalld_rules_template if 'seed-hypervisor' in group_names else []) +
+     (stackhpc_wazuh_manager_infra_vm_firewalld_rules_template if 'wazuh-manager' in group_names else []) +
+     (stackhpc_ansible_control_infra_vm_firewalld_rules_template if inventory_hostname == 'localhost' else []) }}
+
+###############################################################################
+# Debug Vars
+
+# This variable is not applied anywhere. It exists for debugging purpouses
+# only. Print it with:
+# kayobe configuration dump --var-name stackhpc_firewalld_rules_debug
+stackhpc_firewalld_rules_debug: |
+    {% set stackhpc_firewalld_services_debug = [] %}
+    {% for rule in stackhpc_firewalld_rules %}
+    {% if rule.service is defined %}
+    {% set _ = stackhpc_firewalld_services_debug.append(rule.service + ' ' + rule.state + ' ' + rule.zone | default()) %}
+    {% else %}
+    {% set _ = stackhpc_firewalld_services_debug.append(rule.port + ' ' + rule.state + ' ' + rule.zone | default()) %}
+    {% endif %}
+    {% endfor %}
+    {{ stackhpc_firewalld_services_debug | list }}
+
+###############################################################################
+# Extra firewalld rules
+
+# Extra firewalld rules. Each item is a dict containing arguments to pass to
+# the firewalld module.
+# These rules have higher precidence than the
+# default rules and are not validated before being applied. Use with caution.
+# NOTE: The format of this variable is NOT the same as the
+# stackhpc_*_firewalld_rules_template variables found elsewhere in this file.
+stackhpc_firewalld_rules_extra: []
+
+###############################################################################
+# Common firewalld rules
+
+stackhpc_common_firewalld_rules_template:
+  # Common
+  - rules:
+      - service: ssh
+        network: "{{ admin_oc_net_name }}"
+        state: enabled
+    enabled: true
+  # Cockpit, dhcpv6-client, and SSH are enabled by default in firewalld
+  - rules:
+      - service: cockpit
+        zone: public
+        state: disabled
+      - service: dhcpv6-client
+        zone: public
+        state: disabled
+      - service: ssh
+        zone: public
+        state: disabled
+    enabled: "{{ admin_oc_net_name | net_zone != 'public' }}"
+
+###############################################################################
+# Controller firewalld rules
+
+stackhpc_controller_firewalld_rules_template:
+  # Overcloud Ironic
+  - rules:
+      # Ironic inspector API
+      - port: 5050/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      # Ironic API
+      - port: 6385/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - port: 8089/tcp
+        network: "{{ provision_wl_net_name }}"
+        state: enabled
+      - service: dhcp
+        network: "{{ provision_wl_net_name }}"
+        state: enabled
+      - service: ntp
+        network: "{{ provision_wl_net_name }}"
+        state: enabled
+      - service: tftp
+        network: "{{ provision_wl_net_name }}"
+        state: enabled
+    enabled: "{{ kolla_enable_ironic | bool }}"
+  # Designate
+  - rules:
+      - port: 53/tcp
+        network: "{{ public_net_name }}"
+        state: enabled
+      - port: 53/udp
+        network: "{{ public_net_name }}"
+        state: enabled
+      - port: 5354/tcp
+        network: "{{ public_net_name }}"
+        state: enabled
+      - port: 5354/udp
+        network: "{{ public_net_name }}"
+        state: enabled
+    enabled: "{{ kolla_enable_designate | bool }}"
+  # GENEVE
+  - rules:
+      - port: 6081/udp
+        network: "{{ tunnel_net_name }}"
+        state: enabled
+    enabled: "{{ 'geneve' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types) and 'network' in group_names }}"
+  # VXLAN
+  - rules:
+      - port: 4789/udp
+        network: "{{ tunnel_net_name }}"
+        state: enabled
+    enabled: "{{ 'vxlan' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types) and 'network' in group_names }}"
+  # Octavia
+  - rules:
+      - port: 5555/udp
+        network: "{{ octavia_net_name | default() }}"
+        state: enabled
+    enabled: "{{ kolla_enable_octavia | bool and (octavia_net_name | default('') != '') }}"
+  # DHCP, Was required to create VMs at a customer site, need to work out condition
+  - rules:
+    - port: 67/udp
+      network: "{{ provision_oc_net_name }}"
+      state: enabled
+    enabled: true
+
+###############################################################################
+# Compute firewalld rules
+
+stackhpc_compute_firewalld_rules_template:
+  # GENEVE
+  - rules:
+      - port: 6081/udp
+        network: "{{ tunnel_net_name }}"
+        state: enabled
+    enabled: "{{ ('geneve' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types)) | bool }}"
+  # VXLAN
+  - rules:
+      - port: 4789/udp
+        network: "{{ tunnel_net_name }}"
+        state: enabled
+    enabled: "{{ ('vxlan' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types)) | bool }}"
+
+###############################################################################
+# Ceph firewalld rules
+
+# Port on which radosgw is exposed.
+# See: https://stackhpc-kayobe-config.readthedocs.io/en/stackhpc-2024.1/configuration/cephadm.html#rados-gateways
+stackhpc_ceph_firewalld_radosgw_port: 8100
+
+stackhpc_ceph_firewalld_rules_template:
+  # Ceph Prometheus exporter
+  - rules:
+      - port: 9283/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+    enabled: "{{ kolla_enable_prometheus_ceph_mgr_exporter | default(false) | bool and 'mgrs' in group_names }}"
+  # Ceph
+  - rules:
+      - service: ceph
+        network: "{{ storage_net_name }}"
+        state: enabled
+      - service: ceph
+        network: "{{ storage_mgmt_net_name }}"
+        state: enabled
+      - service: ceph-mon
+        network: "{{ storage_net_name }}"
+        state: "{{ 'enabled' if 'mons' in group_names else 'disabled' }}"
+      - port: "{{ stackhpc_ceph_firewalld_radosgw_port }}/tcp"
+        network: "{{ storage_net_name }}"
+        state: "{{ 'enabled' if 'rgws' in group_names else 'disabled' }}"
+    enabled: "{{ 'ceph' in group_names }}"
+
+###############################################################################
+# Monitoring firewalld rules
+
+stackhpc_monitoring_firewalld_rules_template: []
+
+###############################################################################
+# Infra VM firewalld rules (Wazuh Manager)
+
+stackhpc_wazuh_manager_infra_vm_firewalld_rules_template:
+  - rules:
+      - port: 1514/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - port: 1514/udp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - port: 1515/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - port: 443/tcp
+        network: "{{ wazuh_dashboard_net_name | default(provision_oc_net_name) }}"
+        state: enabled
+      - port: 9200/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - port: 9300-9400/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - port: 55000/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+    enabled: true
+
+###############################################################################
+# Infra VM firewalld rules (Ansible Control)
+
+stackhpc_ansible_control_infra_vm_firewalld_rules_template: []
+
+###############################################################################
+# Seed firewalld rules
+
+stackhpc_seed_firewalld_rules_template:
+  # Pulp server
+  - rules:
+      - port: "{{ pulp_port }}/tcp"
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+    enabled: "{{ seed_pulp_container_enabled | bool }}"
+  # Squid proxy
+  - rules:
+      - service: squid
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+    enabled: "{{ seed_squid_container_enabled | bool }}"
+  # Ironic
+  - rules:
+      # nginx
+      - port: 8080/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      # Ironic inspector API
+      - port: 5050/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      # Ironic API
+      - port: 6385/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - service: dhcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - service: tftp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+      - service: ntp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+    enabled: true  #FIXME: Make rules conditional on Bifrost deployment
+  # Redfish exporter
+  - rules:
+      - port: 9610/tcp
+        network: "{{ provision_oc_net_name }}"
+        state: enabled
+    enabled: "{{ stackhpc_enable_redfish_exporter | default(false) }}"
+  # TODO: Rules if SNAT enabled on seed
+
+###############################################################################
+# Seed Hypervisor firewalld rules
+
+stackhpc_seed_hypervisor_firewalld_rules_template: []
