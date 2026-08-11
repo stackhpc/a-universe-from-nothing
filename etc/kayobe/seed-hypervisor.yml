@@ -99,12 +99,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # Seed hypervisor sysctl configuration.
 
 # Dict of sysctl parameters to set.
-seed_hypervisor_sysctl_parameters:
-# By default this is 1, which causes layer 2 traffic flowing through Linux
-# bridges to pass through iptables. This blocks traffic from VMs (seed, wazuh) to
-# the Internet.
-  net.bridge.bridge-nf-call-iptables: 0
-
+# seed_hypervisor_sysctl_parameters:
 
 ###############################################################################
 # Seed hypervisor tuned configuration.
