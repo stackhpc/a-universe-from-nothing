@@ -9,6 +9,7 @@
 # Name of the network used for admin access to the overcloud
 #admin_oc_net_name:
 admin_oc_net_name: aio
+admin_oc_zone: "admin_oc"
 
 # Name of the network used by the seed to manage the bare metal overcloud
 # hosts via their out-of-band management controllers.
@@ -19,6 +20,7 @@ oob_oc_net_name: aio
 # hosts.
 #provision_oc_net_name:
 provision_oc_net_name: aio
+provision_oc_zone: "provision_oc"
 
 # Name of the network used by the overcloud hosts to manage the bare metal
 # compute hosts via their out-of-band management controllers.
@@ -33,6 +35,7 @@ provision_wl_net_name: aio
 # Name of the network used to expose the internal OpenStack API endpoints.
 #internal_net_name:
 internal_net_name: aio
+internal_zone: "trusted"
 
 # List of names of networks used to provide external network access via
 # Neutron.
@@ -42,22 +45,27 @@ internal_net_name: aio
 #external_net_names:
 external_net_names:
   - aio
+external_zone: "external"
 
 # Name of the network used to expose the public OpenStack API endpoints.
 #public_net_name:
 public_net_name: aio
+public_zone: "public"
 
 # Name of the network used by Neutron to carry tenant overlay network traffic.
 #tunnel_net_name:
 tunnel_net_name: aio
+tunnel_zone: "tunnel"
 
 # Name of the network used to carry storage data traffic.
 #storage_net_name:
 storage_net_name: aio
+storage_zone: "storage"
 
 # Name of the network used to carry storage management traffic.
 #storage_mgmt_net_name:
 storage_mgmt_net_name: aio
+storage_mgmt_zone: "storage_mgmt"
 
 # Name of the network used to carry swift storage data traffic.
 #swift_storage_net_name:
