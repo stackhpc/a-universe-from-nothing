@@ -188,14 +188,14 @@
 # Infrastructure VM node firewalld configuration.
 
 # Whether to install and enable firewalld.
-#infra_vm_firewalld_enabled:
+infra_vm_firewalld_enabled: true
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
-#infra_vm_firewalld_zones:
+infra_vm_firewalld_zones: "{{ stackhpc_firewalld_zones }}"
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
-#infra_vm_firewalld_default_zone:
+infra_vm_firewalld_default_zone: trusted
 
 # A list of firewall rules to apply. Each item is a dict containing arguments
 # to pass to the firewalld module. Arguments are omitted if not provided, with
@@ -203,7 +203,7 @@
 # - offline: true
 # - permanent: true
 # - state: enabled
-#infra_vm_firewalld_rules:
+infra_vm_firewalld_rules: "{{ stackhpc_firewalld_rules }}"
 
 ###############################################################################
 # Infrastructure VM node fail2ban configuration.

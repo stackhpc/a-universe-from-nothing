@@ -99,7 +99,12 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # Seed hypervisor sysctl configuration.
 
 # Dict of sysctl parameters to set.
-#seed_hypervisor_sysctl_parameters:
+seed_hypervisor_sysctl_parameters:
+# By default this is 1, which causes layer 2 traffic flowing through Linux
+# bridges to pass through iptables. This blocks traffic from VMs (seed, wazuh) to
+# the Internet.
+net.bridge.bridge-nf-call-iptables: 0
+
 
 ###############################################################################
 # Seed hypervisor tuned configuration.
@@ -119,14 +124,14 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # Seed hypervisor node firewalld configuration.
 
 # Whether to install and enable firewalld.
-#seed_hypervisor_firewalld_enabled:
+seed_hypervisor_firewalld_enabled: true
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
-#seed_hypervisor_firewalld_zones:
+seed_hypervisor_firewalld_zones: "{{ stackhpc_firewalld_zones }}"
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
-#seed_hypervisor_firewalld_default_zone:
+seed_hypervisor_firewalld_default_zone: trusted
 
 # A list of firewall rules to apply. Each item is a dict containing arguments
 # to pass to the firewalld module. Arguments are omitted if not provided, with
@@ -134,7 +139,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # - offline: true
 # - permanent: true
 # - state: enabled
-#seed_hypervisor_firewalld_rules:
+seed_hypervisor_firewalld_rules: "{{ stackhpc_firewalld_rules }}"
 
 ###############################################################################
 # Seed hypervisor node fail2ban configuration.
