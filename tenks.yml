@@ -58,3 +58,5 @@ wait_for_placement: false
 # Libvirt 9: Cannot set interface flags on 'macvtap1': Value too large for
 # defined data type
 libvirt_vm_trust_guest_rx_filters: false
+
+network_driver: "NetworkManager"

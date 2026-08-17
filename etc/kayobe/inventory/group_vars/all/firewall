@@ -99,7 +99,13 @@ stackhpc_firewalld_rules_debug: |
 # default rules and are not validated before being applied. Use with caution.
 # NOTE: The format of this variable is NOT the same as the
 # stackhpc_*_firewalld_rules_template variables found elsewhere in this file.
-stackhpc_firewalld_rules_extra: []
+stackhpc_firewalld_rules_extra:
+  # Masquerade
+  - rules:
+    masquerade: true
+    state: enabled
+    permanent: true
+    zone: trusted
 
 ###############################################################################
 # Common firewalld rules
