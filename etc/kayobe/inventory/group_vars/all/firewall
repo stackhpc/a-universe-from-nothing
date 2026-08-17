@@ -99,13 +99,7 @@ stackhpc_firewalld_rules_debug: |
 # default rules and are not validated before being applied. Use with caution.
 # NOTE: The format of this variable is NOT the same as the
 # stackhpc_*_firewalld_rules_template variables found elsewhere in this file.
-stackhpc_firewalld_rules_extra:
-  # Masquerade
-  - rules:
-    masquerade: true
-    state: enabled
-    permanent: true
-    zone: trusted
+stackhpc_firewalld_rules_extra: []
 
 ###############################################################################
 # Common firewalld rules
@@ -333,4 +327,10 @@ stackhpc_seed_firewalld_rules_template:
 ###############################################################################
 # Seed Hypervisor firewalld rules
 
-stackhpc_seed_hypervisor_firewalld_rules_template: []
+stackhpc_seed_hypervisor_firewalld_rules_template:
+  # Masquerade
+  - rules:
+    masquerade: true
+    state: enabled
+    permanent: true
+    zone: trusted
