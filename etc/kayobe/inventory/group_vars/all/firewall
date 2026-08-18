@@ -330,7 +330,7 @@ stackhpc_seed_firewalld_rules_template:
 stackhpc_seed_hypervisor_firewalld_rules_template:
   # Masquerade
   - rules:
-    masquerade: true
-    state: enabled
-    permanent: true
-    zone: trusted
+    - masquerade: true
+      state: enabled
+      zone: trusted
+    enabled: true
