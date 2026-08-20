@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Add external ip to braio
+      community.general.nmcli:
+        conn_name: "braio"
+        conn_reload: true
+        ip4: "10.0.2.1"
+        state: "present"
