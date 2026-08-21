@@ -328,15 +328,17 @@ stackhpc_seed_firewalld_rules_template:
 # Seed Hypervisor firewalld rules
 
 stackhpc_seed_hypervisor_firewalld_rules_template:
-  - service: ssh
-    state: enabled
-    zone: internal
-  # Node exporter
-  - port: 9100/tcp
-    state: enabled
-    zone: internal
-  - rich_rule: rule family=ipv4 source address={{ aio_cidr }} masquerade
-    zone: trusted
-  - service: ssh
-    state: enabled
-    zone: trusted
+  - rules:
+      - service: ssh
+        state: enabled
+        zone: internal
+      # Node exporter
+      - port: 9100/tcp
+        state: enabled
+        zone: internal
+      - rich_rule: rule family=ipv4 source address={{ aio_cidr }} masquerade
+        zone: trusted
+      - service: ssh
+        state: enabled
+        zone: trusted
+    enabled: true
