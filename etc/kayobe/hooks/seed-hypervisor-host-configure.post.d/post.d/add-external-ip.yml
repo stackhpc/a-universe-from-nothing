@@ -1,4 +1,5 @@
 ---
+# Workaround until support for adding multiple ips to same interface is added in kayobe
 - hosts: seed-hypervisor
   tags: network
   gather_facts: false
@@ -7,5 +8,23 @@
       community.general.nmcli:
         conn_name: "braio"
         conn_reload: true
-        ip4: "10.0.2.1"
+        ip4:
+          - "192.168.33.4/24"
+          - "10.0.2.1/24"
+        routes4:
+          - "10.0.2.0/24 10.0.2.1"
         state: "present"
+      become: true
+
+    - name: Bring braio up to apply changes
+      command: >-
+        nohup bash -c "
+        nmcli connection reload braio;
+        nmcli connection down braio;
+        if ! nmcli connection up braio; then
+        echo \"Failed to bring up interface braio\";
+          returncode=1
+        fi;
+        exit $returncode"
+      become: true
+      changed_when: true 
