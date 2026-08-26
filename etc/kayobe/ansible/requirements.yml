@@ -1,8 +1,0 @@
----
-collections:
-  - name: stackhpc.linux
-    version: 1.6.4
-roles:
-  - name: stackhpc-systemd-networkd
-    src: https://github.com/stackhpc/ansible-collection-linux/systemd_networkd
-    version: 1.6.4
