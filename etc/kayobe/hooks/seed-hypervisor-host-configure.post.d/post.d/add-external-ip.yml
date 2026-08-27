@@ -39,10 +39,11 @@
             name: stackhpc.linux.systemd_networkd
           vars:
             systemd_networkd_network:
-              - Match:
-                - Name: "braio"
-              - Network:
-                - Address: "10.0.2.1/24"
+              "braio":
+                - Match:
+                  - Name: "braio"
+                - Network:
+                  - Address: "10.0.2.1/24"
           become: true
         
         - name: Restart systemd-networkd to apply changes
