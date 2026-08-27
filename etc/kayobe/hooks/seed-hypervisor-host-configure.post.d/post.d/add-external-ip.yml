@@ -42,7 +42,14 @@
                 - Match:
                   - Name: "braio"
                 - Network:
-                  - Address: "10.0.2.1/24"
+                  - Address: 
+                    - "192.168.33.4/24"
+                    - "10.0.2.1/24"
+                - Link:
+                  - MTUBytes: "1442"
+                - Route:
+                  - Destination: "10.0.2.0/24"
+                  - Gateway: "10.0.2.1"
           become: true
         
         - name: Restart systemd-networkd to apply changes
