@@ -53,6 +53,6 @@
 
     - name: Add external ip to braio
       command: >-
-        ip link add ip a add 10.0.2.1/24 dev braio
+        ip a add 10.0.2.1/24 dev braio
       become: true
       when: network_driver == ""
