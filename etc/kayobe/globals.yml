@@ -105,3 +105,8 @@ selinux_do_reboot: false
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
+
+
+###############################################################################
+# Network driver that is specified in tenks.yml
+network_driver: ""

@@ -59,4 +59,5 @@ wait_for_placement: false
 # defined data type
 libvirt_vm_trust_guest_rx_filters: false
 
-network_driver: "NetworkManager"
+# The network driver may be set to NetworkManager, systemd_networkd or left as an empty string.
+network_driver: ""
