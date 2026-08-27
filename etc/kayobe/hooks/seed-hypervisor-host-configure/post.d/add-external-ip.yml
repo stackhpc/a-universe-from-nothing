@@ -3,7 +3,6 @@
 - hosts: seed-hypervisor
   tags: network
   tasks:
-
     - name: Use nmcli to add external ip 
       when: network_driver == "NetworkManager"
       block:
