@@ -4,25 +4,55 @@
   tags: network
   gather_facts: false
   tasks:
-    - name: Add external ip to braio
-      community.general.nmcli:
-        conn_name: "braio"
-        conn_reload: true
-        ip4:
-          - "192.168.33.4/24"
-          - "10.0.2.1/24"
-        state: "present"
-      become: true
 
-    - name: Bring braio up to apply changes
+    - name: Use nmcli to add external ip 
+      when: network_driver == "NetworkManager"
+      block:
+        - name: Add external ip to braio
+          community.general.nmcli:
+            conn_name: "braio"
+            conn_reload: true
+            ip4:
+              - "192.168.33.4/24"
+              - "10.0.2.1/24"
+            state: "present"
+          become: true
+
+        - name: Bring braio up to apply changes
+          command: >-
+            nohup bash -c "
+            nmcli connection reload braio;
+            nmcli connection down braio;
+            if ! nmcli connection up braio; then
+            echo \"Failed to bring up interface braio\";
+              returncode=1
+            fi;
+            exit $returncode"
+          become: true
+          changed_when: true 
+
+    - name: Use systemd-networkd to add external ip
+      when: network_driver == "systemd-networkd"
+      block:
+        - name: Add external ip to braio
+          import_role:
+            name: stackhpc.linux.systemd_networkd
+          vars:
+            systemd_networkd_network:
+              - Match:
+                - Name: "braio"
+              - Network:
+                - Address: "10.0.2.1/24"
+          become: true
+        
+        - name: Restart systemd-networkd to apply changes
+          command: >-
+            systemctl restart systemd-networkd
+          become: true
+          changed_when: true
+
+    - name: Add external ip to braio
       command: >-
-        nohup bash -c "
-        nmcli connection reload braio;
-        nmcli connection down braio;
-        if ! nmcli connection up braio; then
-        echo \"Failed to bring up interface braio\";
-          returncode=1
-        fi;
-        exit $returncode"
+        ip link add ip a add 10.0.2.1/24 dev braio
       become: true
-      changed_when: true 
+      when: network_driver == ""
