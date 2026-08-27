@@ -2,7 +2,6 @@
 # Workaround until support for adding multiple ips to same interface is added in kayobe
 - hosts: seed-hypervisor
   tags: network
-  gather_facts: false
   tasks:
 
     - name: Use nmcli to add external ip 
