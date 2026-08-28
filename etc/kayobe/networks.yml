@@ -149,9 +149,6 @@ aio_mtu: 1442
 # List of IP routing tables. Each item should be a dict containing 'id' and
 # 'name' items. These tables will be added to /etc/iproute2/rt_tables.
 #network_route_tables:
-aio_routes:
-  - cidr: 10.0.2.0/24
-    gateway: 10.0.2.1
 
 ###############################################################################
 # Network connectivity check configuration.
