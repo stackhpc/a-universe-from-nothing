@@ -2,3 +2,4 @@
 collections:
   - name: stackhpc.linux
     version: '>=1.6.4'
+  - name: community.general
