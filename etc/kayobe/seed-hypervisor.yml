@@ -122,7 +122,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 seed_hypervisor_firewalld_enabled: true
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
-seed_hypervisor_firewalld_zones: "{{ stackhpc_firewalld_zones }}"
+#seed_hypervisor_firewalld_zones:
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
