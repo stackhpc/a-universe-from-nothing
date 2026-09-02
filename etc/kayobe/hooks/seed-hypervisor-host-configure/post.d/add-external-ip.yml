@@ -61,4 +61,4 @@
       command: >-
         ip a add 10.0.2.1/24 dev braio
       become: true
-      when: network_driver == ""
+      when: network_driver == "iproute2"

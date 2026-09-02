@@ -109,4 +109,5 @@ workaround_ansible_issue_8743: yes
 
 ###############################################################################
 # Network driver that is specified in tenks.yml
-network_driver: ""
+# The network driver may be set to iproute2 (default) NetworkManager, or systemd-networkd.
+network_driver: "iproute2"
