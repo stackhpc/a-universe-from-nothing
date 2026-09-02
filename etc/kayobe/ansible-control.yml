@@ -112,14 +112,14 @@ ansible_control_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # Ansible control host firewalld configuration.
 
 # Whether to install and enable firewalld.
-ansible_control_firewalld_enabled: true
+#ansible_control_firewalld_enabled:
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
-ansible_control_firewalld_zones: "{{ stackhpc_firewalld_zones }}"
+#ansible_control_firewalld_zones:
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
-ansible_control_firewalld_default_zone: trusted
+#ansible_control_firewalld_default_zone:
 
 # A list of firewall rules to apply. Each item is a dict containing arguments
 # to pass to the firewalld module. Arguments are omitted if not provided, with
@@ -127,7 +127,7 @@ ansible_control_firewalld_default_zone: trusted
 # - offline: true
 # - permanent: true
 # - state: enabled
-ansible_control_firewalld_rules: "{{ stackhpc_firewalld_rules }}"
+#ansible_control_firewalld_rules:
 
 ###############################################################################
 # Ansible control host fail2ban configuration.

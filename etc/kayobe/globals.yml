@@ -93,7 +93,7 @@ os_release: "{{ 'noble' if os_distribution == 'ubuntu' else lookup('pipe', '. /e
 
 # Network configuration engine. Valid options are "default" and "nmstate".
 # Default is "default".
-network_engine: "{{ 'nmstate' if os_distribution == 'rocky' else 'default' }}"
+#network_engine: default
 
 ###############################################################################
 # SELinux configuration.
@@ -105,9 +105,3 @@ selinux_do_reboot: false
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
-
-
-###############################################################################
-# Network driver that is specified in tenks.yml
-# The network driver may be set to iproute2 (default) NetworkManager, or systemd-networkd.
-network_driver: "iproute2"

@@ -4,7 +4,7 @@
   tags: network
   tasks:
     - name: Use nmcli to add external ip 
-      when: network_driver == "NetworkManager"
+      when: ansible_facts.os_family == "RedHat"
       block:
         - name: Add external ip to braio
           community.general.nmcli:
@@ -30,7 +30,7 @@
           changed_when: true 
 
     - name: Use systemd-networkd to add external ip
-      when: network_driver == "systemd-networkd"
+      when: ansible_facts.os_family == "Debian"
       block:
         - name: Add external ip to braio
           import_role:
@@ -56,9 +56,3 @@
             systemctl restart systemd-networkd
           become: true
           changed_when: true
-
-    - name: Add external ip to braio
-      command: >-
-        ip a add 10.0.2.1/24 dev braio
-      become: true
-      when: network_driver == "iproute2"

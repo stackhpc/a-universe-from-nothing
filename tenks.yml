@@ -59,5 +59,13 @@ wait_for_placement: false
 # defined data type
 libvirt_vm_trust_guest_rx_filters: false
 
-# The network driver may be set to iproute2 (default) NetworkManager, or systemd-networkd.
-network_driver: "iproute2"
+# The network driver may be set to iproute2, NetworkManager, or systemd-networkd.
+# Network driver is autodetected by default.
+network_driver: >-
+  {% if ansible_facts.os_family == "RedHat" %}
+  "NetworkManager"
+  {% elif ansible_facts.os_family == "Debian" %}
+  "systemd-networkd"
+  {% else %}
+  "iproute2"
+  {% endif %}

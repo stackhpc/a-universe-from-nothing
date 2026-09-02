@@ -99,7 +99,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # Seed hypervisor sysctl configuration.
 
 # Dict of sysctl parameters to set.
-# seed_hypervisor_sysctl_parameters:
+#seed_hypervisor_sysctl_parameters:
 
 ###############################################################################
 # Seed hypervisor tuned configuration.
@@ -126,7 +126,7 @@ seed_hypervisor_firewalld_zones: "{{ stackhpc_firewalld_zones }}"
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
-seed_hypervisor_firewalld_default_zone: trusted
+#seed_hypervisor_firewalld_default_zone:
 
 # A list of firewall rules to apply. Each item is a dict containing arguments
 # to pass to the firewalld module. Arguments are omitted if not provided, with
@@ -134,7 +134,12 @@ seed_hypervisor_firewalld_default_zone: trusted
 # - offline: true
 # - permanent: true
 # - state: enabled
-seed_hypervisor_firewalld_rules: "{{ stackhpc_firewalld_rules }}"
+seed_hypervisor_firewalld_rules:
+      - rich_rule: rule family=ipv4 source address={{ aio_cidr }} masquerade
+        zone: trusted
+      - service: ssh
+        state: enabled
+        zone: trusted
 
 ###############################################################################
 # Seed hypervisor node fail2ban configuration.

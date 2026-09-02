@@ -10,7 +10,6 @@ set -o pipefail
 # etc/kayobe/network-allocation.yml and etc/kayobe/networks.yml.
 controller_vip=192.168.33.2
 seed_hv_ip=192.168.33.4
-seed_vm_ip=192.168.33.5
 
 iface=$(ip route | awk '$1 == "default" {print $5; exit}')
 
