@@ -142,7 +142,7 @@
 # Compute node firewalld configuration.
 
 # Whether to install and enable firewalld.
-#compute_firewalld_enabled:
+compute_firewalld_enabled: true
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
 #compute_firewalld_zones:
