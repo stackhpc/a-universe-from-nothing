@@ -119,6 +119,12 @@ seed_lvm_group_data_disks:
 #
 #seed_containers:
 
+#seed_pulp_container_enabled:
+
+#seed_squid_container_enabled:
+
+#seed_redfish_exporter_container_enabled:
+
 # Whether to attempt a basic authentication login to a registry when
 # deploying seed containers.
 #seed_manage_containers_registry_attempt_login:

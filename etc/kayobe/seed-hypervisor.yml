@@ -119,7 +119,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # Seed hypervisor node firewalld configuration.
 
 # Whether to install and enable firewalld.
-#seed_hypervisor_firewalld_enabled:
+seed_hypervisor_firewalld_enabled: true
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
 #seed_hypervisor_firewalld_zones:
@@ -134,7 +134,12 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # - offline: true
 # - permanent: true
 # - state: enabled
-#seed_hypervisor_firewalld_rules:
+seed_hypervisor_firewalld_rules:
+      - rich_rule: rule family=ipv4 source address={{ aio_cidr }} masquerade
+        zone: trusted
+      - service: ssh
+        state: enabled
+        zone: trusted
 
 ###############################################################################
 # Seed hypervisor node fail2ban configuration.

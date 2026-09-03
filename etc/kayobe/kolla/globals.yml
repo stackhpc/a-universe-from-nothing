@@ -8,3 +8,6 @@ nova_compute_virt_type: qemu
 # processes to one per-service.
 openstack_service_workers: "1"
 openstack_service_rpc_workers: "1"
+
+enable_external_api_firewalld: true
+external_api_firewalld_zone: "{{ public_net_name | net_zone }}"
