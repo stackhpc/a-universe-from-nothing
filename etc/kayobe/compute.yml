@@ -142,7 +142,7 @@
 # Compute node firewalld configuration.
 
 # Whether to install and enable firewalld.
-compute_firewalld_enabled: true
+#compute_firewalld_enabled:
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
 #compute_firewalld_zones:
@@ -157,19 +157,8 @@ compute_firewalld_enabled: true
 # - offline: true
 # - permanent: true
 # - state: enabled
-compute_firewalld_rules:
-  # GENEVE
-  - rules:
-      - port: 6081/udp
-        network: "{{ tunnel_net_name }}"
-        state: enabled
-    enabled: "{{ ('geneve' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types)) | bool }}"
-  # VXLAN
-  - rules:
-      - port: 4789/udp
-        network: "{{ tunnel_net_name }}"
-        state: enabled
-    enabled: "{{ ('vxlan' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types)) | bool }}"
+#compute_firewalld_rules:
+
 ###############################################################################
 # Compute node fail2ban configuration.
 
