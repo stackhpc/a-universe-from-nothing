@@ -201,8 +201,11 @@ controller_firewalld_enabled: true
 # - offline: true
 # - permanent: true
 # - state: enabled
-#controller_firewalld_rules:
-
+controller_firewalld_rules:
+  - service: ssh
+    state: enabled
+    zone: trusted
+    
 ###############################################################################
 # Controller node fail2ban configuration.
 

@@ -148,8 +148,10 @@ seed_firewalld_enabled: true
 # - offline: true
 # - permanent: true
 # - state: enabled
-#seed_firewalld_rules:
-
+seed_firewalld_rules:
+  - service: ssh
+    state: enabled
+    zone: trusted
 ###############################################################################
 # Seed node fail2ban configuration.
 

@@ -157,8 +157,11 @@ compute_firewalld_enabled: true
 # - offline: true
 # - permanent: true
 # - state: enabled
-#compute_firewalld_rules:
-
+compute_firewalld_rules:
+  - service: ssh
+    state: enabled
+    zone: trusted
+    
 ###############################################################################
 # Compute node fail2ban configuration.
 
