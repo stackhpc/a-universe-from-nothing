@@ -133,7 +133,7 @@ seed_lvm_group_data_disks:
 # Seed node firewalld configuration.
 
 # Whether to install and enable firewalld.
-seed_firewalld_enabled: true
+#seed_firewalld_enabled:
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
 #seed_firewalld_zones:
@@ -148,10 +148,8 @@ seed_firewalld_enabled: true
 # - offline: true
 # - permanent: true
 # - state: enabled
-seed_firewalld_rules:
-  - service: ssh
-    state: enabled
-    zone: trusted
+#seed_firewalld_rules:
+
 ###############################################################################
 # Seed node fail2ban configuration.
 
