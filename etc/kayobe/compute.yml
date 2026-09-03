@@ -158,10 +158,18 @@ compute_firewalld_enabled: true
 # - permanent: true
 # - state: enabled
 compute_firewalld_rules:
-  - service: ssh
-    state: enabled
-    zone: trusted
-    
+  # GENEVE
+  - rules:
+      - port: 6081/udp
+        network: "{{ tunnel_net_name }}"
+        state: enabled
+    enabled: "{{ ('geneve' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types)) | bool }}"
+  # VXLAN
+  - rules:
+      - port: 4789/udp
+        network: "{{ tunnel_net_name }}"
+        state: enabled
+    enabled: "{{ ('vxlan' in (kolla_neutron_ml2_type_drivers + kolla_neutron_ml2_tenant_network_types)) | bool }}"
 ###############################################################################
 # Compute node fail2ban configuration.
 
