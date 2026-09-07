@@ -13,14 +13,9 @@ seed_hv_ip=192.168.33.4
 # IP of the seed hypervisor on the OpenStack 'public' network created by init-runonce.sh.
 public_ip="10.0.2.1"
 
-# Install iptables.
+# Install extra kernel modules.
 if $(which dnf >/dev/null 2>&1); then
-    sudo dnf -y install iptables kernel-modules-extra
-fi
-
-if $(which apt >/dev/null 2>&1); then
-    sudo apt update
-    sudo apt -y install iptables
+    sudo dnf -y install kernel-modules-extra
 fi
 
 # Configure local networking.

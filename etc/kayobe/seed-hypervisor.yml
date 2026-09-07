@@ -126,7 +126,7 @@ seed_hypervisor_firewalld_enabled: true
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
-#seed_hypervisor_firewalld_default_zone:
+seed_hypervisor_firewalld_default_zone: "trusted"
 
 # A list of firewall rules to apply. Each item is a dict containing arguments
 # to pass to the firewalld module. Arguments are omitted if not provided, with
