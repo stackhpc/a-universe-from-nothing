@@ -8,7 +8,6 @@ set -o pipefail
 # IP addresses on the all-in-one Kayobe cloud network.
 # These IP addresses map to those statically configured in
 # etc/kayobe/network-allocation.yml and etc/kayobe/networks.yml.
-controller_vip=192.168.33.2
 seed_hv_ip=192.168.33.4
 
 # IP of the seed hypervisor on the OpenStack 'public' network created by init-runonce.sh.
