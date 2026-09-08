@@ -39,6 +39,4 @@ if ! sudo ip a show dev braio | grep $public_ip/24 >/dev/null 2>&1; then
 fi
 
 echo
-echo "NOTE: The network configuration applied by this script is not"
-echo "persistent across reboots."
-echo "If you reboot the system, please re-run this script."
+echo "All done!"
