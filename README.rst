@@ -87,9 +87,6 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
        sudo apt -y install git python3 python3-venv tmux
    fi
 
-   # Disable the firewall.
-   sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
-
    # Put SELinux in permissive mode both immediately and permanently.
    if command -v setenforce >/dev/null 2>&1; then
        sudo setenforce 0
@@ -124,7 +121,7 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    [[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
    cd
 
-   # Configure host networking (bridge, routes & firewall)
+   # Configure host networking (bridge)
    ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 Deploying a Seed
@@ -156,10 +153,6 @@ performed the necessary `Preparation`_.
    # Deploy the seed services.
    kayobe seed service deploy
 
-   # Deploying the seed restarts networking interface,
-   # run configure-local-networking.sh again to re-add routes.
-   ~/deployment/src/kayobe-config/configure-local-networking.sh
-
    # Optional: Shutdown the seed VM if creating a seed snapshot.
    sudo virsh shutdown seed
 
@@ -189,9 +182,6 @@ Otherwise, continue working with the instance from `Deploying a Seed`_.
 
    # Optional: start a new tmux session in case we lose our connection.
    tmux
-
-   # Configure non-persistent networking, if the node has rebooted.
-   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 Make sure that the seed VM (running Bifrost and supporting services)
 is present and running.
@@ -275,10 +265,6 @@ You'll need to have activated the `~/deployment/venvs/os-venv` virtual environme
 
    # Check SSH access to the VM.
    ssh cirros@$fip
-
-   # If the ssh command above fails you may need to reconfigure the local
-   networking setup again:
-   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 *Note*: when accessing the VNC console of an instance via Horizon,
 you will be sent to the internal IP address of the controller,
@@ -432,31 +418,7 @@ We can see the log indexes in OpenSearch:
 
    curl -X GET "192.168.33.3:9200/_cat/indices?v"
 
-To access OpenSearch Dashboards, we must first forward connections from our
-public interface to the OpenSearch Dashboards service running on our
-``controller0`` VM.
-
-The easiest way to do this is to add OpenSearch Dashboards's default port (5601) to our
-``configure-local-networking.sh`` script in ``~/deployment/src/kayobe-config/``:
-
-.. code-block:: diff
-
-    --- a/configure-local-networking.sh
-    +++ b/configure-local-networking.sh
-    @@ -20,7 +20,7 @@ seed_hv_private_ip=$(ip a show dev $iface | grep 'inet ' | awk '{ print $2 }' |
-     # Forward the following ports to the controller.
-     # 80: Horizon
-     # 6080: VNC console
-    -forwarded_ports="80 6080"
-    +forwarded_ports="80 6080 5601"
-
-Then rerun the script to apply the change:
-
-.. code-block:: console
-
-    ~/deployment/src/kayobe-config/configure-local-networking.sh
-
-We can now connect to OpenSearch Dashboards using our hypervisor host public IP and port 5601.
+We can connect to OpenSearch Dashboards using our hypervisor host public IP and port 5601.
 
 The username is ``opensearch`` and the password we can extract from the
 Kolla-Ansible passwords (in production these would be vault-encrypted
