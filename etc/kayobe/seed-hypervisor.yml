@@ -137,11 +137,11 @@ seed_hypervisor_firewalld_default_zone: "trusted"
 seed_hypervisor_firewalld_rules:
       - rich_rule: rule family=ipv4 source address={{ aio_cidr }} masquerade
         zone: trusted
-      - rich_rule: forward-port port=80 protocol=tcp to-port=80 to-addr={{ aio_ips['controller0'] }}
+      - rich_rule: rule forward-port port=80 protocol=tcp to-port=80 to-addr={{ aio_ips['controller0'] }}
         zone: trusted
-      - rich_rule: forward-port port=6080 protocol=tcp to-port=6080 to-addr={{ aio_ips['controller0'] }}
+      - rich_rule: rule forward-port port=6080 protocol=tcp to-port=6080 to-addr={{ aio_ips['controller0'] }}
         zone: trusted
-      - rich_rule: forward-port port=5601 protocol=tcp to-port=5601 to-addr={{ aio_ips['controller0'] }}
+      - rich_rule: rule forward-port port=5601 protocol=tcp to-port=5601 to-addr={{ aio_ips['controller0'] }}
         zone: trusted
       - service: ssh
         state: enabled
