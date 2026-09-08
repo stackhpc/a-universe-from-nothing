@@ -7,11 +7,11 @@
 
 # Memory in MB.
 #seed_vm_memory_mb:
-seed_vm_memory_mb: "{{ 4 * 1024 }}"
+seed_vm_memory_mb: "{{ 16 * 1024 }}"
 
 # Number of vCPUs.
 #seed_vm_vcpus:
-seed_vm_vcpus: 1
+seed_vm_vcpus: 4
 
 # List of volumes.
 #seed_vm_volumes:
