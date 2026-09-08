@@ -5,6 +5,8 @@
 
 set -eu
 
+ENABLE_OVN=true
+
 # Install git and tmux.
 if command -v dnf >/dev/null 2>&1; then
     sudo dnf -y install git python3 tmux
@@ -51,6 +53,28 @@ cd ~/deployment/src
 
 # Use the kayobe virtual environment, and export kayobe environment variables
 source ~/deployment/env-vars.sh
+
+# Enable OVN flags
+if $ENABLE_OVN
+then
+    cat <<EOF | sudo tee -a ~/deployment/src/kayobe-config/etc/kayobe/bifrost.yml
+kolla_bifrost_extra_kernel_options:
+  - "console=ttyS0"
+EOF
+    cat <<EOF | sudo tee -a ~/deployment/src/kayobe-config/etc/kayobe/kolla.yml
+kolla_enable_ovn: yes
+EOF
+    cat <<EOF | sudo tee -a ~/deployment/src/kayobe-config/etc/kayobe/neutron.yml
+kolla_neutron_ml2_type_drivers:
+  - geneve
+  - vlan
+  - flat
+kolla_neutron_ml2_tenant_network_types:
+  - geneve
+  - vlan
+  - flat
+EOF
+fi
 
 # Configure the seed hypervisor host.
 kayobe seed hypervisor host configure
