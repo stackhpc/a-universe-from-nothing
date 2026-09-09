@@ -592,7 +592,7 @@ Inside ``controller0``, check docker containers are running and healthy:
     eaddc631af2c   192.168.33.5:4000/openstack.kolla/cron:2026.1-ubuntu-noble                        "dumb-init --single-…"   18 hours ago    Up 8 minutes                       cron
     9c625afb0f7e   192.168.33.5:4000/openstack.kolla/kolla-toolbox:2026.1-ubuntu-noble               "dumb-init --single-…"   18 hours ago    Up 8 minutes                       kolla_toolbox
 
-Restart any unhealthy containers. If they are still unhealthy after a restart, user ``docker logs <container_name>`` to investigate the problem.
+Restart any unhealthy containers. If they are still unhealthy after a restart, user ``docker logs <container_name>`` and check /var/log/kolla to investigate the problem.
 
 Source the openstack venv and openrc file:
 
