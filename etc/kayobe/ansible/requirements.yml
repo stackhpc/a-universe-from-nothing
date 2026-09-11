@@ -1,0 +1,5 @@
+collections:
+  - name: pulp.squeezer
+    version: 0.3.0
+  - name: stackhpc.pulp
+    version: 0.6.0

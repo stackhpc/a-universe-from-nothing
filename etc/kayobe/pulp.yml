@@ -1,0 +1,6 @@
+---
+# Credentials for the demo local pulp instance
+pulp_username: admin
+pulp_password: b2996720-0104-4bca-8448-67e4d6e7473b
+
+pulp_url: "http://{{ lookup('vars', admin_oc_net_name ~ '_ips')[groups.seed.0] }}:80"

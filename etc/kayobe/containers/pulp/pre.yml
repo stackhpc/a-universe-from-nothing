@@ -1,0 +1,22 @@
+---
+- name: Ensure /opt/kayobe/containers/pulp exists
+  file:
+    path: "/opt/kayobe/containers/pulp"
+    state: directory
+  become: true
+
+- name: Ensure required Docker volumes exist
+  kayobe_container_volume:
+    name: "{{ item }}"
+  loop:
+    - pulp_containers
+    - pulp_pgsql
+    - pulp_storage
+
+- name: Copy modified settings.py
+  template:
+    src: "{{ kayobe_config_path }}/containers/pulp/settings.py"
+    dest: /opt/kayobe/containers/pulp/settings.py
+    mode: 0644
+  become: true
+  register: pulp_settings

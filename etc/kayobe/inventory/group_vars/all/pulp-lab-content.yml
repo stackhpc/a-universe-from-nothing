@@ -1,0 +1,106 @@
+---
+###############################################################################
+# Content definitions for the workshop Pulp server.
+
+# The variables here are generally for the stackhpc.pulp roles, which is
+# why rpm/container look different from galaxy. The StackHPC
+# collection covers the content types Ark actually ships; anything else drops
+# down to pulp.squeezer.
+###############################################################################
+
+# No TLS in the lab
+pulp_validate_certs: false
+
+# Upstream rpm repo details
+pulp_lab_rocky_version: "10.2"
+pulp_lab_rocky_base_url: "https://dl.rockylinux.org/pub/rocky/{{ pulp_lab_rocky_version }}"
+
+###############################################################################
+# stackhpc.pulp.pulp_repository
+
+# One role invocation creates the remote, creates the repository, and syncs.
+# Three of the five nouns, collapsed into one list entry. That is convenient
+# and it is also why the lab does Python by hand with the CLI first.
+
+# Note the role names remotes "<name>-remote" for you.
+###############################################################################
+
+pulp_repository_rpm_repos:
+  # Small enough to mirror in full... just about. This is the only repo where
+  # you can watch artefacts actually land on disk.
+  - name: rocky-extras
+    url: "{{ pulp_lab_rocky_base_url }}/extras/x86_64/os/"
+    policy: immediate
+    state: present
+
+  # This one is on_demand. Sync metadata, and pull packages when requested.
+  - name: rocky-baseos
+    url: "{{ pulp_lab_rocky_base_url }}/BaseOS/x86_64/os/"
+    policy: on_demand
+    state: present
+
+pulp_repository_container_repos:
+  - name: alpine
+    url: https://quay.io
+    upstream_name: libpod/alpine
+    policy: immediate
+    state: present
+
+###############################################################################
+# stackhpc.pulp.pulp_publication
+###############################################################################
+
+pulp_publication_rpm:
+  - repository: rocky-extras
+    state: present
+  - repository: rocky-baseos
+    state: present
+
+###############################################################################
+# stackhpc.pulp.pulp_distribution
+###############################################################################
+
+pulp_distribution_rpm:
+  - name: rocky-extras
+    base_path: "rocky/{{ pulp_lab_rocky_version }}/extras/x86_64/os"
+    repository: rocky-extras
+    state: present
+  - name: rocky-baseos
+    base_path: "rocky/{{ pulp_lab_rocky_version }}/BaseOS/x86_64/os"
+    repository: rocky-baseos
+    state: present
+
+pulp_distribution_container:
+  - name: alpine
+    base_path: container/alpine
+    repository: alpine
+    state: present
+
+###############################################################################
+# Galaxy content - pulp.squeezer
+
+# stackhpc.pulp has no ansible role, so this uses the squeezer collection
+# instead. Also the only content type in the lab with no publication step.
+###############################################################################
+
+pulp_lab_galaxy:
+  name: galaxy-kayobe-subset
+  url: https://galaxy.ansible.com/
+  base_path: galaxy/kayobe
+  collections:
+    - stackhpc.pulp
+    - ansible.posix
+
+###############################################################################
+# Container pull-through cache
+
+# The one place in this lab that touches the raw REST API. Neither
+# stackhpc.pulp nor pulp.squeezer wraps the pull-through remote and
+# distribution types yet, and it is still a tech preview upstream.
+###############################################################################
+
+pulp_lab_pullthrough_enabled: true
+pulp_lab_pullthrough:
+  name: quay-cache
+  url: https://quay.io
+  base_path: quay

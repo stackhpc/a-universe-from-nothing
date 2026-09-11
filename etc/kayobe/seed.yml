@@ -108,6 +108,27 @@ seed_lvm_group_data_disks:
 ###############################################################################
 # Seed node additional containers configuration
 
+seed_pulp_container:
+  pulp:
+    image: "quay.io/pulp/pulp"
+    pre: "{{ kayobe_config_path }}/containers/pulp/pre.yml"
+    post: "{{ kayobe_config_path }}/containers/pulp/post.yml"
+    tag: "3.81.0"
+    network_mode: host
+    # Override deploy_containers_defaults.init == true to ensure
+    # s6-overlay-suexec starts as pid 1
+    init: false
+    env:
+      PULP_CONTENT_WORKERS: "{{ [ansible_facts.processor_vcpus * 2 + 1, 12] | min | string }}"
+      PULP_API_WORKERS: "{{ [ansible_facts.processor_vcpus * 2 + 1, 12] | min | string }}"
+      PULP_HTTPS: "false"
+    volumes:
+      - /opt/kayobe/containers/pulp:/etc/pulp
+      - pulp_storage:/var/lib/pulp
+      - pulp_pgsql:/var/lib/pgsql
+      - pulp_containers:/var/lib/containers
+    restart_policy: unless-stopped
+
 # Dict of containers to deploy.
 # Example:
 # seed_containers:
@@ -117,7 +138,7 @@ seed_lvm_group_data_disks:
 #     post: "{{ kayobe_env_config_path }}/containers/squid/post.yml"
 #     tag: "3.5.20-1"
 #
-#seed_containers:
+seed_containers: "{{ seed_pulp_container }}"
 
 # Whether to attempt a basic authentication login to a registry when
 # deploying seed containers.

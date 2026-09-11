@@ -1,0 +1,102 @@
+---
+###############################################################################
+# Advance the dev distribution to the latest repository version.
+
+#   kayobe playbook run etc/kayobe/ansible/pulp-lab-sync-dev.yml
+
+# This is what we set up as the nightly job. It can run unattended, it always
+# takes whatever upstream has at the time, and it never touches production.
+###############################################################################
+
+- name: Advance dev to the latest version
+  hosts: seed
+  gather_facts: false
+  run_once: true
+
+  vars_files:
+    - pulp-lab-content.yml
+
+  vars:
+    pulp_lab_promote_repo: rocky-extras
+    pulp_lab_dev_base_path: lab/dev
+    pulp_lab_prod_base_path: lab/prod
+
+  tasks:
+    - name: Read the repository
+      pulp.squeezer.rpm_repository:
+        name: "{{ pulp_lab_promote_repo }}"
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+      delegate_to: localhost
+      register: pulp_lab_repo
+
+    - name: Work out the latest version number
+      ansible.builtin.set_fact:
+        pulp_lab_latest_version: >-
+          {{ pulp_lab_repo.repository.latest_version_href
+             | regex_replace('.*/versions/([0-9]+)/$', '\1') | int }}
+
+    # A publication freezes one repository version. Calling this repeatedly
+    # for the same version should return the existing one rather than making a
+    # new one.
+    - name: Publish the latest version
+      pulp.squeezer.rpm_publication:
+        repository: "{{ pulp_lab_promote_repo }}"
+        version: "{{ pulp_lab_latest_version }}"
+        state: present
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+      delegate_to: localhost
+      register: pulp_lab_dev_publication
+
+    - name: Point the dev distribution at it
+      pulp.squeezer.rpm_distribution:
+        name: lab-dev
+        base_path: "{{ pulp_lab_dev_base_path }}"
+        publication: "{{ pulp_lab_dev_publication.publication.pulp_href }}"
+        state: present
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+      delegate_to: localhost
+
+    - name: Read the prod distribution
+      pulp.squeezer.rpm_distribution:
+        name: lab-prod
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+      delegate_to: localhost
+      register: pulp_lab_prod_dist
+      failed_when: false
+
+    - name: Read the publication prod is serving
+      ansible.builtin.uri:
+        url: "{{ pulp_url }}{{ (pulp_lab_prod_dist.distribution | default({}, true)).publication }}"
+        url_username: "{{ pulp_username }}"
+        url_password: "{{ pulp_password }}"
+        force_basic_auth: true
+      delegate_to: localhost
+      when: (pulp_lab_prod_dist.distribution | default({}, true)).publication is defined
+      register: pulp_lab_prod_pub
+
+    - name: Report
+      ansible.builtin.debug:
+        msg: |
+          dev  is on version {{ pulp_lab_latest_version }}
+          prod is on version {{
+            (pulp_lab_prod_pub.json.repository_version
+             | regex_replace('.*/versions/([0-9]+)/$', '\1'))
+            if pulp_lab_prod_pub.json is defined else 'NOT YET CREATED' }}
+
+            dev:  {{ pulp_url }}/pulp/content/{{ pulp_lab_dev_base_path }}/
+            prod: {{ pulp_url }}/pulp/content/{{ pulp_lab_prod_base_path }}/
+
+          When upstream moves, dev moves with it. Production stays the same
+          until we are ready to promote.

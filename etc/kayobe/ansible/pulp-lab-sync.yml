@@ -1,0 +1,93 @@
+---
+###############################################################################
+# This central playbook will populate the workshop Pulp server.
+
+#   kayobe playbook run etc/kayobe/ansible/pulp-lab-sync.yml
+#   kayobe playbook run etc/kayobe/ansible/pulp-lab-sync.yml --tags rpm
+
+# Available tags are: galaxy, rpm, container
+###############################################################################
+
+- name: Populate the lab Pulp server
+  hosts: seed
+  gather_facts: false
+  run_once: true
+
+  tasks:
+    - name: Check the Pulp server is reachable
+      pulp.squeezer.status:
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+      register: pulp_lab_status
+      delegate_to: localhost
+      tags: always
+
+    - name: Report the installed plugins
+      ansible.builtin.debug:
+        msg: >-
+          Pulp is up at {{ pulp_url }} with plugins:
+          {{ pulp_lab_status.status.versions
+             | rejectattr('component', 'equalto', 'core')
+             | map(attribute='component') | join(', ') }}
+      tags: always
+
+    # Ansible Galaxy
+    - name: Sync Ansible Galaxy content
+      ansible.builtin.import_tasks: pulp-lab-galaxy.yml
+      tags: galaxy
+
+    # RPM
+    - name: Sync RPM repositories
+      ansible.builtin.import_role:
+        name: stackhpc.pulp.pulp_repository
+      vars:
+        pulp_repository_container_repos: []
+        pulp_repository_deb_repos: []
+      tags: rpm
+
+    - name: Publish RPM repositories
+      ansible.builtin.import_role:
+        name: stackhpc.pulp.pulp_publication
+      tags: rpm
+
+    - name: Distribute RPM repositories
+      ansible.builtin.import_role:
+        name: stackhpc.pulp.pulp_distribution
+      vars:
+        pulp_distribution_container: []
+      tags: rpm
+
+    # Containers
+    - name: Sync container repositories
+      ansible.builtin.include_role:
+        name: stackhpc.pulp.pulp_repository
+      vars:
+        pulp_repository_deb_repos: []
+        pulp_repository_rpm_repos: []
+      tags: container
+
+    # No publication step for containers - the registry API is served live
+    # from a repository version rather than from generated static metadata.
+    - name: Distribute container repositories
+      ansible.builtin.include_role:
+        name: stackhpc.pulp.pulp_distribution
+      vars:
+        pulp_distribution_rpm: []
+      tags: container
+
+    - name: Configure the pull-through cache
+      ansible.builtin.import_tasks: pulp-lab-pullthrough.yml
+      when: pulp_lab_pullthrough_enabled | bool
+      tags: container
+
+    - name: Report the content URLs
+      ansible.builtin.debug:
+        msg: |
+          Content is served from {{ pulp_url }}/pulp/content/
+
+            Galaxy API   {{ pulp_url }}/pulp_ansible/galaxy/{{ pulp_lab_galaxy.base_path }}/api/
+            Rocky repos  {{ pulp_url }}/pulp/content/rocky/{{ pulp_lab_rocky_version }}/
+            Registry     {{ pulp_url | urlsplit('netloc') }}
+      tags: always

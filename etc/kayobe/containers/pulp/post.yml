@@ -1,0 +1,36 @@
+---
+- name: Wait for Pulp to become ready
+  uri:
+    url: "{{ pulp_url }}/pulp/api/v3/status/"
+  register: pulp_status
+  until: pulp_status is success
+  retries: "{{ pulp_timeout_retries | default(120) }}"
+  delay: "{{ pulp_timeout_delay | default(3) }}"
+
+- name: Set the Pulp admin password
+  become: true
+  command: >-
+    {{ container_engine | default("docker") }} exec -u root pulp
+    bash -c
+      "pulpcore-manager reset-admin-password -p \"{{ pulp_password }}\""
+  no_log: true
+  register: pulp_manager_result
+  failed_when:
+    - "'Successfully set password' not in pulp_manager_result.stdout"
+
+- name: Manage Pulp content image data
+  become: true
+  command: >-
+    {{ container_engine | default("docker") }} exec -u root pulp
+    bash -c
+      'pulpcore-manager container-handle-image-data'
+
+- name: Login to docker registry
+  kayobe_container_login:
+    registry_url: "{{ kolla_docker_registry or omit }}"
+    username: "{{ kolla_docker_registry_username }}"
+    password: "{{ kolla_docker_registry_password }}"
+    reauthorize: yes
+  when:
+    - kolla_docker_registry_username is not none
+    - kolla_docker_registry_password is not none

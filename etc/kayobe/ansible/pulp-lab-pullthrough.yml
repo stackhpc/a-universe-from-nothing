@@ -1,0 +1,62 @@
+---
+###############################################################################
+# Container pull-through cache
+
+# This is the only place in this lab that touches the raw REST API. Neither
+# stackhpc.pulp nor pulp.squeezer wraps the pull-through remote and
+# distribution types, and upstream still marks the feature a tech preview.
+
+# That is not a bad thing to see once. The endpoint paths give some hints to
+# what we're working with here:
+
+#   /pulp/api/v3/remotes/container/pull-through/
+#   /pulp/api/v3/distributions/container/pull-through/
+
+# Every module you have used today is a wrapper around URLs like these.
+###############################################################################
+
+- name: Create the pull-through remote
+  ansible.builtin.uri:
+    url: "{{ pulp_url }}/pulp/api/v3/remotes/container/pull-through/"
+    method: POST
+    url_username: "{{ pulp_username }}"
+    url_password: "{{ pulp_password }}"
+    force_basic_auth: true
+    body_format: json
+    body:
+      name: "{{ pulp_lab_pullthrough.name }}"
+      url: "{{ pulp_lab_pullthrough.url }}"
+    # 400 means it already exists, useful for reruns. A bit janky for prod, but
+    # good enough for a lab
+    status_code: [201, 400]
+  delegate_to: localhost
+
+- name: Look up the pull-through remote
+  ansible.builtin.uri:
+    url: "{{ pulp_url }}/pulp/api/v3/remotes/container/pull-through/?name={{ pulp_lab_pullthrough.name }}"
+    url_username: "{{ pulp_username }}"
+    url_password: "{{ pulp_password }}"
+    force_basic_auth: true
+  delegate_to: localhost
+  register: pulp_lab_pullthrough_remote
+
+- name: Create the pull-through distribution
+  ansible.builtin.uri:
+    url: "{{ pulp_url }}/pulp/api/v3/distributions/container/pull-through/"
+    method: POST
+    url_username: "{{ pulp_username }}"
+    url_password: "{{ pulp_password }}"
+    force_basic_auth: true
+    body_format: json
+    body:
+      name: "{{ pulp_lab_pullthrough.name }}"
+      base_path: "{{ pulp_lab_pullthrough.base_path }}"
+      remote: "{{ pulp_lab_pullthrough_remote.json.results[0].pulp_href }}"
+    status_code: [201, 202, 400]
+  delegate_to: localhost
+
+- name: Show the pull-through registry prefix
+  ansible.builtin.debug:
+    msg: >-
+      docker image pull --tls-verify=false
+      {{ pulp_url | urlsplit('netloc') }}/{{ pulp_lab_pullthrough.base_path }}/<namespace>/<image>:<tag>

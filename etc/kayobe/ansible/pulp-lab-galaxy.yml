@@ -1,0 +1,80 @@
+---
+###############################################################################
+# Ansible Galaxy content
+
+# Here, you'll see the  five nouns as Ansible modules, one task each. Compare
+# it against what you typed at the CLI in Part 1: same shape, same order.
+
+# Except... there are only four. Ansible distributions point straight at a
+# repository, because the Galaxy API is generated on request rather than
+# baked into static metadata like repodata or a simple index.
+
+# The five nouns are the general model, not a law. Plugins implement what
+# makes sense for their content type.
+###############################################################################
+
+- name: Create the Galaxy remote
+  pulp.squeezer.ansible_remote:
+    name: "{{ pulp_lab_galaxy.name }}"
+    url: "{{ pulp_lab_galaxy.url }}"
+    content_type: collection
+    collections: "{{ pulp_lab_galaxy.collections }}"
+    sync_dependencies: true
+    state: present
+    pulp_url: "{{ pulp_url }}"
+    username: "{{ pulp_username }}"
+    password: "{{ pulp_password }}"
+    validate_certs: "{{ pulp_validate_certs }}"
+  delegate_to: localhost
+
+- name: Create the Galaxy repository
+  pulp.squeezer.ansible_repository:
+    name: "{{ pulp_lab_galaxy.name }}"
+    state: present
+    pulp_url: "{{ pulp_url }}"
+    username: "{{ pulp_username }}"
+    password: "{{ pulp_password }}"
+    validate_certs: "{{ pulp_validate_certs }}"
+  delegate_to: localhost
+
+- name: Sync the Galaxy repository
+  pulp.squeezer.ansible_sync:
+    remote: "{{ pulp_lab_galaxy.name }}"
+    repository: "{{ pulp_lab_galaxy.name }}"
+    pulp_url: "{{ pulp_url }}"
+    username: "{{ pulp_username }}"
+    password: "{{ pulp_password }}"
+    validate_certs: "{{ pulp_validate_certs }}"
+  delegate_to: localhost
+
+# No publication :(
+
+- name: Distribute the Galaxy repository
+  pulp.squeezer.ansible_distribution:
+    name: "{{ pulp_lab_galaxy.name }}"
+    base_path: "{{ pulp_lab_galaxy.base_path }}"
+    repository: "{{ pulp_lab_galaxy.name }}"
+    state: present
+    pulp_url: "{{ pulp_url }}"
+    username: "{{ pulp_username }}"
+    password: "{{ pulp_password }}"
+    validate_certs: "{{ pulp_validate_certs }}"
+  delegate_to: localhost
+
+- name: Show the Galaxy server configuration
+  ansible.builtin.debug:
+    msg: |
+      [galaxy]
+      server_list = lab_pulp
+
+      [galaxy_server.lab_pulp]
+      url = {{ pulp_url }}/pulp_ansible/galaxy/{{ pulp_lab_galaxy.base_path }}/api/
+
+# Note the URL shape - pulp_ansible serves a Galaxy-compatible API rather
+# than a static tree under /pulp/content/. Anyone who tries to guess the URL
+# from the other content types will get it wrong.
+
+# This is also why the Pulp settings file sets ANSIBLE_API_HOSTNAME and
+# ANSIBLE_CONTENT_HOSTNAME. The plugin has to know its own external URL to
+# generate correct download links. Get those wrong and syncs succeed while
+# installs fail with confusing 404s.

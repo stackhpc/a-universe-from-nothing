@@ -1,0 +1,118 @@
+---
+###############################################################################
+# Promote what dev is serving into prod (or roll prod back one version)
+
+#   kayobe playbook run etc/kayobe/ansible/pulp-lab-promote.yml
+#   kayobe playbook run etc/kayobe/ansible/pulp-lab-promote.yml -e pulp_lab_rollback=true
+
+# No content is copied or moved. A distribution is just a pointer.
+###############################################################################
+
+- name: Promote or roll back the prod distribution
+  hosts: seed
+  gather_facts: false
+  run_once: true
+
+  vars_files:
+    - pulp-lab-content.yml
+
+  vars:
+    pulp_lab_rollback: false
+    pulp_lab_promote_repo: rocky-extras
+    pulp_lab_prod_base_path: lab/prod
+
+  tasks:
+    - name: Read the dev distribution
+      pulp.squeezer.rpm_distribution:
+        name: lab-dev
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+        delegate_to: localhost
+      register: pulp_lab_dev_dist
+      failed_when: false
+
+    - name: Fail if dev does not exist yet
+      ansible.builtin.fail:
+        msg: "No lab-dev distribution. Run pulp-lab-sync-dev.yml first."
+      when: (pulp_lab_dev_dist.distribution | default({}, true)).publication is not defined
+
+    # Rollback: find where prod is now and step back one version
+    - name: Read the prod distribution
+      pulp.squeezer.rpm_distribution:
+        name: lab-prod
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+        delegate_to: localhost
+      register: pulp_lab_prod_dist
+      when: pulp_lab_rollback | bool
+      failed_when: false
+
+    - name: Read the publication prod is serving
+      ansible.builtin.uri:
+        url: "{{ pulp_url }}{{ (pulp_lab_prod_dist.distribution | default({}, true)).publication }}"
+        url_username: "{{ pulp_username }}"
+        url_password: "{{ pulp_password }}"
+        force_basic_auth: true
+      delegate_to: localhost
+      when:
+        - pulp_lab_rollback | bool
+        - (pulp_lab_prod_dist.distribution | default({}, true)).publication is defined
+      register: pulp_lab_prod_pub
+
+    - name: Work out the rollback target
+      ansible.builtin.set_fact:
+        pulp_lab_target_version: >-
+          {{ (pulp_lab_prod_pub.json.repository_version
+              | regex_replace('.*/versions/([0-9]+)/$', '\1') | int) - 1 }}
+      when: pulp_lab_rollback | bool
+
+    - name: Fail if there is nothing to roll back to
+      ansible.builtin.fail:
+        msg: >-
+          prod is already on version 0. There is nothing earlier to go to.
+      when:
+        - pulp_lab_rollback | bool
+        - pulp_lab_target_version | int < 0
+
+    - name: Publish the rollback target
+      pulp.squeezer.rpm_publication:
+        repository: "{{ pulp_lab_promote_repo }}"
+        version: "{{ pulp_lab_target_version }}"
+        state: present
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+      delegate_to: localhost
+      when: pulp_lab_rollback | bool
+      register: pulp_lab_rollback_publication
+
+    # Moving the pointer
+    # Promotion serves exactly the publication dev has been serving - the
+    # same frozen version that was tested, not a fresh one built from the
+    # same repository.
+    - name: Point the prod distribution at the chosen publication
+      pulp.squeezer.rpm_distribution:
+        name: lab-prod
+        base_path: "{{ pulp_lab_prod_base_path }}"
+        publication: >-
+          {{ pulp_lab_rollback_publication.publication.pulp_href
+             if pulp_lab_rollback | bool
+             else pulp_lab_dev_dist.distribution.publication }}
+        state: present
+        pulp_url: "{{ pulp_url }}"
+        username: "{{ pulp_username }}"
+        password: "{{ pulp_password }}"
+        validate_certs: "{{ pulp_validate_certs }}"
+      delegate_to: localhost
+
+    - name: Report
+      ansible.builtin.debug:
+        msg: >-
+          {{ 'ROLLED BACK' if pulp_lab_rollback | bool else 'PROMOTED' }}
+          prod{{ ' to version ' ~ pulp_lab_target_version
+                 if pulp_lab_rollback | bool else ' to match dev' }}.
