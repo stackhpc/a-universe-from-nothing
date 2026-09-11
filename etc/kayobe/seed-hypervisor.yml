@@ -119,14 +119,14 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # Seed hypervisor node firewalld configuration.
 
 # Whether to install and enable firewalld.
-#seed_hypervisor_firewalld_enabled:
+seed_hypervisor_firewalld_enabled: true
 
 # A list of zones to create. Each item is a dict containing a 'zone' item.
 #seed_hypervisor_firewalld_zones:
 
 # A firewalld zone to set as the default. Default is unset, in which case the
 # default zone will not be changed.
-#seed_hypervisor_firewalld_default_zone:
+seed_hypervisor_firewalld_default_zone: "trusted"
 
 # A list of firewall rules to apply. Each item is a dict containing arguments
 # to pass to the firewalld module. Arguments are omitted if not provided, with
@@ -134,7 +134,18 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 # - offline: true
 # - permanent: true
 # - state: enabled
-#seed_hypervisor_firewalld_rules:
+seed_hypervisor_firewalld_rules:
+      - rich_rule: rule family=ipv4 source address={{ aio_cidr }} masquerade
+        zone: trusted
+      - rich_rule: rule family=ipv4 forward-port port="80" protocol="tcp" to-port="80" to-addr={{ kolla_external_vip_address }}
+        zone: trusted
+      - rich_rule: rule family=ipv4 forward-port port="6080" protocol="tcp" to-port="6080" to-addr={{ kolla_external_vip_address }}
+        zone: trusted
+      - rich_rule: rule family=ipv4 forward-port port="5601" protocol="tcp" to-port="5601" to-addr={{ kolla_external_vip_address }}
+        zone: trusted
+      - service: ssh
+        state: enabled
+        zone: trusted
 
 ###############################################################################
 # Seed hypervisor node fail2ban configuration.

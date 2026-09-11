@@ -24,6 +24,7 @@ specs:
       network_interface: noop
 
 ipmi_address: 192.168.33.4
+redfish_address: 192.168.33.4
 
 nova_flavors: []
 

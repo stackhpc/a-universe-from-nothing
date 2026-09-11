@@ -87,9 +87,6 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
        sudo apt -y install git python3 python3-venv tmux
    fi
 
-   # Disable the firewall.
-   sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
-
    # Put SELinux in permissive mode both immediately and permanently.
    if command -v setenforce >/dev/null 2>&1; then
        sudo setenforce 0
@@ -117,14 +114,14 @@ already logged in (e.g. ``ssh rocky@<ip>``, or ``ssh ubuntu@<ip>``).
    [[ -d beokay ]] || git clone https://github.com/stackhpc/beokay.git
 
    # Use Beokay to bootstrap your control host.
-   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch master --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch master
+   [[ -d deployment ]] || beokay/beokay.py create --base-path ~/deployment --kayobe-repo https://opendev.org/openstack/kayobe.git --kayobe-branch stable/2026.1 --kayobe-config-repo https://github.com/stackhpc/a-universe-from-nothing.git --kayobe-config-branch stable/2026.1
 
    # Clone the Tenks repository.
    cd ~/deployment/src
    [[ -d tenks ]] || git clone https://opendev.org/openstack/tenks.git
    cd
 
-   # Configure host networking (bridge, routes & firewall)
+   # Configure host networking (bridge)
    ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 Deploying a Seed
@@ -156,10 +153,6 @@ performed the necessary `Preparation`_.
    # Deploy the seed services.
    kayobe seed service deploy
 
-   # Deploying the seed restarts networking interface,
-   # run configure-local-networking.sh again to re-add routes.
-   ~/deployment/src/kayobe-config/configure-local-networking.sh
-
    # Optional: Shutdown the seed VM if creating a seed snapshot.
    sudo virsh shutdown seed
 
@@ -189,9 +182,6 @@ Otherwise, continue working with the instance from `Deploying a Seed`_.
 
    # Optional: start a new tmux session in case we lose our connection.
    tmux
-
-   # Configure non-persistent networking, if the node has rebooted.
-   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 Make sure that the seed VM (running Bifrost and supporting services)
 is present and running.
@@ -275,10 +265,6 @@ You'll need to have activated the `~/deployment/venvs/os-venv` virtual environme
 
    # Check SSH access to the VM.
    ssh cirros@$fip
-
-   # If the ssh command above fails you may need to reconfigure the local
-   networking setup again:
-   ~/deployment/src/kayobe-config/configure-local-networking.sh
 
 *Note*: when accessing the VNC console of an instance via Horizon,
 you will be sent to the internal IP address of the controller,
@@ -423,8 +409,8 @@ The new containers can be seen running on the controller node:
 
     $ ssh stack@192.168.33.3 docker ps
     CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED       STATUS                 PORTS     NAMES
-    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:master-rocky-10      "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
-    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:master-rocky-10                 "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
+    fad79f29afbc   192.168.33.5:4000/openstack.kolla/opensearch-dashboards:2026.1-rocky-10      "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch_dashboards
+    64df77adc709   192.168.33.5:4000/openstack.kolla/opensearch:2026.1-rocky-10                 "dumb-init --single-…"   6 hours ago   Up 6 hours (healthy)             opensearch
 
 We can see the log indexes in OpenSearch:
 
@@ -432,31 +418,7 @@ We can see the log indexes in OpenSearch:
 
    curl -X GET "192.168.33.3:9200/_cat/indices?v"
 
-To access OpenSearch Dashboards, we must first forward connections from our
-public interface to the OpenSearch Dashboards service running on our
-``controller0`` VM.
-
-The easiest way to do this is to add OpenSearch Dashboards's default port (5601) to our
-``configure-local-networking.sh`` script in ``~/deployment/src/kayobe-config/``:
-
-.. code-block:: diff
-
-    --- a/configure-local-networking.sh
-    +++ b/configure-local-networking.sh
-    @@ -20,7 +20,7 @@ seed_hv_private_ip=$(ip a show dev $iface | grep 'inet ' | awk '{ print $2 }' |
-     # Forward the following ports to the controller.
-     # 80: Horizon
-     # 6080: VNC console
-    -forwarded_ports="80 6080"
-    +forwarded_ports="80 6080 5601"
-
-Then rerun the script to apply the change:
-
-.. code-block:: console
-
-    ~/deployment/src/kayobe-config/configure-local-networking.sh
-
-We can now connect to OpenSearch Dashboards using our hypervisor host public IP and port 5601.
+We can connect to OpenSearch Dashboards using our hypervisor host public IP and port 5601.
 
 The username is ``opensearch`` and the password we can extract from the
 Kolla-Ansible passwords (in production these would be vault-encrypted
@@ -514,7 +476,7 @@ OpenStack venv:
     source ~/deployment/venvs/os-venv/bin/activate
 
     # Install barbicanclient
-    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/master
+    pip install python-barbicanclient -c https://releases.openstack.org/constraints/upper/2026.1
 
     # Source the OpenStack environment variables
     source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
@@ -533,6 +495,128 @@ OpenStack venv:
 
 Congratulations, you have successfully installed Barbican on Kayobe.
 
+Recovering AUFN after a reboot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If your AUFN has been set up with persistent networking, these instructions will help you to
+recover openstack services after a reboot.
+Check ``ip a`` output.
+If ``brtenks0`` is down:
+
+.. code-block:: console
+
+    6: brtenks0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+        link/ether 7e:50:62:55:48:d9 brd ff:ff:ff:ff:ff:ff
+
+then bring it up:
+
+.. code-block:: console
+    sudo ip link set brtenks0 up
+
+Check with ``ip a``:
+
+.. code-block:: console
+
+    6: brtenks0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+        link/ether 7e:50:62:55:48:d9 brd ff:ff:ff:ff:ff:ff
+        inet6 fe80::7c50:62ff:fe55:48d9/64 scope link 
+        valid_lft forever preferred_lft forever
+
+Check which VMs are off with ``sudo virsh list --all``
+
+.. code-block:: console
+
+    Id   Name          State
+    ------------------------------
+    1    seed          running
+    -    compute0      shut off
+    -    controller0   shut off
+
+Bring up the shut off VMs:
+``sudo virsh start controller0``
+``sudo virsh start compute0``
+Check that they are up with ``sudo virsh list --all``:
+
+.. code-block:: console
+
+ Id   Name          State
+-----------------------------
+ 1    seed          running
+ 2    controller0   running
+ 3    compute0      running
+
+Check for ssh access to VMs:
+``ssh stack@seed``
+``ssh stack@compute0``
+``ssh stack@controller0``
+
+Inside ``controller0``, check docker containers are running and healthy:
+
+.. code-block:: console
+
+    stack@controller0:~$ docker ps -a
+    CONTAINER ID   IMAGE                                                                             COMMAND                  CREATED         STATUS                   PORTS     NAMES
+    dd01f3f5f2cd   192.168.33.5:4000/openstack.kolla/neutron-dhcp-agent:2026.1-ubuntu-noble          "dumb-init --single-…"   6 minutes ago   Up 6 minutes                       neutron_dhcp_agent_dnsmasq_qdhcp-881dd445-6af7-41f8-bcb7-3bb87a30c66d
+    305dc16549c9   192.168.33.5:4000/openstack.kolla/neutron-l3-agent:2026.1-ubuntu-noble            "dumb-init --single-…"   6 minutes ago   Up 6 minutes                       neutron_l3_agent_haproxy_qrouter-1b7ddbe4-f4fe-400f-887f-cf18e41b768a
+    21db10c3e038   192.168.33.5:4000/openstack.kolla/neutron-dhcp-agent:2026.1-ubuntu-noble          "dumb-init --single-…"   6 minutes ago   Up 6 minutes                       neutron_dhcp_agent_haproxy_qdhcp-881dd445-6af7-41f8-bcb7-3bb87a30c66d
+    58c0bc68e6cb   192.168.33.5:4000/openstack.kolla/horizon:2026.1-ubuntu-noble                     "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             horizon
+    1e2395af9f84   192.168.33.5:4000/openstack.kolla/heat-engine:2026.1-ubuntu-noble                 "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             heat_engine
+    69001b5bf034   192.168.33.5:4000/openstack.kolla/heat-api-cfn:2026.1-ubuntu-noble                "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             heat_api_cfn
+    6e672f80bdb2   192.168.33.5:4000/openstack.kolla/heat-api:2026.1-ubuntu-noble                    "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             heat_api
+    33a3e2e1e949   192.168.33.5:4000/openstack.kolla/neutron-metadata-agent:2026.1-ubuntu-noble      "dumb-init --single-…"   18 hours ago    Up 8 minutes                       neutron_metadata_agent
+    ea89371e43b7   192.168.33.5:4000/openstack.kolla/neutron-l3-agent:2026.1-ubuntu-noble            "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             neutron_l3_agent
+    4cdc79f9f597   192.168.33.5:4000/openstack.kolla/neutron-dhcp-agent:2026.1-ubuntu-noble          "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             neutron_dhcp_agent
+    dd4957eb9b7b   192.168.33.5:4000/openstack.kolla/neutron-openvswitch-agent:2026.1-ubuntu-noble   "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             neutron_openvswitch_agent
+    d9eec3d6e8b5   192.168.33.5:4000/openstack.kolla/neutron-server:2026.1-ubuntu-noble              "dumb-init --single-…"   18 hours ago    Up 7 minutes (healthy)             neutron_periodic_worker
+    3ccc8d453e30   192.168.33.5:4000/openstack.kolla/neutron-server:2026.1-ubuntu-noble              "dumb-init --single-…"   18 hours ago    Up 7 minutes (healthy)             neutron_rpc_server
+    fb92a3c6b337   192.168.33.5:4000/openstack.kolla/neutron-server:2026.1-ubuntu-noble              "dumb-init --single-…"   18 hours ago    Up 3 minutes (healthy)             neutron_server
+    57b84413d7fb   192.168.33.5:4000/openstack.kolla/nova-novncproxy:2026.1-ubuntu-noble             "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             nova_novncproxy
+    ed3cf4869a63   192.168.33.5:4000/openstack.kolla/nova-conductor:2026.1-ubuntu-noble              "dumb-init --single-…"   18 hours ago    Up 2 minutes (healthy)             nova_conductor
+    46368aa114d1   192.168.33.5:4000/openstack.kolla/nova-api:2026.1-ubuntu-noble                    "dumb-init --single-…"   18 hours ago    Up 2 minutes (healthy)             nova_metadata
+    7732fbaaa154   192.168.33.5:4000/openstack.kolla/nova-api:2026.1-ubuntu-noble                    "dumb-init --single-…"   18 hours ago    Up 2 minutes (healthy)             nova_api
+    4a2b4c40c060   192.168.33.5:4000/openstack.kolla/nova-scheduler:2026.1-ubuntu-noble              "dumb-init --single-…"   18 hours ago    Up 2 minutes (healthy)             nova_scheduler
+    8cbe2882fe96   192.168.33.5:4000/openstack.kolla/openvswitch-vswitchd:2026.1-ubuntu-noble        "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             openvswitch_vswitchd
+    a3cfe44e3168   192.168.33.5:4000/openstack.kolla/openvswitch-db-server:2026.1-ubuntu-noble       "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             openvswitch_db
+    307678eb5458   192.168.33.5:4000/openstack.kolla/placement-api:2026.1-ubuntu-noble               "dumb-init --single-…"   18 hours ago    Up 2 minutes (healthy)             placement_api
+    ef5254cf1064   192.168.33.5:4000/openstack.kolla/glance-api:2026.1-ubuntu-noble                  "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             glance_api
+    5f9b0df0c99d   192.168.33.5:4000/openstack.kolla/keystone:2026.1-ubuntu-noble                    "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             keystone
+    905993d862b5   192.168.33.5:4000/openstack.kolla/keystone-fernet:2026.1-ubuntu-noble             "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             keystone_fernet
+    2b2f15089022   192.168.33.5:4000/openstack.kolla/keystone-ssh:2026.1-ubuntu-noble                "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             keystone_ssh
+    cb63163dfb4d   192.168.33.5:4000/openstack.kolla/rabbitmq:2026.1-ubuntu-noble                    "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             rabbitmq
+    b460e07df0a8   192.168.33.5:4000/openstack.kolla/memcached:2026.1-ubuntu-noble                   "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             memcached
+    c37c1cd07516   192.168.33.5:4000/openstack.kolla/mariadb-server:2026.1-ubuntu-noble              "dumb-init -- kolla_…"   18 hours ago    Up 8 minutes (healthy)             mariadb
+    bedc8e1ea9ff   192.168.33.5:4000/openstack.kolla/keepalived:2026.1-ubuntu-noble                  "dumb-init --single-…"   18 hours ago    Up 8 minutes                       keepalived
+    5d71af04604d   192.168.33.5:4000/openstack.kolla/proxysql:2026.1-ubuntu-noble                    "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             proxysql
+    6d200b181bb2   192.168.33.5:4000/openstack.kolla/haproxy:2026.1-ubuntu-noble                     "dumb-init --single-…"   18 hours ago    Up 8 minutes (healthy)             haproxy
+    8cd8b2979a14   192.168.33.5:4000/openstack.kolla/fluentd:2026.1-ubuntu-noble                     "dumb-init --single-…"   18 hours ago    Up 8 minutes                       fluentd
+    eaddc631af2c   192.168.33.5:4000/openstack.kolla/cron:2026.1-ubuntu-noble                        "dumb-init --single-…"   18 hours ago    Up 8 minutes                       cron
+    9c625afb0f7e   192.168.33.5:4000/openstack.kolla/kolla-toolbox:2026.1-ubuntu-noble               "dumb-init --single-…"   18 hours ago    Up 8 minutes                       kolla_toolbox
+
+Restart any unhealthy containers. If they are still unhealthy after a restart, user ``docker logs <container_name>`` and check /var/log/kolla to investigate the problem.
+
+Source the openstack venv and openrc file:
+
+.. code-block:: console
+
+    source ~/deployment/src/kayobe-config/etc/kolla/public-openrc.sh
+    source ~/deployment/venvs/os-venv/bin/activate
+
+Check openstack VMs with ``openstack server list``:
+
+.. code-block:: console
+    +--------------------------------------+-------+---------+--------------------------------+--------+---------+
+    | ID                                   | Name  | Status  | Networks                       | Image  | Flavor  |
+    +--------------------------------------+-------+---------+--------------------------------+--------+---------+
+    | a039d74f-c5a0-4193-a80e-f249acc5c6ad | demo1 | SHUTOFF | demo-net=10.0.0.40, 10.0.2.184 | cirros | m1.tiny |
+    +--------------------------------------+-------+---------+--------------------------------+--------+---------+
+
+Start any shut off VMs with ``openstack server start <vm_name>``
+
+Check for ssh access to openstack VMs, for example:
+``ssh cirros@10.0.2.184``
+Don't forget to use the VM's floating ip to ssh in.
+
+If everything works, you should be fine to carry on.
 
 References
 ==========
