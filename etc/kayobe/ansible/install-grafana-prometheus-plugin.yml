@@ -1,0 +1,27 @@
+---
+# NOTE(technowhizz): Remove this playbook and its hook after the fix in
+# https://review.opendev.org/c/openstack/kolla/+/1005871 lands.
+- name: Install the Grafana Prometheus plugin
+  hosts: controllers
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Install the Grafana Prometheus plugin when Grafana is enabled
+      when: kolla_enable_grafana | bool
+      block:
+        - name: List installed Grafana plugins
+          ansible.builtin.command: docker exec grafana grafana cli plugins ls
+          register: grafana_plugins
+          changed_when: false
+
+        - name: Install the Grafana Prometheus plugin
+          ansible.builtin.command: >-
+            docker exec grafana grafana cli plugins install prometheus
+          when: "'prometheus' not in grafana_plugins.stdout"
+          changed_when: true
+          notify: Restart Grafana
+
+  handlers:
+    - name: Restart Grafana
+      ansible.builtin.command: docker restart grafana
+      changed_when: true
