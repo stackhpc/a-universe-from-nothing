@@ -511,6 +511,7 @@ If ``brtenks0`` is down:
 then bring it up:
 
 .. code-block:: console
+    
     sudo ip link set brtenks0 up
 
 Check with ``ip a``:
@@ -539,11 +540,11 @@ Check that they are up with ``sudo virsh list --all``:
 
 .. code-block:: console
 
- Id   Name          State
------------------------------
- 1    seed          running
- 2    controller0   running
- 3    compute0      running
+    Id   Name          State
+    -----------------------------
+    1    seed          running
+    2    controller0   running
+    3    compute0      running
 
 Check for ssh access to VMs:
 ``ssh stack@seed``
@@ -604,6 +605,7 @@ Source the openstack venv and openrc file:
 Check openstack VMs with ``openstack server list``:
 
 .. code-block:: console
+
     +--------------------------------------+-------+---------+--------------------------------+--------+---------+
     | ID                                   | Name  | Status  | Networks                       | Image  | Flavor  |
     +--------------------------------------+-------+---------+--------------------------------+--------+---------+
