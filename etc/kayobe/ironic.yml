@@ -100,6 +100,11 @@
 # Name of the Neutron network to use for provisioning.
 #kolla_ironic_provisioning_network:
 
+# Address of the Ironic Python Agent (IPA) NTP server. The default value maps
+# to the IP address of each controller on the internal API, which should be
+# running chronyd.
+#kolla_ironic_ntp_server:
+
 # List of default kernel parameters to append for baremetal PXE boot.
 #kolla_ironic_pxe_append_params_default:
 

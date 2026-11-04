@@ -1,0 +1,13 @@
+---
+###############################################################################
+# Kayobe custom hostname configuration.
+
+# Whether to set custom hostnames. Default is false.
+#kayobe_customize_hostnames:
+
+# Custom hostname to set. Default is "{{ inventory_hostname }}".
+#kayobe_custom_hostname:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
