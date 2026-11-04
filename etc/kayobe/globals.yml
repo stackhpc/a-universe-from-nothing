@@ -44,22 +44,21 @@
 ###############################################################################
 # OS distribution.
 
-# OS distribution name. Valid options are "centos", "rocky", "ubuntu". Default
+# OS distribution name. Valid options are "rocky" and "ubuntu". Default
 # is "rocky".
 # NOTE: Avoids using Ansible facts to be compatible with gather_facts: false
 os_distribution: "{{ lookup('pipe', '. /etc/os-release && echo $ID') | trim }}"
 
-# Mapping from OS distribution name to OS family. Supported keys are
-# "centos", "rocky", and "ubuntu".
+# Mapping from OS distribution name to OS family. Supported keys are "rocky"
+# and "ubuntu".
 #os_family_map:
 
 # OS family. Valid options are "RedHat" and "Debian". Default depends on
 # os_distribution.
 #os_family:
 
-# OS release. Valid options are "10-stream" when os_distribution is "centos",
-# "10" when os_distribution is "rocky", or "noble" when os_distribution is
-# "ubuntu".
+# OS release. Valid options are "10" when os_distribution is "rocky", or
+# "noble" when os_distribution is "ubuntu".
 # NOTE: Avoids using Ansible facts to be compatible with gather_facts: false
 # yamllint disable-line rule:line-length
 os_release: "{{ 'noble' if os_distribution == 'ubuntu' else lookup('pipe', '. /etc/os-release && echo $VERSION_ID | cut -d . -f 1') | trim }}{{ '-stream' if os_distribution == 'centos' else '' }}"
@@ -87,6 +86,11 @@ os_release: "{{ 'noble' if os_distribution == 'ubuntu' else lookup('pipe', '. /e
 # This allows us to install packages and create arbitrary directories that our
 # user would not normally have permission to create. Default is true.
 #kayobe_control_host_become:
+
+# Global variable to choose whether or not to reboot hosts when required by
+# host configuration playbooks, including VGPU and SELinux playbooks. Default
+# is false.
+#kayobe_do_reboot:
 
 ###############################################################################
 # Networking configuration.

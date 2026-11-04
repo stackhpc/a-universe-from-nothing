@@ -12,7 +12,8 @@
 ###############################################################################
 # Docker configuration.
 
-# Name of the docker storage driver. Default is 'overlay2'.
+# Name of the docker storage driver. Default is "", which defers to the
+# Docker runtime default.
 #docker_storage_driver:
 
 # Name of the docker storage LVM volume group.

@@ -2,7 +2,7 @@
 # Kayobe network configuration.
 
 ###############################################################################
-# Network role to network mappings.
+# Network role to network name mappings.
 
 # Map all networks to the all-in-one network.
 
@@ -142,6 +142,12 @@ aio_zone: "trusted"
 # List of IP routing tables. Each item should be a dict containing 'id' and
 # 'name' items. These tables will be added to /etc/iproute2/rt_tables.
 #network_route_tables:
+
+###############################################################################
+# Systemd-networkd configuration.
+
+# Prefix for systemd-networkd configuration file names.
+#networkd_prefix:
 
 ###############################################################################
 # Network connectivity check configuration.
