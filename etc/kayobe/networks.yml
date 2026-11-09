@@ -2,7 +2,7 @@
 # Kayobe network configuration.
 
 ###############################################################################
-# Network role to network mappings.
+# Network role to network name mappings.
 
 # Map all networks to the all-in-one network.
 
@@ -36,9 +36,6 @@ internal_net_name: aio
 
 # List of names of networks used to provide external network access via
 # Neutron.
-# Deprecated name: external_net_name
-# If external_net_name is defined, external_net_names will default to a list
-# containing one item, external_net_name.
 #external_net_names:
 external_net_names:
   - aio
@@ -58,14 +55,6 @@ storage_net_name: aio
 # Name of the network used to carry storage management traffic.
 #storage_mgmt_net_name:
 storage_mgmt_net_name: aio
-
-# Name of the network used to carry swift storage data traffic.
-#swift_storage_net_name:
-swift_storage_net_name: aio
-
-# Name of the network used to carry swift storage replication traffic.
-#swift_storage_replication_net_name:
-swift_storage_replication_net_name: aio
 
 # Name of the network used to perform hardware introspection on the bare metal
 # workload hosts.
@@ -142,6 +131,12 @@ aio_zone: "trusted"
 # List of IP routing tables. Each item should be a dict containing 'id' and
 # 'name' items. These tables will be added to /etc/iproute2/rt_tables.
 #network_route_tables:
+
+###############################################################################
+# Systemd-networkd configuration.
+
+# Prefix for systemd-networkd configuration file names.
+#networkd_prefix:
 
 ###############################################################################
 # Network connectivity check configuration.
