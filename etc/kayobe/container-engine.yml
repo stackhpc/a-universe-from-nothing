@@ -12,24 +12,9 @@
 ###############################################################################
 # Docker configuration.
 
-# Name of the docker storage driver. Default is 'overlay2'.
+# Name of the docker storage driver. Default is "", which defers to the
+# Docker runtime default.
 #docker_storage_driver:
-
-# Name of the docker storage LVM volume group.
-#docker_storage_volume_group:
-
-# Name of the docker storage data LVM volume.
-#docker_storage_volume_thinpool:
-
-# Size of the docker storage data LVM volume (see lvol module size argument).
-#docker_storage_volume_thinpool_size:
-
-# Name of the docker storage metadata LVM volume.
-#docker_storage_volume_thinpool_meta:
-
-# Size of the docker storage metadata LVM volume (see lvol module size
-# argument).
-#docker_storage_volume_thinpool_meta_size:
 
 # URL of docker registry
 docker_registry: 192.168.33.5:4000

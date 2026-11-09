@@ -3,8 +3,7 @@
 # Compute node configuration.
 
 # User with which to access the compute nodes via SSH during bootstrap, in
-# order to setup the Kayobe user account. Default is 'cloud-user' if
-# os_distribution is set to centos, otherwise 'os_distribution'.
+# order to setup the Kayobe user account. Default is {{ os_distribution }}.
 #compute_bootstrap_user:
 
 ###############################################################################
@@ -219,11 +218,11 @@
 # Whether to enable a libvirt TLS listener. Default is false.
 #compute_libvirt_enable_tls:
 
-# Whether to install a Ceph package repository on CentOS and Rocky hosts.
+# Whether to install a Ceph package repository on Rocky Linux hosts.
 # Default is true.
 #compute_libvirt_ceph_repo_install:
 
-# Ceph package repository release to install on CentOS and Rocky hosts when
+# Ceph package repository release to install on Rocky Linux hosts when
 # compute_libvirt_ceph_repo_install is true. Default is 'squid'.
 #compute_libvirt_ceph_repo_release:
 

@@ -31,10 +31,8 @@
 
 # Base image for the infra VM root volume. Default is
 # "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
-# when os_distribution is "ubuntu",
+# when os_distribution is "ubuntu", or
 # "https://dl.rockylinux.org/pub/rocky/10/images/x86_64/Rocky-10-GenericCloud-Base.latest.x86_64.qcow2"
-# when os_distribution is "rocky", or
-# "https://cloud.centos.org/centos/10-stream/x86_64/images/CentOS-Stream-GenericCloud-x86_64-10-latest.x86_64.qcow2"
 # otherwise.
 #infra_vm_root_image:
 
@@ -67,8 +65,7 @@
 # Infrastructure VM node configuration.
 
 # User with which to access the infrastructure vm via SSH during bootstrap, in
-# order to setup the Kayobe user account. Default is 'cloud-user' if
-# os_distribution is set to centos, otherwise 'os_distribution'.
+# order to setup the Kayobe user account. Default is {{ os_distribution }}.
 #infra_vm_bootstrap_user:
 
 ###############################################################################
@@ -181,7 +178,7 @@
 #infra_vm_containers:
 
 # Whether to attempt a basic authentication login to a registry when
-# deploying controller containers
+# deploying infrastructure VM node containers
 #infra_vm_manage_containers_registry_attempt_login:
 
 ###############################################################################

@@ -70,8 +70,8 @@
 # Default is "{{ ansible_facts.architecture }}"
 #kolla_base_arch:
 
-# Kolla base container image distribution. Options are "centos", "debian",
-# "rocky", "ubuntu". Default is {{ os_distribution }}.
+# Kolla base container image distribution. Options are "debian", "rocky",
+# "ubuntu". Default is {{ os_distribution }}.
 #kolla_base_distro:
 
 # Kolla base container image distribution version default map.
@@ -308,6 +308,7 @@
 #kolla_enable_cinder_backend_pure_nvme_tcp:
 #kolla_enable_cinder_backend_pure_roce:
 #kolla_enable_cinder_backend_quobyte:
+#kolla_enable_cinder_backend_vast:
 #kolla_enable_cinder_backup:
 #kolla_enable_cinder_horizon_policy_file:
 #kolla_enable_cloudkitty:
@@ -369,6 +370,7 @@
 #kolla_enable_manila_backend_generic:
 #kolla_enable_manila_backend_glusterfs_nfs:
 #kolla_enable_manila_backend_hnas:
+#kolla_enable_manila_backend_vast:
 #kolla_enable_mariabackup:
 #kolla_enable_mariadb:
 #kolla_enable_masakari:
@@ -383,7 +385,6 @@
 #kolla_enable_neutron_dvr:
 #kolla_enable_neutron_fwaas:
 #kolla_enable_neutron_horizon_policy_file:
-#kolla_enable_neutron_infoblox_ipam_agent:
 #kolla_enable_neutron_metering:
 #kolla_enable_neutron_mlnx:
 #kolla_enable_neutron_packet_logging:

@@ -3,8 +3,7 @@
 # Seed node configuration.
 
 # User with which to access the seed via SSH during bootstrap, in order to
-# setup the Kayobe user account. Default is 'cloud-user' if os_distribution is
-# set to centos, otherwise 'os_distribution'.
+# setup the Kayobe user account. Default is {{ os_distribution }}.
 #seed_bootstrap_user:
 
 ###############################################################################
@@ -51,15 +50,14 @@
 # Whether a 'data' LVM volume group should exist on the seed. By default this
 # contains a 'docker-volumes' logical volume for Docker volume storage.
 # Default is false.
-seed_lvm_group_data_enabled: true
+#seed_lvm_group_data_enabled:
 
 # Seed LVM volume group for data. See mrlesmithjr.manage_lvm role for format.
 #seed_lvm_group_data:
 
 # List of disks for use by seed LVM data volume group. Default to an invalid
 # value to require configuration.
-seed_lvm_group_data_disks:
-  - "/dev/vdb"
+#seed_lvm_group_data_disks:
 
 # List of LVM logical volumes for the data volume group when using docker.
 #seed_lvm_group_data_docker_lvs:

@@ -4,31 +4,25 @@
 ###############################################################################
 # DNF repository configuration.
 
-# Yum configuration. Dict mapping Yum config option names to their values.
+# DNF configuration. Dict mapping DNF config option names to their values.
 # dnf_config:
 #   proxy: http://proxy.example.com
 #dnf_config:
 
-# Whether or not to use a local Yum mirror. Default value is 'false'.
+# Whether or not to use a local DNF mirror. Default value is 'false'.
 #dnf_use_local_mirror:
 
-# Mirror FQDN for Yum CentOS repos. Default value is 'mirror.centos.org'.
-#dnf_centos_mirror_host:
-
-# Mirror directory for Yum CentOS repos. Default value is 'centos'.
-#dnf_centos_mirror_directory:
-
-# Mirror FQDN for Yum Rocky repos. Default value is 'dl.rockylinux.org'.
+# Mirror FQDN for DNF Rocky repos. Default value is 'dl.rockylinux.org'.
 #dnf_rocky_mirror_host:
 
-# Mirror directory for Yum Rocky repos. Default value is 'pub/rocky'.
+# Mirror directory for DNF Rocky repos. Default value is 'pub/rocky'.
 #dnf_rocky_mirror_directory:
 
-# Mirror FQDN for Yum EPEL repos. Default value is
+# Mirror FQDN for DNF EPEL repos. Default value is
 # 'download.fedoraproject.org'.
 #dnf_epel_mirror_host:
 
-# Mirror directory for Yum EPEL repos. Default value is 'pub/epel'.
+# Mirror directory for DNF EPEL repos. Default value is 'pub/epel'.
 #dnf_epel_mirror_directory:
 
 # A dict of custom repositories.
