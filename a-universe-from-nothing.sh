@@ -13,9 +13,6 @@ else
     sudo apt -y install git python3 python3-venv tmux
 fi
 
-# Disable the firewall.
-sudo systemctl is-enabled firewalld && sudo systemctl stop firewalld && sudo systemctl disable firewalld
-
 # Put SELinux in permissive mode both immediately and permanently.
 if command -v setenforce >/dev/null 2>&1; then
     sudo setenforce 0
@@ -66,10 +63,6 @@ kayobe seed host configure
 
 # Deploy the seed services.
 kayobe seed service deploy
-
-# Deploying the seed restarts networking interface,
-# run configure-local-networking.sh again to re-add routes.
-~/deployment/src/kayobe-config/configure-local-networking.sh
 
 # Set Environment variables for Kayobe dev scripts
 export KAYOBE_CONFIG_SOURCE_PATH=~/deployment/src/kayobe-config
