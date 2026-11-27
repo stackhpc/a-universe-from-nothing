@@ -97,6 +97,10 @@ aio_inspection_allocation_pool_end: 192.168.33.254
 aio_mtu: 1442
 aio_zone: "trusted"
 
+# public network
+public_cidr: 10.0.2.0/24
+public_mtu: 1442
+
 ###############################################################################
 # Network virtual patch link configuration.
 
